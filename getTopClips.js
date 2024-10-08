@@ -57,14 +57,57 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
       const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
       const durations = clipsData.data.map((datum) => datum.duration);
 
-      const thumbnailCardsContainer = document.createElement('div');
-      thumbnailCardsContainer.className = "thumbnail-cards-container";
-      thumbnailCardsContainer.id = "thumbnail-cards-container";
-      document.body.appendChild(thumbnailCardsContainer);
-      const parentElement = thumbnailCardsContainer;
+      const popularClipsCarouselInner = document.getElementById('popular-clips-carousel-inner');
 
       thumbnailUrls.forEach((url, index) => {
+        // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
         if(languages[index] === 'en') {
+          /*
+
+              <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        */
+
+          const carouselItem = document.createElement('div');
+          carouselItem.className = "carousel-item"
+          if (index === 0) {
+            carouselItem.classList.add('active');
+          }
+
+          const card = document.createElement('div');
+          card.className = "card";
+
+          const imageWrapper = document.createElement('div');
+          imageWrapper.className = "img-wrapper";
+
+          // formerly thumbnail
+          const image = document.createElement('img');
+          image.src = url + "&parent=localhost";
+          image.classList.add('thumbnail');
+          image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+
+          const cardBody = document.createElement('div');
+          cardBody.className = 'card-body';
+
+          popularClipsCarouselInner.appendChild(carouselItem);
+          carouselItem.appendChild(card);
+          card.appendChild(imageWrapper);
+          imageWrapper.appendChild(image);
+          card.appendChild(cardBody);
+
+
+            /*
             const thumbnail = document.createElement('img');
             thumbnail.src = url + "&parent=localhost";
             thumbnail.height = 360;
@@ -75,7 +118,9 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
             thumbnail.allowFullscreen = true;
             thumbnail.className = "thumbnail";
             thumbnail.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+            */
     
+            /*
             const titleElement = document.createElement('p');
             titleElement.textContent = titles[index];
 
@@ -90,18 +135,10 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
 
             const creationDateTimeElement = document.createElement('p');
             creationDateTimeElement.textContent = creationDateTimes[index];
+            */
 
-            const thumbnailCard = document.createElement('div');
-            thumbnailCard.appendChild(titleElement);
-            thumbnailCard.appendChild(thumbnail);
-            thumbnailCard.appendChild(streamerElement);
-            thumbnailCard.appendChild(viewCountElement);
-            thumbnailCard.appendChild(durationElement);
-            thumbnailCard.appendChild(creationDateTimeElement);
-            thumbnailCard.className = "thumbnail-card";
+
           
-            parentElement.appendChild(thumbnailCard);
-            console.log("yo");
         }
 
       });
@@ -111,3 +148,139 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
       console.error(error);
     }
   }
+
+  /*
+   <div id="carouselExample" class="carousel slide">
+      <h1>Carousel 1</h1>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample2.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample3.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample4.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample5.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample6.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample7.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample8.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample9.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="thumbnailExample10.png" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  */
