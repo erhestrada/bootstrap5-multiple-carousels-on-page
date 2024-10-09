@@ -70,7 +70,7 @@ function thumbnailClickListener(index, embedUrls) {
 
 
 function highlightDiv(div) {
-  const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? '';
+  const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.border = '';
@@ -130,43 +130,53 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
           const cardBody = document.createElement('div');
           cardBody.className = 'card-body';
 
+          /*
+          const cardTitle = document.createElement('h1');
+          cardTitle.innerText = 'Card Title'
+          cardTitle.style.color = "#6441A4"
+          */
+
+          const clipTitle = document.createElement('p');
+          clipTitle.innerText = titles[index];
+          clipTitle.style.color = "#FFFFFF";
+
+          const viewCount = document.createElement('p');
+          viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
+          viewCount.style.color = "#FFFFFF";
+
+          const streamer = document.createElement('p');
+          streamer.innerText = streamers[index];
+          streamer.style.color = "#FFFFFF";
+
+          const creationDate = document.createElement('p');
+          creationDate.innerText = creationDateTimes[index];
+          creationDate.style.color = "#FFFFFF";
+
+          const duration = document.createElement('p');
+          duration.innerText = Math.round(durations[index]) + 's';
+          duration.style.color = "#FFFFFF";
+
           popularClipsCarouselInner.appendChild(carouselItem);
           carouselItem.appendChild(card);
+          
           card.appendChild(imageWrapper);
           imageWrapper.appendChild(image);
           card.appendChild(cardBody);
+          //cardBody.appendChild(cardTitle);
+          cardBody.appendChild(clipTitle);
+          cardBody.appendChild(viewCount);
+          cardBody.appendChild(streamer);
+          cardBody.appendChild(creationDate);
+          cardBody.appendChild(duration);
 
 
-            /*
-            const thumbnail = document.createElement('img');
-            thumbnail.src = url + "&parent=localhost";
-            thumbnail.height = 360;
-            thumbnail.width = 640;
-            thumbnail.frameBorder = 0;
-            thumbnail.allow = 'autoplay *; encrypted-media *;';
-            thumbnail.loading = 'lazy';
-            thumbnail.allowFullscreen = true;
-            thumbnail.className = "thumbnail";
-            thumbnail.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
-            */
-    
-            /*
-            const titleElement = document.createElement('p');
-            titleElement.textContent = titles[index];
-
-            const streamerElement = document.createElement('p');
-            streamerElement.textContent = streamers[index];
-
-            const viewCountElement = document.createElement('p');
-            viewCountElement.textContent = viewCounts[index].toLocaleString() + " views";
-
-            const durationElement = document.createElement('p');
-            durationElement.textContent = Math.round(durations[index]) + 's';
-
-            const creationDateTimeElement = document.createElement('p');
-            creationDateTimeElement.textContent = creationDateTimes[index];
-            */
-
+          /*
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          */
 
           
         }
