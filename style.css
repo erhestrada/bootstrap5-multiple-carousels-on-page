@@ -71,3 +71,7 @@ div {
     height: 17em;
   }
 }
+
+.card-body p {
+  margin-bottom: 0;
+}

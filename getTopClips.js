@@ -119,13 +119,14 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
 
           const imageWrapper = document.createElement('div');
           imageWrapper.className = "img-wrapper";
+          imageWrapper.id = "img-wrapper" + index;
 
           // formerly thumbnail
           const image = document.createElement('img');
           image.src = url + "&parent=localhost";
           image.classList.add('thumbnail');
           image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
-          image.addEventListener('click', () => {highlightDiv(carouselItem)});
+          image.addEventListener('click', () => {highlightDiv(imageWrapper)});
 
           const cardBody = document.createElement('div');
           cardBody.className = 'card-body';
