@@ -47,8 +47,6 @@ export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
       });
       const clipsData = await response.json();
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-      localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
-      embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
       const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
       const titles = clipsData.data.map((datum) => datum.title);
       const languages = clipsData.data.map((datum) => datum.language);
