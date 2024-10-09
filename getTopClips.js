@@ -36,6 +36,50 @@ function makeGetUrl(game, daysBack) {
     return pastRfcDateTime;
   }
 
+  function thumbnailClickListener(index, embedUrls) {
+    //const embedUrls = JSON.parse(localStorage.getItem("embedUrls"));
+    console.log("hello!");
+    const embedUrl = embedUrls[index];
+
+    const currentClip = document.getElementById('current-clip');
+    currentClip.remove();
+
+    const carouselInner = document.querySelector('.carousel-inner');
+
+    const newItem = document.createElement('div');
+    newItem.className = 'carousel-item iframe-slide active';
+    newItem.id = "current-clip";
+    
+    const flexContainer = document.createElement('div');
+    flexContainer.className = 'd-flex justify-content-center align-items-center';
+    flexContainer.style.height = '500px';
+    
+    const iframe = document.createElement('iframe');
+
+    iframe.src = embedUrl + "&parent=localhost&autoplay=true";
+    iframe.height = 360;
+    iframe.width = 640;
+    iframe.frameBorder = 0;
+    iframe.allowFullscreen = true;
+
+    flexContainer.appendChild(iframe);
+    newItem.appendChild(flexContainer);
+    carouselInner.appendChild(newItem);
+  
+    // Refresh the carousel to recognize the new item
+    const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+}
+
+function replaceCarouselItem(increment) {
+
+  flexContainer.appendChild(iframe);
+  newItem.appendChild(flexContainer);
+  carouselInner.appendChild(newItem);
+
+  // Refresh the carousel to recognize the new item
+  const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+}
+
 export async function getTopClips(clientId, authToken, game, daysBack) {
     try {
       const response = await fetch(makeGetUrl(game, daysBack), {
