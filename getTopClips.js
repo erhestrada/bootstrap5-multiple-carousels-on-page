@@ -68,9 +68,15 @@ function thumbnailClickListener(index, embedUrls) {
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
+
 function highlightDiv(div) {
-  console.log('yo');
-  div.style.border = '1px solid #008000';
+  const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? '';
+  if (lastHighlightedDivId) {
+    const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
+    lastHighlightedDiv.style.border = '';
+  }
+  div.style.border = '1px solid #6441A4';
+  localStorage.setItem('highlightedDivId', div.id);
 }
 
 export async function getTopClips(clientId, authToken, game, daysBack) {
@@ -102,6 +108,7 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
 
 
           const carouselItem = document.createElement('div');
+          carouselItem.id = 'popular-clips' + index;
           carouselItem.className = "carousel-item"
           if (index === 0) {
             carouselItem.classList.add('active');
