@@ -1,4 +1,5 @@
 import { getCarousel2Clips } from './getCarousel2Clips.js';
+import { getCarousel3Clips } from './getCarousel3Clips.js';
 import { getTopClips } from './getTopClips.js';
 
 var clipIndex = 0;
@@ -40,7 +41,8 @@ var clipIndex = 0;
 }
 
 getTopClips(clientId, authToken, "Just Chatting", 1);
-getCarousel2Clips(clientId, authToken, "Just Chatting", 1);
+getCarousel2Clips(clientId, authToken, "IRL", 1);
+getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
 document.addEventListener('DOMContentLoaded', () => replaceCarouselItem(0));
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
