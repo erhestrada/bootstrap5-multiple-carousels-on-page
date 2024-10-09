@@ -68,14 +68,9 @@ function thumbnailClickListener(index, embedUrls) {
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
-function replaceCarouselItem(increment) {
-
-  flexContainer.appendChild(iframe);
-  newItem.appendChild(flexContainer);
-  carouselInner.appendChild(newItem);
-
-  // Refresh the carousel to recognize the new item
-  const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+function highlightDiv(div) {
+  console.log('yo');
+  div.style.border = '1px solid #008000';
 }
 
 export async function getTopClips(clientId, authToken, game, daysBack) {
@@ -123,6 +118,7 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
           image.src = url + "&parent=localhost";
           image.classList.add('thumbnail');
           image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+          image.addEventListener('click', () => {highlightDiv(carouselItem)});
 
           const cardBody = document.createElement('div');
           cardBody.className = 'card-body';
