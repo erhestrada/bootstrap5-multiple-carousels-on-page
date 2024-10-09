@@ -22,52 +22,50 @@ function makeGetUrl(game, daysBack) {
   
   }
   
-  function getCurrentDateTime() {
-    const dateTime = new Date();
-    const rfcDateTime = dateTime.toISOString();
-    return rfcDateTime;
-  }
+function getCurrentDateTime() {
+  const dateTime = new Date();
+  const rfcDateTime = dateTime.toISOString();
+  return rfcDateTime;
+}
   
-  function getPastDateTime(daysBack) {
-    const hoursBack = daysBack * 24;
-    const dateTime = new Date();
-    const pastDateTime = new Date(dateTime.getTime() - hoursBack * 60 * 60 * 1000);
-    const pastRfcDateTime = pastDateTime.toISOString();
-    return pastRfcDateTime;
-  }
+function getPastDateTime(daysBack) {
+  const hoursBack = daysBack * 24;
+  const dateTime = new Date();
+  const pastDateTime = new Date(dateTime.getTime() - hoursBack * 60 * 60 * 1000);
+  const pastRfcDateTime = pastDateTime.toISOString();
+  return pastRfcDateTime;
+}
 
-  function thumbnailClickListener(index, embedUrls) {
-    //const embedUrls = JSON.parse(localStorage.getItem("embedUrls"));
-    console.log("hello!");
-    const embedUrl = embedUrls[index];
+function thumbnailClickListener(index, embedUrls) {
+  const embedUrl = embedUrls[index];
 
-    const currentClip = document.getElementById('current-clip');
-    currentClip.remove();
+  const currentClip = document.getElementById('current-clip');
+  currentClip.remove();
 
-    const carouselInner = document.querySelector('.carousel-inner');
+  const carouselInner = document.querySelector('.carousel-inner');
 
-    const newItem = document.createElement('div');
-    newItem.className = 'carousel-item iframe-slide active';
-    newItem.id = "current-clip";
-    
-    const flexContainer = document.createElement('div');
-    flexContainer.className = 'd-flex justify-content-center align-items-center';
-    flexContainer.style.height = '500px';
-    
-    const iframe = document.createElement('iframe');
-
-    iframe.src = embedUrl + "&parent=localhost&autoplay=true";
-    iframe.height = 360;
-    iframe.width = 640;
-    iframe.frameBorder = 0;
-    iframe.allowFullscreen = true;
-
-    flexContainer.appendChild(iframe);
-    newItem.appendChild(flexContainer);
-    carouselInner.appendChild(newItem);
+  const newItem = document.createElement('div');
+  newItem.className = 'carousel-item iframe-slide active';
+  newItem.id = "current-clip";
   
-    // Refresh the carousel to recognize the new item
-    const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+  const flexContainer = document.createElement('div');
+  flexContainer.className = 'd-flex justify-content-center align-items-center';
+  flexContainer.style.height = '500px';
+  
+  const iframe = document.createElement('iframe');
+
+  iframe.src = embedUrl + "&parent=localhost&autoplay=true";
+  iframe.height = 360;
+  iframe.width = 640;
+  iframe.frameBorder = 0;
+  iframe.allowFullscreen = true;
+
+  flexContainer.appendChild(iframe);
+  newItem.appendChild(flexContainer);
+  carouselInner.appendChild(newItem);
+
+  // Refresh the carousel to recognize the new item
+  const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
 function replaceCarouselItem(increment) {
