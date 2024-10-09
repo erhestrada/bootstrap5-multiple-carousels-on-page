@@ -3,7 +3,11 @@ div {
     background-color: rgb(31, 31, 31);
     color: white;
     }
-
+h1 {
+  background-color: rgb(31, 31, 31);
+  color: white;
+  margin: 0;
+  }
 
     .carousel-inner {
         padding: 1em;
