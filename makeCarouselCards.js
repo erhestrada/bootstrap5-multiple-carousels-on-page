@@ -69,7 +69,7 @@ function thumbnailClickListener(index, embedUrls) {
 }
 
 // makeCarouselCards() - 1) make request, extract request data 2) make DOM elements and append
-export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
+export async function makeCarouselCards(clientId, authToken, game, daysBack, carouselInnerId) {
     try {
       const response = await fetch(makeGetUrl(game, daysBack), {
         method: 'GET',
@@ -88,7 +88,9 @@ export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
       const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
       const durations = clipsData.data.map((datum) => datum.duration);
 
-      const popularClipsCarouselInner = document.getElementById('carousel2-inner');
+      const carouselInner = document.getElementById(carouselInnerId);
+      console.log(carouselInner);
+
 
       thumbnailUrls.forEach((url, index) => {
         // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
@@ -116,7 +118,7 @@ export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
           const cardBody = document.createElement('div');
           cardBody.className = 'card-body';
 
-          popularClipsCarouselInner.appendChild(carouselItem);
+          carouselInner.appendChild(carouselItem);
           carouselItem.appendChild(card);
           card.appendChild(imageWrapper);
           imageWrapper.appendChild(image);

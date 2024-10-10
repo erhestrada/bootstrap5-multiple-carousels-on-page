@@ -1,36 +1,36 @@
-let currentNumber = 1;
-const contentContainer = document.body;
+import { makeCarouselCards } from './makeCarouselCards.js';
 
-export function createInfiniteScroll() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-        addItems(10);
-    }
-}
+let carouselNumber = 5;
 
-function addItems(count) {
-    for (let i = 0; i < count; i++) {
-        const item = document.createElement('div');
-        item.classList.add('item');
-        item.textContent = currentNumber++;
-        contentContainer.appendChild(item);
-    }
-}
-
-/* add carouselN
-    <div id="carousel2" class="carousel slide">
-      <p>Popular Clips from Streamer</p>
-      <div class="carousel-inner" id="carousel2-inner">
-      </div>
-
-      <button class="carousel-control-prev" type="button">
+const carouselButtonsHtml = `<button class="carousel-control-prev" type="button">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" type="button">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
-      </button>
+      </button>`;
 
-    </div>
+export function createInfiniteScroll() {
 
-*/
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        addCarousel();
+    }
+}
+
+function addCarousel() {
+    const newCarousel = document.createElement('div');
+    newCarousel.id = "carousel" + carouselNumber;
+    newCarousel.className = "carousel slide";
+
+    const newCarouselInner = document.createElement('div');
+    newCarouselInner.id = newCarousel.id + "-inner";
+    newCarouselInner.className = "carousel-inner";
+
+    document.body.appendChild(newCarousel);
+    newCarousel.appendChild(newCarouselInner);
+
+    makeCarouselCards(clientId, authToken, "Just Chatting", 1, newCarouselInner.id);
+
+    carouselNumber++;
+}
