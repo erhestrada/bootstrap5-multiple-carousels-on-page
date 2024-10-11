@@ -4,6 +4,10 @@ div {
   color: white;
 }
 
+p {
+  margin: 0;
+}
+
 #nav-bar {
   display: flex;
   flex-direction: row;
