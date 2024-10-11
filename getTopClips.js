@@ -110,9 +110,11 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
           const carouselItem = document.createElement('div');
           carouselItem.id = 'popular-clips' + index;
           carouselItem.className = "carousel-item"
+          // Including this makes first thumbnail snap to top of container, included because bootstrap carousel supposedly needs a .active item, but everything's working fine without it
+          /*
           if (index === 0) {
             carouselItem.classList.add('active');
-          }
+          }*/
 
           const card = document.createElement('div');
           card.className = "card";
