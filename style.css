@@ -75,3 +75,7 @@ div {
 .card-body p {
   margin-bottom: 0;
 }
+
+#carouselExampleControls .carousel-inner{
+  padding: 0;
+}
