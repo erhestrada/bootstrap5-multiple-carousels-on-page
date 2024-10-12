@@ -80,6 +80,7 @@ function highlightDiv(div) {
 }
 
 export async function getTopClips(clientId, authToken, game, daysBack) {
+    console.log('getTopClips fires; localStorage.setItem()');
     try {
       const response = await fetch(makeGetUrl(game, daysBack), {
         method: 'GET',

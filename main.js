@@ -6,6 +6,7 @@ import { getTopClips } from './getTopClips.js';
 var clipIndex = 0;
  
  function replaceCarouselItem(increment) {
+    console.log('DOM content loaded; localStorage.getItem(0)');
     const currentClip = document.getElementById("current-clip");
     currentClip.remove();
 
@@ -27,7 +28,8 @@ var clipIndex = 0;
         clipIndex = 0;
     }
     iframe.src = localStorage.getItem(clipIndex) + "&parent=localhost&autoplay=true";
-    console.log(clipIndex);
+    //console.log(clipIndex);
+    console.log("first clip index: " + clipIndex + " first clip to play:" + iframe.src);
     iframe.height = '360';
     iframe.width = '640';
     iframe.frameBorder = '0';

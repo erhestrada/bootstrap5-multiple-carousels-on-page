@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
       let carouselWidth = document.querySelector('.carousel-inner').scrollWidth;
       let cardWidth = document.querySelector('.carousel-item').offsetWidth;
       let scrollPosition = 0;
-
-      console.log(carouselWidth);
-      console.log(cardWidth);
   
       document.querySelector("#carouselExample .carousel-control-next").addEventListener("click", function () {
         console.log("right button clicked!");
