@@ -1,3 +1,5 @@
+import { getCarousel2Clips } from "./getCarousel2Clips";
+
 const gameToIdConverter = {
     "IRL": "509672",
     "Just Chatting": "509658",
@@ -36,6 +38,7 @@ function getPastDateTime(daysBack) {
   return pastRfcDateTime;
 }
 
+// need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(index, embedUrls) {
   const embedUrl = embedUrls[index];
 
@@ -66,6 +69,18 @@ function thumbnailClickListener(index, embedUrls) {
 
   // Refresh the carousel to recognize the new item
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+
+  // -------------- updating carousel2 based on which thumbnail is clicked in carousel 1 ------------
+
+  const categories = ['Just Chatting', 'IRL', 'World of Warcraft']
+  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+
+  const carousel2 = document.getElementById('carousel2');
+  const carousel2Inner = document.getElementById('carousel2-inner');
+  carousel2Inner.innerHTML = '';
+  getCarousel2Clips(clientId, authToken, randomCategory, 1)
+
+  carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
 
 

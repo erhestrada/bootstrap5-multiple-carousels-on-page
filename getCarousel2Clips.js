@@ -15,6 +15,8 @@ const gameToIdConverter = {
   }
 
 function makeGetUrl(game, daysBack) {
+    // streamer = currentClip.streamer
+    // only get clips from streamer
     const gameId = gameToIdConverter[game];
     const currentDateTime = getCurrentDateTime();
     const pastDateTime = getPastDateTime(daysBack);
