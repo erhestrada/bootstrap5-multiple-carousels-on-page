@@ -1,4 +1,8 @@
 
+body {
+  background-color: rgb(31, 31, 31);
+}
+
 div {
   background-color: rgb(31, 31, 31);
   color: white;
@@ -86,4 +90,35 @@ p {
 
 #nav-bar {
   padding: 0;
+}
+
+.donut-chart {
+  width: 300px;
+  height: 300px;
+}
+.sector {
+  cursor: pointer;
+}
+.sector-path {
+  transition: transform 0.2s;
+  transform-origin: 50px 50px;
+}
+.sector:hover .sector-path {
+  transform: scale(1.05);
+}
+
+.svg-container {
+position: relative;
+width: 300px;
+height: 300px;
+}
+.overlay-image {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+border-radius: 50%;
+width: 150px;
+height: 150px;
+object-fit: cover;
 }
