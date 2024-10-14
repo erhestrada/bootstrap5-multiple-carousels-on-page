@@ -95,7 +95,6 @@ function highlightDiv(div) {
 }
 
 export async function getTopClips(clientId, authToken, game, daysBack) {
-    console.log('getTopClips fires; localStorage.setItem()');
     try {
       const response = await fetch(makeGetUrl(game, daysBack), {
         method: 'GET',
@@ -104,6 +103,7 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
           'Authorization': 'Bearer ' + authToken
         }
       });
+      console.log('getTopClips fires; localStorage.setItem()');
       const clipsData = await response.json();
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       localStorage.setItem("embedUrls", JSON.stringify(embedUrls));

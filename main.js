@@ -28,7 +28,7 @@ var clipIndex = 0;
         clipIndex = 0;
     }
     iframe.src = localStorage.getItem(clipIndex) + "&parent=localhost&autoplay=true";
-    //console.log(clipIndex);
+    //this clip is wrong when i do npm run dev the first time, it's right when i do it the second time
     console.log("first clip index: " + clipIndex + " first clip to play:" + iframe.src);
     iframe.height = '360';
     iframe.width = '640';
@@ -43,10 +43,17 @@ var clipIndex = 0;
     const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
-getTopClips(clientId, authToken, "Just Chatting", 1);
+getTopClips(clientId, authToken, "Just Chatting", 1)
+  .then((clipsData) => {
+    replaceCarouselItem(0);
+  })
+  .catch((error) => {
+    console.error(error);
+});
+
 getCarousel2Clips(clientId, authToken, "IRL", 1);
 getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
-document.addEventListener('DOMContentLoaded', () => replaceCarouselItem(0));
+
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
 
