@@ -12,6 +12,12 @@ p {
   margin: 0;
 }
 
+#sticky-stuff{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 #nav-bar {
   display: flex;
   flex-direction: row;
@@ -20,10 +26,7 @@ p {
   color: white;
   padding: 1em;
   align-items: center;
-  position: sticky;
-  top: 0;
   color: white;
-  z-index: 1; /* optional */
 }
 
 
