@@ -108,6 +108,16 @@ p {
   margin: 0 auto;
 }
 
+#streamer-bar-carousel-container {
+  width: 150%;
+  margin: 0 ;
+}
+
+#carousel2 .carousel-inner {
+  width: 100%;
+  overflow: hidden;
+}
+
 
 .meta-svg-container {
   width: 150px;
