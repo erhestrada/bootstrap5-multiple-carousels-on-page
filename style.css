@@ -165,3 +165,8 @@ width: 150px;
 height: 150px;
 object-fit: cover;
 }
+
+#carouselExample .carousel-inner{
+  height: 350px;
+  overflow: hidden;
+}
