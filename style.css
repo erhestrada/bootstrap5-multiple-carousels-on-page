@@ -170,3 +170,7 @@ object-fit: cover;
   height: 350px;
   overflow: hidden;
 }
+
+#streamer-bar-carousel-container{
+  height: 150px;
+}
