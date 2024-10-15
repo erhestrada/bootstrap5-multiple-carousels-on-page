@@ -92,6 +92,15 @@ p {
   padding: 0;
 }
 
+#carousel2{
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+.streamer-bar{
+  display: flex;
+}
+
 .donut-chart {
   width: 300px;
   height: 300px;
@@ -109,7 +118,7 @@ p {
 
 .svg-container {
 transform: scale(0.4); /* Scale down to 50% */
- transform-origin: top left; /* Make sure it scales from the top-left corner */
+transform-origin: top left; /* Make sure it scales from the top-left corner */
 position: relative;
 width: 300px;
 height: 300px;

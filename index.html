@@ -44,28 +44,44 @@
           <span class="visually-hidden">Next</span>
       </button>
 
+      <div class="streamer-bar">
+        <div class="svg-container">
+          <svg class="donut-chart" viewBox="0 0 100 100">
+              <g class="sector" onclick="alert('Button 1 clicked!')">
+                  <path class="sector-path" d="M50,50 L85,15 A49.5,49.5 0 0,1 85,85 Z" fill="#FF6B6B" stroke="#000" stroke-width="1" /> />
+                  <text x="80" y="50" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">7D</text>
+              </g>
+              <g class="sector" onclick="alert('Button 2 clicked!')">
+                  <path class="sector-path" d="M50,50 L85,85 A49.5,49.5 0 0,1 15,85 Z" fill="#4ECDC4" stroke="#000" stroke-width="1" />
+                  <text x="50" y="82" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">30D</text>
+              </g>
+              <g class="sector" onclick="alert('Button 3 clicked!')">
+                  <path class="sector-path" d="M50,50 L15,85 A49.5,49.5 0 0,1 15,15 Z" fill="#45B7D1" stroke="#000" stroke-width="1" />
+                  <text x="20" y="50" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">ALL</text>
+              </g>
+              <g class="sector" onclick="alert('Button 4 clicked!')">
+                  <path class="sector-path" d="M50,50 L15,15 A49.5,49.5 0 0,1 85,15 Z" fill="#FF9F1C" stroke="#000" stroke-width="1" />
+                  <text x="50" y="18" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">1D</text>
+              </g>
+              <circle cx="50" cy="50" r="25" fill="white" stroke="#000" stroke-width="1"/>
+              <img src="pfp.jpeg" alt="Image" class="overlay-image">
+            </svg>
+          </div>
 
-      <div class="svg-container">
-        <svg class="donut-chart" viewBox="0 0 100 100">
-            <g class="sector" onclick="alert('Button 1 clicked!')">
-                <path class="sector-path" d="M50,50 L85,15 A49.5,49.5 0 0,1 85,85 Z" fill="#FF6B6B" stroke="#000" stroke-width="1" /> />
-                <text x="80" y="50" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">7D</text>
-            </g>
-            <g class="sector" onclick="alert('Button 2 clicked!')">
-                <path class="sector-path" d="M50,50 L85,85 A49.5,49.5 0 0,1 15,85 Z" fill="#4ECDC4" stroke="#000" stroke-width="1" />
-                <text x="50" y="82" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">30D</text>
-            </g>
-            <g class="sector" onclick="alert('Button 3 clicked!')">
-                <path class="sector-path" d="M50,50 L15,85 A49.5,49.5 0 0,1 15,15 Z" fill="#45B7D1" stroke="#000" stroke-width="1" />
-                <text x="20" y="50" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">ALL</text>
-            </g>
-            <g class="sector" onclick="alert('Button 4 clicked!')">
-                <path class="sector-path" d="M50,50 L15,15 A49.5,49.5 0 0,1 85,15 Z" fill="#FF9F1C" stroke="#000" stroke-width="1" />
-                <text x="50" y="18" fill="white" font-size="10" text-anchor="middle" dominant-baseline="middle">1D</text>
-            </g>
-            <circle cx="50" cy="50" r="25" fill="white" stroke="#000" stroke-width="1"/>
-            <img src="pfp.jpeg" alt="Image" class="overlay-image">
-          </svg>
+          <div id="carousel2" class="carousel slide">
+            <p>Popular Clips from Streamer</p>
+            <div class="carousel-inner" id="carousel2-inner">
+            </div>
+      
+            <button class="carousel-control-prev" type="button">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
 
 
@@ -76,22 +92,6 @@
     <div id="carouselExample" class="carousel slide">
       <p>Popular Clips</p>
       <div class="carousel-inner" id="popular-clips-carousel-inner">
-      </div>
-
-      <button class="carousel-control-prev" type="button">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-
-    </div>
-
-    <div id="carousel2" class="carousel slide">
-      <p>Popular Clips from Streamer</p>
-      <div class="carousel-inner" id="carousel2-inner">
       </div>
 
       <button class="carousel-control-prev" type="button">
