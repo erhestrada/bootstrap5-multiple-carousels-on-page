@@ -102,6 +102,10 @@ export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
           if (index === 0) {
             carouselItem.classList.add('active');
           }
+          /*
+          carouselItem.style.minWidth = '25%';
+          carouselItem.style.flex = '0 0 auto';
+          */
 
           const card = document.createElement('div');
           card.className = "card";

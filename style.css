@@ -97,8 +97,15 @@ p {
   transform-origin: top left;
 }
 
+#carousel2 .carousel-inner {
+  width: 50%;
+  margin: 0;
+}
+
 .streamer-bar{
   display: flex;
+  width: 50%;
+  margin: 0 auto;
 }
 
 
