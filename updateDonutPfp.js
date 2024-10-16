@@ -10,12 +10,10 @@ export async function updateDonutPfp(streamerId) {
         });
 
         const userData = await response.json();
-        alert(userData.data[0].display_name);
-        console.log(userData);
+        document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
 
     } catch (error) {
         console.error(error);
     }
 }
 
-// curl -X GET 'https://api.twitch.tv/helix/users?id=141981764' -H 'Authorization: Bearer cfabdegwdoklmawdzdo98xt2fo512y' -H 'Client-Id: uo6dggojyb8d6soh92zknwmi5ej1q2'
