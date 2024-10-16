@@ -2,7 +2,7 @@ import { createInfiniteScroll } from './createInfiniteScroll.js';
 import { getCarousel2Clips } from './getCarousel2Clips.js';
 import { getCarousel3Clips } from './getCarousel3Clips.js';
 import { getTopClips } from './getTopClips.js';
-import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
+import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
 
 var clipIndex = 0;
  
@@ -59,6 +59,6 @@ document.querySelector('.carousel-control-prev').addEventListener('click', () =>
 
 // whatever clip is currently playing, i need to knokw the streamerId so i can updateStreamerBarCarousel with it
 // use localstorage?
-document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(false));
+// document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut());
 
 window.addEventListener('scroll', createInfiniteScroll);

@@ -2,10 +2,10 @@ import {getCurrentDateTime} from './getTopClips'
 import {getPastDateTime} from './getTopClips'
 import { makeCarousel2FromClipsData } from './getCarousel2Clips';
 
-export async function updateStreamerBarCarousel(streamerId) {
+export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
     try {
         const currentDateTime = getCurrentDateTime();
-        const pastDateTime = getPastDateTime(1);
+        const pastDateTime = getPastDateTime(daysBack);
         const url = "https://api.twitch.tv/helix/clips?broadcaster_id=" + streamerId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime;
         const response = await fetch(url, {
         method: 'GET',
