@@ -136,3 +136,56 @@ export async function getCarousel2Clips(clientId, authToken, game, daysBack) {
       console.error(error);
     }
   }
+
+
+export function makeCarousel2FromClipsData(clipsData) {
+  const embedUrls = clipsData.data.map((datum) => datum.embed_url);
+  const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
+  const titles = clipsData.data.map((datum) => datum.title);
+  const languages = clipsData.data.map((datum) => datum.language);
+  const viewCounts = clipsData.data.map((datum) => datum.view_count);
+  const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
+  const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
+  const durations = clipsData.data.map((datum) => datum.duration);
+
+  const popularClipsCarouselInner = document.getElementById('carousel2-inner');
+
+  thumbnailUrls.forEach((url, index) => {
+    // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
+    if(languages[index] === 'en') {
+
+
+      const carouselItem = document.createElement('div');
+      carouselItem.className = "carousel-item"
+      if (index === 0) {
+        carouselItem.classList.add('active');
+      }
+      /*
+      carouselItem.style.minWidth = '25%';
+      carouselItem.style.flex = '0 0 auto';
+      */
+
+      const card = document.createElement('div');
+      card.className = "card";
+
+      const imageWrapper = document.createElement('div');
+      imageWrapper.className = "img-wrapper";
+
+      // formerly thumbnail
+      const image = document.createElement('img');
+      image.src = url + "&parent=localhost";
+      image.classList.add('thumbnail');
+      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+
+      const cardBody = document.createElement('div');
+      cardBody.className = 'card-body';
+
+      popularClipsCarouselInner.appendChild(carouselItem);
+      carouselItem.appendChild(card);
+      card.appendChild(imageWrapper);
+      imageWrapper.appendChild(image);
+      card.appendChild(cardBody);          
+    }
+
+  });
+} 

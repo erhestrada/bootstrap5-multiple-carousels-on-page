@@ -123,7 +123,7 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
     }
   }
 
-export function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
+function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
   const embedUrls = clipsData.data.map((datum) => datum.embed_url);
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
