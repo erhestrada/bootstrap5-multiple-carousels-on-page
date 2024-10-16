@@ -31,13 +31,13 @@ function makeGetUrl(game, daysBack, broadcasterName = false) {
     }
   }
   
-function getCurrentDateTime() {
+export function getCurrentDateTime() {
   const dateTime = new Date();
   const rfcDateTime = dateTime.toISOString();
   return rfcDateTime;
 }
   
-function getPastDateTime(daysBack) {
+export function getPastDateTime(daysBack) {
   const hoursBack = daysBack * 24;
   const dateTime = new Date();
   const pastDateTime = new Date(dateTime.getTime() - hoursBack * 60 * 60 * 1000);
@@ -82,11 +82,12 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
   const categories = ['Just Chatting', 'IRL', 'World of Warcraft']
   const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
-  const carousel2 = document.getElementById('carousel2');
+  let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
   carousel2Inner.innerHTML = '';
   getCarousel2Clips(clientId, authToken, randomCategory, 1);
   updateDonutPfp(streamerIds[index]);
+  updateStreamerBarCarousel();
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
@@ -217,3 +218,7 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
       console.error(error);
     }
   }
+
+function makeClipsCarouselFromClipsData() {
+
+}
