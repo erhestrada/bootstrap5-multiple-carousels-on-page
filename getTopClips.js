@@ -79,9 +79,6 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
 
   // -------------- updating carousel2 based on which thumbnail is clicked in carousel 1 ------------
 
-  const categories = ['Just Chatting', 'IRL', 'World of Warcraft']
-  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-
   let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
   carousel2Inner.innerHTML = '';

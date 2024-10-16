@@ -57,7 +57,8 @@ getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
 
-// getClips, replace carousel2
-document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(1));
+// whatever clip is currently playing, i need to knokw the streamerId so i can updateStreamerBarCarousel with it
+// use localstorage?
+document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(false));
 
 window.addEventListener('scroll', createInfiniteScroll);
