@@ -85,7 +85,7 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
   let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
   carousel2Inner.innerHTML = '';
-  getCarousel2Clips(clientId, authToken, randomCategory, 1);
+
   updateDonutPfp(streamerIds[index]);
   updateStreamerBarCarousel(streamerIds[index]);
 
