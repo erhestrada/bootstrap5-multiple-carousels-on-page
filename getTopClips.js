@@ -1,4 +1,5 @@
 import { getCarousel2Clips } from "./getCarousel2Clips";
+import { updateDonutPfp } from "./updateDonutPfp";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -16,12 +17,17 @@ const gameToIdConverter = {
     "Twitch All categories / multiple categories": "509658"
   }
 
-function makeGetUrl(game, daysBack) {
+function makeGetUrl(game, daysBack, broadcasterName = false) {
     const gameId = gameToIdConverter[game];
     const currentDateTime = getCurrentDateTime();
     const pastDateTime = getPastDateTime(daysBack);
-    return "https://api.twitch.tv/helix/clips?game_id=" + gameId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime + "&is_featured=false" + "&first=100";
-  
+    // haven't finished implementing this
+    if (broadcasterName) {
+      return "https://api.twitch.tv/helix/clips?game_id=" + gameId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime + "&is_featured=false" + "&first=100";  
+    }
+    else {
+      return "https://api.twitch.tv/helix/clips?game_id=" + gameId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime + "&is_featured=false" + "&first=100";  
+    }
   }
   
 function getCurrentDateTime() {
@@ -39,7 +45,7 @@ function getPastDateTime(daysBack) {
 }
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
-function thumbnailClickListener(index, embedUrls) {
+function thumbnailClickListener(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
 
   const currentClip = document.getElementById('current-clip');
@@ -78,7 +84,8 @@ function thumbnailClickListener(index, embedUrls) {
   const carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
   carousel2Inner.innerHTML = '';
-  getCarousel2Clips(clientId, authToken, randomCategory, 1)
+  getCarousel2Clips(clientId, authToken, randomCategory, 1);
+  updateDonutPfp(streamerIds[index]);
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
@@ -94,16 +101,15 @@ function highlightDiv(div) {
   localStorage.setItem('highlightedDivId', div.id);
 }
 
-export async function getTopClips(clientId, authToken, game, daysBack) {
+export async function getTopClips(clientId, authToken, game, daysBack, broadcasterName = false) {
     try {
-      const response = await fetch(makeGetUrl(game, daysBack), {
+      const response = await fetch(makeGetUrl(game, daysBack, broadcasterName), {
         method: 'GET',
         headers: {
           'Client-Id': clientId,
           'Authorization': 'Bearer ' + authToken
         }
       });
-      console.log('getTopClips fires; localStorage.setItem()');
       const clipsData = await response.json();
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
@@ -113,6 +119,7 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
       const languages = clipsData.data.map((datum) => datum.language);
       const viewCounts = clipsData.data.map((datum) => datum.view_count);
       const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
+      const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
       const durations = clipsData.data.map((datum) => datum.duration);
 
@@ -143,7 +150,7 @@ export async function getTopClips(clientId, authToken, game, daysBack) {
           const image = document.createElement('img');
           image.src = url + "&parent=localhost";
           image.classList.add('thumbnail');
-          image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+          image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
           image.addEventListener('click', () => {highlightDiv(imageWrapper)});
 
           const cardBody = document.createElement('div');
