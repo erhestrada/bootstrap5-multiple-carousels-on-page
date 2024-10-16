@@ -87,7 +87,7 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
   carousel2Inner.innerHTML = '';
   getCarousel2Clips(clientId, authToken, randomCategory, 1);
   updateDonutPfp(streamerIds[index]);
-  updateStreamerBarCarousel();
+  updateStreamerBarCarousel(streamerIds[index]);
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
@@ -113,14 +113,17 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
         }
       });
       const clipsData = await response.json();
-      makeClipsCarouselFromClipsData(clipsData);
+
+      const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+      updateDonutPfp(streamerIds[0]);
+      makeClipsCarouselFromClipsData(clipsData, "popular-clips-carousel-inner", 'popular-clips');
       return clipsData;
     } catch (error) {
       console.error(error);
     }
   }
 
-function makeClipsCarouselFromClipsData(clipsData) {
+export function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
   const embedUrls = clipsData.data.map((datum) => datum.embed_url);
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
@@ -133,8 +136,7 @@ function makeClipsCarouselFromClipsData(clipsData) {
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
 
-  updateDonutPfp(streamerIds[0]);
-  const popularClipsCarouselInner = document.getElementById('popular-clips-carousel-inner');
+  const popularClipsCarouselInner = document.getElementById(carouselInnerId);
 
   thumbnailUrls.forEach((url, index) => {
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
@@ -142,7 +144,7 @@ function makeClipsCarouselFromClipsData(clipsData) {
 
 
       const carouselItem = document.createElement('div');
-      carouselItem.id = 'popular-clips' + index;
+      carouselItem.id = carouselName + index;
       carouselItem.className = "carousel-item"
       // Including this makes first thumbnail snap to top of container, included because bootstrap carousel supposedly needs a .active item, but everything's working fine without it
       /*

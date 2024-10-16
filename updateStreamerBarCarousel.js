@@ -1,5 +1,6 @@
 import {getCurrentDateTime} from './getTopClips'
 import {getPastDateTime} from './getTopClips'
+import { makeClipsCarouselFromClipsData } from './getTopClips';
 
 export async function updateStreamerBarCarousel(streamerId) {
     try {
@@ -14,7 +15,8 @@ export async function updateStreamerBarCarousel(streamerId) {
         }
         });
 
-        const userData = await response.json();
+        const clipsData = await response.json();
+        makeClipsCarouselFromClipsData(clipsData, 'carousel2-inner', 'carousel2');
         document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
 
     } catch (error) {
