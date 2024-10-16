@@ -1,5 +1,6 @@
 import { getCarousel2Clips } from "./getCarousel2Clips";
 import { updateDonutPfp } from "./updateDonutPfp";
+import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -122,6 +123,8 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
       const durations = clipsData.data.map((datum) => datum.duration);
+
+      updateDonutPfp(streamerIds[0]);
 
       const popularClipsCarouselInner = document.getElementById('popular-clips-carousel-inner');
 
