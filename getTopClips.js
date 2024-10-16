@@ -48,6 +48,7 @@ export function getPastDateTime(daysBack) {
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
+  localStorage.setItem('currentClipStreamerId', streamerIds[index]);
 
   const currentClip = document.getElementById('current-clip');
   currentClip.remove();

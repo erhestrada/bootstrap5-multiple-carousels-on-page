@@ -17,7 +17,8 @@ export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
 
         const clipsData = await response.json();
         makeCarousel2FromClipsData(clipsData, 'carousel2-inner', 'carousel2');
-        document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
+        // why is this working when i take it out?
+        //document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
 
     } catch (error) {
         console.error(error);
