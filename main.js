@@ -2,6 +2,7 @@ import { createInfiniteScroll } from './createInfiniteScroll.js';
 import { getCarousel2Clips } from './getCarousel2Clips.js';
 import { getCarousel3Clips } from './getCarousel3Clips.js';
 import { getTopClips } from './getTopClips.js';
+import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 
 var clipIndex = 0;
  
@@ -56,5 +57,8 @@ getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
+
+// getClips, replace carousel2
+document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(1));
 
 window.addEventListener('scroll', createInfiniteScroll);
