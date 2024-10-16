@@ -116,6 +116,7 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
 
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       updateDonutPfp(streamerIds[0]);
+      updateStreamerBarCarousel(streamerIds[0]);
       makeClipsCarouselFromClipsData(clipsData, "popular-clips-carousel-inner", 'popular-clips');
       return clipsData;
     } catch (error) {

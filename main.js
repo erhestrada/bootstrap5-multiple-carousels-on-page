@@ -52,7 +52,6 @@ getTopClips(clientId, authToken, "Just Chatting", 1)
     console.error(error);
 });
 
-getCarousel2Clips(clientId, authToken, "IRL", 1);
 getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
