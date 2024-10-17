@@ -175,6 +175,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const imageWrapper = document.createElement('div');
       imageWrapper.className = "img-wrapper";
       imageWrapper.id = "img-wrapper" + index;
+      imageWrapper.style.position = "relative";
 
       // formerly thumbnail
       const image = document.createElement('img');
@@ -199,6 +200,9 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const viewCount = document.createElement('p');
       viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
       viewCount.style.color = "#FFFFFF";
+      viewCount.style.position = 'absolute';
+      viewCount.style.bottom = '0';
+      viewCount.style.left = '0';
 
       const streamer = document.createElement('p');
       streamer.innerText = streamers[index];
@@ -207,10 +211,20 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const creationDate = document.createElement('p');
       creationDate.innerText = creationDateTimes[index];
       creationDate.style.color = "#FFFFFF";
+      creationDate.style.position = 'absolute';
+      creationDate.style.bottom = '0';
+      creationDate.style.right = '0';
 
       const duration = document.createElement('p');
       duration.innerText = Math.round(durations[index]) + 's';
       duration.style.color = "#FFFFFF";
+
+      duration.style.position = 'absolute';
+      duration.style.top = '0';
+      duration.style.left = '0';
+      //textElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Optional: for better visibility
+      //textElement.style.color = 'white'; // Optional: to make text stand out
+      //textElement.style.padding = '5px'; 
 
       popularClipsCarouselInner.appendChild(carouselItem);
       carouselItem.appendChild(card);
@@ -220,10 +234,12 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       card.appendChild(cardBody);
       //cardBody.appendChild(cardTitle);
       cardBody.appendChild(clipTitle);
-      cardBody.appendChild(viewCount);
       cardBody.appendChild(streamer);
-      cardBody.appendChild(creationDate);
-      cardBody.appendChild(duration);
+      imageWrapper.appendChild(duration);
+      imageWrapper.appendChild(viewCount);
+      imageWrapper.appendChild(creationDate);
+
+
 
 
       /*
