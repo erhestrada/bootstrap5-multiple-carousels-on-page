@@ -129,6 +129,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
       }
+      
       makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
       return clipsData;
     } catch (error) {
