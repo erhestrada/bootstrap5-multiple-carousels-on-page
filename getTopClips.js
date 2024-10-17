@@ -171,6 +171,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
       const card = document.createElement('div');
       card.className = "card";
+      card.style.height = "300px";
 
       const imageWrapper = document.createElement('div');
       imageWrapper.className = "img-wrapper";
