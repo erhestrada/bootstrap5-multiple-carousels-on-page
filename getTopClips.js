@@ -25,7 +25,14 @@ const gameToIdConverter = {
     "Diablo IV": "515024",
     "Tom Clancy's Rainbow Six Siege": "460630",
     "Silent Hill 2": "2058570718",
-    "DRAGON BALL: Sparking! ZERO": "400407464"
+    "DRAGON BALL: Sparking! ZERO": "400407464",
+    "ASMR": "509659",
+    "Dead by Daylight": "491487",
+    "Hearthstone": "138585",
+    "New World: Aeternum": "493597",
+    "Dota 2": "29595",
+    "Five Hearts Under One Roof": "1534124527"
+
   }
 
 function makeGetUrl(game, daysBack, broadcasterName = false) {
