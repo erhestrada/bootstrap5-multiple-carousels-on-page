@@ -46,7 +46,7 @@ function replaceCarouselItem(increment) {
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
-getTopClips(clientId, authToken, "Just Chatting", 1)
+getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
   .then((clipsData) => {
     // i need to set streamerId here, before a thumbnail has been clicked
     replaceCarouselItem(0);

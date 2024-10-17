@@ -101,7 +101,7 @@ function highlightDiv(div) {
   localStorage.setItem('highlightedDivId', div.id);
 }
 
-export async function getTopClips(clientId, authToken, game, daysBack, broadcasterName = false) {
+export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false) {
     try {
       const response = await fetch(makeGetUrl(game, daysBack, broadcasterName), {
         method: 'GET',
@@ -115,7 +115,7 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       updateDonutPfp(streamerIds[0]);
       updateStreamerBarCarousel(streamerIds[0]);
-      makeClipsCarouselFromClipsData(clipsData, "popular-clips-carousel-inner", 'popular-clips');
+      makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
       return clipsData;
     } catch (error) {
       console.error(error);
