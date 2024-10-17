@@ -1,3 +1,5 @@
+import {makeCarouselForCategory} from './makeCarouselForCategory.js'
+
 export async function makeTopCategoriesCarousels() {
     try {
         const url = "https://api.twitch.tv/helix/games/top";
@@ -12,7 +14,7 @@ export async function makeTopCategoriesCarousels() {
         // also get the box art
         const clipsData = await response.json();
         const topCategories = clipsData.data.map((pojo) => pojo.name);
-        console.log(topCategories);
+        topCategories.forEach(category => makeCarouselForCategory(category));
 
     } catch (error) {
         console.error(error);
