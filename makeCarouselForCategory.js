@@ -1,13 +1,11 @@
 // basically a refactor of getTopClips
 import { getTopClips } from "./getTopClips";
 
+// thumbnailclicklistener in getTopClips is wrong for this
 export function makeCarouselForCategory(category) {
-    console.log(category);
-    //getTopClips(clientId, authToken, 'Grand Theft Auto V', 'Grand Theft Auto V', 1);
-
     const carouselDiv = `
         <div id="${category}-carousel" class="carousel slide">
-        <p>Popular Clips</p>
+        <p>${category}</p>
         <div class="carousel-inner" id="${category}-carousel-inner">
         </div>
 

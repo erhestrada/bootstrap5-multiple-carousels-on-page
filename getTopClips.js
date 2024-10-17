@@ -8,14 +8,27 @@ const gameToIdConverter = {
     "World of Warcraft": "18122",
     "League of Legends": "21779",
     "Grand Theft Auto V": "32982",
-    "Valorant": "516575",
+    "VALORANT": "516575",
     "EA Sports FC 25": "2011938005",
     "Minecraft": "27471",
     "Throne and Liberty": "19801",
     "Fortnite": "33214",
     "Counter-Strike": "32399",
     "World of Warcraft": "18122",
-    "Twitch All categories / multiple categories": "509658"
+    "Twitch All categories / multiple categories": "509658",
+    "Games + Demos" :"66082",
+    "Overwatch 2": "515025",
+    "Apex Legends": "511224",
+    "Call of Duty: Warzone": "512710",
+    "Fast Food Simulator": "636259108",
+    "Virtual Casino": "29452",
+    "Diablo IV": "515024",
+    "Tom Clancy's Rainbow Six Siege": "460630",
+    "Silent Hill 2": "2058570718",
+    "DRAGON BALL: Sparking! ZERO": "400407464",
+
+
+
   }
 
 function makeGetUrl(game, daysBack, broadcasterName = false) {
