@@ -3,6 +3,7 @@ import { getCarousel2Clips } from './getCarousel2Clips.js';
 import { getCarousel3Clips } from './getCarousel3Clips.js';
 import { getTopClips } from './getTopClips.js';
 import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
+import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 
 var clipIndex = 0;
  
@@ -64,4 +65,5 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(365));
 
-window.addEventListener('scroll', createInfiniteScroll);
+//window.addEventListener('scroll', createInfiniteScroll);
+makeTopCategoriesCarousels();
