@@ -55,7 +55,6 @@ getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
     console.error(error);
 });
 
-getCarousel3Clips(clientId, authToken, "World of Warcraft", 1);
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
