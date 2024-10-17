@@ -124,8 +124,6 @@ export async function getTopClips(clientId, authToken, game, daysBack, broadcast
 
 function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
   const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-  localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
-  embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
   const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
   const titles = clipsData.data.map((datum) => datum.title);
   const languages = clipsData.data.map((datum) => datum.language);
@@ -134,6 +132,11 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
+
+  localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
+  embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
+  // the first clip to play in the clipPlayer will be the first clip in TopClips - eventually better to do rows and columns to work with clipPlayer button click event
+  localStorage.setItem("currentClipStreamerId", streamerIds[0]);
 
   const popularClipsCarouselInner = document.getElementById(carouselInnerId);
 

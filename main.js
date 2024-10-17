@@ -46,6 +46,7 @@ function replaceCarouselItem(increment) {
 
 getTopClips(clientId, authToken, "Just Chatting", 1)
   .then((clipsData) => {
+    // i need to set streamerId here, before a thumbnail has been clicked
     replaceCarouselItem(0);
   })
   .catch((error) => {
