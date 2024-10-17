@@ -25,10 +25,7 @@ const gameToIdConverter = {
     "Diablo IV": "515024",
     "Tom Clancy's Rainbow Six Siege": "460630",
     "Silent Hill 2": "2058570718",
-    "DRAGON BALL: Sparking! ZERO": "400407464",
-
-
-
+    "DRAGON BALL: Sparking! ZERO": "400407464"
   }
 
 function makeGetUrl(game, daysBack, broadcasterName = false) {
@@ -126,8 +123,12 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const clipsData = await response.json();
 
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-      updateDonutPfp(streamerIds[0]);
-      updateStreamerBarCarousel(streamerIds[0]);
+
+      // this happens one time, not every time
+      if (game === "Just Chatting") {
+        updateDonutPfp(streamerIds[0]);
+        updateStreamerBarCarousel(streamerIds[0]);
+      }
       makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
       return clipsData;
     } catch (error) {
