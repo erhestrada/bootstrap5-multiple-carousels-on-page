@@ -59,6 +59,7 @@ document.querySelector('.carousel-control-prev').addEventListener('click', () =>
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 
+document.getElementById('saved-clips-button').addEventListener('click', () => window.location.href="likesAndDislikes.html");
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
