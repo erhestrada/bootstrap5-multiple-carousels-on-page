@@ -1,14 +1,12 @@
-import { createInfiniteScroll } from './createInfiniteScroll.js';
-import { getCarousel2Clips } from './getCarousel2Clips.js';
-import { getCarousel3Clips } from './getCarousel3Clips.js';
 import { getTopClips } from './getTopClips.js';
 import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
+import { saveClip } from './saveClip.js';
 
 var clipIndex = 0;
+localStorage.setItem("liked-clips", JSON.stringify([]));
+localStorage.setItem("disliked-clips", JSON.stringify([]));
  
-// also need to replace pfp
-// let me get the streamer/streamer name and console.log it
 function replaceCarouselItem(increment) {
   const currentClip = document.getElementById("current-clip");
   currentClip.remove();
@@ -32,6 +30,7 @@ function replaceCarouselItem(increment) {
   }
 
   iframe.src = localStorage.getItem(clipIndex) + "&parent=localhost&autoplay=true";
+  localStorage.setItem("currentClipUrl", iframe.src);
 
   iframe.height = '360';
   iframe.width = '640';
@@ -48,19 +47,17 @@ function replaceCarouselItem(increment) {
 
 getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
   .then((clipsData) => {
-    // i need to set streamerId here, before a thumbnail has been clicked
     replaceCarouselItem(0);
   })
   .catch((error) => {
     console.error(error);
 });
 
-
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
 
-document.getElementById('like-button').addEventListener('click', () => alert("like :D"));
-document.getElementById('dislike-button').addEventListener('click', () => alert("dislike :("));
+document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
+document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
