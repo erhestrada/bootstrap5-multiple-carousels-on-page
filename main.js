@@ -59,6 +59,10 @@ getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
 
+document.getElementById('like-button').addEventListener('click', () => alert("like :D"));
+document.getElementById('dislike-button').addEventListener('click', () => alert("dislike :("));
+
+
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
