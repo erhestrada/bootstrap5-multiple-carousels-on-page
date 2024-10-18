@@ -3,8 +3,6 @@ import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselF
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
 
-localStorage.clear();
-
 var clipIndex = 0;
 
 function replaceCarouselItem(increment) {
@@ -58,6 +56,7 @@ document.querySelector('.carousel-control-prev').addEventListener('click', () =>
 
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
+document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
 
 document.getElementById('saved-clips-button').addEventListener('click', () => window.location.href="likesAndDislikes.html");
 
@@ -66,7 +65,4 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(365));
 
-//window.addEventListener('scroll', createInfiniteScroll);
 makeTopCategoriesCarousels();
-
-//localStorage.setItem('liked-clips', 'Hello');
