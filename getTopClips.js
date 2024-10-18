@@ -66,6 +66,7 @@ export function getPastDateTime(daysBack) {
 function thumbnailClickListener(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
   localStorage.setItem('currentClipStreamerId', streamerIds[index]);
+  localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
 
   const currentClip = document.getElementById('current-clip');
   currentClip.remove();

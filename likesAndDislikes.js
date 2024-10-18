@@ -1,14 +1,12 @@
 //display likes
 const likedClipsUrls = JSON.parse(localStorage.getItem('liked-clips'));
-likedClipsUrls.forEach((url, index) => displayClip(url, index));
+likedClipsUrls.forEach(url=> displayClip(url, 'likes-container'));
 
 
-
-//display dislikes
 const dislikedClipsUrls = JSON.parse(localStorage.getItem('disliked-clips'));
+dislikedClipsUrls.forEach(url => displayClip(url, 'dislikes-container'));
 
-
-function displayClip(url, index) {  
+function displayClip(url, containerId) {  
     const iframe = document.createElement('iframe');
   
     iframe.src = url.replace("autoplay=true", "autplay=false");
@@ -17,6 +15,7 @@ function displayClip(url, index) {
     iframe.width = '640';
     iframe.allowFullscreen = true;
     
-    document.body.appendChild(iframe);
+    const likesContainer = document.getElementById(containerId);
+    likesContainer.appendChild(iframe);
   
   }
