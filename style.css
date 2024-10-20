@@ -29,6 +29,10 @@ p {
   color: white;
 }
 
+.nav-bar-button {
+  cursor: pointer;
+}
+
 #like-dislike-container{
   display: flex;
   flex-direction: row;
