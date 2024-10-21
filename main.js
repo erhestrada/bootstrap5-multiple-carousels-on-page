@@ -1,7 +1,13 @@
-import { getTopClips } from './getTopClips.js';
 import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
+
+// TODO - prioritize backend
+// High Priority
+// 1. follows
+// 2. profile/login
+// Lowe Priority
+// 1. like, dislike, favorite => up arrow, down arrow, star
 
 var clipIndex = 0;
 
