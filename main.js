@@ -63,7 +63,6 @@ document.getElementById('saved-clips-button').addEventListener('click', () => wi
 document.getElementById('log-in-button').addEventListener('click', () => window.location.href="logIn.html");
 document.getElementById('trending-button').addEventListener('click', () => window.location.href="trending.html");
 document.getElementById('following-button').addEventListener('click', () => window.location.href="following.html");
-document.getElementById('saved-clips-button').addEventListener('click', () => window.location.href="savedClips.html");
 document.getElementById('search-button').addEventListener('click', () => window.location.href="search.html");
 document.getElementById('history-button').addEventListener('click', () => window.location.href="history.html");
 document.getElementById('profile-button').addEventListener('click', () => window.location.href="profile.html");
