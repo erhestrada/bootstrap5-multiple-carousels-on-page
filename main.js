@@ -58,8 +58,16 @@ document.getElementById('like-button').addEventListener('click', () => saveClip(
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
 
+document.getElementById('clips-tracker-button').addEventListener('click', () => window.location.href="index.html");
 document.getElementById('saved-clips-button').addEventListener('click', () => window.location.href="likesAndDislikes.html");
 document.getElementById('log-in-button').addEventListener('click', () => window.location.href="logIn.html");
+document.getElementById('trending-button').addEventListener('click', () => window.location.href="trending.html");
+document.getElementById('following-button').addEventListener('click', () => window.location.href="following.html");
+document.getElementById('saved-clips-button').addEventListener('click', () => window.location.href="savedClips.html");
+document.getElementById('search-button').addEventListener('click', () => window.location.href="search.html");
+document.getElementById('history-button').addEventListener('click', () => window.location.href="history.html");
+document.getElementById('profile-button').addEventListener('click', () => window.location.href="profile.html");
+document.getElementById('settings-button').addEventListener('click', () => window.location.href="settings.html");
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
