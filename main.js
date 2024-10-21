@@ -8,6 +8,9 @@ import { saveClip } from './saveClip.js';
 // 2. profile/login
 // Lowe Priority
 // 1. like, dislike, favorite => up arrow, down arrow, star
+// Extra
+// 1. youutube, kick
+// 2. reddit label for if posted on reddit, maybe view comments section within site
 
 var clipIndex = 0;
 
