@@ -43,6 +43,8 @@ function replaceCarouselItem(increment) {
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
+
+/*
 getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
   .then((clipsData) => {
     replaceCarouselItem(0);
@@ -50,6 +52,7 @@ getTopClips(clientId, authToken, "popular-clips", "Just Chatting", 1)
   .catch((error) => {
     console.error(error);
 });
+*/
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
@@ -73,4 +76,13 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(365));
 
-makeTopCategoriesCarousels();
+//makeTopCategoriesCarousels();
+
+
+makeTopCategoriesCarousels()
+  .then((clipsData) => {
+    replaceCarouselItem(0);
+  })
+  .catch((error) => {
+    console.error(error);
+});
