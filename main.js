@@ -76,11 +76,9 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(365));
 
-//makeTopCategoriesCarousels();
-
 
 makeTopCategoriesCarousels()
-  .then((clipsData) => {
+  .then(() => {
     replaceCarouselItem(0);
   })
   .catch((error) => {
