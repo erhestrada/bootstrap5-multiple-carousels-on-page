@@ -6,6 +6,7 @@ import { saveClip } from './saveClip.js';
 // High Priority
 // 1. follows
 // 2. profile/login
+// 3. explore?
 // Lowe Priority
 // 1. like, dislike, favorite => up arrow, down arrow, star
 // Extra
