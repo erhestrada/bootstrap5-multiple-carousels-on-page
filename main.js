@@ -4,7 +4,7 @@ import { saveClip } from './saveClip.js';
 
 // TODO - prioritize backend
 // High Priority
-// 1. follows
+// 1. follows, notifications
 // 2. profile/login
 // 3. explore?
 // Lowe Priority
