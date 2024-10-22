@@ -18,7 +18,7 @@ import { saveClip } from './saveClip.js';
 // 2. check if category in category-ids else make request and add to category-ids
 // 3. various errors in console
 
-
+/*
 var clipIndex = 0;
 
 function replaceCarouselItem(increment) {
@@ -58,6 +58,7 @@ function replaceCarouselItem(increment) {
   // Refresh the carousel to recognize the new item
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
+*/
 
 
 /*
@@ -95,7 +96,7 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 
 makeTopCategoriesCarousels()
   .then(() => {
-    replaceCarouselItem(0);
+    //replaceCarouselItem(0);
   })
   .catch((error) => {
     console.error(error);

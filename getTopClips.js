@@ -133,12 +133,12 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         }
       });
       const clipsData = await response.json();
-
+      const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
-        // replaceCarouselItem();
+        replaceCarouselItem(0, embedUrls, streamerIds);
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
       }
