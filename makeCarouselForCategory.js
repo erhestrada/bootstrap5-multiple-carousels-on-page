@@ -11,9 +11,8 @@ const boxArtHeight = 200;
 export function makeCarouselForCategory(category, boxArtUrl) {
     const carouselDiv = `
         <div id="${category}-carousel" class="carousel slide">
-        <p>${category}</p>
         <div class="carousel-inner" id="${category}-carousel-inner">
-            <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}"/>
+            <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}boxart"/>
         </div>
 
         <button class="carousel-control-prev" type="button">
