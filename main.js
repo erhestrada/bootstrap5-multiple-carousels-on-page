@@ -7,7 +7,7 @@ import { saveClip } from './saveClip.js';
 // 1. follows, notifications
 // 2. profile/login
 // 3. explore?
-// 4. get box art for each category <=
+// 4. get box art for each category <===
 // Low Priority
 // 1. like, dislike, favorite => up arrow, down arrow, star
 // Extra
@@ -17,7 +17,7 @@ import { saveClip } from './saveClip.js';
 // Debug
 // 1. check if category in category-ids else make request and add to category-ids
 // 2. various errors in console
-// 3. spacing on main carousel is too mucha nd main carousel buttons don't work <=
+// 3. main carousel buttons don't work
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
