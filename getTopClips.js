@@ -64,6 +64,22 @@ export function getPastDateTime(daysBack) {
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(index, embedUrls, streamerIds) {
+  replaceCarouselItem(index, embedUrls, streamerIds);
+
+  // -------------- updating carousel2 based on which thumbnail is clicked in carousel 1 ------------
+
+  let carousel2 = document.getElementById('carousel2');
+  const carousel2Inner = document.getElementById('carousel2-inner');
+  carousel2Inner.innerHTML = '';
+
+  updateDonutPfp(streamerIds[index]);
+  updateStreamerBarCarousel(streamerIds[index]);
+
+  carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+}
+
+
+function replaceCarouselItem(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
   localStorage.setItem('currentClipStreamerId', streamerIds[index]);
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
@@ -95,19 +111,7 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
 
   // Refresh the carousel to recognize the new item
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
-
-  // -------------- updating carousel2 based on which thumbnail is clicked in carousel 1 ------------
-
-  let carousel2 = document.getElementById('carousel2');
-  const carousel2Inner = document.getElementById('carousel2-inner');
-  carousel2Inner.innerHTML = '';
-
-  updateDonutPfp(streamerIds[index]);
-  updateStreamerBarCarousel(streamerIds[index]);
-
-  carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
-
 
 function highlightDiv(div) {
   const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
@@ -134,6 +138,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
+        // replaceCarouselItem();
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
       }

@@ -7,11 +7,17 @@ import { saveClip } from './saveClip.js';
 // 1. follows, notifications
 // 2. profile/login
 // 3. explore?
-// Lowe Priority
+// 4. get box art for each category <=
+// Low Priority
 // 1. like, dislike, favorite => up arrow, down arrow, star
 // Extra
 // 1. youutube, kick
 // 2. reddit label for if posted on reddit, maybe view comments section within site
+// Debug
+// 1. first clip is not correct
+// 2. check if category in category-ids else make request and add to category-ids
+// 3. various errors in console
+
 
 var clipIndex = 0;
 
