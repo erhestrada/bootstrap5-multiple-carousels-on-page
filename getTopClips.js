@@ -94,7 +94,6 @@ function replaceCarouselItem(index, embedUrls, streamerIds) {
   
   const flexContainer = document.createElement('div');
   flexContainer.className = 'd-flex justify-content-center align-items-center';
-  flexContainer.style.height = '500px';
   
   const iframe = document.createElement('iframe');
 
