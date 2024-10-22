@@ -4,9 +4,6 @@ import { getTopClips } from "./getTopClips";
 // example box art url
 // 'https://static-cdn.jtvnw.net/ttv-boxart/509658-{width}x{height}.jpg
 
-// <img src="image.jpg" alt="An image">
-
-
 const boxArtWidth = 200;
 const boxArtHeight = 200;
 
@@ -16,7 +13,7 @@ export function makeCarouselForCategory(category, boxArtUrl) {
         <div id="${category}-carousel" class="carousel slide">
         <p>${category}</p>
         <div class="carousel-inner" id="${category}-carousel-inner">
-            <img src=${boxArtUrl.replace("width", 200).replace("height",200)} alt="boxart"/>
+            <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}"/>
         </div>
 
         <button class="carousel-control-prev" type="button">
