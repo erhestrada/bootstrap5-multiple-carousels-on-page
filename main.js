@@ -13,9 +13,11 @@ import { saveClip } from './saveClip.js';
 // Extra
 // 1. youutube, kick
 // 2. reddit label for if posted on reddit, maybe view comments section within site
+// 3. loading icon?
 // Debug
 // 1. check if category in category-ids else make request and add to category-ids
 // 2. various errors in console
+// 3. spacing on main carousel is too mucha nd main carousel buttons don't work <=
 
 document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
 document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));

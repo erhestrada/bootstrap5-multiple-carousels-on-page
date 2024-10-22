@@ -1,4 +1,3 @@
-import { getCarousel2Clips } from "./getCarousel2Clips";
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 
