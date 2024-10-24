@@ -1,7 +1,6 @@
 export function makeClipsCarouselSlide(carouselId) {
     //setTimeout(1);
 
-    console.log('sup?');    
     let carouselWidth = document.querySelector('.carousel-inner').scrollWidth;
     let cardWidth = document.querySelector('.carousel-item').offsetWidth;
     let scrollPosition = 0;

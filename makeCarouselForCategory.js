@@ -10,8 +10,9 @@ const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
 export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
+    const idFormattedCategory = category.replace(/ /g, '-').replace(/:/g, '');
     const carouselDiv = `
-        <div id="${category}-carousel" class="carousel slide">
+        <div id="${idFormattedCategory}-carousel" class="carousel slide">
         <div class="carousel-inner" id="${category}-carousel-inner">
             <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}boxart"/>
         </div>
@@ -27,14 +28,22 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         </div>
         `;
 
+    console.log(category);
+    console.log(`#${idFormattedCategory}-carousel`);
+
     document.body.insertAdjacentHTML('beforeend', carouselDiv);
+    console.log(carouselDiv);
+    console.log(carouselDiv.length);
     await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
     
-    const abc = document.querySelector(`#${category}-carousel`);
+    const abc = document.querySelector(`#${idFormattedCategory}-carousel`);
     console.log(abc);
     //const carousel = new bootstrap.Carousel(abc);
     //carousel.refresh(); // Refresh to recognize new items if needed
     
-    makeClipsCarouselSlide(`${category}-carousel`);
+    makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
 
 }
+
+
+// makeCarouselForCategory.js:35 Uncaught (in promise) SyntaxError: Failed to execute 'querySelector' on 'Document': '#EA Sports FC 25-carousel' is not a valid selector.
