@@ -84,7 +84,6 @@ export function saveClipPositionData(index, embedUrls, streamerIds) {
   localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
 }
 
-
 export function replaceCarouselItem(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
   localStorage.setItem('currentClipStreamerId', streamerIds[index]);
@@ -166,6 +165,9 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
+
+  console.log(carouselName);
+  console.log(thumbnailUrls[1]);
 
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});

@@ -1,5 +1,6 @@
 TODO - prioritize backend
 High Priority
+0. for you page (follows)
 1. follows, notifications
 2. profile/login
 3. explore?
@@ -22,9 +23,6 @@ Debug
 5. add thumbnail info to streamer bar carousel
 
 
-
-clicking on carousel2 adds a bunch of excess spacing again, need to take otu that height line
-
 issue with choppiness on slide (same issue when did infinitescroll)
     add more sliders to main page? definitely want more but don't want to be choppy
 
@@ -44,4 +42,3 @@ move highlighted thumbnail when next/prev arrow clicked in main player
 twitch-like main player display where you can at least see next/prev
 
 
-streamer bar carousel not updating when using clip player buttons
