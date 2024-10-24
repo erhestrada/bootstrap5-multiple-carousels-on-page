@@ -18,12 +18,10 @@ Extra
 4. browes clips by category? ~twitch/categories
 mini player, hide streamer bar
 Debug
-3. main carousel buttons don't work
 4. thumbnails not displaying?
 5. add thumbnail info to streamer bar carousel
 
-for the main carousel, i'm just replacing the current clip with the next one, no sliding is actually happening
-for the rest of the carousels i am sliding
+
 
 clicking on carousel2 adds a bunch of excess spacing again, need to take otu that height line
 
@@ -44,3 +42,6 @@ filter languages higher up
 autoplay
 move highlighted thumbnail when next/prev arrow clicked in main player
 twitch-like main player display where you can at least see next/prev
+
+
+streamer bar carousel not updating when using clip player buttons

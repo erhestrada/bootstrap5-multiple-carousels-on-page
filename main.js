@@ -2,6 +2,8 @@ import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselF
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
 import { replaceCarouselItem } from './getTopClips.js';
+import { updateDonutPfp } from "./updateDonutPfp";
+import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 
 function x(arrow) {
     let index = JSON.parse(localStorage.getItem('clipIndex'));
@@ -18,6 +20,14 @@ function x(arrow) {
     }
 
     replaceCarouselItem(index, embedUrls, streamerIds);
+    let carousel2 = document.getElementById('carousel2');
+    const carousel2Inner = document.getElementById('carousel2-inner');
+    carousel2Inner.innerHTML = '';
+  
+    updateDonutPfp(streamerIds[index]);
+    updateStreamerBarCarousel(streamerIds[index]);
+  
+    carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
 }
 
