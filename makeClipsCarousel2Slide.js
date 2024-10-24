@@ -1,11 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const multipleCardCarousel = document.querySelector("#carouselExample");
-    
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      const carousel = new bootstrap.Carousel(multipleCardCarousel, {
-        interval: false,
-      });
-      
+document.addEventListener('DOMContentLoaded', function() {    
+    if (window.matchMedia("(min-width: 768px)").matches) {      
       let carouselWidth = document.querySelector('.carousel-inner').scrollWidth;
       let cardWidth = document.querySelector('.carousel-item').offsetWidth;
       let scrollPosition = 0;
@@ -32,7 +26,5 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
       });
-    } else {
-      multipleCardCarousel.classList.add("slide");
-    }
+    } 
   });
