@@ -34,8 +34,10 @@ const gameToIdConverter = {
 
   }
 
-function makeGetUrl(game, daysBack, broadcasterName = false) {
-    const gameId = gameToIdConverter[game];
+function makeGetUrl(game, daysBack, broadcasterName = false, gameId=false) {
+    if (!gameId) {
+      gameId = gameToIdConverter[game];
+    }
     const currentDateTime = getCurrentDateTime();
     const pastDateTime = getPastDateTime(daysBack);
     // haven't finished implementing this
@@ -121,9 +123,9 @@ function highlightDiv(div) {
   localStorage.setItem('highlightedDivId', div.id);
 }
 
-export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false) {
+export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
     try {
-      const response = await fetch(makeGetUrl(game, daysBack, broadcasterName), {
+      const response = await fetch(makeGetUrl(game, daysBack, broadcasterName, gameId), {
         method: 'GET',
         headers: {
           'Client-Id': clientId,

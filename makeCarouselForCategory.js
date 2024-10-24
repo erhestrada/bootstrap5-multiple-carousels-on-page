@@ -8,7 +8,7 @@ const boxArtWidth = 200;
 const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
-export function makeCarouselForCategory(category, boxArtUrl) {
+export function makeCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselDiv = `
         <div id="${category}-carousel" class="carousel slide">
         <div class="carousel-inner" id="${category}-carousel-inner">
@@ -27,6 +27,6 @@ export function makeCarouselForCategory(category, boxArtUrl) {
         `;
 
     document.body.insertAdjacentHTML('beforeend', carouselDiv);
-    getTopClips(clientId, authToken, category, category, 1);
+    getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
 
 }

@@ -2,8 +2,8 @@ import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselF
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
 
-document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
-document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
+//document.querySelector('.carousel-control-next').addEventListener('click', () => replaceCarouselItem(1));
+//document.querySelector('.carousel-control-prev').addEventListener('click', () => replaceCarouselItem(-1));
 
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
