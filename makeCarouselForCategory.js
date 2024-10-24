@@ -1,5 +1,6 @@
 // basically a refactor of getTopClips
 import { getTopClips } from "./getTopClips";
+import { makeClipsCarouselSlide } from "./makeClipsCarouselNSlide";
 
 // example box art url
 // 'https://static-cdn.jtvnw.net/ttv-boxart/509658-{width}x{height}.jpg
@@ -8,7 +9,7 @@ const boxArtWidth = 200;
 const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
-export function makeCarouselForCategory(category, gameId, boxArtUrl) {
+export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselDiv = `
         <div id="${category}-carousel" class="carousel slide">
         <div class="carousel-inner" id="${category}-carousel-inner">
@@ -27,6 +28,13 @@ export function makeCarouselForCategory(category, gameId, boxArtUrl) {
         `;
 
     document.body.insertAdjacentHTML('beforeend', carouselDiv);
-    getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
+    await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
+    
+    const abc = document.querySelector(`#${category}-carousel`);
+    console.log(abc);
+    //const carousel = new bootstrap.Carousel(abc);
+    //carousel.refresh(); // Refresh to recognize new items if needed
+    
+    makeClipsCarouselSlide(`${category}-carousel`);
 
 }
