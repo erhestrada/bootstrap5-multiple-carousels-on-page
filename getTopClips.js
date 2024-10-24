@@ -1,3 +1,4 @@
+import { saveClip } from "./saveClip";
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 
@@ -65,9 +66,8 @@ export function getPastDateTime(daysBack) {
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(index, embedUrls, streamerIds) {
+  saveClipPositionData(index, embedUrls, streamerIds);
   replaceCarouselItem(index, embedUrls, streamerIds);
-
-  // -------------- updating carousel2 based on which thumbnail is clicked in carousel 1 ------------
 
   let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
@@ -79,8 +79,14 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
 
+function saveClipPositionData(index, embedUrls, streamerIds) {
+  localStorage.setItem('clipIndex', JSON.stringify(index));
+  localStorage.setItem('clipEmbedUrls', JSON.stringify(embedUrls));
+  localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
+}
 
-function replaceCarouselItem(index, embedUrls, streamerIds) {
+
+export function replaceCarouselItem(index, embedUrls, streamerIds) {
   const embedUrl = embedUrls[index];
   localStorage.setItem('currentClipStreamerId', streamerIds[index]);
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
@@ -138,6 +144,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
+        saveClipPositionData(0, embedUrls, streamerIds);
         replaceCarouselItem(0, embedUrls, streamerIds);
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
