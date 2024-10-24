@@ -5,13 +5,18 @@ High Priority
 3. explore?
 4. take virtualcasino out?
 5. move main carousel buttons closer
+link streamer names to twitch streamer page <==
+category link to twitch category page (should these link to my site?)
 Low Priority
 1. like, dislike, favorite => up arrow, down arrow, star
+settings - languages
+
 Extra
 1. youutube, kick
 2. reddit label for if posted on reddit, maybe view comments section within site
 3. loading icon?
 4. browes clips by category? ~twitch/categories
+mini player, hide streamer bar
 Debug
 3. main carousel buttons don't work
 4. thumbnails not displaying?
@@ -23,10 +28,14 @@ for the rest of the carousels i am sliding
 clicking on carousel2 adds a bunch of excess spacing again, need to take otu that height line
 
 issue with choppiness on slide (same issue when did infinitescroll)
+    add more sliders to main page? definitely want more but don't want to be choppy
 
 in makeCarouselForCategory.js
     should porbably be doing
-    const idFormattedCategory = category.replace(/ /g, '-').replace(/:/g, '');
+    const idFormattedCategory = category.replace(/ /g, '-').replace(/:/g, ''); -- i actually need to be doing this for all possible invalid characters
     for
     <div class="carousel-inner" id="${category}-carousel-inner">
     but will need to change downstream in getTopClips
+
+donut button press down effect
+alerts/notifications
