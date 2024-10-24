@@ -39,3 +39,8 @@ in makeCarouselForCategory.js
 
 donut button press down effect
 alerts/notifications
+
+filter languages higher up
+autoplay
+move highlighted thumbnail when next/prev arrow clicked in main player
+twitch-like main player display where you can at least see next/prev

@@ -3,8 +3,6 @@ import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
 import { replaceCarouselItem } from './getTopClips.js';
 
-// have to stringify and parse
-
 function x(arrow) {
     let index = JSON.parse(localStorage.getItem('clipIndex'));
     const embedUrls = JSON.parse(localStorage.getItem('clipEmbedUrls'));

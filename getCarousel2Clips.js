@@ -1,3 +1,5 @@
+import { saveClipPositionData } from "./getTopClips";
+
 const gameToIdConverter = {
     "IRL": "509672",
     "Just Chatting": "509658",
@@ -38,7 +40,8 @@ function makeGetUrl(game, daysBack) {
     return pastRfcDateTime;
   }
 
-function thumbnailClickListener(index, embedUrls) {
+function thumbnailClickListener(index, embedUrls, streamerIds) {
+  saveClipPositionData(index, embedUrls, streamerIds);
   const embedUrl = embedUrls[index];
 
   const currentClip = document.getElementById('current-clip');
@@ -97,6 +100,8 @@ export function makeCarousel2FromClipsData(clipsData) {
   const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
+  const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+
 
   const popularClipsCarouselInner = document.getElementById('carousel2-inner');
 
@@ -125,7 +130,7 @@ export function makeCarousel2FromClipsData(clipsData) {
       const image = document.createElement('img');
       image.src = url + "&parent=localhost";
       image.classList.add('thumbnail');
-      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls)});
+      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
 
       const cardBody = document.createElement('div');
       cardBody.className = 'card-body';

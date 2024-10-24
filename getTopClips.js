@@ -1,4 +1,3 @@
-import { saveClip } from "./saveClip";
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 
@@ -79,7 +78,7 @@ function thumbnailClickListener(index, embedUrls, streamerIds) {
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
 
-function saveClipPositionData(index, embedUrls, streamerIds) {
+export function saveClipPositionData(index, embedUrls, streamerIds) {
   localStorage.setItem('clipIndex', JSON.stringify(index));
   localStorage.setItem('clipEmbedUrls', JSON.stringify(embedUrls));
   localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
