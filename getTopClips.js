@@ -201,7 +201,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
       // formerly thumbnail
       const image = document.createElement('img');
-      image.src = url + "&parent=localhost";
+      image.src = url + "?parent=localhost";
       image.classList.add('thumbnail');
       image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
