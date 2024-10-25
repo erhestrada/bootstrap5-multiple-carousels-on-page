@@ -7,7 +7,7 @@ export async function getTopCategories(cursor=false) {
         if (cursor===false) {
             url = "https://api.twitch.tv/helix/games/top?first=100";
         } else {
-            url = "https://api.twitch.tv/helix/games/top?first=100&cursor=" + cursor;
+            url = "https://api.twitch.tv/helix/games/top?first=100&after=" + cursor;
         }
         const response = await fetch(url, {
         method: 'GET',
@@ -23,17 +23,19 @@ export async function getTopCategories(cursor=false) {
         //const gameIds = clipsData.data.map((pojo) => pojo.id);
         const currentCursor = clipsData.pagination.cursor;
         console.log(currentCursor);
-        return boxArtUrls;
+        return [boxArtUrls, currentCursor];
 
     } catch (error) {
         console.error(error);
     }
 }
 
-async function makeBrowseGrid() {
-    const boxArtUrls = await getTopCategories();
+async function makeBrowseGrid(cursor=false) {
+    const [boxArtUrls, nextCursor] = await getTopCategories(cursor);
     boxArtUrls.forEach((boxArtUrl) => addBoxArtToGrid(boxArtUrl));
-    console.log(boxArtUrls);
+    if (nextCursor) {
+        makeBrowseGrid(nextCursor)
+    }
 }
 
 function addBoxArtToGrid(boxArtUrl) {
