@@ -18,19 +18,23 @@ p {
   z-index: 1;
 }
 
-#nav-bar {
+#nav-bar-items {
   display: flex;
   flex-direction: row;
   gap: 100px;
   background-color: rgb(31, 31, 31);
   color: white;
-  padding: 1em;
+  padding: 0;
   align-items: center;
   color: white;
 }
 
 .nav-bar-button {
   cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
 }
 
 #like-dislike-container{
@@ -102,10 +106,6 @@ p {
 }
 
 #carouselExampleControls .carousel-inner{
-  padding: 0;
-}
-
-#nav-bar {
   padding: 0;
 }
 
