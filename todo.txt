@@ -31,6 +31,7 @@ Jakson pfp not loading? (gta)
 highlight is persisting, not resetting on different click
 
 community liked clips
+slider for box art to change category, up/down, maybe a search box
 
 
 issue with choppiness on slide (same issue when did infinitescroll)
