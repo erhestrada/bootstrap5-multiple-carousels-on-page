@@ -198,3 +198,17 @@ object-fit: cover;
 #streamer-bar-carousel-container{
   height: 150px;
 }
+
+
+#categories-to-browse {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 10px; /* Space between items */
+}
+
+.category-wrapper {
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, and base width */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box; /* Ensure padding and border are included in total width/height */
+}

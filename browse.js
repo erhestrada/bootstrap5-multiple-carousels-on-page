@@ -1,9 +1,14 @@
 const boxArtWidth = 200;
 const boxArtHeight = 200;
 
-export async function getTopCategories() {
+export async function getTopCategories(cursor=false) {
     try {
-        const url = "https://api.twitch.tv/helix/games/top";
+        let url = '';
+        if (cursor===false) {
+            url = "https://api.twitch.tv/helix/games/top?first=100";
+        } else {
+            url = "https://api.twitch.tv/helix/games/top?first=100&cursor=" + cursor;
+        }
         const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -16,6 +21,8 @@ export async function getTopCategories() {
         //const topCategories = clipsData.data.map((pojo) => pojo.name);
         const boxArtUrls = clipsData.data.map((pojo) => pojo.box_art_url);
         //const gameIds = clipsData.data.map((pojo) => pojo.id);
+        const currentCursor = clipsData.pagination.cursor;
+        console.log(currentCursor);
         return boxArtUrls;
 
     } catch (error) {
@@ -36,7 +43,8 @@ function addBoxArtToGrid(boxArtUrl) {
         </div>
         `;
 
-    document.body.insertAdjacentHTML('beforeend', categoryDiv);
+    const parentElement = document.getElementById('categories-to-browse');
+    parentElement.insertAdjacentHTML('beforeend', categoryDiv);
 }
 
 makeBrowseGrid();
