@@ -166,9 +166,6 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
 
-  console.log(carouselName);
-  console.log(thumbnailUrls[1]);
-
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
   // the first clip to play in the clipPlayer will be the first clip in TopClips - eventually better to do rows and columns to work with clipPlayer button click event

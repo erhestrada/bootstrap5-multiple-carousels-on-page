@@ -28,18 +28,15 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         </div>
         `;
 
-    console.log(category);
-    console.log(`#${idFormattedCategory}-carousel`);
+
+    //console.log(category);
+    //console.log(`#${idFormattedCategory}-carousel`);
 
     document.body.insertAdjacentHTML('beforeend', carouselDiv);
-    console.log(carouselDiv);
-    console.log(carouselDiv.length);
     await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
     
-    const abc = document.querySelector(`#${idFormattedCategory}-carousel`);
-    console.log(abc);
-    //const carousel = new bootstrap.Carousel(abc);
-    //carousel.refresh(); // Refresh to recognize new items if needed
+    //const abc = document.querySelector(`#${idFormattedCategory}-carousel`);
+    //console.log(abc);
     
     makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
 

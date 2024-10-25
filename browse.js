@@ -1,3 +1,5 @@
+import { makeCarouselForCategory } from "./makeCarouselForCategory";
+
 const boxArtWidth = 200;
 const boxArtHeight = 200;
 
@@ -78,4 +80,10 @@ export function createInfiniteScroll() {
 window.addEventListener('scroll', createInfiniteScroll);
 
 // Initial load
-makeBrowseGrid(); // Load initial items
+await makeBrowseGrid(); // Load initial items
+
+const categoryPics = document.querySelectorAll('.category-wrapper');
+categoryPics.forEach(categoryPic => {
+    //categoryPic.addEventListener('click', makeCarouselForCategory(category, gameId, boxArtUrl));
+    //categoryPic.addEventListener('click', makeCarouselForCategory("Just Chatting", 509658, "https://static-cdn.jtvnw.net/ttv-boxart/509658-200x200.jpg"));
+})
