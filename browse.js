@@ -1,6 +1,23 @@
 const boxArtWidth = 200;
 const boxArtHeight = 200;
 
+let isLoading = false; // To prevent multiple fetches
+
+// Function to load more items
+async function addItems() {
+    if (isLoading) return; // Prevent multiple fetches
+    isLoading = true; // Set loading state
+
+    const [boxArtUrls, nextCursor] = await getTopCategories(window.nextCursor);
+    boxArtUrls.forEach((boxArtUrl) => addBoxArtToGrid(boxArtUrl));
+
+    // Set the next cursor for future requests
+    window.nextCursor = nextCursor;
+
+    isLoading = false; // Reset loading state after fetch
+}
+
+
 export async function getTopCategories(cursor=false) {
     try {
         let url = '';
@@ -33,9 +50,10 @@ export async function getTopCategories(cursor=false) {
 async function makeBrowseGrid(cursor=false) {
     const [boxArtUrls, nextCursor] = await getTopCategories(cursor);
     boxArtUrls.forEach((boxArtUrl) => addBoxArtToGrid(boxArtUrl));
+    /*
     if (nextCursor) {
         makeBrowseGrid(nextCursor)
-    }
+    }*/
 }
 
 function addBoxArtToGrid(boxArtUrl) {
@@ -49,4 +67,15 @@ function addBoxArtToGrid(boxArtUrl) {
     parentElement.insertAdjacentHTML('beforeend', categoryDiv);
 }
 
-makeBrowseGrid();
+// Function to create infinite scroll
+export function createInfiniteScroll() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        addItems(); // Load more items when scrolled near the bottom
+    }
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', createInfiniteScroll);
+
+// Initial load
+makeBrowseGrid(); // Load initial items
