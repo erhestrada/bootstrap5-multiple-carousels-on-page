@@ -55,6 +55,7 @@ document.getElementById('settings-button').addEventListener('click', () => windo
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
-document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(365));
+// think ALL is the default if not start/end parameters
+document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(3650));
 
 makeTopCategoriesCarousels();

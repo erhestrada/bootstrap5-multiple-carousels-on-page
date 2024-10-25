@@ -1,13 +1,13 @@
 TODO - prioritize backend
 High Priority
-0. for you page (follows)
+0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications
 2. profile/login
 3. explore?
 4. take virtualcasino out?
 5. move main carousel buttons closer
 link streamer names to twitch streamer page <==
-category link to twitch category page (should these link to my site?)
+category link to twitch category page (link to other location in clipsTracker?)
 Low Priority
 1. like, dislike, favorite => up arrow, down arrow, star
 settings - languages
@@ -16,11 +16,19 @@ Extra
 1. youutube, kick
 2. reddit label for if posted on reddit, maybe view comments section within site
 3. loading icon?
-4. browes clips by category? ~twitch/categories
+4. browse clips by category? ~twitch/categories
 mini player, hide streamer bar
 Debug
-4. thumbnails not displaying?
+1. clicking on donut button first thing not working - certain information hasn't been set
 5. add thumbnail info to streamer bar carousel
+6. ends of carousels specifically right side end
+keep category fixed? only scroll games?
+7. errors in console (div id name?)
+await until all assets loaded?
+playlists?
+save data in database for scalability (minimize requests)
+Jakson pfp not loading? (gta)
+highlight is persisting, not resetting on different click
 
 
 issue with choppiness on slide (same issue when did infinitescroll)
