@@ -51,5 +51,6 @@ filter languages higher up
 autoplay
 move highlighted thumbnail when next/prev arrow clicked in main player
 twitch-like main player display where you can at least see next/prev
+save gameid if new
 
 
