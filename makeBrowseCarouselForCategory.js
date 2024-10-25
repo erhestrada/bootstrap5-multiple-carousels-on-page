@@ -28,6 +28,10 @@ export async function makeBrowseCarouselForCategory(category, gameId, boxArtUrl)
         </div>
         `;
 
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+        carousel.remove();
+    }
     document.querySelector('nav').insertAdjacentHTML('afterend', carouselDiv);
     await getTopClipsBrowse(clientId, authToken, category, category, 1, undefined, gameId);
     
