@@ -37,6 +37,16 @@ ul {
   list-style-type: none;
 }
 
+a {
+  color: inherit; /* Use the inherited text color */
+  text-decoration: none; /* Remove the underline */
+}
+
+a:hover {
+  color: inherit; /* Keep the color on hover */
+  text-decoration: none; /* Keep no underline on hover */
+}
+
 #like-dislike-container{
   display: flex;
   flex-direction: row;
