@@ -1,4 +1,4 @@
-import { makeCarouselForCategory } from "./makeCarouselForCategory";
+import { makeBrowseCarouselForCategory } from "./makeBrowseCarouselForCategory";
 
 const boxArtWidth = 200;
 const boxArtHeight = 200;
@@ -84,6 +84,6 @@ await makeBrowseGrid(); // Load initial items
 
 const categoryPics = document.querySelectorAll('.category-wrapper');
 categoryPics.forEach(categoryPic => {
-    //categoryPic.addEventListener('click', makeCarouselForCategory(category, gameId, boxArtUrl));
-    //categoryPic.addEventListener('click', makeCarouselForCategory("Just Chatting", 509658, "https://static-cdn.jtvnw.net/ttv-boxart/509658-200x200.jpg"));
+    //categoryPic.addEventListener('click', makeBrowseCarouselForCategory(category, gameId, boxArtUrl));
+    categoryPic.addEventListener('click', () => makeBrowseCarouselForCategory("Just Chatting", 509658, "https://static-cdn.jtvnw.net/ttv-boxart/509658-200x200.jpg"));
 })
