@@ -254,6 +254,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 function openPopUpPlayer(index, embedUrls, streamerIds) {
   //replaceCarouselItem(index, embedUrls, streamerIds);
   openPopUp();
+  embedIframe(embedUrls[index]+"&parent=localhost&autoplay=true");
 }
 
 function openPopUp() {
@@ -270,4 +271,18 @@ window.onclick = function(event) {
   if (event.target == popup) {
       closePopUp();
   }
+}
+
+function embedIframe(url) {
+  const iframeContainer = document.getElementById('iframe-container');
+  iframeContainer.innerHTML = ''; // Clear previous content
+
+  const iframe = document.createElement('iframe');
+  iframe.src = url; // Set the iframe source
+  iframe.style.width = '640p'; // Set width
+  iframe.style.height = '360'; // Set height
+  iframe.frameBorder = 0;
+  iframe.allowFullscreen = true;
+
+  iframeContainer.appendChild(iframe); // Append the iframe to the container
 }
