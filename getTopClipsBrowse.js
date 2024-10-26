@@ -178,7 +178,8 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const image = document.createElement('img');
       image.src = url + "?parent=localhost";
       image.classList.add('thumbnail');
-      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
+      // ignoring carousel2 (streamerbarcarousel) for now
+      //image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
 
       const cardBody = document.createElement('div');

@@ -20,6 +20,7 @@ Extra
 mini player, hide streamer bar
 Debug
 1. clicking on donut button first thing not working - certain information hasn't been set
+first clip on main page is wrong now -- using localstorage for browse too, could be conflicting
 5. add thumbnail info to streamer bar carousel
 6. ends of carousels specifically right side end
 keep category fixed? only scroll games?
@@ -32,6 +33,8 @@ highlight is persisting, not resetting on different click
 
 community liked clips
 slider for box art to change category, up/down, maybe a search box
+
+make log/signup popups <== (easy)
 
 
 issue with choppiness on slide (same issue when did infinitescroll)

@@ -31,5 +31,5 @@ export async function makeBrowseCarouselForCategory(category, gameId, boxArtUrl)
     await getTopClipsBrowse(clientId, authToken, category, category, 1, undefined, gameId);
     //await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
     
-    makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
+    makeClipsCarouselSlide("browse-carousel");
 }
