@@ -123,7 +123,7 @@ function highlightDiv(div) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.border = '';
   }
-  div.style.border = '1px solid #6441A4';
+  div.style.border = '5px solid #6441A4';
   localStorage.setItem('highlightedDivId', div.id);
 }
 
