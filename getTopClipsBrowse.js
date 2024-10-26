@@ -105,13 +105,20 @@ export function replaceCarouselItem(index, embedUrls, streamerIds) {
 
 function highlightDiv(div) {
   const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
+
+  console.log('divId:' + lastHighlightedDivId);
+  console.log(lastHighlightedDivId===false);
   if (lastHighlightedDivId) {
-    const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
-    lastHighlightedDiv.style.border = '';
+    // it might no longer be on the page
+    const lastHighlightedDiv = document?.getElementById(lastHighlightedDivId);
+    if (lastHighlightedDiv) {
+      lastHighlightedDiv.style.border = '';
+    }
   }
   div.style.border = '1px solid #6441A4';
   localStorage.setItem('highlightedDivId', div.id);
 }
+
 
 export async function getTopClipsBrowse(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
     try {
@@ -126,6 +133,7 @@ export async function getTopClipsBrowse(clientId, authToken, carouselName, game,
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
 
+      
       makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
       return clipsData;
     } catch (error) {
