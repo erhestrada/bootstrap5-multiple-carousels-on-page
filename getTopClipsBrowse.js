@@ -189,6 +189,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       // ignoring carousel2 (streamerbarcarousel) for now
       //image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
+      image.addEventListener('click', () => {openPopUpPlayer(index, embedUrls, streamerIds)})
 
       const cardBody = document.createElement('div');
       cardBody.className = 'card-body';
@@ -248,4 +249,25 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
     }
 
   });
+}
+
+function openPopUpPlayer(index, embedUrls, streamerIds) {
+  //replaceCarouselItem(index, embedUrls, streamerIds);
+  openPopUp();
+}
+
+function openPopUp() {
+  document.getElementById('popup').style.display = 'block';
+}
+
+export function closePopUp() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+// Close the popup when clicking outside of it
+window.onclick = function(event) {
+  const popup = document.getElementById('popup');
+  if (event.target == popup) {
+      closePopUp();
+  }
 }

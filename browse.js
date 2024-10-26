@@ -1,4 +1,5 @@
 import { makeBrowseCarouselForCategory } from "./makeBrowseCarouselForCategory";
+import { closePopUp } from "./getTopClipsBrowse";
 
 const boxArtWidth = 200;
 const boxArtHeight = 200;
@@ -97,3 +98,5 @@ const categoryPics = document.querySelectorAll('.category-wrapper');
 categoryPics.forEach(categoryPic => {
     categoryPic.addEventListener('click', () => makeBrowseCarouselForCategory(categoryPic.dataset.category, categoryPic.dataset.gameId, categoryPic.dataset.boxArtUrl));
 })
+
+document.querySelector('.close').addEventListener('click', closePopUp);
