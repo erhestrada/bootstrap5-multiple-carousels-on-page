@@ -53,6 +53,7 @@ export async function getTopCategories(cursor=false) {
         }, []);
 
         const nextCursor = clipsData.pagination.cursor;
+        window.nextCursor = nextCursor;
         //console.log(currentCursor);
         return [topCategoriesData, nextCursor];
 

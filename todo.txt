@@ -33,6 +33,8 @@ save data in database for scalability (minimize requests)
 Jakson pfp not loading? (gta)
 highlight is persisting, not resetting on different click
 
+refactor localStorage uses to window where applicable
+
 community liked clips
 slider for box art to change category, up/down, maybe a search box
 
@@ -41,7 +43,7 @@ move away from local storage and instead save all the thumbnail data in custom a
 customize scrollbar
 
 make likes/dislikes/favorites thumbnails that open the clip on click ~ youtube
-
+remove like/dislike/favorite
 
 issue with choppiness on slide (same issue when did infinitescroll)
     add more sliders to main page? definitely want more but don't want to be choppy
