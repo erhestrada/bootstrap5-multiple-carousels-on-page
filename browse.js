@@ -81,6 +81,12 @@ function addBoxArtToGrid(topCategoryData) {
 
     const parentElement = document.getElementById('categories-to-browse');
     parentElement.insertAdjacentHTML('beforeend', categoryDiv);
+
+    // Select the newly added category wrapper and add the event listener
+    const newCategoryPic = parentElement.lastElementChild; // Get the last added element
+    newCategoryPic.addEventListener('click', () => {
+        makeBrowseCarouselForCategory(newCategoryPic.dataset.category, newCategoryPic.dataset.gameId, newCategoryPic.dataset.boxArtUrl);
+    });
 }
 
 // Function to create infinite scroll
