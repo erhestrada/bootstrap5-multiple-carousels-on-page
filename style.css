@@ -247,3 +247,9 @@ object-fit: cover;
   text-decoration: none;
   cursor: pointer;
 }
+
+#iframe-container {
+  width: 100%; /* Use full width of the popup */
+
+  height: 640px;
+}
