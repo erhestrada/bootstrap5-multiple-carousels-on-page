@@ -34,6 +34,8 @@ function x(arrow) {
 
 }
 
+localStorage?.removeItem('highlightedDivId');
+
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => x('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => x('prev'));
 

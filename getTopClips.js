@@ -119,12 +119,14 @@ export function replaceCarouselItem(index, embedUrls, streamerIds) {
 
 function highlightDiv(div) {
   const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
+  console.log(lastHighlightedDivId);
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.border = '';
   }
   div.style.border = '5px solid #6441A4';
   localStorage.setItem('highlightedDivId', div.id);
+  console.log(div.id);
 }
 
 export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
@@ -166,6 +168,10 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
   const durations = clipsData.data.map((datum) => datum.duration);
 
+  // same for all clips in a getTopClps request -- requesting top clips in category
+  const gameId = clipsData.data[0].game_id;
+  console.log(gameId);
+
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
   // the first clip to play in the clipPlayer will be the first clip in TopClips - eventually better to do rows and columns to work with clipPlayer button click event
@@ -193,7 +199,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
       const imageWrapper = document.createElement('div');
       imageWrapper.className = "img-wrapper";
-      imageWrapper.id = "img-wrapper" + index;
+      imageWrapper.id = gameId + "img-wrapper" + index;
       imageWrapper.style.position = "relative";
 
       // formerly thumbnail

@@ -1,3 +1,5 @@
+move away from local storage and instead save all the thumbnail data in custom attributes on the element, simpler and more intuitive
+
 TODO - prioritize backend
 High Priority
 0. for you page (follows) (follow category, follow streamer, follow clipper)
