@@ -1,4 +1,3 @@
-move away from local storage and instead save all the thumbnail data in custom attributes on the element, simpler and more intuitive
 
 TODO - prioritize backend
 High Priority
@@ -21,6 +20,7 @@ Extra
 4. browse clips by category? ~twitch/categories
 mini player, hide streamer bar
 Debug
+0. browse page categories looping? ones lower down don't activate carousel
 1. clicking on donut button first thing not working - certain information hasn't been set
 first clip on main page is wrong now -- using localstorage for browse too, could be conflicting
 5. add thumbnail info to streamer bar carousel
@@ -37,6 +37,10 @@ community liked clips
 slider for box art to change category, up/down, maybe a search box
 
 make log/signup popups <== (easy)
+move away from local storage and instead save all the thumbnail data in custom attributes on the element, simpler and more intuitive
+customize scrollbar
+
+make likes/dislikes/favorites thumbnails that open the clip on click ~ youtube
 
 
 issue with choppiness on slide (same issue when did infinitescroll)

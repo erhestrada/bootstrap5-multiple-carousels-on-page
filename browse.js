@@ -1,5 +1,6 @@
 import { makeBrowseCarouselForCategory } from "./makeBrowseCarouselForCategory";
 import { closePopUp } from "./getTopClipsBrowse";
+import { saveClip } from "./saveClip";
 
 const boxArtWidth = 200;
 const boxArtHeight = 200;
@@ -100,3 +101,4 @@ categoryPics.forEach(categoryPic => {
 })
 
 document.querySelector('.close').addEventListener('click', closePopUp);
+document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));

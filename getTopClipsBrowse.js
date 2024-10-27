@@ -277,6 +277,9 @@ window.onclick = function(event) {
 }
 
 function embedIframe(url) {
+  //   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
+  console.log(url);
+  localStorage.setItem('currentClipUrl', url);
   const iframeContainer = document.getElementById('iframe-container');
   iframeContainer.innerHTML = ''; // Clear previous content
 
