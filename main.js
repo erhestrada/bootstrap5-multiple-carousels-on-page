@@ -4,6 +4,7 @@ import { saveClip } from './saveClip.js';
 import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
+import { followStreamer } from './followStreamer.js';
 
 function x(arrow) {
     let index = JSON.parse(localStorage.getItem('clipIndex'));
@@ -42,6 +43,7 @@ document.querySelector('#carouselExampleControls .carousel-control-prev').addEve
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
+document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamerId')));
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));

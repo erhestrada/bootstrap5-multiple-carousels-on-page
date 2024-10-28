@@ -141,6 +141,8 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const clipsData = await response.json();
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+      // use for followStreamer, start with streamerId
+      //const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
