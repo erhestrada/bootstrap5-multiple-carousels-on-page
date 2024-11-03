@@ -1,4 +1,13 @@
+export async function getClipsForStreamer(clientId, authToken, streamer, daysBack = 1) {
+    const streamerId = getIdForStreamer(streamer);
+    const clipsData = await getClips(clientId, authToken, streamerId, false, daysBack);
+    return clipsData
+}
 
+function getIdForStreamer(streamer) {
+    // curl -X GET 'https://api.twitch.tv/helix/users?login=twitchdev' -H 'Authorization: Bearer ymcfbojkyx4vhe64v0n3sh3jlqbtcj' -H 'Client-Id: dvboj01l2rgahrw7qdafpjags6v98m'
+    return ''
+  }
 
 export async function getClips(clientId, authToken, streamerId = false, gameId = false, daysBack = 1) {
     try {
@@ -12,6 +21,7 @@ export async function getClips(clientId, authToken, streamerId = false, gameId =
         const clipsData = await response.json();
         const embedUrls = clipsData.data.map((datum) => datum.embed_url);
         const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+        console.log(embedUrls);
 
         return clipsData;
     } catch (error) {
@@ -29,25 +39,18 @@ function makeGetUrl(streamerId, gameId, daysBack) {
     } else if (gameId) {
         return "https://api.twitch.tv/helix/clips?game_id=" + gameId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime + "&is_featured=false" + "&first=100";  
     }
-  }
+}
 
-  export function getCurrentDateTime() {
+function getCurrentDateTime() {
     const dateTime = new Date();
     const rfcDateTime = dateTime.toISOString();
     return rfcDateTime;
-  }
+}
     
-  export function getPastDateTime(daysBack) {
+function getPastDateTime(daysBack) {
     const hoursBack = daysBack * 24;
     const dateTime = new Date();
     const pastDateTime = new Date(dateTime.getTime() - hoursBack * 60 * 60 * 1000);
     const pastRfcDateTime = pastDateTime.toISOString();
     return pastRfcDateTime;
-  }
-  
-
-  function getIdForStreamer(streamer) {
-    // curl -X GET 'https://api.twitch.tv/helix/users?login=twitchdev' -H 'Authorization: Bearer ymcfbojkyx4vhe64v0n3sh3jlqbtcj' -H 'Client-Id: dvboj01l2rgahrw7qdafpjags6v98m'
-  }
-
-  const clipsDate = await getClips(clientId, authToken, '161737008');
+}
