@@ -174,9 +174,6 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
-  // the first clip to play in the clipPlayer will be the first clip in TopClips - eventually better to do rows and columns to work with clipPlayer button click event
-  localStorage.setItem("currentClipStreamerId", streamerIds[0]);
-  localStorage.setItem("currentClipStreamer", streamers[0]);
 
   const popularClipsCarouselInner = document.getElementById(carouselInnerId);
 

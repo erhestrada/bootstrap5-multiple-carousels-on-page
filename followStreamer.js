@@ -1,18 +1,18 @@
-export function followStreamer(streamerId) {
-    let followedStreamers = loadArrayFromLocalStorage('followedStreamers');
-    if (!followedStreamers.includes(streamerId)) {
-        followedStreamers.push(streamerId);
+export function followStreamer(streamer, streamerId) {
+    console.log('in follow streamer');
+    console.log('streamer', streamer);
+    
+    let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
+
+    if (!(streamer in followedStreamers)) {
+        followedStreamers[streamer] = streamerId;
     }
-    saveDataToLocalStorage('followedStreamers', followedStreamers);
+    localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
+    
     console.log(followedStreamers);
     return followedStreamers;
 }
 
-export function loadArrayFromLocalStorage(key) {
-    const jsonIntentionsLog = localStorage.getItem(key) ?? JSON.stringify([]);
-    const intentionsLog = JSON.parse(jsonIntentionsLog);
-    return intentionsLog
-}
 
 export function saveDataToLocalStorage(key, data) {
     const jsonData = JSON.stringify(data);
