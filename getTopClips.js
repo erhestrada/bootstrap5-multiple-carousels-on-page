@@ -64,9 +64,9 @@ export function getPastDateTime(daysBack) {
 }
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
-function thumbnailClickListener(index, embedUrls, streamerIds) {
+function thumbnailClickListener(index, embedUrls, streamerIds, streamers) {
   saveClipPositionData(index, embedUrls, streamerIds);
-  replaceCarouselItem(index, embedUrls, streamerIds);
+  replaceCarouselItem(index, embedUrls, streamerIds, streamers);
 
   let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
@@ -84,9 +84,11 @@ export function saveClipPositionData(index, embedUrls, streamerIds) {
   localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
 }
 
-export function replaceCarouselItem(index, embedUrls, streamerIds) {
+export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
   localStorage.setItem('currentClipStreamerId', streamerIds[index]);
+  localStorage.setItem('currentClipStreamer', streamers[index]);
+  console.log('current streamer: ', streamers[index]);
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
 
   const currentClip = document.getElementById('current-clip');
@@ -119,14 +121,12 @@ export function replaceCarouselItem(index, embedUrls, streamerIds) {
 
 function highlightDiv(div) {
   const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
-  console.log(lastHighlightedDivId);
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.border = '';
   }
   div.style.border = '5px solid #6441A4';
   localStorage.setItem('highlightedDivId', div.id);
-  console.log(div.id);
 }
 
 export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
@@ -141,13 +141,12 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const clipsData = await response.json();
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-      // use for followStreamer, start with streamerId
-      //const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
+      const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
         saveClipPositionData(0, embedUrls, streamerIds);
-        replaceCarouselItem(0, embedUrls, streamerIds);
+        replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
       }
@@ -172,12 +171,12 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
   // same for all clips in a getTopClps request -- requesting top clips in category
   const gameId = clipsData.data[0].game_id;
-  console.log(gameId);
 
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
   // the first clip to play in the clipPlayer will be the first clip in TopClips - eventually better to do rows and columns to work with clipPlayer button click event
   localStorage.setItem("currentClipStreamerId", streamerIds[0]);
+  localStorage.setItem("currentClipStreamer", streamers[0]);
 
   const popularClipsCarouselInner = document.getElementById(carouselInnerId);
 
@@ -208,7 +207,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const image = document.createElement('img');
       image.src = url + "?parent=localhost";
       image.classList.add('thumbnail');
-      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds)});
+      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds, streamers)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
 
       const cardBody = document.createElement('div');
