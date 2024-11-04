@@ -7,12 +7,16 @@ async function displayForYouCarousels() {
 
     const streamerEntries = Object.entries(followedStreamers);
 
-    const containerId = 'container';
+    const containerId = 'for-you-container';
     const parentContainer = document.getElementById(containerId);
 
     for (const [streamer, streamerId] of streamerEntries) {
         const streamerContainer = document.createElement('div');
         streamerContainer.id = streamer + '-container';
+
+        streamerContainer.style.display = 'flex';
+        streamerContainer.style.flexWrap = 'wrap';
+        streamerContainer.style.gap = '10px';
 
         const streamerElement = document.createElement('p');
         streamerElement.textContent = streamer;

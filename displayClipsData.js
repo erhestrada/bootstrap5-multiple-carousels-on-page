@@ -14,6 +14,11 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
         const carouselItem = document.createElement('div');
         carouselItem.id = streamers[0] + index;
         carouselItem.className = "carousel-item"
+
+        carouselItem.style.flex = '1 1 200px'; // Flex-grow, flex-shrink, and base width
+        carouselItem.style.padding = '20px';
+        carouselItem.style.textAlign = 'center';
+        carouselItem.style.boxSizing = 'border-box'; // Ensure padding and border are included
   
         const card = document.createElement('div');
         card.className = "card";
