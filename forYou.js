@@ -8,11 +8,22 @@ async function displayForYouCarousels() {
     const streamerEntries = Object.entries(followedStreamers);
 
     const containerId = 'container';
-    
+    const parentContainer = document.getElementById(containerId);
+
     for (const [streamer, streamerId] of streamerEntries) {
-     const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
-     displayClipsData(clipsDataForStreamer, containerId);
-     console.log(clipsDataForStreamer);
+        const streamerContainer = document.createElement('div');
+        streamerContainer.id = streamer + '-container';
+
+        const streamerElement = document.createElement('p');
+        streamerElement.textContent = streamer;
+
+        streamerContainer.appendChild(streamerElement);
+
+        parentContainer.appendChild(streamerContainer);
+
+        const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
+        displayClipsData(clipsDataForStreamer, streamerContainer.id);
+        console.log(clipsDataForStreamer);
     }
     
 }
