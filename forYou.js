@@ -1,4 +1,5 @@
 import { getClips } from "./getClips";
+import { displayClipsData } from "./displayClipsData";
 
 async function displayForYouCarousels() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
