@@ -7,9 +7,12 @@ async function displayForYouCarousels() {
 
     const streamerEntries = Object.entries(followedStreamers);
 
+    const containerId = 'container';
+    
     for (const [streamer, streamerId] of streamerEntries) {
-     const clipsForStreamer = await getClips(clientId, authToken, streamerId, 1);   
-     console.log(clipsForStreamer);
+     const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
+     displayClipsData(clipsDataForStreamer, containerId);
+     console.log(clipsDataForStreamer);
     }
     
 }
