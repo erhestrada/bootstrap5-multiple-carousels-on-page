@@ -1,13 +1,16 @@
-import { getClipsForStreamer } from "./getClips";
+import { getClips } from "./getClips";
 
-function displayForYouCarousels() {
+async function displayForYouCarousels() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
     console.log(followedStreamers);
 
-    for (const streamer in followedStreamers) {
-     const clipsForStreamer = getClipsForStreamer(clientId, authToken, streamer, 1);   
+    const streamerEntries = Object.entries(followedStreamers);
+
+    for (const [streamer, streamerId] of streamerEntries) {
+     const clipsForStreamer = await getClips(clientId, authToken, streamerId, 1);   
+     console.log(clipsForStreamer);
     }
-    // get clips in the last 24 hours for each streamer
+    
 }
 
 displayForYouCarousels();

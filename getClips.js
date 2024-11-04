@@ -5,6 +5,7 @@ export async function getClipsForStreamer(clientId, authToken, streamer, daysBac
     return streamerId
 }
 
+// don't actually need this
 async function getIdForStreamer(streamer) {
     // curl -X GET 'https://api.twitch.tv/helix/users?login=twitchdev' -H 'Authorization: Bearer ymcfbojkyx4vhe64v0n3sh3jlqbtcj' -H 'Client-Id: dvboj01l2rgahrw7qdafpjags6v98m'
     try {
@@ -18,7 +19,6 @@ async function getIdForStreamer(streamer) {
         });
 
         const streamerData = await response.json();
-        console.log(streamerData);
         return streamerData
 
     } catch (error) {
@@ -39,7 +39,6 @@ export async function getClips(clientId, authToken, streamerId = false, gameId =
         const clipsData = await response.json();
         const embedUrls = clipsData.data.map((datum) => datum.embed_url);
         const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-        console.log(embedUrls);
 
         return clipsData;
     } catch (error) {
