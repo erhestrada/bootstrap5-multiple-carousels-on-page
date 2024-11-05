@@ -1,21 +1,33 @@
-function search() {
+async function searchStreamers() {
     const query = document.getElementById('searchBox').value.toLowerCase();  // Get the search input
+
+    const searchResults = await getStreamers(query);
+    console.log(searchResults);
+
     const resultsContainer = document.getElementById('results');
     // Display what the user is typing in the results container
     resultsContainer.innerHTML = `<p>${query}</p>`;
-    
-    /*
-    // Filter the data based on the query
-    const filteredData = data.filter(item => item.toLowerCase().includes(query));
-    
-    // Display the results
-    if (filteredData.length > 0) {
-      resultsContainer.innerHTML = filteredData.map(item => `<p>${item}</p>`).join('');
-    } else {
-      resultsContainer.innerHTML = '<p>No results found.</p>';
+}
+
+export async function getStreamers(searchInput) {
+    try {
+        const url = "https://api.twitch.tv/helix/search/channels?query=" + encodeURIComponent(searchInput);  
+        const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Client-Id': clientId,
+            'Authorization': 'Bearer ' + authToken
+        }
+        });
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error(error);
     }
-    */
-  }
+}
+
 
 const searchBox = document.getElementById('searchBox');
-searchBox.addEventListener('keyup', search);
+searchBox.addEventListener('keyup', searchStreamers);
