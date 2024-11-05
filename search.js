@@ -1,12 +1,22 @@
+// display streamer name and pfp
+// on click open clip player
+
+let debounceTimeout;
+
 async function searchStreamers() {
     const query = document.getElementById('searchBox').value.toLowerCase();  // Get the search input
 
-    const searchResults = await getStreamers(query);
-    console.log(searchResults);
+    clearTimeout(debounceTimeout);
 
-    const resultsContainer = document.getElementById('results');
-    // Display what the user is typing in the results container
-    resultsContainer.innerHTML = `<p>${query}</p>`;
+    debounceTimeout = setTimeout(async () => {
+        const searchResults = await getStreamers(query);
+        console.log(searchResults);
+    
+        const resultsContainer = document.getElementById('results');
+        // Display what the user is typing in the results container
+        resultsContainer.innerHTML = `<p>${query}</p>`;
+    }, 500);
+
 }
 
 export async function getStreamers(searchInput) {
