@@ -12,9 +12,11 @@ async function searchStreamers() {
         const searchResults = await getStreamers(query);
         const streamerNames = searchResults.data.map(searchResult => searchResult.broadcaster_login);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
-        
+        const pfpUrls = await Promise.all(streamerIds.map(streamerId => getPfp(streamerId)));
+
         console.log(searchResults);
         console.log(streamerNames);
+        console.log(pfpUrls);
     
         const resultsContainer = document.getElementById('results');
         for (const streamerName of streamerNames) {
@@ -56,7 +58,8 @@ export async function getPfp(streamerId) {
         });
 
         const userData = await response.json();
-        document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
+        const pfpUrl = userData.data[0].profile_image_url;
+        return pfpUrl
 
     } catch (error) {
         console.error(error);
