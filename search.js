@@ -10,11 +10,16 @@ async function searchStreamers() {
 
     debounceTimeout = setTimeout(async () => {
         const searchResults = await getStreamers(query);
+        const streamerNames = searchResults.data.map(searchResult => searchResult.broadcaster_login);
+        
         console.log(searchResults);
+        console.log(streamerNames);
     
         const resultsContainer = document.getElementById('results');
+        for (const streamerName of streamerNames) {
+            resultsContainer.innerHTML += `<p>${streamerName}</p>`;
+        }
         // Display what the user is typing in the results container
-        resultsContainer.innerHTML = `<p>${query}</p>`;
     }, 500);
 
 }
