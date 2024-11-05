@@ -11,6 +11,7 @@ async function searchStreamers() {
     debounceTimeout = setTimeout(async () => {
         const searchResults = await getStreamers(query);
         const streamerNames = searchResults.data.map(searchResult => searchResult.broadcaster_login);
+        const streamerIds = searchResults.data.map(searchResult => searchResult.id);
         
         console.log(searchResults);
         console.log(streamerNames);
@@ -42,6 +43,26 @@ export async function getStreamers(searchInput) {
         console.error(error);
     }
 }
+
+export async function getPfp(streamerId) {
+    try {
+        const userUrl = "https://api.twitch.tv/helix/users?id=" + streamerId;  
+        const response = await fetch(userUrl, {
+        method: 'GET',
+        headers: {
+            'Client-Id': clientId,
+            'Authorization': 'Bearer ' + authToken
+        }
+        });
+
+        const userData = await response.json();
+        document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 
 const searchBox = document.getElementById('searchBox');
