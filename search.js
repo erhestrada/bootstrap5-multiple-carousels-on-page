@@ -17,11 +17,39 @@ async function searchStreamers() {
         console.log(searchResults);
         console.log(streamerNames);
         console.log(pfpUrls);
+
+        // want to display pfp - username - follow button
     
         const resultsContainer = document.getElementById('results');
+        streamerNames.forEach((streamerName, index) => {
+            const pfpUrl = pfpUrls[index];
+        
+            // Create a new div for each streamer entry
+            const streamerEntryElement = document.createElement('div');
+            streamerEntryElement.classList.add('streamer-entry'); // Add a class for styling
+        
+            // Create and set the image element
+            const pfpElement = document.createElement('img');
+            pfpElement.src = pfpUrl;
+            pfpElement.classList.add('streamer-pfp'); // Add a class for styling
+        
+            // Create and set the name element
+            const streamerNameElement = document.createElement('p');
+            streamerNameElement.innerText = streamerName;
+            streamerNameElement.classList.add('streamer-name'); // Add a class for styling
+        
+            // Append the image and name to the entry element
+            streamerEntryElement.appendChild(pfpElement);
+            streamerEntryElement.appendChild(streamerNameElement);
+        
+            // Finally, append the entry to the results container
+            resultsContainer.appendChild(streamerEntryElement);
+        });
+
+        /*
         for (const streamerName of streamerNames) {
             resultsContainer.innerHTML += `<p>${streamerName}</p>`;
-        }
+        }*/
         // Display what the user is typing in the results container
     }, 500);
 

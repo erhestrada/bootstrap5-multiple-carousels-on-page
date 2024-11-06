@@ -253,3 +253,25 @@ object-fit: cover;
 
   height: 640px;
 }
+
+
+/* Style for the container of each streamer entry */
+.streamer-entry {
+  display: flex;            /* Use flexbox for horizontal layout */
+  align-items: center;      /* Vertically center the content */
+  margin-bottom: 10px;      /* Space between entries */
+}
+
+/* Style for the image (profile picture) */
+.streamer-pfp {
+  width: 40px;              /* Set a fixed size for the profile picture */
+  height: 40px;             /* Make sure the height matches the width */
+  border-radius: 50%;       /* Make the image circular */
+  margin-right: 10px;       /* Add some space between the image and the name */
+}
+
+/* Style for the name of the streamer */
+.streamer-name {
+  margin: 0;                /* Remove any default margin */
+  font-size: 16px;          /* Set a font size for the name */
+}
