@@ -1,4 +1,3 @@
-// display streamer name and pfp
 // on click open clip player
 
 let debounceTimeout;
@@ -6,11 +5,17 @@ let debounceTimeout;
 async function searchStreamers() {
     const query = document.getElementById('searchBox').value.toLowerCase();  // Get the search input
 
+    // If the query is empty, clear the results and exit
+    if (query === '') {
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = '';  // Clear the results container
+        return;  // Exit the function early
+    }
+
+
     clearTimeout(debounceTimeout);
 
-    debounceTimeout = setTimeout(async () => {
-        const query = document.getElementById('searchBox').value.toLowerCase();
-    
+    debounceTimeout = setTimeout(async () => {    
         const searchResults = await getStreamers(query);
         const streamerNames = searchResults.data.map(searchResult => searchResult.broadcaster_login);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
