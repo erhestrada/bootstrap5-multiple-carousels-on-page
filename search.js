@@ -1,5 +1,7 @@
 // on click open clip player
 
+import { followStreamer } from './followStreamer.js';
+
 let debounceTimeout;
 
 async function searchStreamers() {
@@ -35,6 +37,7 @@ async function searchStreamers() {
     
         streamerNames.forEach((streamerName, index) => {
             const pfpUrl = pfpUrls[index];
+            const streamerId = streamerIds[index];
     
             // Create a new div for each streamer entry
             const streamerEntryElement = document.createElement('div');
@@ -52,6 +55,8 @@ async function searchStreamers() {
 
             const followButton = document.createElement('button');
             followButton.innerText = 'Follow';
+            followButton.addEventListener('click', () => followStreamer(streamerName, streamerId));
+
     
             // Append the image and name to the entry element
             streamerEntryElement.appendChild(pfpElement);
