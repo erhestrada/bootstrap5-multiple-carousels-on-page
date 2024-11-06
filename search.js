@@ -49,16 +49,20 @@ async function searchStreamers() {
             const streamerNameElement = document.createElement('p');
             streamerNameElement.innerText = streamerName;
             streamerNameElement.classList.add('streamer-name');  // Add a class for styling
+
+            const followButton = document.createElement('button');
+            followButton.innerText = 'Follow';
     
             // Append the image and name to the entry element
             streamerEntryElement.appendChild(pfpElement);
             streamerEntryElement.appendChild(streamerNameElement);
+            streamerEntryElement.appendChild(followButton);
     
             // Finally, append the entry to the results container
             resultsContainer.appendChild(streamerEntryElement);
         });
     
-    }, 500);
+    }, 200);
 
 }
 

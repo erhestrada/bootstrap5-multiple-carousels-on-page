@@ -16,6 +16,7 @@ settings - languages
 Extra
 1. youutube, kick
 2. reddit label for if posted on reddit, maybe view comments section within site
+    upvote tracking
 3. loading icon?
 4. browse clips by category? ~twitch/categories
 mini player, hide streamer bar
