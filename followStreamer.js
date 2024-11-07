@@ -13,6 +13,13 @@ export function followStreamer(streamer, streamerId) {
     return followedStreamers;
 }
 
+export function unfollowStreamer(streamerName) {
+    let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
+    delete followedStreamers.streamerName;
+    localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
+    return followedStreamers
+}
+
 
 export function saveDataToLocalStorage(key, data) {
     const jsonData = JSON.stringify(data);

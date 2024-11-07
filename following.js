@@ -1,3 +1,5 @@
+import { unfollowStreamer } from "./followStreamer";
+
 function displayFollowedStreamers() {
     const followedStreamersContainer = document.getElementById('followed-streamers-container');
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
@@ -12,6 +14,7 @@ function displayFollowedStreamers() {
 
         const unfollowButton = document.createElement('button');
         unfollowButton.innerText = 'unfollow';
+        unfollowButton.addEventListener('click', () => unfollowStreamer(streamerName));
         streamerEntry.appendChild(unfollowButton);
 
         followedStreamersContainer.appendChild(streamerEntry);
