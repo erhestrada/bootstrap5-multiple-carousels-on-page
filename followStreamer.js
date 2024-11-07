@@ -17,7 +17,7 @@ export function unfollowStreamer(streamerName) {
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
     delete followedStreamers[streamerName];
     localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
-    console.log(followedStreamers);
+    location.reload();
     return followedStreamers
 }
 
