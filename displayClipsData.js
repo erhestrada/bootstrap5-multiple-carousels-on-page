@@ -10,7 +10,6 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     const embedUrls = clipsDataForStreamer.data.map((datum) => datum.embed_url);
 
     window.embedUrls[streamers[0]] = embedUrls;
-    console.log('embedurls', window.embedUrls);
     
     const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
 

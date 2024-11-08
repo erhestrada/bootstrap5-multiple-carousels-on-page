@@ -10,15 +10,20 @@ export function openPopUpPlayer(streamer, index, embedUrls) {
                 embedIframe(window.embedUrls[streamer][index]+"&parent=localhost&autoplay=true");
             }
         } else if (event.key === 'ArrowRight') {
-            if (index < window.embedUrls[streamer].length) {
+            if (index < window.embedUrls[streamer].length - 1) {
                 index++;
                 embedIframe(window.embedUrls[streamer][index]+"&parent=localhost&autoplay=true");
             } else {
+                console.log('here!');
                 const streamers = Object.keys(window.embedUrls);
-                streamerIndex = streamers.indexOf(streamer);
-                if (streamerIndex < streamers.length) {
+                const streamerIndex = streamers.indexOf(streamer);
+            
+                if (streamerIndex < streamers.length - 1) {
+                    console.log('in here!');
                     streamer = streamers[streamerIndex + 1];
-                    embedIframe(window.embedUrls[streamer][0]+"&parent=localhost&autoplay=true");
+                    index = 0;
+                    console.log('next streamer:', streamer);
+                    embedIframe(window.embedUrls[streamer][index]+"&parent=localhost&autoplay=true");
                 }
             }
         }
