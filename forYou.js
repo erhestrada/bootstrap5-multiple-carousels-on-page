@@ -1,5 +1,7 @@
 import { getClips } from "./getClips";
 import { displayClipsData } from "./displayClipsData";
+import { closePopUp } from "./getTopClipsBrowse";
+import { saveClip } from "./saveClip";
 
 async function displayForYouCarousels() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
@@ -33,3 +35,5 @@ async function displayForYouCarousels() {
 }
 
 displayForYouCarousels();
+document.querySelector('.close').addEventListener('click', closePopUp);
+document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
