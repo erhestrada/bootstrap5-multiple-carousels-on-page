@@ -2,6 +2,16 @@ export function openPopUpPlayer(index, embedUrls) {
     //replaceCarouselItem(index, embedUrls, streamerIds);
     openPopUp();
     embedIframe(embedUrls[index]+"&parent=localhost&autoplay=true");
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft') {
+          console.log('Left arrow key pressed');
+          embedIframe(embedUrls[index+1]+"&parent=localhost&autoplay=true");
+        } else if (event.key === 'ArrowRight') {
+          console.log('Right arrow key pressed');
+        }
+      });
+
   }
   
   function openPopUp() {

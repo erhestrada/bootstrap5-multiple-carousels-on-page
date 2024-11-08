@@ -8,6 +8,8 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     const creationDateTimes = clipsDataForStreamer.data.map((datum) => datum.created_at);
     const durations = clipsDataForStreamer.data.map((datum) => datum.duration);
     const embedUrls = clipsDataForStreamer.data.map((datum) => datum.embed_url);
+
+    window.embedUrls.push(...embedUrls);
     
     const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
 
