@@ -1,14 +1,24 @@
-export function openPopUpPlayer(index, embedUrls) {
+export function openPopUpPlayer(streamer, index, embedUrls) {
     //replaceCarouselItem(index, embedUrls, streamerIds);
     openPopUp();
     embedIframe(embedUrls[index]+"&parent=localhost&autoplay=true");
 
     document.addEventListener('keydown', function(event) {
         if (event.key === 'ArrowLeft') {
-          console.log('Left arrow key pressed');
-          embedIframe(embedUrls[index+1]+"&parent=localhost&autoplay=true");
+            if (index > 0) {
+                embedIframe(window.embedUrls[streamer][index-1]+"&parent=localhost&autoplay=true");
+            }
         } else if (event.key === 'ArrowRight') {
-          console.log('Right arrow key pressed');
+            if (index < window.embedUrls[streamer].length) {
+                embedIframe(window.embedUrls[streamer][index+1]+"&parent=localhost&autoplay=true");
+            } else {
+                const streamers = Object.keys(window.embedUrls);
+                streamerIndex = streamers.indexOf(streamer);
+                if (streamerIndex < streamers.length) {
+                    streamer = streamers[streamerIndex + 1];
+                    embedIframe(window.embedUrls[streamer][0]+"&parent=localhost&autoplay=true");
+                }
+            }
         }
       });
 

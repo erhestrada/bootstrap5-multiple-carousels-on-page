@@ -9,7 +9,8 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     const durations = clipsDataForStreamer.data.map((datum) => datum.duration);
     const embedUrls = clipsDataForStreamer.data.map((datum) => datum.embed_url);
 
-    window.embedUrls.push(...embedUrls);
+    window.embedUrls[streamers[0]] = embedUrls;
+    console.log('embedurls', window.embedUrls);
     
     const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
 
@@ -35,7 +36,7 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
         imageWrapper.style.position = "relative";
   
         const image = document.createElement('img');
-        image.addEventListener('click', () => {openPopUpPlayer(index, embedUrls)})
+        image.addEventListener('click', () => {openPopUpPlayer(streamers[0], index, embedUrls)})
 
         image.src = thumbnailUrl;
         image.classList.add('thumbnail');
