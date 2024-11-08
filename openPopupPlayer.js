@@ -6,11 +6,13 @@ export function openPopUpPlayer(streamer, index, embedUrls) {
     document.addEventListener('keydown', function(event) {
         if (event.key === 'ArrowLeft') {
             if (index > 0) {
-                embedIframe(window.embedUrls[streamer][index-1]+"&parent=localhost&autoplay=true");
+                index--;
+                embedIframe(window.embedUrls[streamer][index]+"&parent=localhost&autoplay=true");
             }
         } else if (event.key === 'ArrowRight') {
             if (index < window.embedUrls[streamer].length) {
-                embedIframe(window.embedUrls[streamer][index+1]+"&parent=localhost&autoplay=true");
+                index++;
+                embedIframe(window.embedUrls[streamer][index]+"&parent=localhost&autoplay=true");
             } else {
                 const streamers = Object.keys(window.embedUrls);
                 streamerIndex = streamers.indexOf(streamer);
