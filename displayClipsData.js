@@ -1,3 +1,5 @@
+import { openPopUpPlayer } from "./openPopupPlayer";
+
 export function displayClipsData(clipsDataForStreamer, containerId) {
     const thumbnailUrls = clipsDataForStreamer.data.map((datum) => datum.thumbnail_url);
     const titles = clipsDataForStreamer.data.map((datum) => datum.title);
@@ -5,6 +7,7 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     const streamers = clipsDataForStreamer.data.map((datum) => datum.broadcaster_name);
     const creationDateTimes = clipsDataForStreamer.data.map((datum) => datum.created_at);
     const durations = clipsDataForStreamer.data.map((datum) => datum.duration);
+    const embedUrls = clipsDataForStreamer.data.map((datum) => datum.embed_url);
     
     const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
 
@@ -30,6 +33,8 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
         imageWrapper.style.position = "relative";
   
         const image = document.createElement('img');
+        image.addEventListener('click', () => {openPopUpPlayer(index, embedUrls)})
+
         image.src = thumbnailUrl;
         image.classList.add('thumbnail');
         //image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds, streamers)});
