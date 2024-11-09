@@ -275,3 +275,36 @@ object-fit: cover;
   margin: 0;                /* Remove any default margin */
   font-size: 16px;          /* Set a font size for the name */
 }
+
+#sidebar {
+  position: fixed;
+  top: 60px;  /* This is to make space for the navbar */
+  left: 0;
+  width: 200px;
+  height: 100vh;  /* Full height */
+  background-color: #333;
+  color: white;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#sidebar ul {
+  list-style-type: none;
+}
+
+#sidebar ul li {
+  margin-bottom: 20px;
+}
+
+#sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  background-color: #575757;
+}
