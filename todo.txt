@@ -1,12 +1,15 @@
 
 TODO - prioritize backend
 High Priority
+browse page search box
+unfavorite, fix display of likes page
+reddit api lsf posts
+follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology
 0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications
 2. profile/login
 3. explore?
 4. take virtualcasino out?
-5. move main carousel buttons closer
 link streamer names to twitch streamer page <==
 category link to twitch category page (link to other location in clipsTracker?)
 Low Priority
