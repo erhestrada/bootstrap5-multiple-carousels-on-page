@@ -4,7 +4,7 @@ High Priority
 browse page search box
 unfavorite, fix display of likes page
 reddit api lsf posts
-follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology
+follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology, pokemon
 0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications
 2. profile/login
