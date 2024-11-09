@@ -31,10 +31,8 @@ export async function searchCategories() {
         const resultsContainer = document.getElementById('categories-to-browse');
         resultsContainer.innerHTML = '';  // Clear the results container
             
-        categoryNames.forEach((streamerName, index) => {
-            /*
-            const pfpUrl = pfpUrls[index];
-            const streamerId = streamerIds[index];
+        categoryNames.forEach((categoryName, index) => {
+            const boxArtUrl = boxArtUrls[index];
     
             // Create a new div for each streamer entry
             const streamerEntryElement = document.createElement('div');
@@ -42,27 +40,21 @@ export async function searchCategories() {
     
             // Create and set the image element
             const pfpElement = document.createElement('img');
-            pfpElement.src = pfpUrl;
+            pfpElement.src = boxArtUrl;
             pfpElement.classList.add('streamer-pfp');  // Add a class for styling
     
             // Create and set the name element
             const streamerNameElement = document.createElement('p');
-            streamerNameElement.innerText = streamerName;
+            streamerNameElement.innerText = categoryName;
             streamerNameElement.classList.add('streamer-name');  // Add a class for styling
 
-            const followButton = document.createElement('button');
-            followButton.innerText = 'Follow';
-            followButton.addEventListener('click', () => followStreamer(streamerName, streamerId));
-
-    
             // Append the image and name to the entry element
             streamerEntryElement.appendChild(pfpElement);
             streamerEntryElement.appendChild(streamerNameElement);
-            streamerEntryElement.appendChild(followButton);
     
             // Finally, append the entry to the results container
             resultsContainer.appendChild(streamerEntryElement);
-            */
+            
         });
     
     }, 200);
