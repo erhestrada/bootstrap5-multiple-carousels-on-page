@@ -334,3 +334,9 @@ object-fit: cover;
   margin-left: 220px;  /* Space for the fixed sidebar */
   padding: 20px;
 }
+
+#for-you-iframe-container {
+  width: 100%; /* Use full width of the popup */
+
+  height: 420px;
+}

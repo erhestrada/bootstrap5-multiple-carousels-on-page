@@ -48,7 +48,7 @@ async function displayForYouCarousels() {
 function playFirstClip(clipsData) {
     const firstEmbedUrl = clipsData.data[0].embed_url;
 
-    const iframeContainer = document.getElementById('iframe-container');
+    const iframeContainer = document.getElementById('for-you-iframe-container');
     const iframe = document.createElement('iframe');
 
     iframe.src = firstEmbedUrl + "&parent=localhost&autoplay=true";
