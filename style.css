@@ -320,3 +320,9 @@ object-fit: cover;
   top: 0;
   z-index: 1;
 }
+
+#for-you-clip-player {
+  position: sticky;
+  top: 64px;
+  z-index: 1;
+}
