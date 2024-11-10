@@ -12,6 +12,8 @@ async function displayForYouCarousels() {
     const containerId = 'for-you-container';
     const parentContainer = document.getElementById(containerId);
 
+    const followList = document.getElementById('follow-list');
+
     window.embedUrls = {};
     for (const [streamer, streamerId] of streamerEntries) {        
         const streamerContainer = document.createElement('div');
@@ -30,9 +32,14 @@ async function displayForYouCarousels() {
 
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
         displayClipsData(clipsDataForStreamer, streamerContainer.id);
-    }
-    
+
+        const followEntry = document.createElement('li');
+        followEntry.innerText = streamer;
+        followList.appendChild(followEntry);
+    }   
 }
+
+
 
 displayForYouCarousels();
 document.querySelector('.close').addEventListener('click', closePopUp);
