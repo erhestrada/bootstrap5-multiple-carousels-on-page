@@ -313,3 +313,9 @@ object-fit: cover;
   margin-left: 220px;  /* Space for the fixed sidebar */
   padding: 20px;
 }
+
+#nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
