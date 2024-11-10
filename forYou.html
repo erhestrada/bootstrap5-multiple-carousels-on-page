@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <nav id="nav-bar">
+      <ul id="nav-bar-items">
+        <li class="nav-bar-button" id="clips-tracker-button"><a href="index.html">Clips Tracker</a></li>
+        <li class="nav-bar-button" id="for-you-button"><a href="forYou.html">For You</a></li>
+        <li class="nav-bar-button" id="clips-tracker-button"><a href="browse.html">Browse</a></li>
+        <li class="nav-bar-button" id="trending-button"><a href="trending.html">Trending</a></li>
+        <li class="nav-bar-button" id="following-button"><a href="following.html">Following</a></li>
+        <li class="nav-bar-button" id="saved-clips-button"><a href="likesAndDislikes.html">Saved Clips</a></li>
+        <li class="nav-bar-button" id="search-button"><a href="search.html">Search</a></li>
+        <li class="nav-bar-button" id="history-button"><a href="history.html">History</a></li>
+        <li class="nav-bar-button" id="log-in-button"><a href="logIn.html">Log In</a></li>
+        <li class="nav-bar-button" id="profile-button"><a href="profile.html">Profile</a></li>
+        <li class="nav-bar-button" id="settings-button"><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+
     <div id="sidebar">
       <ul>
         <li><a href="#">Dashboard</a></li>
@@ -18,37 +34,18 @@
         <li><a href="#">Settings</a></li>
       </ul>
     </div>
+
     <div id="for-you-container">
-      <div class="sticky-stuff">
-        <nav id="nav-bar">
-          <ul id="nav-bar-items">
-            <li class="nav-bar-button" id="clips-tracker-button"><a href="index.html">Clips Tracker</a></li>
-            <li class="nav-bar-button" id="for-you-button"><a href="forYou.html">For You</a></li>
-            <li class="nav-bar-button" id="clips-tracker-button"><a href="browse.html">Browse</a></li>
-            <li class="nav-bar-button" id="trending-button"><a href="trending.html">Trending</a></li>
-            <li class="nav-bar-button" id="following-button"><a href="following.html">Following</a></li>
-            <li class="nav-bar-button" id="saved-clips-button"><a href="likesAndDislikes.html">Saved Clips</a></li>
-            <li class="nav-bar-button" id="search-button"><a href="search.html">Search</a></li>
-            <li class="nav-bar-button" id="history-button"><a href="history.html">History</a></li>
-            <li class="nav-bar-button" id="log-in-button"><a href="logIn.html">Log In</a></li>
-            <li class="nav-bar-button" id="profile-button"><a href="profile.html">Profile</a></li>
-            <li class="nav-bar-button" id="settings-button"><a href="settings.html">Settings</a></li>
-          </ul>
-        </nav>
-
-        
-
-        <div id="popup" class="popup">
-          <div class="popup-content">
-              <span class="close">&times;</span>
-              <button class="valence-button" id="favorite-button">Favorite</button>
-              <p>This is a simple popup message!</p>
-              <div id="iframe-container"></div> <!-- Container for the iframe -->
-          </div>
+      <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <button class="valence-button" id="favorite-button">Favorite</button>
+            <p>This is a simple popup message!</p>
+            <div id="iframe-container"></div> <!-- Container for the iframe -->
         </div>
-
+      </div>
     </div>
-    <h1>For You</h1>
+
     <script src="config.js"></script>
     <script type="module" src="forYou.js"></script>
   </body>

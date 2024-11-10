@@ -308,3 +308,8 @@ object-fit: cover;
 #sidebar ul li a:hover {
   background-color: #575757;
 }
+
+#for-you-container {
+  margin-left: 220px;  /* Space for the fixed sidebar */
+  padding: 20px;
+}
