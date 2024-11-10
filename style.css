@@ -288,6 +288,7 @@ object-fit: cover;
   padding-left: 10px;
   padding-right: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  overflow-y: auto; /* Enable vertical scrolling when content overflows */
 }
 
 #sidebar ul {

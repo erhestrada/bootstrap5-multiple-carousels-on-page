@@ -46,8 +46,6 @@ function displayFollowsList(streamerEntries) {
     }   
 }
 
-
-
 displayForYouCarousels();
 document.querySelector('.close').addEventListener('click', closePopUp);
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
