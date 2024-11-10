@@ -5,7 +5,6 @@ import { saveClip } from "./saveClip";
 
 async function displayForYouCarousels() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
-    console.log(followedStreamers);
 
     const streamerEntries = Object.entries(followedStreamers);
 
@@ -15,24 +14,32 @@ async function displayForYouCarousels() {
     displayFollowsList(streamerEntries);
 
     window.embedUrls = {};
-    for (const [streamer, streamerId] of streamerEntries) {        
-        const streamerContainer = document.createElement('div');
-        streamerContainer.id = streamer + '-container';
 
-        streamerContainer.style.display = 'flex';
-        streamerContainer.style.flexWrap = 'wrap';
-        streamerContainer.style.gap = '10px';
-
-        const streamerElement = document.createElement('p');
-        streamerElement.textContent = streamer;
-
-        streamerContainer.appendChild(streamerElement);
-
-        parentContainer.appendChild(streamerContainer);
-
+    console.log(streamerEntries);
+    
+    for (const [streamer, streamerId] of streamerEntries) {    
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
-        displayClipsData(clipsDataForStreamer, streamerContainer.id);
+        const numberOfClips = clipsDataForStreamer.data.length;
+        if (numberOfClips > 0) {
+            const streamerContainer = document.createElement('div');
+            streamerContainer.id = streamer + '-container';
+    
+            streamerContainer.style.display = 'flex';
+            streamerContainer.style.flexWrap = 'wrap';
+            streamerContainer.style.gap = '10px';
+    
+            const streamerElement = document.createElement('p');
+            streamerElement.textContent = streamer;
+    
+            streamerContainer.appendChild(streamerElement);
+    
+            parentContainer.appendChild(streamerContainer);
+    
+            displayClipsData(clipsDataForStreamer, streamerContainer.id);
 
+            break;
+        }
+        
     }   
 }
 
@@ -47,5 +54,5 @@ function displayFollowsList(streamerEntries) {
 }
 
 displayForYouCarousels();
-document.querySelector('.close').addEventListener('click', closePopUp);
-document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
+//document.querySelector('.close').addEventListener('click', closePopUp);
+//document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
