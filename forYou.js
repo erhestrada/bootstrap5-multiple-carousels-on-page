@@ -21,6 +21,8 @@ async function displayForYouCarousels() {
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
         const numberOfClips = clipsDataForStreamer.data.length;
         if (numberOfClips > 0) {
+            playFirstClip(clipsDataForStreamer);
+
             const streamerContainer = document.createElement('div');
             streamerContainer.id = streamer + '-container';
     
@@ -34,13 +36,27 @@ async function displayForYouCarousels() {
             streamerContainer.appendChild(streamerElement);
     
             parentContainer.appendChild(streamerContainer);
-    
+
             displayClipsData(clipsDataForStreamer, streamerContainer.id);
 
             break;
         }
         
     }   
+}
+
+function playFirstClip(clipsData) {
+    const firstEmbedUrl = clipsData.data[0].embed_url;
+
+    const iframeContainer = document.getElementById('iframe-container');
+    const iframe = document.createElement('iframe');
+
+    iframe.src = firstEmbedUrl + "&parent=localhost&autoplay=true";
+    iframe.height = 360;
+    iframe.width = 640;
+    iframe.allowFullscreen = true;
+  
+    iframeContainer.appendChild(iframe);
 }
 
 function displayFollowsList(streamerEntries) {
