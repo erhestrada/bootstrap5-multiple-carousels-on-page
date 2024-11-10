@@ -12,7 +12,7 @@ async function displayForYouCarousels() {
     const containerId = 'for-you-container';
     const parentContainer = document.getElementById(containerId);
 
-    const followList = document.getElementById('follow-list');
+    displayFollowsList(streamerEntries);
 
     window.embedUrls = {};
     for (const [streamer, streamerId] of streamerEntries) {        
@@ -33,6 +33,13 @@ async function displayForYouCarousels() {
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
         displayClipsData(clipsDataForStreamer, streamerContainer.id);
 
+    }   
+}
+
+function displayFollowsList(streamerEntries) {
+    const followList = document.getElementById('follow-list');
+
+    for (const [streamer, streamerId] of streamerEntries) {        
         const followEntry = document.createElement('li');
         followEntry.innerText = streamer;
         followList.appendChild(followEntry);
