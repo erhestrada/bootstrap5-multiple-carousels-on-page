@@ -1,3 +1,4 @@
+
 import { openPopUpPlayer } from "./openPopupPlayer";
 
 export function displayClipsData(clipsDataForStreamer, containerId) {
@@ -35,7 +36,8 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
         imageWrapper.style.position = "relative";
   
         const image = document.createElement('img');
-        image.addEventListener('click', () => {openPopUpPlayer(streamers[0], index, embedUrls)})
+        //image.addEventListener('click', () => {openPopUpPlayer(streamers[0], index, embedUrls)})
+        image.addEventListener('click', () => {playClip(embedUrls, index)})
 
         image.src = thumbnailUrl;
         image.classList.add('thumbnail');
@@ -87,4 +89,20 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
         imageWrapper.appendChild(viewCount);
         imageWrapper.appendChild(creationDate);
     })
+}
+
+function playClip(embedUrls, index) {
+    const embedUrl = embedUrls[index];
+
+    const iframeContainer = document.getElementById('for-you-iframe-container');
+    
+    iframeContainer.innerHTML = '';
+    const iframe = document.createElement('iframe');
+
+    iframe.src = embedUrl + "&parent=localhost&autoplay=true";
+    iframe.height = 360;
+    iframe.width = 640;
+    iframe.allowFullscreen = true;
+  
+    iframeContainer.appendChild(iframe);
 }

@@ -59,6 +59,8 @@ function playFirstClip(clipsData) {
     iframeContainer.appendChild(iframe);
 }
 
+
+
 function displayFollowsList(streamerEntries) {
     const followList = document.getElementById('follow-list');
 
