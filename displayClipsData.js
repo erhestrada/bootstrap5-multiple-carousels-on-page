@@ -15,6 +15,7 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
 
     const parentElement = document.getElementById(containerId);
+    parentElement.innerHTML = '';
     thumbnailUrls.forEach((thumbnailUrl, index) => {
 
         const carouselItem = document.createElement('div');

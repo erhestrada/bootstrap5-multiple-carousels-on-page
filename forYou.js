@@ -25,7 +25,8 @@ async function displayForYouCarousels() {
             playFirstClip(clipsDataForStreamer);
 
             const streamerContainer = document.createElement('div');
-            streamerContainer.id = streamer + '-container';
+            //streamerContainer.id = streamer + '-container';
+            streamerContainer.id = 'streamer-clips-container';
     
             streamerContainer.style.display = 'flex';
             streamerContainer.style.flexWrap = 'wrap';
@@ -46,7 +47,7 @@ async function displayForYouCarousels() {
         const streamerInbox = document.getElementById(streamer + '-inbox');
         if (streamerInbox) {
             //streamerInbox.innerText += ' ' + numberOfClips;
-            
+
             // Create a new <span> element for the red circle
             const clipCountBadge = document.createElement('span');
             
@@ -67,6 +68,9 @@ async function displayForYouCarousels() {
             
             // Append the badge to the streamerInbox element
             streamerInbox.appendChild(clipCountBadge);
+            
+            streamerInbox.addEventListener('click', () => displayClipsData(clipsDataForStreamer, 'streamer-clips-container'));
+
         }
         
     }   
@@ -100,5 +104,4 @@ function displayFollowsList(streamerEntries) {
 }
 
 displayForYouCarousels();
-//document.querySelector('.close').addEventListener('click', closePopUp);
 //document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
