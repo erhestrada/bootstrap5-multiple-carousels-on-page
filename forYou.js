@@ -17,10 +17,11 @@ async function displayForYouCarousels() {
 
     console.log(streamerEntries);
     
+    let flag = false;
     for (const [streamer, streamerId] of streamerEntries) {    
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
         const numberOfClips = clipsDataForStreamer.data.length;
-        if (numberOfClips > 0) {
+        if (numberOfClips > 0 && flag === false) {
             playFirstClip(clipsDataForStreamer);
 
             const streamerContainer = document.createElement('div');
@@ -39,7 +40,12 @@ async function displayForYouCarousels() {
 
             displayClipsData(clipsDataForStreamer, streamerContainer.id);
 
-            break;
+            flag = true;
+        }
+
+        const streamerInbox = document.getElementById(streamer + '-inbox');
+        if (streamerInbox) {
+            streamerInbox.innerText += ' ' + numberOfClips;
         }
         
     }   
@@ -66,6 +72,7 @@ function displayFollowsList(streamerEntries) {
 
     for (const [streamer, streamerId] of streamerEntries) {        
         const followEntry = document.createElement('li');
+        followEntry.id = streamer + '-inbox';
         followEntry.innerText = streamer;
         followList.appendChild(followEntry);
     }   
