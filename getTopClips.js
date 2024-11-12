@@ -64,7 +64,9 @@ export function getPastDateTime(daysBack) {
 }
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
-function thumbnailClickListener(index, embedUrls, streamerIds, streamers) {
+function thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) {
+  window.currentClipPosition = {'game': carouselName, 'index': index};
+
   saveClipPositionData(index, embedUrls, streamerIds);
   replaceCarouselItem(index, embedUrls, streamerIds, streamers);
 
@@ -146,6 +148,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
+        window.currentClipPosition = {'game': carouselName, 'index': 0};
         saveClipPositionData(0, embedUrls, streamerIds);
         replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
@@ -182,7 +185,6 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
     if(languages[index] === 'en') {
 
-
       const carouselItem = document.createElement('div');
       carouselItem.id = carouselName + index;
       carouselItem.className = "carousel-item"
@@ -205,7 +207,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const image = document.createElement('img');
       image.src = url + "?parent=localhost";
       image.classList.add('thumbnail');
-      image.addEventListener('click', () => {thumbnailClickListener(index, embedUrls, streamerIds, streamers)});
+      image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
 
       const cardBody = document.createElement('div');
