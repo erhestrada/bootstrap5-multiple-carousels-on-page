@@ -37,6 +37,7 @@ function x(arrow) {
 
 }
 
+window.clipsData = {};
 localStorage?.removeItem('highlightedDivId');
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => x('next'));
