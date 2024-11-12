@@ -16,15 +16,11 @@ function playAdjacentClip(arrow) {
     const streamers = gameClipsData.map((datum) => datum.broadcaster_name);
 
     if (arrow === "next") {
-        index++;
-        localStorage.setItem('clipIndex', JSON.stringify(index));
-        window.currentClipPosition[index]++;
+        window.currentClipPosition['index']++;
 
     } else {
         if (index > 0) {
-            index--;
-            localStorage.setItem('clipIndex', JSON.stringify(index));
-            window.currentClipPosition[index]--;
+            window.currentClipPosition['index']--;
         }
     }
 
