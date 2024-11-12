@@ -6,7 +6,7 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { followStreamer } from './followStreamer.js';
 
-function x(arrow) {
+function playAdjacentClip(arrow) {
     let {game, index} = window.currentClipPosition;
 
     const gameClipsData = clipsData[game].data;
@@ -46,8 +46,8 @@ function x(arrow) {
 window.clipsData = {};
 localStorage?.removeItem('highlightedDivId');
 
-document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => x('next'));
-document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => x('prev'));
+document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
+document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
 
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
