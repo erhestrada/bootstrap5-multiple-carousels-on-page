@@ -7,18 +7,24 @@ import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { followStreamer } from './followStreamer.js';
 
 function x(arrow) {
-    let index = JSON.parse(localStorage.getItem('clipIndex'));
-    const embedUrls = JSON.parse(localStorage.getItem('clipEmbedUrls'));
-    const streamerIds = JSON.parse(localStorage.getItem('clipStreamerIds'));
-    const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
+    let {game, index} = window.currentClipPosition;
+
+    const gameClipsData = clipsData[game].data;
+
+    const embedUrls = gameClipsData.map((datum) => datum.embed_url);
+    const streamerIds = gameClipsData.map((datum) => datum.broadcaster_id);
+    const streamers = gameClipsData.map((datum) => datum.broadcaster_name);
 
     if (arrow === "next") {
         index++;
         localStorage.setItem('clipIndex', JSON.stringify(index));
+        window.currentClipPosition[index]++;
+
     } else {
         if (index > 0) {
             index--;
             localStorage.setItem('clipIndex', JSON.stringify(index));
+            window.currentClipPosition[index]--;
         }
     }
 
