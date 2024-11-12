@@ -1,10 +1,10 @@
 
 TODO - prioritize backend
 High Priority
-browse page search box
-for you page side bar video player at top clips below ~ twitch clips player
-unfavorite, fix display of likes page
 reddit api lsf posts
+// nahomie not showing up in fyp?
+browse page search box
+unfavorite, fix display of likes page
 follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology, pokemon, animals aquariums and zoos
 0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications

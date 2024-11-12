@@ -1,11 +1,11 @@
 //display likes
-const likedClipsUrls = JSON.parse(localStorage.getItem('liked-clips'));
+const likedClipsUrls = JSON.parse(localStorage.getItem('liked-clips')) || [];
 likedClipsUrls.forEach(url=> displayClip(url, 'likes-container'));
 
-const dislikedClipsUrls = JSON.parse(localStorage.getItem('disliked-clips'));
+const dislikedClipsUrls = JSON.parse(localStorage.getItem('disliked-clips')) || [];
 dislikedClipsUrls.forEach(url => displayClip(url, 'dislikes-container'));
 
-const favoritedClipsUrls = JSON.parse(localStorage.getItem('favorited-clips'));
+const favoritedClipsUrls = JSON.parse(localStorage.getItem('favorited-clips')) || [];
 favoritedClipsUrls.forEach(url => displayClip(url, 'favorites-container'));
 
 function displayClip(url, containerId) {  
