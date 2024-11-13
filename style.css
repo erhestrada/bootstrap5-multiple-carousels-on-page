@@ -353,4 +353,5 @@ object-fit: cover;
   width: 200px;
   height: 200px;
   object-fit: cover; /* Optional: This will ensure the image doesn't stretch or squash */
+  image-rendering: crisp-edges; /* Attempt to preserve sharpness during scaling */
 }
