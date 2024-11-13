@@ -348,3 +348,9 @@ object-fit: cover;
   display: flex;
   justify-content: center; /* Center horizontally */
 }
+
+.category-search-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* Optional: This will ensure the image doesn't stretch or squash */
+}

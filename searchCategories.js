@@ -37,7 +37,7 @@ export async function searchCategories() {
     
         const resultsContainer = document.getElementById('categories-to-browse');
         resultsContainer.innerHTML = '';  // Clear the results container
-        categoriesData.forEach((categoryData) => addBoxArtToGrid(categoryData));
+        categoriesData.forEach((categoryData) => addBoxArtToGrid(categoryData, true));
         /*
         categoryNames.forEach((categoryName, index) => {
             const boxArtUrl = boxArtUrls[index];
@@ -77,13 +77,23 @@ async function makeBrowseGrid(cursor=false) {
 }
 
 
-function addBoxArtToGrid(topCategoryData) {
+function addBoxArtToGrid(topCategoryData, isSearchResult = false) {
     const {category, gameId, boxArtUrl} = topCategoryData;
-    const categoryDiv = `
+    let categoryDiv;
+    if (isSearchResult) {
+        categoryDiv = `
+        <div class="category-wrapper" data-category="${category}" data-game-id="${gameId}" data-box-art-url="${boxArtUrl}">
+            <img src=${boxArtUrl} alt="category" class="category-search-img"/>
+        </div>
+        `;
+    } else {
+        categoryDiv = `
         <div class="category-wrapper" data-category="${category}" data-game-id="${gameId}" data-box-art-url="${boxArtUrl}">
             <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="category"/>
         </div>
         `;
+    }
+
 
     const parentElement = document.getElementById('categories-to-browse');
     parentElement.insertAdjacentHTML('beforeend', categoryDiv);
@@ -102,6 +112,7 @@ function addBoxArtToGrid(topCategoryData) {
 export async function getCategories(query) {
     try {
         const url = "https://api.twitch.tv/helix/search/categories?query=" + encodeURIComponent(query);  
+        //const url = "https://api.twitch.tv/helix/search/games?query=" + encodeURIComponent(query);  
         const response = await fetch(url, {
         method: 'GET',
         headers: {
