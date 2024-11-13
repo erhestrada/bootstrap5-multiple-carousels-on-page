@@ -40,6 +40,7 @@ function playAdjacentClip(arrow) {
 }
 
 window.clipsData = {};
+window.pageNumber = 1;
 localStorage?.removeItem('highlightedDivId');
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
@@ -55,5 +56,7 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 // think ALL is the default if not start/end parameters
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(3650));
+document.getElementById('next-page-button').addEventListener('click', () => makeTopCategoriesCarousels(window.pageNumber));
 
-makeTopCategoriesCarousels();
+
+makeTopCategoriesCarousels(window.pageNumber);

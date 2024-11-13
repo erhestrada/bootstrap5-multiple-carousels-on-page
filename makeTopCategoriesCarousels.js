@@ -1,8 +1,10 @@
 import {makeCarouselForCategory} from './makeCarouselForCategory.js'
 
-export async function makeTopCategoriesCarousels() {
+// pageNumber x 20
+
+export async function makeTopCategoriesCarousels(pageNumber) {
     try {
-        const url = "https://api.twitch.tv/helix/games/top";
+        const url = "https://api.twitch.tv/helix/games/top?first=100";
         const response = await fetch(url, {
         method: 'GET',
         headers: {
