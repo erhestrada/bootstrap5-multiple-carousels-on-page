@@ -1,3 +1,5 @@
+import { closePopUp } from "./getTopClipsBrowse";
+
 //display likes
 const likedClipsUrls = JSON.parse(localStorage.getItem('liked-clips')) || [];
 likedClipsUrls.forEach(url=> displayClip(url, 'likes-container'));
@@ -26,6 +28,7 @@ function displayClip(url, containerId) {
 
 function displayClip(clipData, containerId) {
   const embedUrl = clipData.embed_url;
+  console.log(embedUrl);
   const thumbnailUrl = clipData.thumbnail_url;
   const title = clipData.title;
   const language = clipData.language;
@@ -35,9 +38,6 @@ function displayClip(clipData, containerId) {
   const creationDateTime = clipData.created_at;
   const duration = clipData.duration;
   const gameId = clipData.game_id;
-
-
-
 
   const carouselItem = document.createElement('div');
   //carouselItem.id = carouselName + index;
@@ -56,8 +56,9 @@ function displayClip(clipData, containerId) {
   const image = document.createElement('img');
   image.src = thumbnailUrl + "?parent=localhost";
   image.classList.add('thumbnail');
-  //image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
   //image.addEventListener('click', () => {highlightDiv(imageWrapper)});
+  image.addEventListener('click', () => {openPopUpPlayer(embedUrl)})
+
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
@@ -105,4 +106,41 @@ function displayClip(clipData, containerId) {
   imageWrapper.appendChild(durationElement);
   imageWrapper.appendChild(viewCountElement);
   imageWrapper.appendChild(creationDate);
+}
+
+function openPopUpPlayer(embedUrl) {
+  openPopUp();
+  embedIframe(embedUrl + "&parent=localhost&autoplay=true");
+}
+
+function openPopUp() {
+  document.getElementById('popup').style.display = 'block';
+}
+
+function embedIframe(url) {
+  localStorage.setItem('currentClipUrl', url);
+  const iframeContainer = document.getElementById('iframe-container');
+  iframeContainer.innerHTML = ''; // Clear previous content
+
+  const iframe = document.createElement('iframe');
+  iframe.src = url; // Set the iframe source
+  iframe.style.width = 640; // Set width
+  iframe.style.height = 360; // Set height
+  iframe.frameBorder = 0;
+  iframe.allowFullscreen = true;
+
+  iframe.style.width = '100%'; // Full width of the container
+  iframe.style.height = '100%'; // Full height of the container
+
+  iframeContainer.appendChild(iframe); // Append the iframe to the container
+}
+
+document.querySelector('.close').addEventListener('click', closePopUp);
+
+// Close the popup when clicking outside of it
+window.onclick = function(event) {
+  const popup = document.getElementById('popup');
+  if (event.target == popup) {
+      closePopUp();
+  }
 }
