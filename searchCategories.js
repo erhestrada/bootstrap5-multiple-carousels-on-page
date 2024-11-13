@@ -23,14 +23,22 @@ export async function searchCategories() {
         const searchResults = await getCategories(query);
         
         const categoryNames = searchResults.data.map(searchResult => searchResult.name);
+        const gameIds = searchResults.data.map((pojo) => pojo.id);
         const boxArtUrls = searchResults.data.map(searchResult => searchResult.box_art_url);
-        
-        console.log(categoryNames);
-        console.log(boxArtUrls);
+
+        const categoriesData = categoryNames.map((category, index) => {
+            return {
+                category: category,
+                gameId: gameIds[index],
+                boxArtUrl: boxArtUrls[index]
+            };
+        });
+        console.log(categoriesData);
     
         const resultsContainer = document.getElementById('categories-to-browse');
         resultsContainer.innerHTML = '';  // Clear the results container
-            
+        categoriesData.forEach((categoryData) => addBoxArtToGrid(categoryData));
+        /*
         categoryNames.forEach((categoryName, index) => {
             const boxArtUrl = boxArtUrls[index];
     
@@ -56,6 +64,7 @@ export async function searchCategories() {
             resultsContainer.appendChild(streamerEntryElement);
             
         });
+        */
     
     }, 200);
 

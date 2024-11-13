@@ -5,12 +5,11 @@ High Priority
 reddit api lsf posts
 // nahomie not showing up in fyp? robcdee? when i follow new streamer not always showing up
 browse page search box
-unfavorite, fix display of likes page
+unfavorite
 follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology, pokemon, animals aquariums and zoos
 0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications
 2. profile/login
-3. explore?
 4. take virtualcasino out?
 link streamer names to twitch streamer page <==
 category link to twitch category page (link to other location in clipsTracker?)
@@ -19,11 +18,9 @@ Low Priority
 settings - languages
 
 Extra
-1. youutube, kick
 2. reddit label for if posted on reddit, maybe view comments section within site
     upvote tracking
 3. loading icon?
-4. browse clips by category? ~twitch/categories
 mini player, hide streamer bar
 Debug
 0. browse page categories looping? ones lower down don't activate carousel
