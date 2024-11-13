@@ -3,8 +3,8 @@
 export function saveClip(label) {
     let {game, index} = window.currentClipPosition;
 
-    const gameClipsData = clipsData[game].data;
-    const thumbnailUrl = clipsData[game].data[index].thumbnail_url;
+    const gameClipsData = window.clipsData[game].data;
+    const thumbnailUrl = window.clipsData[game].data[index].thumbnail_url;
 
     console.log(thumbnailUrl);
 
