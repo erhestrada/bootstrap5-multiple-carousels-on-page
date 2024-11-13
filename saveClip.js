@@ -1,17 +1,12 @@
-// should really save clipData
-
+// label - likes, dislikes, favorites
 export function saveClip(label) {
-    let {game, index} = window.currentClipPosition;
+  let {game, index} = window.currentClipPosition;
 
-    const gameClipsData = window.clipsData[game].data;
-    const thumbnailUrl = window.clipsData[game].data[index].thumbnail_url;
+  const gameClipsData = window.clipsData[game].data;
+  const clipData = gameClipsData[index];
 
-    console.log(thumbnailUrl);
-
-    
-    const jsonClipUrls = localStorage.getItem(label);
-    const clipUrls = JSON.parse(jsonClipUrls || '[]');
-    clipUrls.push(thumbnailUrl);
-    localStorage.setItem(label, JSON.stringify(clipUrls));
-    
-  }
+  const jsonSavedClipsData = localStorage.getItem(label);
+  const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
+  savedClipsData.push(clipData);
+  localStorage.setItem(label, JSON.stringify(savedClipsData));
+}
