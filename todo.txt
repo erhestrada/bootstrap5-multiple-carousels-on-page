@@ -1,5 +1,6 @@
 
 TODO - prioritize backend
+history
 High Priority
 reddit api lsf posts
 // nahomie not showing up in fyp? robcdee? when i follow new streamer not always showing up

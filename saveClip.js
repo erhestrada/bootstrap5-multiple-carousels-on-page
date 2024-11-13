@@ -1,6 +1,6 @@
 // should really save clipData
 
-export function saveClip(category) {
+export function saveClip(label) {
     let {game, index} = window.currentClipPosition;
 
     const gameClipsData = clipsData[game].data;
@@ -9,9 +9,9 @@ export function saveClip(category) {
     console.log(thumbnailUrl);
 
     
-    const jsonClipUrls = localStorage.getItem(category);
+    const jsonClipUrls = localStorage.getItem(label);
     const clipUrls = JSON.parse(jsonClipUrls || '[]');
     clipUrls.push(thumbnailUrl);
-    localStorage.setItem(category, JSON.stringify(clipUrls));
+    localStorage.setItem(label, JSON.stringify(clipUrls));
     
   }
