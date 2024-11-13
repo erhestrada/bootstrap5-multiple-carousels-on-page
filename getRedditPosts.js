@@ -1,6 +1,6 @@
 export async function getRedditPosts(subreddit, sortingOption) {
     try {
-        const url = '';
+        const url = `https://www.reddit.com/r/${subreddit}/${sortingOption}.json`;
         const options = '';
         const response = await fetch(url, options);
     } catch (error) {
