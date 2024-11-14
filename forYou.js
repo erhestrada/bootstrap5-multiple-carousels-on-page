@@ -107,7 +107,6 @@ function displayFollowsList(streamerEntries) {
     }   
 }
 
-displayForYouPlayerAndThumbnails();
-document.querySelectorAll('.tab-link').forEach(tabLinkElement.addEventListener());
+//displayForYouPlayerAndThumbnails();
 document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips'));
 document.getElementById('old-clips-tab').addEventListener('click', (e) => openTab(e, 'old-clips'));
