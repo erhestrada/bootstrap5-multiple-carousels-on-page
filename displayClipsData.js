@@ -1,7 +1,11 @@
 
-import { openPopUpPlayer } from "./openPopupPlayer";
-
+// rename to displayStreamerForYouClipsData
 export function displayClipsData(clipsDataForStreamer, containerId) {
+    let forYouClipsData = localStorage.getItem('forYouClipsData') || {};
+    console.log(forYouClipsData);
+    forYouClipsData = updateForYouClipsData(clipsDataForStreamer, forYouClipsData);
+    console.log(forYouClipsData);
+
     const thumbnailUrls = clipsDataForStreamer.data.map((datum) => datum.thumbnail_url);
     const titles = clipsDataForStreamer.data.map((datum) => datum.title);
     const viewCounts = clipsDataForStreamer.data.map((datum) => datum.view_count);
@@ -106,4 +110,30 @@ function playClip(embedUrls, index) {
     iframe.allowFullscreen = true;
   
     iframeContainer.appendChild(iframe);
+}
+
+function updateForYouClipsData(clipsDataForStreamer, forYouClipsData) {
+    const streamer = clipsDataForStreamer.data[0].broadcaster_name;
+    if (!(streamer in forYouClipsData)) {
+        forYouClipsData[streamer] = {
+            'newClipsData': clipsDataForStreamer,
+            'oldClipsData': []
+        };
+        return forYouClipsData;
+    } else {
+        for (const clipData of clipsDataForStreamer) {
+            // it was already in New Clips last time i viewed streamer's clips
+            if (clipData in forYouClipsData[streamer]['newClipsData']) {
+                // remove clipData from newClipsData
+                const indexToRemove = forYouClipsData[streamer]['newClipsData'].indexOf(clipData);
+                forYouClipsData[streamer]['newClipsData'].splice(indexToRemove, 1);
+
+                // add clipData to oldClipsData
+                forYouClipsData[streamer]['oldClipsData'].push(clipData);
+            } else {
+                forYouClipsData[streamer]['newClipsData'].push(clipData);
+            }
+        }
+        return forYouClipsData;
+    }
 }

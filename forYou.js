@@ -1,6 +1,5 @@
 import { getClips } from "./getClips";
 import { displayClipsData } from "./displayClipsData";
-import { closePopUp } from "./getTopClipsBrowse";
 import { saveClip } from "./saveClip";
 import { openTab } from "./openTab";
 
@@ -9,7 +8,6 @@ async function displayForYouPlayerAndThumbnails() {
 
     const streamerEntries = Object.entries(followedStreamers);
 
-    //const containerId = 'for-you-container';
     const containerId = 'new-clips-container';
     const parentContainer = document.getElementById(containerId);
 
@@ -94,7 +92,6 @@ function playFirstClip(clipsData) {
   
     iframeContainer.appendChild(iframe);
 }
-
 
 
 function displayFollowsList(streamerEntries) {
