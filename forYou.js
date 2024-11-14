@@ -2,6 +2,7 @@ import { getClips } from "./getClips";
 import { displayClipsData } from "./displayClipsData";
 import { closePopUp } from "./getTopClipsBrowse";
 import { saveClip } from "./saveClip";
+import { openTab } from "./openTab";
 
 async function displayForYouCarousels() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
@@ -107,4 +108,6 @@ function displayFollowsList(streamerEntries) {
 }
 
 displayForYouCarousels();
-//document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
+document.querySelectorAll('.tab-link').forEach(tabLinkElement.addEventListener());
+document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips'));
+document.getElementById('old-clips-tab').addEventListener('click', (e) => openTab(e, 'old-clips'));
