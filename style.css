@@ -382,9 +382,12 @@ object-fit: cover;
 }
 
 .tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.tab-content.active {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
-
