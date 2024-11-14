@@ -4,7 +4,7 @@ import { closePopUp } from "./getTopClipsBrowse";
 import { saveClip } from "./saveClip";
 import { openTab } from "./openTab";
 
-async function displayForYouCarousels() {
+async function displayForYouPlayerAndThumbnails() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
 
     const streamerEntries = Object.entries(followedStreamers);
@@ -107,7 +107,7 @@ function displayFollowsList(streamerEntries) {
     }   
 }
 
-displayForYouCarousels();
+displayForYouPlayerAndThumbnails();
 document.querySelectorAll('.tab-link').forEach(tabLinkElement.addEventListener());
 document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips'));
 document.getElementById('old-clips-tab').addEventListener('click', (e) => openTab(e, 'old-clips'));
