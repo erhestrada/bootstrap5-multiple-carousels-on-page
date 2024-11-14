@@ -1,9 +1,8 @@
 
 // rename to displayStreamerForYouClipsData
 export function displayClipsData(clipsDataForStreamer, containerId) {
-    let forYouClipsData = localStorage.getItem('forYouClipsData') || {};
-    console.log(forYouClipsData);
-    forYouClipsData = updateForYouClipsData(clipsDataForStreamer, forYouClipsData);
+    let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+    forYouClipsData = updateForYouClipsData(clipsDataForStreamer.data, forYouClipsData);
     console.log(forYouClipsData);
 
     const thumbnailUrls = clipsDataForStreamer.data.map((datum) => datum.thumbnail_url);
@@ -112,28 +111,33 @@ function playClip(embedUrls, index) {
     iframeContainer.appendChild(iframe);
 }
 
+
+// keeps adding same clips to clips data?
 function updateForYouClipsData(clipsDataForStreamer, forYouClipsData) {
-    const streamer = clipsDataForStreamer.data[0].broadcaster_name;
+    const streamer = clipsDataForStreamer[0].broadcaster_name;
     if (!(streamer in forYouClipsData)) {
         forYouClipsData[streamer] = {
             'newClipsData': clipsDataForStreamer,
             'oldClipsData': []
         };
+        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
         return forYouClipsData;
     } else {
         for (const clipData of clipsDataForStreamer) {
             // it was already in New Clips last time i viewed streamer's clips
-            if (clipData in forYouClipsData[streamer]['newClipsData']) {
+            if (forYouClipsData[streamer]['newClipsData'].some(item => item.id === clipData.id)) {
+                console.log('move from new to old', clipData.id);
                 // remove clipData from newClipsData
                 const indexToRemove = forYouClipsData[streamer]['newClipsData'].indexOf(clipData);
                 forYouClipsData[streamer]['newClipsData'].splice(indexToRemove, 1);
-
                 // add clipData to oldClipsData
                 forYouClipsData[streamer]['oldClipsData'].push(clipData);
-            } else {
+            } else {         
+                console.log('add new clip', clipData.id);       
                 forYouClipsData[streamer]['newClipsData'].push(clipData);
             }
         }
+        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
         return forYouClipsData;
     }
 }

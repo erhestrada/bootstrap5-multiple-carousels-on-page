@@ -14,8 +14,6 @@ async function displayForYouPlayerAndThumbnails() {
     displayFollowsList(streamerEntries);
 
     window.embedUrls = {};
-
-    console.log(streamerEntries);
     
     let flag = false;
     for (const [streamer, streamerId] of streamerEntries) {    

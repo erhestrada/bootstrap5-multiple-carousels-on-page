@@ -6,7 +6,7 @@ reddit api lsf posts
 // nahomie not showing up in fyp? robcdee? when i follow new streamer not always showing up
 browse page search box
 unfavorite
-follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology, pokemon, animals aquariums and zoos
+(display on carousels page) follow categories? e.g. irl, smash bros ultimate, smash bros melee, magic the gathering, lego & brickbuilding, science and technology, pokemon, animals aquariums and zoos
 0. for you page (follows) (follow category, follow streamer, follow clipper)
 1. follows, notifications
 2. profile/login
