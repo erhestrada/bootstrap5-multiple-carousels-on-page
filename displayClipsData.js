@@ -5,17 +5,24 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
     forYouClipsData = updateForYouClipsData(clipsDataForStreamer.data, forYouClipsData);
     console.log(forYouClipsData);
 
-    const thumbnailUrls = clipsDataForStreamer.data.map((datum) => datum.thumbnail_url);
-    const titles = clipsDataForStreamer.data.map((datum) => datum.title);
-    const viewCounts = clipsDataForStreamer.data.map((datum) => datum.view_count);
-    const streamers = clipsDataForStreamer.data.map((datum) => datum.broadcaster_name);
-    const creationDateTimes = clipsDataForStreamer.data.map((datum) => datum.created_at);
-    const durations = clipsDataForStreamer.data.map((datum) => datum.duration);
-    const embedUrls = clipsDataForStreamer.data.map((datum) => datum.embed_url);
+    const streamer = clipsDataForStreamer.data[0].broadcaster_name;
+
+    x(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
+    x(forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
+}
+
+function x(clipsDataForStreamer, containerId) {
+    const thumbnailUrls = clipsDataForStreamer.map((datum) => datum.thumbnail_url);
+    const titles = clipsDataForStreamer.map((datum) => datum.title);
+    const viewCounts = clipsDataForStreamer.map((datum) => datum.view_count);
+    const streamers = clipsDataForStreamer.map((datum) => datum.broadcaster_name);
+    const creationDateTimes = clipsDataForStreamer.map((datum) => datum.created_at);
+    const durations = clipsDataForStreamer.map((datum) => datum.duration);
+    const embedUrls = clipsDataForStreamer.map((datum) => datum.embed_url);
 
     window.embedUrls[streamers[0]] = embedUrls;
     
-    const gameIds = clipsDataForStreamer.data.map((datum) => datum.game_id);
+    const gameIds = clipsDataForStreamer.map((datum) => datum.game_id);
 
     const parentElement = document.getElementById(containerId);
     parentElement.innerHTML = '';
