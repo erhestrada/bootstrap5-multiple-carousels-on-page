@@ -118,6 +118,7 @@ function updateForYouClipsData(clipsDataForStreamer, forYouClipsData) {
     // Check if the streamer already exists in the data
     if (!(streamer in forYouClipsData)) {
         // If not, initialize the data for the streamer
+        console.log('initialize clips data for streamer');
         forYouClipsData[streamer] = {
             'newClipsData': clipsDataForStreamer,  // Add all the clips as 'newClipsData'
             'oldClipsData': []                    // Initialize oldClipsData as an empty array
