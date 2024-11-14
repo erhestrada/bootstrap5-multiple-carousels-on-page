@@ -9,7 +9,8 @@ async function displayForYouPlayerAndThumbnails() {
 
     const streamerEntries = Object.entries(followedStreamers);
 
-    const containerId = 'for-you-container';
+    //const containerId = 'for-you-container';
+    const containerId = 'new-clips-container';
     const parentContainer = document.getElementById(containerId);
 
     displayFollowsList(streamerEntries);
@@ -107,6 +108,6 @@ function displayFollowsList(streamerEntries) {
     }   
 }
 
-//displayForYouPlayerAndThumbnails();
-document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips'));
-document.getElementById('old-clips-tab').addEventListener('click', (e) => openTab(e, 'old-clips'));
+displayForYouPlayerAndThumbnails();
+document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips-container'));
+document.getElementById('old-clips-tab').addEventListener('click', (e) => openTab(e, 'old-clips-container'));
