@@ -46,30 +46,33 @@ async function displayForYouCarousels() {
 
         const streamerInbox = document.getElementById(streamer + '-inbox');
         if (streamerInbox) {
-            //streamerInbox.innerText += ' ' + numberOfClips;
+            if (numberOfClips > 0) {
+                //streamerInbox.innerText += ' ' + numberOfClips;
 
-            // Create a new <span> element for the red circle
-            const clipCountBadge = document.createElement('span');
-            
-            // Set the text of the badge to the number of clips
-            clipCountBadge.innerText = numberOfClips;
-            
-            // Apply CSS to style the red circle
-            clipCountBadge.style.display = 'inline-block';  // To place it next to the text
-            clipCountBadge.style.width = '20px';  // Size of the circle
-            clipCountBadge.style.height = '20px'; // Size of the circle
-            clipCountBadge.style.borderRadius = '50%';  // Make it circular
-            clipCountBadge.style.backgroundColor = 'red';  // Red background
-            clipCountBadge.style.color = 'white';  // White text inside the circle
-            clipCountBadge.style.textAlign = 'center';  // Center the text inside the circle
-            clipCountBadge.style.lineHeight = '20px';  // Vertically center the text
-            clipCountBadge.style.fontSize = '12px';  // Font size for the number
-            clipCountBadge.style.marginLeft = '5px';  // Add some space between the text and the circle
-            
-            // Append the badge to the streamerInbox element
-            streamerInbox.appendChild(clipCountBadge);
-            
-            streamerInbox.addEventListener('click', () => displayClipsData(clipsDataForStreamer, 'streamer-clips-container'));
+                // Create a new <span> element for the red circle
+                const clipCountBadge = document.createElement('span');
+                
+                // Set the text of the badge to the number of clips
+                clipCountBadge.innerText = numberOfClips;
+                
+                // Apply CSS to style the red circle
+                clipCountBadge.style.display = 'inline-block';  // To place it next to the text
+                clipCountBadge.style.width = '20px';  // Size of the circle
+                clipCountBadge.style.height = '20px'; // Size of the circle
+                clipCountBadge.style.borderRadius = '50%';  // Make it circular
+                clipCountBadge.style.backgroundColor = 'red';  // Red background
+                clipCountBadge.style.color = 'white';  // White text inside the circle
+                clipCountBadge.style.textAlign = 'center';  // Center the text inside the circle
+                clipCountBadge.style.lineHeight = '20px';  // Vertically center the text
+                clipCountBadge.style.fontSize = '12px';  // Font size for the number
+                clipCountBadge.style.marginLeft = '5px';  // Add some space between the text and the circle
+                
+                // Append the badge to the streamerInbox element
+                streamerInbox.appendChild(clipCountBadge);
+                
+                streamerInbox.addEventListener('click', () => displayClipsData(clipsDataForStreamer, 'streamer-clips-container'));
+            }
+
 
         }
         
