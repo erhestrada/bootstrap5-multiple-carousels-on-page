@@ -112,31 +112,43 @@ function playClip(embedUrls, index) {
 }
 
 
-// keeps adding same clips to clips data?
 function updateForYouClipsData(clipsDataForStreamer, forYouClipsData) {
     const streamer = clipsDataForStreamer[0].broadcaster_name;
+
+    // Check if the streamer already exists in the data
     if (!(streamer in forYouClipsData)) {
+        // If not, initialize the data for the streamer
         forYouClipsData[streamer] = {
-            'newClipsData': clipsDataForStreamer,
-            'oldClipsData': []
+            'newClipsData': clipsDataForStreamer,  // Add all the clips as 'newClipsData'
+            'oldClipsData': []                    // Initialize oldClipsData as an empty array
         };
         localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
         return forYouClipsData;
     } else {
+        // If the streamer already exists, loop through the clips
         for (const clipData of clipsDataForStreamer) {
-            // it was already in New Clips last time i viewed streamer's clips
-            if (forYouClipsData[streamer]['newClipsData'].some(item => item.id === clipData.id)) {
+            // Check if the clip is already in the newClipsData array
+            const indexToRemove = forYouClipsData[streamer]['newClipsData'].findIndex(item => item.id === clipData.id);  // Find by id
+
+            if (indexToRemove !== -1) {  // If the clip is found in 'newClipsData'
                 console.log('move from new to old', clipData.id);
-                // remove clipData from newClipsData
-                const indexToRemove = forYouClipsData[streamer]['newClipsData'].indexOf(clipData);
+                
+                // Remove the clip from 'newClipsData' using splice
                 forYouClipsData[streamer]['newClipsData'].splice(indexToRemove, 1);
-                // add clipData to oldClipsData
+                
+                // Add the clip to 'oldClipsData'
                 forYouClipsData[streamer]['oldClipsData'].push(clipData);
             } else {         
-                console.log('add new clip', clipData.id);       
-                forYouClipsData[streamer]['newClipsData'].push(clipData);
+                // If the clip wasn't found in 'newClipsData' and it's not in 'oldClipsData', add it as a new clip
+                const oldClipsClipIndex = forYouClipsData[streamer]['oldClipsData'].findIndex(item => item.id === clipData.id);  // Find by id
+                if (oldClipsClipIndex === -1) {
+                    console.log('add new clip', clipData.id);       
+                    forYouClipsData[streamer]['newClipsData'].push(clipData);
+                }
             }
         }
+
+        // After updates, save the data to localStorage
         localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
         return forYouClipsData;
     }
