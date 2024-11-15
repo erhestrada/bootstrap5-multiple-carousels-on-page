@@ -7,11 +7,11 @@ export function displayClipsData(clipsDataForStreamer, containerId) {
 
     const streamer = clipsDataForStreamer.data[0].broadcaster_name;
 
-    x(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
-    x(forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
+    displayClipsInTab(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
+    displayClipsInTab(forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
 }
 
-function x(clipsDataForStreamer, containerId) {
+function displayClipsInTab(clipsDataForStreamer, containerId) {
     const thumbnailUrls = clipsDataForStreamer.map((datum) => datum.thumbnail_url);
     const titles = clipsDataForStreamer.map((datum) => datum.title);
     const viewCounts = clipsDataForStreamer.map((datum) => datum.view_count);
