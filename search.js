@@ -19,7 +19,8 @@ async function searchStreamers() {
 
     debounceTimeout = setTimeout(async () => {    
         const searchResults = await getStreamers(query);
-        const streamerNames = searchResults.data.map(searchResult => searchResult.broadcaster_login);
+        console.log(searchResults);
+        const streamerNames = searchResults.data.map(searchResult => searchResult.display_name);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
     
         // Wait for all profile pictures to be fetched
