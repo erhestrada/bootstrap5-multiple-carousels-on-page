@@ -1,11 +1,9 @@
 
 // rename to displayStreamerForYouClipsData
-export function displayClipsData(clipsDataForStreamer, containerId) {
+export function displayClipsData(streamer, clipsDataForStreamer) {
     let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-    forYouClipsData = updateForYouClipsData(clipsDataForStreamer.data, forYouClipsData);
+    forYouClipsData = updateForYouClipsData(streamer, clipsDataForStreamer.data, forYouClipsData);
     console.log(forYouClipsData);
-
-    const streamer = clipsDataForStreamer.data[0].broadcaster_name;
 
     displayClipsInTab(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
     displayClipsInTab(forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
@@ -129,9 +127,7 @@ function playClip(embedUrls, index) {
 }
 
 
-function updateForYouClipsData(clipsDataForStreamer, forYouClipsData) {
-    const streamer = clipsDataForStreamer[0].broadcaster_name;
-
+function updateForYouClipsData(streamer, clipsDataForStreamer, forYouClipsData) {
     // Check if the streamer already exists in the data
     if (!(streamer in forYouClipsData)) {
         // If not, initialize the data for the streamer
