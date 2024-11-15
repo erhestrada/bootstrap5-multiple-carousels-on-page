@@ -5,11 +5,11 @@ export function displayClipsData(streamer, clipsDataForStreamer) {
     forYouClipsData = updateForYouClipsData(streamer, clipsDataForStreamer, forYouClipsData);
     console.log(forYouClipsData);
 
-    displayClipsInTab(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
-    displayClipsInTab(forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
+    displayClipsInTab(streamer, forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
+    displayClipsInTab(streamer, forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
 }
 
-function displayClipsInTab(clipsDataForStreamer, containerId) {
+function displayClipsInTab(streamer, clipsDataForStreamer, containerId) {
     const thumbnailUrls = clipsDataForStreamer.map((datum) => datum.thumbnail_url);
     const titles = clipsDataForStreamer.map((datum) => datum.title);
     const viewCounts = clipsDataForStreamer.map((datum) => datum.view_count);
@@ -27,9 +27,9 @@ function displayClipsInTab(clipsDataForStreamer, containerId) {
     if (clipsDataForStreamer.length === 0) {
         const messageElement = document.createElement('p');
         if (containerId === "new-clips-container") {
-            messageElement.innerText = 'No New Clips'
+            messageElement.innerText = streamer + ' ' + 'No New Clips';
         } else {
-            messageElement.innerText = "No Old Clips"
+            messageElement.innerText = streamer + ' ' + "No Old Clips";
         }
         parentElement.appendChild(messageElement);
     } else {
@@ -37,7 +37,7 @@ function displayClipsInTab(clipsDataForStreamer, containerId) {
 
             const carouselItem = document.createElement('div');
             carouselItem.id = streamers[0] + index;
-            carouselItem.className = "carousel-item"
+            carouselItem.className = "carousel-item";
     
             carouselItem.style.flex = '1 1 200px'; // Flex-grow, flex-shrink, and base width
             carouselItem.style.padding = '20px';

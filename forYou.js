@@ -122,7 +122,7 @@ async function displayForYouPlayerAndThumbnails() {
             }
 
             // is clipsDataForStreamer right?
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer, clipsDataForStreamer.data));
+            streamerInbox.addEventListener('click', () => displayClipsData(streamer, unviewedClipsInInbox));
             
         }
         
