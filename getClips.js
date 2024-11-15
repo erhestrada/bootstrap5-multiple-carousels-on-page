@@ -1,6 +1,6 @@
-export async function getClips(clientId, authToken, streamerId = false, gameId = false, daysBack = 1) {
+export async function getClips(clientId, authToken, streamerId = false, gameId = false, timeOfLastRequest) {
     try {
-        const response = await fetch(makeGetUrl(streamerId, gameId, daysBack), {
+        const response = await fetch(makeGetUrl(streamerId, gameId, timeOfLastRequest), {
         method: 'GET',
         headers: {
             'Client-Id': clientId,
@@ -18,9 +18,10 @@ export async function getClips(clientId, authToken, streamerId = false, gameId =
 }
 
 // The id, game_id, and broadcaster_id query parameters are mutually exclusive.
-function makeGetUrl(streamerId, gameId, daysBack) {
+function makeGetUrl(streamerId, gameId, timeOfLastRequest) {
     const currentDateTime = getCurrentDateTime();
-    const pastDateTime = getPastDateTime(daysBack);
+    //const pastDateTime = getPastDateTime(daysBack);
+    const pastDateTime = timeOfLastRequest;
     
     if (streamerId) {
         return "https://api.twitch.tv/helix/clips?broadcaster_id=" + streamerId + "&started_at=" + pastDateTime + "&ended_at=" + currentDateTime + "&is_featured=false" + "&first=100";  

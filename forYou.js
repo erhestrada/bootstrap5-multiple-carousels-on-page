@@ -17,7 +17,22 @@ async function displayForYouPlayerAndThumbnails() {
     
     let firstStreamerWithClipsFound = false;
     for (const [streamer, streamerId] of streamerEntries) {    
-        const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
+        let timesOfLastRequests = JSON.parse(localStorage.getItem('timesOfLastRequests')) || {};
+        
+        let timeOfLastRequest;
+        if (streamer in timesOfLastRequests) {
+            timeOfLastRequest = timesOfLastRequests[streamer];
+        } else {
+            timeOfLastRequest = new Date();  // Current date and time
+            timeOfLastRequest.setHours(timeOfLastRequest.getHours() - 24);  // Subtract 24 hours
+            timeOfLastRequest = timeOfLastRequest.toISOString(); // Convert to ISO string
+        }
+
+        const newTimeOfLastRequest = new Date(); 
+        const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, false, timeOfLastRequest);   
+        timesOfLastRequests[streamer] = newTimeOfLastRequest.toISOString();
+        localStorage.setItem('timesOfLastRequests', JSON.stringify(timesOfLastRequests));
+
         const numberOfClips = clipsDataForStreamer.data.length;
         if (numberOfClips > 0 && firstStreamerWithClipsFound === false) {
             playFirstClip(clipsDataForStreamer);
