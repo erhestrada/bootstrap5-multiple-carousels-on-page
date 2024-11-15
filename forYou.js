@@ -15,11 +15,11 @@ async function displayForYouPlayerAndThumbnails() {
 
     window.embedUrls = {};
     
-    let flag = false;
+    let firstStreamerWithClipsFound = false;
     for (const [streamer, streamerId] of streamerEntries) {    
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, 1);   
         const numberOfClips = clipsDataForStreamer.data.length;
-        if (numberOfClips > 0 && flag === false) {
+        if (numberOfClips > 0 && firstStreamerWithClipsFound === false) {
             playFirstClip(clipsDataForStreamer);
 
             const streamerContainer = document.createElement('div');
@@ -39,14 +39,12 @@ async function displayForYouPlayerAndThumbnails() {
 
             displayClipsData(clipsDataForStreamer, streamerContainer.id);
 
-            flag = true;
+            firstStreamerWithClipsFound = true;
         }
 
         const streamerInbox = document.getElementById(streamer + '-inbox');
         if (streamerInbox) {
             if (numberOfClips > 0) {
-                //streamerInbox.innerText += ' ' + numberOfClips;
-
                 // Create a new <span> element for the red circle
                 const clipCountBadge = document.createElement('span');
                 
