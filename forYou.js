@@ -50,16 +50,16 @@ async function displayForYouPlayerAndThumbnails() {
         const numberOfOldClipsInInbox = forYouClipsData[streamer]?.oldClipsData?.length || 0;
         console.log('number of old clips in inbox: ', numberOfOldClipsInInbox);
 
+        const unviewedClipsInInbox = forYouClipsData[streamer]?.newClipsData || [];
+        const clipsInResponse = clipsDataForStreamer.data;
+        const unviewedClipsData = [...clipsInResponse, ...unviewedClipsInInbox];
         const numberOfUnviewedClips = numberOfNewClipsInInbox + numberOfClipsInResponse;
         
         console.log('number of unviewed clips:', numberOfUnviewedClips);
-
-        const numberOfClips = clipsDataForStreamer.data.length;
-
-
-        console.log(numberOfClips);
-        if (numberOfClips > 0 && firstStreamerWithClipsFound === false) {
-            playFirstClip(clipsDataForStreamer);
+        
+        if (numberOfUnviewedClips > 0 && firstStreamerWithClipsFound === false) {
+            console.log(unviewedClipsData);
+            playFirstClip(unviewedClipsData);
 
             const streamerContainer = document.createElement('div');
             //streamerContainer.id = streamer + '-container';
@@ -76,7 +76,8 @@ async function displayForYouPlayerAndThumbnails() {
     
             parentContainer.appendChild(streamerContainer);
 
-            displayClipsData(streamer, clipsDataForStreamer);
+            console.log('unviewedClipsData', unviewedClipsData);
+            displayClipsData(streamer, unviewedClipsData);
 
             firstStreamerWithClipsFound = true;
         }
@@ -120,8 +121,8 @@ async function displayForYouPlayerAndThumbnails() {
                 streamerInbox.appendChild(clipCountBadge);
             }
 
-            
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer, clipsDataForStreamer));
+            // is clipsDataForStreamer right?
+            streamerInbox.addEventListener('click', () => displayClipsData(streamer, clipsDataForStreamer.data));
             
         }
         
@@ -129,7 +130,7 @@ async function displayForYouPlayerAndThumbnails() {
 }
 
 function playFirstClip(clipsData) {
-    const firstEmbedUrl = clipsData.data[0].embed_url;
+    const firstEmbedUrl = clipsData[0].embed_url;
 
     const iframeContainer = document.getElementById('for-you-iframe-container');
     const iframe = document.createElement('iframe');

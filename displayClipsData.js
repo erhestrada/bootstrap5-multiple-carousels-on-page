@@ -2,7 +2,7 @@
 // rename to displayStreamerForYouClipsData
 export function displayClipsData(streamer, clipsDataForStreamer) {
     let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-    forYouClipsData = updateForYouClipsData(streamer, clipsDataForStreamer.data, forYouClipsData);
+    forYouClipsData = updateForYouClipsData(streamer, clipsDataForStreamer, forYouClipsData);
     console.log(forYouClipsData);
 
     displayClipsInTab(forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
@@ -140,6 +140,7 @@ function updateForYouClipsData(streamer, clipsDataForStreamer, forYouClipsData) 
         return forYouClipsData;
     } else {
         // If the streamer already exists, loop through the clips
+        console.log(clipsDataForStreamer);
         for (const clipData of clipsDataForStreamer) {
             // Check if the clip is already in the newClipsData array
             const indexToRemove = forYouClipsData[streamer]['newClipsData'].findIndex(item => item.id === clipData.id);  // Find by id
