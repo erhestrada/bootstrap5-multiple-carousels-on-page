@@ -49,11 +49,13 @@ async function displayForYouPlayerAndThumbnails() {
                 const clipCountBadge = document.createElement('span');
                 
                 // Set the text of the badge to the number of clips
-                let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+                const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
                 const formattedStreamer = clipsDataForStreamer.data[0].broadcaster_name;
-                const numberOfNewClips = forYouClipsData[formattedStreamer]['newClipsData'].length;
-                console.log(numberOfNewClips);
-                clipCountBadge.innerText = numberOfNewClips;
+                const viewedClips = forYouClipsData[formattedStreamer]['oldClipsData'];
+                const viewedClipsIds = viewedClips.map(viewedClip => viewedClip.id);
+                const unviewedClips = clipsDataForStreamer.data.filter(clip => !viewedClipsIds.includes(clip.id));
+
+                clipCountBadge.innerText = unviewedClips.length;
                 
                 // Apply CSS to style the red circle
                 clipCountBadge.style.display = 'inline-block';  // To place it next to the text
