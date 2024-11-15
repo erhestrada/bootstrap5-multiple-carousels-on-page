@@ -33,7 +33,31 @@ async function displayForYouPlayerAndThumbnails() {
         timesOfLastRequests[streamer] = newTimeOfLastRequest.toISOString();
         localStorage.setItem('timesOfLastRequests', JSON.stringify(timesOfLastRequests));
 
+        console.log(streamer);
+        console.log('timesOfLastRequests', timesOfLastRequests);
+
+        const numberOfClipsInResponse = clipsDataForStreamer.data.length;
+        console.log('number of clips in response: ', numberOfClipsInResponse);
+
+
+        // i need streamer to be in the right capitalization format - fix in search
+        const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+        console.log('forYouClipsData', forYouClipsData);
+        
+        const numberOfNewClipsInInbox = forYouClipsData[streamer]?.newClipsData?.length || 0;
+        console.log('number of new clips in inbox: ', numberOfNewClipsInInbox);
+
+        const numberOfOldClipsInInbox = forYouClipsData[streamer]?.oldClipsData?.length || 0;
+        console.log('number of old clips in inbox: ', numberOfOldClipsInInbox);
+
+        const numberOfUnviewedClips = numberOfNewClipsInInbox + numberOfClipsInResponse;
+        
+        console.log('number of unviewed clips:', numberOfUnviewedClips);
+
         const numberOfClips = clipsDataForStreamer.data.length;
+
+
+        console.log(numberOfClips);
         if (numberOfClips > 0 && firstStreamerWithClipsFound === false) {
             playFirstClip(clipsDataForStreamer);
 
@@ -65,8 +89,9 @@ async function displayForYouPlayerAndThumbnails() {
                 
                 // Set the text of the badge to the number of clips
                 const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-                const formattedStreamer = clipsDataForStreamer.data[0].broadcaster_name;
-                const viewedClips = forYouClipsData[formattedStreamer]['oldClipsData'];
+                // dont need to use formattedStreamer anymore - changed how i'm storing names
+                //const formattedStreamer = clipsDataForStreamer.data[0].broadcaster_name;
+                const viewedClips = forYouClipsData[streamer]?.oldClipsData || [];
                 const viewedClipsIds = viewedClips.map(viewedClip => viewedClip.id);
                 const unviewedClips = clipsDataForStreamer.data.filter(clip => !viewedClipsIds.includes(clip.id));
 
