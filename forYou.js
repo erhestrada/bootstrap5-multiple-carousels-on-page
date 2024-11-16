@@ -87,16 +87,12 @@ async function displayForYouPlayerAndThumbnails() {
             // Create a new <span> element for the red circle
             const clipCountBadge = document.createElement('span');
             
-            // Set the text of the badge to the number of clips
             const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-            // dont need to use formattedStreamer anymore - changed how i'm storing names
-            //const formattedStreamer = clipsDataForStreamer.data[0].broadcaster_name;
             const viewedClips = forYouClipsData[streamer]?.oldClipsData || [];
-            const viewedClipsIds = viewedClips.map(viewedClip => viewedClip.id);
-            const unviewedClips = clipsDataForStreamer.data.filter(clip => !viewedClipsIds.includes(clip.id));
 
-            if (unviewedClips.length > 0) {
-                clipCountBadge.innerText = unviewedClips.length;
+            // red badge should display unviewedClips from request + unviewedClips from inbox
+            if (unviewedClipsData.length > 0) {
+                clipCountBadge.innerText = unviewedClipsData.length;
                 clipCountBadge.style.backgroundColor = 'red';  // Red background
             } else {
                 if (viewedClips.length > 0) {
@@ -105,7 +101,7 @@ async function displayForYouPlayerAndThumbnails() {
                 }
             }
             
-            if (unviewedClips.length > 0 || viewedClips.length > 0) {
+            if (unviewedClipsData.length > 0 || viewedClips.length > 0) {
                 // Apply CSS to style the red circle
                 clipCountBadge.style.display = 'inline-block';  // To place it next to the text
                 clipCountBadge.style.width = '20px';  // Size of the circle
@@ -122,7 +118,7 @@ async function displayForYouPlayerAndThumbnails() {
             }
 
             // is clipsDataForStreamer right?
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer, unviewedClipsInInbox));
+            streamerInbox.addEventListener('click', () => displayClipsData(streamer, unviewedClipsData));
             
         }
         
