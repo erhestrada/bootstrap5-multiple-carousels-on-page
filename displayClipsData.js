@@ -1,6 +1,6 @@
 
 // clipsData = newClipsInStreamerInbox
-export function displayClipsData(streamer, newClipsInStreamerInbox) {
+export function displayClipsData(streamer) {
     let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
     //forYouClipsData = updateForYouClipsData(streamer, newClipsInStreamerInbox, forYouClipsData);
     console.log(forYouClipsData);

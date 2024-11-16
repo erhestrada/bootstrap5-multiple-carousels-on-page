@@ -78,7 +78,7 @@ async function displayForYouPlayerAndThumbnails() {
             }
 
             // is clipsDataForStreamer right?
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer, newClipsInStreamerInbox));
+            streamerInbox.addEventListener('click', () => displayClipsData(streamer));
             
         }
 
@@ -100,7 +100,7 @@ async function displayForYouPlayerAndThumbnails() {
     
             parentContainer.appendChild(streamerContainer);
 
-            displayClipsData(streamer, newClipsInStreamerInbox);
+            displayClipsData(streamer);
 
             firstStreamerWithClipsFound = true;
         }
