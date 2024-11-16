@@ -1,16 +1,12 @@
 
 // clipsData = newClipsInStreamerInbox
 export function displayClipsData(streamer) {
-    let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-    //forYouClipsData = updateForYouClipsData(streamer, newClipsInStreamerInbox, forYouClipsData);
-    console.log(forYouClipsData);
+    let streamerInboxes = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
 
-    displayClipsInTab(streamer, forYouClipsData[streamer]['newClipsData'], 'new-clips-container')
-    displayClipsInTab(streamer, forYouClipsData[streamer]['oldClipsData'], 'old-clips-container')
+    displayClipsInTab(streamer, streamerInboxes[streamer]['newClipsData'], 'new-clips-container')
+    displayClipsInTab(streamer, streamerInboxes[streamer]['oldClipsData'], 'old-clips-container')
 
     moveClipsFromNewToOld(streamer, forYouClipsData);
-
-    // move new clips to old clips
 }
 
 function displayClipsInTab(streamer, clipsDataForStreamer, containerId) {
@@ -130,7 +126,6 @@ function playClip(embedUrls, index) {
     iframeContainer.appendChild(iframe);
 }
 
-// streamerInboxes = forYouClipsData
 function moveClipsFromNewToOld(streamer, streamerInboxes) {
     streamerInboxes[streamer].oldClipsData = streamerInboxes[streamer].oldClipsData.concat(streamerInboxes[streamer].newClipsData)
     streamerInboxes[streamer].newClipsData = [];
