@@ -1,5 +1,5 @@
 import { getClips } from "./getClips";
-import { displayClipsData } from "./displayClipsData";
+import { displayClipsInStreamerInbox } from "./displayClipsData";
 import { saveClip } from "./saveClip";
 import { openTab } from "./openTab";
 
@@ -78,7 +78,7 @@ async function displayForYouPlayerAndThumbnails() {
             }
 
             // is clipsDataForStreamer right?
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer));
+            streamerInbox.addEventListener('click', () => displayClipsInStreamerInbox(streamer));
             
         }
 
@@ -100,7 +100,7 @@ async function displayForYouPlayerAndThumbnails() {
     
             parentContainer.appendChild(streamerContainer);
 
-            displayClipsData(streamer);
+            displayClipsInStreamerInbox(streamer);
 
             firstStreamerWithClipsFound = true;
         }

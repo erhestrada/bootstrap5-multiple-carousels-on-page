@@ -1,12 +1,12 @@
 
 // clipsData = newClipsInStreamerInbox
-export function displayClipsData(streamer) {
+export function displayClipsInStreamerInbox(streamer) {
     let streamerInboxes = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
 
     displayClipsInTab(streamer, streamerInboxes[streamer]['newClipsData'], 'new-clips-container')
     displayClipsInTab(streamer, streamerInboxes[streamer]['oldClipsData'], 'old-clips-container')
 
-    moveClipsFromNewToOld(streamer, forYouClipsData);
+    moveClipsFromNewToOld(streamer, streamerInboxes);
 }
 
 function displayClipsInTab(streamer, clipsDataForStreamer, containerId) {
