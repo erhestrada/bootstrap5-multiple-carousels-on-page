@@ -38,18 +38,16 @@ async function displayForYouPlayerAndThumbnails() {
         const numberOfClipsInResponse = clipsDataForStreamer.data.length;
 
         const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-        console.log(forYouClipsData);
         
         const numberOfNewClipsInInbox = forYouClipsData[streamer]?.newClipsData?.length || 0;
 
         const unviewedClipsInInbox = forYouClipsData[streamer]?.newClipsData || [];
-        const clipsInResponse = clipsDataForStreamer.data;
-        const unviewedClipsData = [...clipsInResponse, ...unviewedClipsInInbox];
+        
         const numberOfUnviewedClips = numberOfNewClipsInInbox + numberOfClipsInResponse;
+        console.log(numberOfUnviewedClips);
                 
         if (numberOfUnviewedClips > 0 && firstStreamerWithClipsFound === false) {
-            console.log(unviewedClipsData);
-            playFirstClip(unviewedClipsData);
+            playFirstClip(unviewedClipsInInbox);
 
             const streamerContainer = document.createElement('div');
             //streamerContainer.id = streamer + '-container';
@@ -66,8 +64,7 @@ async function displayForYouPlayerAndThumbnails() {
     
             parentContainer.appendChild(streamerContainer);
 
-            console.log('unviewedClipsData', unviewedClipsData);
-            displayClipsData(streamer, unviewedClipsData);
+            displayClipsData(streamer, unviewedClipsInInbox);
 
             firstStreamerWithClipsFound = true;
         }
@@ -81,17 +78,17 @@ async function displayForYouPlayerAndThumbnails() {
             const viewedClips = forYouClipsData[streamer]?.oldClipsData || [];
 
             // red badge should display unviewedClips from request + unviewedClips from inbox
-            if (unviewedClipsData.length > 0) {
-                clipCountBadge.innerText = unviewedClipsData.length;
+            if (unviewedClipsInInbox.length > 0) {
+                clipCountBadge.innerText = unviewedClipsInInbox.length + '|' + viewedClips.length;
                 clipCountBadge.style.backgroundColor = 'red';  // Red background
             } else {
                 if (viewedClips.length > 0) {
-                    clipCountBadge.innerText = viewedClips.length;
+                    clipCountBadge.innerText = unviewedClipsInInbox.length + '|' + viewedClips.length;
                     clipCountBadge.style.backgroundColor = 'grey';  // Grey background
                 }
             }
             
-            if (unviewedClipsData.length > 0 || viewedClips.length > 0) {
+            if (unviewedClipsInInbox.length > 0 || viewedClips.length > 0) {
                 // Apply CSS to style the red circle
                 clipCountBadge.style.display = 'inline-block';  // To place it next to the text
                 clipCountBadge.style.width = '20px';  // Size of the circle
@@ -108,7 +105,7 @@ async function displayForYouPlayerAndThumbnails() {
             }
 
             // is clipsDataForStreamer right?
-            streamerInbox.addEventListener('click', () => displayClipsData(streamer, unviewedClipsData));
+            streamerInbox.addEventListener('click', () => displayClipsData(streamer, unviewedClipsInInbox));
             
         }
         
