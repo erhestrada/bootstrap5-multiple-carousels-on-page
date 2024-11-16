@@ -47,7 +47,6 @@ async function displayForYouPlayerAndThumbnails() {
             // Create a new <span> element for the red circle
             const clipCountBadge = document.createElement('span');
             
-            const streamerInboxes = JSON.parse(localStorage.getItem('streamerInboxes')) || {};
             const viewedClips = streamerInboxes[streamer]?.oldClipsData || [];
 
             // red badge should display unviewedClips from request + unviewedClips from inbox
