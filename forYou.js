@@ -35,18 +35,15 @@ async function displayForYouPlayerAndThumbnails() {
         timesOfLastRequests[streamer] = newTimeOfLastRequest.toISOString();
         localStorage.setItem('timesOfLastRequests', JSON.stringify(timesOfLastRequests));
 
-        const numberOfClipsInResponse = clipsDataForStreamer.data.length;
-
         const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
         
-        const numberOfNewClipsInInbox = forYouClipsData[streamer]?.newClipsData?.length || 0;
+        const numberOfNewClipsInStreamerInbox = forYouClipsData[streamer]?.newClipsData?.length || 0;
 
         const unviewedClipsInInbox = forYouClipsData[streamer]?.newClipsData || [];
-        
-        const numberOfUnviewedClips = numberOfNewClipsInInbox + numberOfClipsInResponse;
-        console.log(numberOfUnviewedClips);
+
+        console.log(numberOfNewClipsInStreamerInbox);
                 
-        if (numberOfUnviewedClips > 0 && firstStreamerWithClipsFound === false) {
+        if (numberOfNewClipsInStreamerInbox > 0 && firstStreamerWithClipsFound === false) {
             playFirstClip(unviewedClipsInInbox);
 
             const streamerContainer = document.createElement('div');
