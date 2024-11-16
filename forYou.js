@@ -30,33 +30,23 @@ async function displayForYouPlayerAndThumbnails() {
 
         const newTimeOfLastRequest = new Date(); 
         const clipsDataForStreamer = await getClips(clientId, authToken, streamerId, false, timeOfLastRequest);   
+        addClipsFromRequestToInbox(streamer, clipsDataForStreamer.data);
+
         timesOfLastRequests[streamer] = newTimeOfLastRequest.toISOString();
         localStorage.setItem('timesOfLastRequests', JSON.stringify(timesOfLastRequests));
 
-        console.log(streamer);
-        console.log('timesOfLastRequests', timesOfLastRequests);
-
         const numberOfClipsInResponse = clipsDataForStreamer.data.length;
-        console.log('number of clips in response: ', numberOfClipsInResponse);
 
-
-        // i need streamer to be in the right capitalization format - fix in search
         const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-        console.log('forYouClipsData', forYouClipsData);
+        console.log(forYouClipsData);
         
         const numberOfNewClipsInInbox = forYouClipsData[streamer]?.newClipsData?.length || 0;
-        console.log('number of new clips in inbox: ', numberOfNewClipsInInbox);
-
-        const numberOfOldClipsInInbox = forYouClipsData[streamer]?.oldClipsData?.length || 0;
-        console.log('number of old clips in inbox: ', numberOfOldClipsInInbox);
 
         const unviewedClipsInInbox = forYouClipsData[streamer]?.newClipsData || [];
         const clipsInResponse = clipsDataForStreamer.data;
         const unviewedClipsData = [...clipsInResponse, ...unviewedClipsInInbox];
         const numberOfUnviewedClips = numberOfNewClipsInInbox + numberOfClipsInResponse;
-        
-        console.log('number of unviewed clips:', numberOfUnviewedClips);
-        
+                
         if (numberOfUnviewedClips > 0 && firstStreamerWithClipsFound === false) {
             console.log(unviewedClipsData);
             playFirstClip(unviewedClipsData);
@@ -123,6 +113,23 @@ async function displayForYouPlayerAndThumbnails() {
         }
         
     }   
+}
+
+function addClipsFromRequestToInbox(streamer, clipsData) {
+    let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+    if (!(streamer in forYouClipsData)) {
+        forYouClipsData[streamer] = {
+            'newClipsData': clipsData,
+            'oldClipsData': []
+        };
+        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
+        return forYouClipsData;
+    } else {
+        // append - call clips from request will be new because of the time parameter
+        forYouClipsData[streamer]['newClipsData'] = forYouClipsData[streamer]['newClipsData'].concat(clipsData);
+        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
+        return forYouClipsData;
+    }
 }
 
 function playFirstClip(clipsData) {
