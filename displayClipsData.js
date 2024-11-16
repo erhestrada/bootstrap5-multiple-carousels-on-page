@@ -1,7 +1,7 @@
 
 // clipsData = newClipsInStreamerInbox
 export function displayClipsInStreamerInbox(streamer) {
-    let streamerInboxes = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+    let streamerInboxes = JSON.parse(localStorage.getItem('streamerInboxes')) || {};
 
     displayClipsInTab(streamer, streamerInboxes[streamer]['newClipsData'], 'new-clips-container')
     displayClipsInTab(streamer, streamerInboxes[streamer]['oldClipsData'], 'old-clips-container')
@@ -129,6 +129,6 @@ function playClip(embedUrls, index) {
 function moveClipsFromNewToOld(streamer, streamerInboxes) {
     streamerInboxes[streamer].oldClipsData = streamerInboxes[streamer].oldClipsData.concat(streamerInboxes[streamer].newClipsData)
     streamerInboxes[streamer].newClipsData = [];
-    localStorage.setItem('forYouClipsData', JSON.stringify(streamerInboxes));
+    localStorage.setItem('streamerInboxes', JSON.stringify(streamerInboxes));
     return streamerInboxes;
 }

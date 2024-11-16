@@ -35,9 +35,9 @@ async function displayForYouPlayerAndThumbnails() {
         timesOfLastRequests[streamer] = newTimeOfLastRequest.toISOString();
         localStorage.setItem('timesOfLastRequests', JSON.stringify(timesOfLastRequests));
 
-        const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
+        const streamerInboxes = JSON.parse(localStorage.getItem('streamerInboxes')) || {};
         
-        const newClipsInStreamerInbox = forYouClipsData[streamer]?.newClipsData || [];        
+        const newClipsInStreamerInbox = streamerInboxes[streamer]?.newClipsData || [];        
         const numberOfNewClipsInStreamerInbox = newClipsInStreamerInbox.length;
 
         console.log(numberOfNewClipsInStreamerInbox);
@@ -47,8 +47,8 @@ async function displayForYouPlayerAndThumbnails() {
             // Create a new <span> element for the red circle
             const clipCountBadge = document.createElement('span');
             
-            const forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-            const viewedClips = forYouClipsData[streamer]?.oldClipsData || [];
+            const streamerInboxes = JSON.parse(localStorage.getItem('streamerInboxes')) || {};
+            const viewedClips = streamerInboxes[streamer]?.oldClipsData || [];
 
             // red badge should display unviewedClips from request + unviewedClips from inbox
             if (newClipsInStreamerInbox.length > 0) {
@@ -110,19 +110,19 @@ async function displayForYouPlayerAndThumbnails() {
 }
 
 function addClipsFromRequestToInbox(streamer, clipsData) {
-    let forYouClipsData = JSON.parse(localStorage.getItem('forYouClipsData')) || {};
-    if (!(streamer in forYouClipsData)) {
-        forYouClipsData[streamer] = {
+    let streamerInboxes = JSON.parse(localStorage.getItem('streamerInboxes')) || {};
+    if (!(streamer in streamerInboxes)) {
+        streamerInboxes[streamer] = {
             'newClipsData': clipsData,
             'oldClipsData': []
         };
-        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
-        return forYouClipsData;
+        localStorage.setItem('streamerInboxes', JSON.stringify(streamerInboxes));
+        return streamerInboxes;
     } else {
         // append - call clips from request will be new because of the time parameter
-        forYouClipsData[streamer]['newClipsData'] = forYouClipsData[streamer]['newClipsData'].concat(clipsData);
-        localStorage.setItem('forYouClipsData', JSON.stringify(forYouClipsData));
-        return forYouClipsData;
+        streamerInboxes[streamer]['newClipsData'] = streamerInboxes[streamer]['newClipsData'].concat(clipsData);
+        localStorage.setItem('streamerInboxes', JSON.stringify(streamerInboxes));
+        return streamerInboxes;
     }
 }
 
