@@ -1,5 +1,5 @@
 import { getClips } from "./getClips";
-import { displayClipsInStreamerInbox } from "./displayClipsData";
+import { displayClipsInStreamerInbox } from "./displayClipsInStreamerInbox.js";
 import { saveClip } from "./saveClip";
 import { openTab } from "./openTab";
 
