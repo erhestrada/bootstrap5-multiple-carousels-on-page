@@ -41,29 +41,6 @@ async function displayForYouPlayerAndThumbnails() {
         const numberOfNewClipsInStreamerInbox = newClipsInStreamerInbox.length;
 
         console.log(numberOfNewClipsInStreamerInbox);
-                
-        if (numberOfNewClipsInStreamerInbox > 0 && firstStreamerWithClipsFound === false) {
-            playFirstClip(newClipsInStreamerInbox);
-
-            const streamerContainer = document.createElement('div');
-            //streamerContainer.id = streamer + '-container';
-            streamerContainer.id = 'streamer-clips-container';
-    
-            streamerContainer.style.display = 'flex';
-            streamerContainer.style.flexWrap = 'wrap';
-            streamerContainer.style.gap = '10px';
-    
-            const streamerElement = document.createElement('p');
-            streamerElement.textContent = streamer;
-    
-            streamerContainer.appendChild(streamerElement);
-    
-            parentContainer.appendChild(streamerContainer);
-
-            displayClipsData(streamer, newClipsInStreamerInbox);
-
-            firstStreamerWithClipsFound = true;
-        }
 
         const streamerInbox = document.getElementById(streamer + '-inbox');
         if (streamerInbox) {
@@ -104,6 +81,30 @@ async function displayForYouPlayerAndThumbnails() {
             streamerInbox.addEventListener('click', () => displayClipsData(streamer, newClipsInStreamerInbox));
             
         }
+
+        if (numberOfNewClipsInStreamerInbox > 0 && firstStreamerWithClipsFound === false) {
+            playFirstClip(newClipsInStreamerInbox);
+
+            const streamerContainer = document.createElement('div');
+            //streamerContainer.id = streamer + '-container';
+            streamerContainer.id = 'streamer-clips-container';
+    
+            streamerContainer.style.display = 'flex';
+            streamerContainer.style.flexWrap = 'wrap';
+            streamerContainer.style.gap = '10px';
+    
+            const streamerElement = document.createElement('p');
+            streamerElement.textContent = streamer;
+    
+            streamerContainer.appendChild(streamerElement);
+    
+            parentContainer.appendChild(streamerContainer);
+
+            displayClipsData(streamer, newClipsInStreamerInbox);
+
+            firstStreamerWithClipsFound = true;
+        }
+
         
     }   
 }
