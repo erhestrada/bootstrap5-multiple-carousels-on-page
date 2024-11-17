@@ -19,9 +19,7 @@ p {
 }
 
 #clip-player-complex-sticky-container{
-  position: sticky;
-  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
-  z-index: 500;         /* Ensure it's below the nav-bar */
+     /* Ensure it's below the nav-bar */
 }
 
 .sticky-stuff{
@@ -60,6 +58,9 @@ a:hover {
 }
 
 #clip-player-complex{
+  position: sticky;
+  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
+  z-index: 500;    
   border-bottom: 2px solid white;  /* Adds a 2px solid black border at the bottom */
 }
 
