@@ -54,13 +54,13 @@ a:hover {
 }
 
 #clip-player-complex-container{
-  /* Ensure it's below the nav-bar */
+  position: sticky;
+  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
+  z-index: 500;
 }
 
 #clip-player-complex{
-  position: sticky;
-  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
-  z-index: 500;    
+
   border-bottom: 2px solid white;  /* Adds a 2px solid black border at the bottom */
 }
 
