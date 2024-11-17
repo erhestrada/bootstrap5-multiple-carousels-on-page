@@ -126,6 +126,7 @@ a:hover {
 #clip-player-carousel-container .carousel-control-prev {
   left: 500px; /* You can also specifically adjust the left one */
 }
+
 #clip-player-carousel-container .carousel-control-next {
   right: 500px;
 }
