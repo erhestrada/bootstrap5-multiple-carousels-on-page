@@ -12,6 +12,18 @@ p {
   margin: 0;
 }
 
+#nav-bar-sticky-container{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#clip-player-complex-sticky-container{
+  position: sticky;
+  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
+  z-index: 500;         /* Ensure it's below the nav-bar */
+}
+
 .sticky-stuff{
   position: sticky;
   top: 0;
