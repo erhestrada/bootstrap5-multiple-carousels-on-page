@@ -155,8 +155,20 @@ function displayFollowsList(streamerEntries) {
 
 function highlightSelectedStreamer(streamer) {
     console.log('selected streamer:', streamer);
+    const streamerInboxElement = document.getElementById(streamer + '-inbox');
+    highlightDiv(streamerInboxElement);
     
 }
+
+function highlightDiv(div) {
+    const lastHighlightedDivId = window.highlightedDivId;
+    if (lastHighlightedDivId) {
+      const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
+      lastHighlightedDiv.style.border = '';
+    }
+    div.style.border = '5px solid #6441A4';
+    window.highlightedDivId = div.id;
+  }
 
 displayForYouPlayerAndThumbnails();
 document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips-container'));
