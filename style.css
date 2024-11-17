@@ -53,14 +53,7 @@ a:hover {
   text-decoration: none; /* Keep no underline on hover */
 }
 
-#clip-player-complex-container{
-  position: sticky;
-  top: 20px;           /* Starts sticking after the nav-bar (adjust based on your layout) */
-  z-index: 500;
-}
-
 #clip-player-complex{
-
   border-bottom: 2px solid white;  /* Adds a 2px solid black border at the bottom */
 }
 
