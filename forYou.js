@@ -48,6 +48,7 @@ async function displayForYouPlayerAndThumbnails() {
         if (streamerInbox) {
             // Create a new <span> element for the red circle
             const clipCountBadge = document.createElement('span');
+            clipCountBadge.id = 'clip-count-badge';
             
             const viewedClips = streamerInboxes[streamer]?.oldClipsData || [];
 
@@ -165,10 +166,19 @@ function highlightDiv(div) {
     if (lastHighlightedDivId) {
       const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
       lastHighlightedDiv.style.border = '';
+      x(lastHighlightedDivId);
     }
     div.style.border = '5px solid #6441A4';
     window.highlightedDivId = div.id;
-  }
+}
+
+function x(streamerInboxElementId) {
+    const streamerInboxElement = document.getElementById(streamerInboxElementId);
+    const clipCountBadgeElement = streamerInboxElement.querySelector('#clip-count-badge');
+    if (clipCountBadgeElement) {
+        clipCountBadgeElement.remove();
+    }
+}
 
 displayForYouPlayerAndThumbnails();
 document.getElementById('new-clips-tab').addEventListener('click', (e) => openTab(e, 'new-clips-container'));
