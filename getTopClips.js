@@ -122,13 +122,13 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
 }
 
 function highlightDiv(div) {
-  const lastHighlightedDivId = localStorage?.getItem('highlightedDivId') ?? false;
+  const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.border = '';
   }
   div.style.border = '5px solid #6441A4';
-  localStorage.setItem('highlightedDivId', div.id);
+  window.highlightedDivId = div.id;
 }
 
 export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
