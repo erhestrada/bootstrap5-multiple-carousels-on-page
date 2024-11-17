@@ -121,6 +121,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
+// use window instead of localStorage
 function highlightDiv(div) {
   const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
