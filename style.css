@@ -123,6 +123,13 @@ a:hover {
   padding: 0;
 }
 
+#clip-player-carousel-container .carousel-control-prev {
+  left: 500px; /* You can also specifically adjust the left one */
+}
+#clip-player-carousel-container .carousel-control-next {
+  right: 500px;
+}
+
 #carousel2{
   transform: scale(0.5);
   transform-origin: top left;
