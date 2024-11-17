@@ -3,6 +3,8 @@ import { displayClipsInStreamerInbox } from "./displayClipsInStreamerInbox.js";
 import { saveClip } from "./saveClip";
 import { openTab } from "./openTab";
 
+// need to do window.selectedStreamer formatting
+
 async function displayForYouPlayerAndThumbnails() {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
 
@@ -76,9 +78,8 @@ async function displayForYouPlayerAndThumbnails() {
                 streamerInbox.appendChild(clipCountBadge);
             }
 
-            // is clipsDataForStreamer right?
             streamerInbox.addEventListener('click', () => displayClipsInStreamerInbox(streamer));
-            
+            streamerInbox.addEventListener('click', () => highlightSelectedStreamer(streamer));
         }
 
         if (numberOfNewClipsInStreamerInbox > 0 && firstStreamerWithClipsFound === false) {
@@ -99,6 +100,7 @@ async function displayForYouPlayerAndThumbnails() {
     
             parentContainer.appendChild(streamerContainer);
 
+            highlightSelectedStreamer(streamer);
             displayClipsInStreamerInbox(streamer);
 
             firstStreamerWithClipsFound = true;
@@ -149,6 +151,11 @@ function displayFollowsList(streamerEntries) {
         followEntry.innerText = streamer;
         followList.appendChild(followEntry);
     }   
+}
+
+function highlightSelectedStreamer(streamer) {
+    console.log('selected streamer:', streamer);
+    
 }
 
 displayForYouPlayerAndThumbnails();
