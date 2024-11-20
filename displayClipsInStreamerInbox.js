@@ -127,7 +127,11 @@ function playClip(embedUrls, index) {
 }
 
 function moveClipsFromNewToOld(streamer, streamerInboxes) {
-    streamerInboxes[streamer].oldClipsData = streamerInboxes[streamer].oldClipsData.concat(streamerInboxes[streamer].newClipsData)
+    //streamerInboxes[streamer].oldClipsData = streamerInboxes[streamer].oldClipsData.concat(streamerInboxes[streamer].newClipsData)
+    // keep oldClipsData from accumulating infinitely
+    if(streamerInboxes[streamer].newClipsData.length > 0) {
+        streamerInboxes[streamer].oldClipsData = streamerInboxes[streamer].newClipsData;
+    }
     streamerInboxes[streamer].newClipsData = [];
     localStorage.setItem('streamerInboxes', JSON.stringify(streamerInboxes));
     return streamerInboxes;
