@@ -146,12 +146,23 @@ function playFirstClip(clipsData) {
 function displayFollowsList(streamerEntries) {
     const followList = document.getElementById('follow-list');
 
+    const sortedStreamers = Object.values(streamerEntries).map(arr => arr[0]).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));;
+
+    for (const streamer of sortedStreamers) {
+        const followEntry = document.createElement('li');
+        followEntry.id = streamer + '-inbox';
+        followEntry.innerText = streamer;
+        followList.appendChild(followEntry);
+    }
+
+    /*
     for (const [streamer, streamerId] of streamerEntries) {        
         const followEntry = document.createElement('li');
         followEntry.id = streamer + '-inbox';
         followEntry.innerText = streamer;
         followList.appendChild(followEntry);
     }   
+    */
 }
 
 function highlightSelectedStreamer(streamer) {
