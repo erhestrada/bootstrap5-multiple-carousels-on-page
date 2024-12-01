@@ -50,6 +50,7 @@ document.getElementById('like-button').addEventListener('click', () => saveClip(
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
 document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamer'), localStorage.getItem('currentClipStreamerId')));
+document.getElementById('follow-category-button').addEventListener('click', () => console.log(window.currentClipPosition['game']));
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
