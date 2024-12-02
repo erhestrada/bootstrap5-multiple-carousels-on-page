@@ -6,6 +6,7 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
+import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
 
 function playAdjacentClip(arrow) {
     let {game, index} = window.currentClipPosition;
@@ -58,7 +59,8 @@ document.getElementById('donut-button-right').addEventListener('click', () => up
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
 // think ALL is the default if not start/end parameters
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(3650));
-document.getElementById('next-page-button').addEventListener('click', () => makeTopCategoriesCarousels(window.pageNumber));
 
+document.getElementById('next-page-button').addEventListener('click', () => makeTopCategoriesCarousels(window.pageNumber));
+document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
 
 makeTopCategoriesCarousels(window.pageNumber);
