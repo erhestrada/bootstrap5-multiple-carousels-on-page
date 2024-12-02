@@ -34,8 +34,9 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
 
     //console.log(category);
     //console.log(`#${idFormattedCategory}-carousel`);
-
-    document.body.insertAdjacentHTML('beforeend', carouselDiv);
+    const categoriesCarousels = document.getElementById('categories-carousels');
+    categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
+    //document.body.insertAdjacentHTML('beforeend', carouselDiv);
     await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
     
     //const abc = document.querySelector(`#${idFormattedCategory}-carousel`);
