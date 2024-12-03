@@ -88,6 +88,10 @@ function addBoxArtToGrid(topCategoryData) {
     const newCategoryPic = parentElement.lastElementChild; // Get the last added element
     newCategoryPic.addEventListener('click', () => {
         makeBrowseCarouselForCategory(newCategoryPic.dataset.category, newCategoryPic.dataset.gameId, newCategoryPic.dataset.boxArtUrl);
+        window.category = newCategoryPic.dataset.category;
+        window.gameId = newCategoryPic.dataset.gameId;
+        window.boxArtUrl = newCategoryPic.dataset.boxArtUrl;
+        console.log(window.category);
     });
 }
 
@@ -111,6 +115,7 @@ categoryPics.forEach(categoryPic => {
         window.category = categoryPic.dataset.category;
         window.gameId = categoryPic.dataset.gameId;
         window.boxArtUrl = categoryPic.dataset.boxArtUrl;
+        console.log(window.category);
     });
 })
 
