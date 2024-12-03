@@ -22,3 +22,15 @@ function getBoxArtUrlAndIdForCategory(category) {
     
     return ['', ''];
 }
+
+export async function followBrowseCategory(category, gameId, boxArtUrl) {
+    let followedCategories = JSON.parse(localStorage.getItem('followedCategories')) || {};
+
+    if (!(category in followedCategories)) {
+        followedCategories[category] = {'boxArtUrl': boxArtUrl, 'categoryId': gameId};
+    }
+    
+    localStorage.setItem('followedCategories', JSON.stringify(followedCategories));
+
+    return followedCategories;
+}

@@ -2,6 +2,7 @@ import { makeBrowseCarouselForCategory } from "./makeBrowseCarouselForCategory";
 import { closePopUp } from "./getTopClipsBrowse";
 import { saveClip } from "./saveClip";
 import { searchCategories } from "./searchCategories";
+import { followBrowseCategory } from "./followCategory";
 
 const boxArtWidth = 200;
 const boxArtHeight = 200;
@@ -113,7 +114,7 @@ categoryPics.forEach(categoryPic => {
 
 document.querySelector('.close').addEventListener('click', closePopUp);
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
-//document.getElementById('follow-category-button').addEventListener('click', () => saveClip("favorited-clips"));
+document.getElementById('follow-category-button').addEventListener('click', () => followBrowseCategory(window.category, window.gameId, window.boxArtUrl));
 
 const searchBox = document.getElementById('searchBox');
 searchBox.addEventListener('keyup', searchCategories);
