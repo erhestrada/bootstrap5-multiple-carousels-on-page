@@ -7,9 +7,16 @@ export async function makeFollowedCategoriesCarousels() {
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.innerHTML = '';
 
+    window.clipsData[carouselName] = clipsData;
+    window.currentClipPosition = {'game': carouselName, 'index': 0};
+
     const followedCategories = localStorage.getItem('followedCategories') || [];
-    const boxArtUrls = clipsData.data.map((pojo) => pojo.box_art_url);
-    const gameIds = clipsData.data.map((pojo) => pojo.id);
+    for (const category in followedCategories) {
+        const boxArtUrl = window.clipsData[category].boxArtUrl;
+        const gameId = window.clipsData[category].gameId;
+    }
+    const boxArtUrls = '';
+    const gameIds = '';
 
     //followedCategories.forEach((category, index) => makeCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
 
