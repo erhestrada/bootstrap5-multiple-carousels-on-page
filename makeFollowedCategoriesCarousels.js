@@ -1,24 +1,20 @@
 import {makeCarouselForCategory} from './makeCarouselForCategory.js'
 
-// i just need to be storing the boxArtUrls and the gameIds when i store the category
-
 export async function makeFollowedCategoriesCarousels() {
-    console.log('HELLOOOOOOO');
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.innerHTML = '';
 
-    window.clipsData[carouselName] = clipsData;
-    window.currentClipPosition = {'game': carouselName, 'index': 0};
+    const followedCategoriesData = JSON.parse(localStorage.getItem('followedCategories')) || {};
+    let followedCategories = [];
+    let boxArtUrls = [];
+    let gameIds = [];
 
-    const followedCategories = localStorage.getItem('followedCategories') || [];
-    for (const category in followedCategories) {
-        const boxArtUrl = window.clipsData[category].boxArtUrl;
-        const gameId = window.clipsData[category].gameId;
+    for (const [followedCategory, categoryData] of Object.entries(followedCategoriesData)) {
+        const {boxArtUrl, categoryId} = categoryData;
+        followedCategories.push(followedCategory);
+        boxArtUrls.push(boxArtUrl);
+        gameIds.push(categoryId);
     }
-    const boxArtUrls = '';
-    const gameIds = '';
 
-    //followedCategories.forEach((category, index) => makeCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
-
-
+    followedCategories.forEach((category, index) => makeCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
 }
