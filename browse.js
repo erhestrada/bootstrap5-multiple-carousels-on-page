@@ -53,7 +53,6 @@ export async function getTopCategories(cursor=false) {
             return acc;
         }, []);
 
-        window.topCategoriesData = topCategoriesData;
         const nextCursor = clipsData.pagination.cursor;
         window.nextCursor = nextCursor;
         //console.log(currentCursor);
@@ -107,6 +106,9 @@ await makeBrowseGrid(); // Load initial items
 const categoryPics = document.querySelectorAll('.category-wrapper');
 categoryPics.forEach(categoryPic => {
     categoryPic.addEventListener('click', () => makeBrowseCarouselForCategory(categoryPic.dataset.category, categoryPic.dataset.gameId, categoryPic.dataset.boxArtUrl));
+    window.category = categoryPic.dataset.category;
+    window.gameId = categoryPic.dataset.gameId;
+    window.boxArtUrl = categoryPic.dataset.boxArtUrl;
 })
 
 document.querySelector('.close').addEventListener('click', closePopUp);
