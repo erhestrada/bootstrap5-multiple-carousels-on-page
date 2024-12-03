@@ -53,6 +53,7 @@ export async function getTopCategories(cursor=false) {
             return acc;
         }, []);
 
+        window.topCategoriesData = topCategoriesData;
         const nextCursor = clipsData.pagination.cursor;
         window.nextCursor = nextCursor;
         //console.log(currentCursor);
@@ -110,6 +111,7 @@ categoryPics.forEach(categoryPic => {
 
 document.querySelector('.close').addEventListener('click', closePopUp);
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
+//document.getElementById('follow-category-button').addEventListener('click', () => saveClip("favorited-clips"));
 
 const searchBox = document.getElementById('searchBox');
 searchBox.addEventListener('keyup', searchCategories);
