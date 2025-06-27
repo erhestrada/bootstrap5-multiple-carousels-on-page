@@ -217,6 +217,11 @@ object-fit: cover;
   height: 150px;
 }
 
+#disclosure-button-container {
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+}
+
 
 #categories-to-browse {
   display: flex;
