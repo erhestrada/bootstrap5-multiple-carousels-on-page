@@ -42,16 +42,20 @@ function playAdjacentClip(arrow) {
 }
 
 function toggleClipPlayer() {
+    const button = document.getElementById('disclosure-button');
     const panel = document.getElementById('clip-player-complex');
 
     const isVisible = panel.style.display !== 'none';
 
     if (isVisible) {
-    panel.style.display = 'none';
-    button.textContent = '↓';
+        panel.style.display = 'none';
+        button.classList.remove('caret-up');
+        button.classList.add('caret-down');
+
     } else {
-    panel.style.display = 'block';
-    button.textContent = '↑';
+        panel.style.display = 'block';
+        button.classList.remove('caret-down');
+        button.classList.add('caret-up');
     }
 }
 
