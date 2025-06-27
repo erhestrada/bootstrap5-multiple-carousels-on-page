@@ -7,6 +7,7 @@ import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
 import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
+import { toggleClipPlayer } from './toggleClipPlayer.js';
 
 function playAdjacentClip(arrow) {
     let {game, index} = window.currentClipPosition;
@@ -39,31 +40,6 @@ function playAdjacentClip(arrow) {
   
     carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
-}
-
-function toggleClipPlayer() {
-    const clipPlayer = document.getElementById('clip-player-complex');
-    const disclosureButton = document.getElementById('disclosure-button');
-
-    const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
-
-    if (clipPlayerIsVisible) {
-        hideClipPlayer(clipPlayer, disclosureButton);
-    } else {
-        showClipPlayer(clipPlayer, disclosureButton);
-    }
-}
-
-function hideClipPlayer(clipPlayer, disclosureButton) {
-    clipPlayer.style.display = 'none';
-    disclosureButton.classList.remove('caret-up');
-    disclosureButton.classList.add('caret-down');
-}
-
-export function showClipPlayer(clipPlayer, disclosureButton) {
-    clipPlayer.style.display = 'block';
-    disclosureButton.classList.remove('caret-down');
-    disclosureButton.classList.add('caret-up');
 }
 
 window.clipsData = {};
