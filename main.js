@@ -45,9 +45,9 @@ function toggleClipPlayer() {
     const clipPlayer = document.getElementById('clip-player-complex');
     const disclosureButton = document.getElementById('disclosure-button');
 
-    const isVisible = clipPlayer.style.display !== 'none';
+    const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
 
-    if (isVisible) {
+    if (clipPlayerIsVisible) {
         hideClipPlayer(clipPlayer, disclosureButton);
     } else {
         showClipPlayer(clipPlayer, disclosureButton);
