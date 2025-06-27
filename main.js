@@ -41,6 +41,10 @@ function playAdjacentClip(arrow) {
 
 }
 
+function toggleClipPlayer() {
+
+}
+
 window.clipsData = {};
 window.pageNumber = 1;
 localStorage?.removeItem('highlightedDivId');
@@ -62,5 +66,7 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 
 document.getElementById('next-page-button').addEventListener('click', () => makeTopCategoriesCarousels(window.pageNumber));
 document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
+
+document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
 makeTopCategoriesCarousels(window.pageNumber);
