@@ -1,5 +1,6 @@
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
+import { showClipPlayer } from "./toggleClipPlayer";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -78,6 +79,16 @@ function thumbnailClickListener(carouselName, index, embedUrls, streamerIds, str
   updateStreamerBarCarousel(streamerIds[index]);
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+
+  // Show clipPlayer if it's hidden
+  const clipPlayer = document.getElementById('clip-player-complex');
+  const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
+
+  if (!clipPlayerIsVisible) {
+    const disclosureButton = document.getElementById('disclosure-button');
+    showClipPlayer(clipPlayer, disclosureButton);
+  }
+
 }
 
 export function saveClipPositionData(index, embedUrls, streamerIds) {
