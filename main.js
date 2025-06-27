@@ -42,21 +42,28 @@ function playAdjacentClip(arrow) {
 }
 
 function toggleClipPlayer() {
-    const button = document.getElementById('disclosure-button');
-    const panel = document.getElementById('clip-player-complex');
+    const clipPlayer = document.getElementById('clip-player-complex');
+    const disclosureButton = document.getElementById('disclosure-button');
 
-    const isVisible = panel.style.display !== 'none';
+    const isVisible = clipPlayer.style.display !== 'none';
 
     if (isVisible) {
-        panel.style.display = 'none';
-        button.classList.remove('caret-up');
-        button.classList.add('caret-down');
-
+        hideClipPlayer(clipPlayer, disclosureButton);
     } else {
-        panel.style.display = 'block';
-        button.classList.remove('caret-down');
-        button.classList.add('caret-up');
+        displayClipPlayer(clipPlayer, disclosureButton);
     }
+}
+
+function hideClipPlayer(clipPlayer, disclosureButton) {
+    clipPlayer.style.display = 'none';
+    disclosureButton.classList.remove('caret-up');
+    disclosureButton.classList.add('caret-down');
+}
+
+function displayClipPlayer(clipPlayer, disclosureButton) {
+    clipPlayer.style.display = 'block';
+    disclosureButton.classList.remove('caret-down');
+    disclosureButton.classList.add('caret-up');
 }
 
 window.clipsData = {};
