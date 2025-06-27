@@ -60,7 +60,7 @@ function hideClipPlayer(clipPlayer, disclosureButton) {
     disclosureButton.classList.add('caret-down');
 }
 
-function showClipPlayer(clipPlayer, disclosureButton) {
+export function showClipPlayer(clipPlayer, disclosureButton) {
     clipPlayer.style.display = 'block';
     disclosureButton.classList.remove('caret-down');
     disclosureButton.classList.add('caret-up');
