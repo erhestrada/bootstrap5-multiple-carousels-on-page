@@ -42,7 +42,17 @@ function playAdjacentClip(arrow) {
 }
 
 function toggleClipPlayer() {
+    const panel = document.getElementById('clip-player-complex');
 
+    const isVisible = panel.style.display !== 'none';
+
+    if (isVisible) {
+    panel.style.display = 'none';
+    button.textContent = '↓';
+    } else {
+    panel.style.display = 'block';
+    button.textContent = '↑';
+    }
 }
 
 window.clipsData = {};
