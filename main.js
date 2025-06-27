@@ -50,7 +50,7 @@ function toggleClipPlayer() {
     if (isVisible) {
         hideClipPlayer(clipPlayer, disclosureButton);
     } else {
-        displayClipPlayer(clipPlayer, disclosureButton);
+        showClipPlayer(clipPlayer, disclosureButton);
     }
 }
 
@@ -60,7 +60,7 @@ function hideClipPlayer(clipPlayer, disclosureButton) {
     disclosureButton.classList.add('caret-down');
 }
 
-function displayClipPlayer(clipPlayer, disclosureButton) {
+function showClipPlayer(clipPlayer, disclosureButton) {
     clipPlayer.style.display = 'block';
     disclosureButton.classList.remove('caret-down');
     disclosureButton.classList.add('caret-up');
