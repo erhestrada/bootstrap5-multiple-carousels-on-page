@@ -186,8 +186,14 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const durations = clipsData.data.map((datum) => datum.duration);
 
   // same for all clips in a getTopClps request -- requesting top clips in category
-  const gameId = clipsData.data[0].game_id;
-
+  let gameId;
+  try {
+    gameId = clipsData.data[0].game_id;
+  } catch(error) {
+    // Need to make gameId unique TODO
+    gameId = false;
+  }
+  
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
