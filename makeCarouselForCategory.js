@@ -10,9 +10,6 @@ const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
 export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
-    if (category.includes('+')) {
-        console.log(category);
-    }
     const idFormattedCategory = category.replace(/ /g, '-').replace(/:/g, '').replace(/'/g, '').replace(/\+/g, 'and');
     const carouselDiv = `
         <div id="${idFormattedCategory}-carousel" class="carousel slide">
@@ -31,7 +28,6 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         </div>
         `;
 
-
     //console.log(category);
     //console.log(`#${idFormattedCategory}-carousel`);
     const categoriesCarousels = document.getElementById('categories-carousels');
@@ -43,7 +39,6 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
     //console.log(abc);
     
     makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
-
 }
 
 
