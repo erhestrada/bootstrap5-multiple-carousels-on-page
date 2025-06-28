@@ -224,13 +224,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
       const cardBody = document.createElement('div');
       cardBody.className = 'card-body';
-
-      /*
-      const cardTitle = document.createElement('h1');
-      cardTitle.innerText = 'Card Title'
-      cardTitle.style.color = "#6441A4"
-      */
-
+      
       const clipTitle = document.createElement('p');
       clipTitle.innerText = titles[index];
       clipTitle.style.color = "#FFFFFF";
@@ -260,9 +254,6 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       duration.style.position = 'absolute';
       duration.style.top = '0';
       duration.style.left = '0';
-      //textElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Optional: for better visibility
-      //textElement.style.color = 'white'; // Optional: to make text stand out
-      //textElement.style.padding = '5px'; 
 
       popularClipsCarouselInner.appendChild(carouselItem);
       carouselItem.appendChild(card);
@@ -270,26 +261,11 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       card.appendChild(imageWrapper);
       imageWrapper.appendChild(image);
       card.appendChild(cardBody);
-      //cardBody.appendChild(cardTitle);
       cardBody.appendChild(clipTitle);
       cardBody.appendChild(streamer);
       imageWrapper.appendChild(duration);
       imageWrapper.appendChild(viewCount);
-      imageWrapper.appendChild(creationDate);
-
-
-
-
-      /*
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      */
-
-      
+      imageWrapper.appendChild(creationDate);      
     }
-
   });
 }
