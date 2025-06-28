@@ -190,7 +190,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   try {
     gameId = clipsData.data[0].game_id;
   } catch(error) {
-    // Need to make gameId unique TODO
+    // Need to make gameId unique TODO <============================
     gameId = false;
   }
   
@@ -274,7 +274,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       imageWrapper.appendChild(creationDate); 
       
       // Just Chatting is always the top carousel
-      if (!window.firstThumbnail && window.currentClipPosition.game === 'Just Chatting') {
+      if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
         window.firstThumbnail = imageWrapper;
         highlightDiv(imageWrapper);
       }
