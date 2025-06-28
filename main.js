@@ -42,10 +42,6 @@ function playAdjacentClip(arrow) {
 
 }
 
-function highlightFirstThumbnail() {
-
-}
-
 window.clipsData = {};
 window.pageNumber = 1;
 localStorage?.removeItem('highlightedDivId');
@@ -71,4 +67,3 @@ document.getElementById('followed-categories-button').addEventListener('click', 
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
 makeTopCategoriesCarousels(window.pageNumber);
-highlightFirstThumbnail();
