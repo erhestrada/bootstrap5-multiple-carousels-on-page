@@ -265,7 +265,13 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       cardBody.appendChild(streamer);
       imageWrapper.appendChild(duration);
       imageWrapper.appendChild(viewCount);
-      imageWrapper.appendChild(creationDate);      
+      imageWrapper.appendChild(creationDate); 
+      
+      // Just Chatting is always the top carousel
+      if (!window.firstThumbnail && window.currentClipPosition.game === 'Just Chatting') {
+        window.firstThumbnail = imageWrapper;
+        highlightDiv(imageWrapper);
+      }
     }
   });
 }
