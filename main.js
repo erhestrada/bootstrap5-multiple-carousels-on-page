@@ -44,6 +44,7 @@ function playAdjacentClip(arrow) {
 
 window.clipsData = {};
 window.pageNumber = 1;
+window.firstThumbnail = false;
 localStorage?.removeItem('highlightedDivId');
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
