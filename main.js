@@ -10,6 +10,9 @@ import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarouse
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 
 function playAdjacentClip(arrow) {
+    // in getTopClips.js:
+    // window.clipsData[carouselName] = clipsData;
+    // window.currentClipPosition = {'game': carouselName, 'index': index};
     let {game, index} = window.currentClipPosition;
 
     const gameClipsData = clipsData[game].data;
