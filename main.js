@@ -15,6 +15,7 @@ function playAdjacentClip(arrow) {
     // window.clipsData[carouselName] = clipsData;
     // window.currentClipPosition = {'game': carouselName, 'index': index};
     let {game, index} = window.currentClipPosition;
+    console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
     const gameClipsData = clipsData[game].data;
 
@@ -23,16 +24,19 @@ function playAdjacentClip(arrow) {
     const streamers = gameClipsData.map((datum) => datum.broadcaster_name);
 
     if (arrow === "next") {
-        window.currentClipPosition['index']++;
+        window.currentClipPosition.index++;
+        console.log('next clicked');
 
     } else {
         if (index > 0) {
-            window.currentClipPosition['index']--;
+            window.currentClipPosition.index--;
         }
     }
 
-    replaceCarouselItem(index, embedUrls, streamerIds, streamers);
-    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${index}`];
+    const updatedIndex = window.currentClipPosition.index;
+
+    replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
+    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${updatedIndex}`];
     highlightDiv(thumbnailWrapper);
 
     // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
@@ -41,11 +45,11 @@ function playAdjacentClip(arrow) {
     const carousel2Inner = document.getElementById('carousel2-inner');
     carousel2Inner.innerHTML = '';
   
-    updateDonutPfp(streamerIds[index]);
-    updateStreamerBarCarousel(streamerIds[index]);
+    updateDonutPfp(streamerIds[updatedIndex]);
+    updateStreamerBarCarousel(streamerIds[updatedIndex]);
   
     carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
-
+    console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 }
 
 window.clipsData = {};
