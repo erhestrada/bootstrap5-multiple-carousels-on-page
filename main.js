@@ -48,6 +48,8 @@ function playAdjacentClip(arrow) {
 window.clipsData = {};
 window.pageNumber = 1;
 window.firstThumbnail = false;
+window.thumbnailWrappers = {}; // The divs that are highlighted
+
 localStorage?.removeItem('highlightedDivId');
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));

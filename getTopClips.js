@@ -226,6 +226,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       image.classList.add('thumbnail');
       image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
+      window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
 
       const cardBody = document.createElement('div');
       cardBody.className = 'card-body';
