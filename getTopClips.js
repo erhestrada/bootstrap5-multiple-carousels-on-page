@@ -190,8 +190,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   try {
     gameId = clipsData.data[0].game_id;
   } catch(error) {
-    // Need to make gameId unique TODO <============================
-    gameId = false;
+    gameId = carouselName;
   }
   
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
