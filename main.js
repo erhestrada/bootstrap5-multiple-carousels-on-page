@@ -8,6 +8,7 @@ import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
 import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
+import { highlightDiv } from './getTopClips.js';
 
 function playAdjacentClip(arrow) {
     // in getTopClips.js:
@@ -31,6 +32,8 @@ function playAdjacentClip(arrow) {
     }
 
     replaceCarouselItem(index, embedUrls, streamerIds, streamers);
+    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${index}`];
+    highlightDiv(thumbnailWrapper);
 
     // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
     // updateStreamerBar()

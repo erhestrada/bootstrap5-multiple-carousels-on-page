@@ -133,7 +133,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
 }
 
 // use window instead of localStorage
-function highlightDiv(div) {
+export function highlightDiv(div) {
   const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
