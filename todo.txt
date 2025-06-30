@@ -17,6 +17,8 @@ Low Priority
 1. like, dislike, favorite => up arrow, down arrow, star
 settings - languages
 
+up/down arrows on the clips player to navigate carousels without scrolling
+
 Extra
 2. reddit label for if posted on reddit, maybe view comments section within site
     upvote tracking
