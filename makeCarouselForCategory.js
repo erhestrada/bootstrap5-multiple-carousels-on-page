@@ -32,18 +32,10 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         </div>
         `;
 
-    //console.log(category);
-    //console.log(`#${idFormattedCategory}-carousel`);
+
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
-    //document.body.insertAdjacentHTML('beforeend', carouselDiv);
+    
     const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
-    
-    //const abc = document.querySelector(`#${idFormattedCategory}-carousel`);
-    //console.log(abc);
-    
     makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
 }
-
-
-// makeCarouselForCategory.js:35 Uncaught (in promise) SyntaxError: Failed to execute 'querySelector' on 'Document': '#EA Sports FC 25-carousel' is not a valid selector.
