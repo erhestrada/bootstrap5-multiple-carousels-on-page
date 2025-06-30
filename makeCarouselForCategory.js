@@ -35,7 +35,15 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
 
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
-    
+
     const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
-    makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
+
+    if (clipsData.data.length === 0) {
+        const carouselElement = document.getElementById(`${idFormattedCategory}-carousel`);
+        if (carouselElement) {
+            carouselElement.remove();
+        }
+    } else {
+        makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
+    }
 }
