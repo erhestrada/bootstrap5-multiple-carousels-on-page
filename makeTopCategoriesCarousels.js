@@ -16,6 +16,7 @@ export async function makeTopCategoriesCarousels(pageNumber) {
         const clipsData = await response.json();
         window.topCategoriesClipsData = clipsData.data;
         const topCategories = clipsData.data.map((pojo) => pojo.name);
+        window.orderedCarousels = topCategories;
         const boxArtUrls = clipsData.data.map((pojo) => pojo.box_art_url);
         const gameIds = clipsData.data.map((pojo) => pojo.id);
         topCategories.forEach((category, index) => makeCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
