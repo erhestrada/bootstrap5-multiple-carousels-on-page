@@ -17,7 +17,7 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
 
     const carouselDiv = `
         <div id="${idFormattedCategory}-carousel" class="carousel slide">
-        <div class="carousel-inner" id="${category}-carousel-inner">
+        <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
             <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}"/>
         </div>
 

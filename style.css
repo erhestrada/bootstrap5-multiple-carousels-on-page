@@ -88,9 +88,10 @@ a:hover {
   z-index: 0;
 }
   
-.carousel-item {
+.thumbnails-carousel-inner .carousel-item {
   display: flex;
   justify-content: space-between;
+  width: 383.05px;
 }
   
 @media (min-width: 768px) {
