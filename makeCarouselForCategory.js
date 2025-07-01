@@ -14,11 +14,10 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
-
     const carouselId = `${idFormattedCategory}-carousel`;
 
     const carouselDiv = `
-        <div id="${idFormattedCategory}-carousel" class="carousel slide">
+        <div id="${carouselId}" class="carousel slide">
         <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
             <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}"/>
         </div>
