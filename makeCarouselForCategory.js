@@ -15,6 +15,8 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
+    const carouselId = `${idFormattedCategory}-carousel`;
+
     const carouselDiv = `
         <div id="${idFormattedCategory}-carousel" class="carousel slide">
         <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
@@ -48,6 +50,7 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
             carouselElement.remove();
         }
     } else {
+        window.orderedCarousels.push(carouselId);
         makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
     }
 }
