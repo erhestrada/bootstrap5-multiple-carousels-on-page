@@ -1,15 +1,12 @@
 import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
 import { makeTopCategoriesCarousels } from './makeTopCategoriesCarousels.js';
 import { saveClip } from './saveClip.js';
-import { replaceCarouselItem } from './getTopClips.js';
-import { updateDonutPfp } from "./updateDonutPfp";
-import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
 import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
-import { highlightDiv } from './getTopClips.js';
 import { playAdjacentClip } from './clipNavigation.js';
+import { changeCarousel } from './clipNavigation.js';
 
 window.clipsData = {};
 window.pageNumber = 1;
@@ -20,8 +17,8 @@ localStorage?.removeItem('highlightedDivId');
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
-document.querySelector('#next-carousel-button').addEventListener('click', () => playAdjacentClip('prev'));
-document.querySelector('#previous-carousel-button').addEventListener('click', () => playAdjacentClip('next'));
+document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
+document.querySelector('#previous-carousel-button').addEventListener('click', () => changeCarousel('previous'));
 
 
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));

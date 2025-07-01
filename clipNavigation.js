@@ -48,3 +48,7 @@ export function playAdjacentClip(arrow) {
     carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 }
+
+export function changeCarousel(arrow) {
+
+}
