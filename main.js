@@ -12,6 +12,8 @@ window.clipsData = {};
 window.pageNumber = 1;
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
+window.orderedCarousels = [];
+window.activeCarousel = '';
 
 localStorage?.removeItem('highlightedDivId');
 
