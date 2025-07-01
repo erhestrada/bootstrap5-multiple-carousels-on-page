@@ -10,6 +10,8 @@ import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarouse
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { highlightDiv } from './getTopClips.js';
 
+
+// need to consider non-english clips
 function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
@@ -18,10 +20,13 @@ function playAdjacentClip(arrow) {
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
     const gameClipsData = clipsData[game].data;
-
-    const embedUrls = gameClipsData.map((datum) => datum.embed_url);
-    const streamerIds = gameClipsData.map((datum) => datum.broadcaster_id);
-    const streamers = gameClipsData.map((datum) => datum.broadcaster_name);
+    const englishGameClipsData = gameClipsData
+        .map((datum, i) => ({ ...datum, originalIndex: i }))
+        .filter(datum => datum.language === 'en');
+    const embedUrls = englishGameClipsData.map(d => d.embed_url);
+    const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
+    const streamers = englishGameClipsData.map(d => d.broadcaster_name);
+    const originalIndices = englishGameClipsData.map(d => d.originalIndex);
 
     if (arrow === "next") {
         window.currentClipPosition.index++;
@@ -36,7 +41,8 @@ function playAdjacentClip(arrow) {
     const updatedIndex = window.currentClipPosition.index;
 
     replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
-    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${updatedIndex}`];
+    const originalIndex = originalIndices[updatedIndex];
+    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
 
     // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
