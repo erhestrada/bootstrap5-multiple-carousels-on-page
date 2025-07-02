@@ -49,6 +49,16 @@ export function playAdjacentClip(arrow) {
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 }
 
+// track active carousels
 export function changeCarousel(arrow) {
+    if (arrow === "next") {
+        //window.currentClipPosition.index++;
+        //console.log('next clicked');
+
+    } else {
+        if (index > 0) {
+            //window.currentClipPosition.index--;
+        }
+    }
 
 }
