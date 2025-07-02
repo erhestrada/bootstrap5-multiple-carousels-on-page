@@ -52,13 +52,10 @@ export function playAdjacentClip(arrow) {
 // track active carousels
 export function changeCarousel(arrow) {
     if (arrow === "next") {
-        //window.currentClipPosition.index++;
-        //console.log('next clicked');
+
 
     } else {
-        if (index > 0) {
-            //window.currentClipPosition.index--;
-        }
+
     }
 
 }
