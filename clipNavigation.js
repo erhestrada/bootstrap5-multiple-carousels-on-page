@@ -16,6 +16,9 @@ export function playAdjacentClip(arrow) {
     const englishGameClipsData = gameClipsData
         .map((datum, i) => ({ ...datum, originalIndex: i }))
         .filter(datum => datum.language === 'en');
+
+    console.log(englishGameClipsData);
+
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
@@ -69,7 +72,13 @@ export function changeCarousel(arrow) {
         }
     }
 
-    window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
-    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${0}`];
+
+    const gameClipsData = clipsData[window.activeCarousel].data;
+    const englishGameClipsData = gameClipsData
+        .map((datum, i) => ({ ...datum, originalIndex: i }))
+        .filter(datum => datum.language === 'en');
+    const originalIndices = englishGameClipsData.map(d => d.originalIndex);
+    const originalIndex = originalIndices[0];
+    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
 }
