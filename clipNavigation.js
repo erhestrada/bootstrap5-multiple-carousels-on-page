@@ -3,6 +3,8 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
 
+// (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
+
 export function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
@@ -52,10 +54,22 @@ export function playAdjacentClip(arrow) {
 // track active carousels
 export function changeCarousel(arrow) {
     if (arrow === "next") {
+        console.log('next carousel');
+        let nextCarousel;
+        if (window.carouselIndex < window.orderedCarousels.length) {
+            window.carouselIndex++;
+            nextCarousel = window.orderedCarousels[window.carouselIndex];
+            console.log(nextCarousel);
+        }
 
 
     } else {
-
+        console.log('previous carousel');
+        let previousCarousel;
+        if (window.carouselIndex > 0) {
+            window.carouselIndex--;
+            previousCarousel = window.orderedCarousels[window.carouselIndex];
+            console.log(previousCarousel);
+        }
     }
-
 }

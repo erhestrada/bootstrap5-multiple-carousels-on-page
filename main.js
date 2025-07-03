@@ -14,6 +14,7 @@ window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
 window.orderedCarousels = [];
 window.activeCarousel = '';
+window.carouselIndex = 0;
 
 localStorage?.removeItem('highlightedDivId');
 
