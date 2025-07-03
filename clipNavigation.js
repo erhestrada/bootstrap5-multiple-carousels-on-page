@@ -55,21 +55,21 @@ export function playAdjacentClip(arrow) {
 export function changeCarousel(arrow) {
     if (arrow === "next") {
         console.log('next carousel');
-        let nextCarousel;
         if (window.carouselIndex < window.orderedCarousels.length) {
             window.carouselIndex++;
-            nextCarousel = window.orderedCarousels[window.carouselIndex];
-            console.log(nextCarousel);
+            window.activeCarousel = window.orderedCarousels[window.carouselIndex];
         }
-
 
     } else {
         console.log('previous carousel');
         let previousCarousel;
         if (window.carouselIndex > 0) {
             window.carouselIndex--;
-            previousCarousel = window.orderedCarousels[window.carouselIndex];
-            console.log(previousCarousel);
+            window.activeCarousel = window.orderedCarousels[window.carouselIndex];
         }
     }
+
+    window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
+    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${0}`];
+    highlightDiv(thumbnailWrapper);
 }
