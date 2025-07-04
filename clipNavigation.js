@@ -81,4 +81,6 @@ export function changeCarousel(arrow) {
     const originalIndex = originalIndices[0];
     const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
+
+    window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
 }
