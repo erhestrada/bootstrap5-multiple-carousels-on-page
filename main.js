@@ -23,6 +23,21 @@ document.querySelector('#carouselExampleControls .carousel-control-prev').addEve
 document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
 document.querySelector('#previous-carousel-button').addEventListener('click', () => changeCarousel('previous'));
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowUp') {
+    changeCarousel('previous');
+  }
+  if (event.key === 'ArrowDown') {
+    changeCarousel('next');
+  }
+  if (event.key === 'ArrowLeft') {
+    playAdjacentClip('previous');
+  }
+  if (event.key === 'ArrowRight') {
+    playAdjacentClip('next');
+  }
+});
+
 
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
