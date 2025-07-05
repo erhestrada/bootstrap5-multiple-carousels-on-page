@@ -72,7 +72,7 @@ export function changeCarousel(arrow) {
         }
     }
 
-
+    // highlight the correct thumbnails
     const gameClipsData = clipsData[window.activeCarousel].data;
     const englishGameClipsData = gameClipsData
         .map((datum, i) => ({ ...datum, originalIndex: i }))
@@ -83,4 +83,24 @@ export function changeCarousel(arrow) {
     highlightDiv(thumbnailWrapper);
 
     window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
+
+    // replace currently playing clip
+    const updatedIndex = window.currentClipPosition.index;
+    const embedUrls = englishGameClipsData.map(d => d.embed_url);
+    const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
+    const streamers = englishGameClipsData.map(d => d.broadcaster_name);
+    replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
+
+
+    // update streamerPfp, streamerBarCarousel
+
+    let carousel2 = document.getElementById('carousel2');
+    const carousel2Inner = document.getElementById('carousel2-inner');
+    carousel2Inner.innerHTML = '';
+  
+    //updateDonutPfp(streamerIds[updatedIndex]);
+    //updateStreamerBarCarousel(streamerIds[updatedIndex]);
+  
+    //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+    //console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 }
