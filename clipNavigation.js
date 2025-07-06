@@ -43,7 +43,6 @@ export function playAdjacentClip(arrow) {
 
     // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
     // updateStreamerBar()
-    let carousel2 = document.getElementById('carousel2');
     const carousel2Inner = document.getElementById('carousel2-inner');
     carousel2Inner.innerHTML = '';
   
