@@ -3,6 +3,8 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
 import { elementIsInView } from './ensureThumbnailInView.js';
+import { slideCarousel } from './ensureThumbnailInView.js';
+import { makeCarouselId } from './makeCarouselForCategory.js';
 
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
 
@@ -44,7 +46,8 @@ export function playAdjacentClip(arrow) {
 
     const thumbnailInView = elementIsInView(thumbnailWrapper);
     if (thumbnailInView != 'visible') {
-
+        const carouselId = makeCarouselId(game);
+        slideCarousel(carouselId, thumbnailInView);
     }
 
 
