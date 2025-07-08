@@ -32,8 +32,13 @@ export function elementIsInView(element, padding = 0) {
     // viewport's left edge = 0
     // viewport's right edge = window.innerWidth
 
-    return (
-        rect.left >= 0 + padding &&
-        rect.right <= window.innerWidth - padding
-    );
+    if (rect.left < 0) {
+        return 'left';
+    }
+
+    if (rect.right > window.innerWidth - padding) {
+        return 'right';
+    }
+
+    return 'visible';
 }

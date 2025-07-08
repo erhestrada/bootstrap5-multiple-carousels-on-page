@@ -2,6 +2,7 @@ import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
+import { elementIsInView } from './ensureThumbnailInView.js';
 
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
 
@@ -40,6 +41,12 @@ export function playAdjacentClip(arrow) {
     const originalIndex = originalIndices[updatedIndex];
     const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
+
+    const thumbnailInView = elementIsInView(thumbnailWrapper);
+    if (thumbnailInView != 'visible') {
+
+    }
+
 
     // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
     // updateStreamerBar()
