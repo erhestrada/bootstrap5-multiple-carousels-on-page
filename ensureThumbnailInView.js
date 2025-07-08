@@ -24,20 +24,16 @@ export function ensureThumbnailInView(carouselId, highlightedThumbnail) {
     }
 }
 
-export function elementIsInView(element, container, padding = 0) {
-    console.log('element', element);
-    console.log('container', container);
-    if (!container || !element) return false;
-    console.log('hey?');
+export function elementIsInView(element, padding = 0) {
+    if (!element) return false;
 
-    const containerRect = container.getBoundingClientRect();
-    const elementRect = element.getBoundingClientRect();
+    const rect = element.getBoundingClientRect();
 
-    console.log('elementRect', elementRect);
-    console.log('container rect', containerRect);
+    // viewport's left edge = 0
+    // viewport's right edge = window.innerWidth
 
     return (
-        elementRect.left >= containerRect.left + padding &&
-        elementRect.right <= containerRect.right - padding
+        rect.left >= 0 + padding &&
+        rect.right <= window.innerWidth - padding
     );
 }
