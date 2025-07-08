@@ -2,7 +2,7 @@ import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
-import { elementIsInView } from './ensureThumbnailInView.js';
+import { elementInViewHorizontally } from './ensureThumbnailInView.js';
 import { slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
 
@@ -44,7 +44,7 @@ export function playAdjacentClip(arrow) {
     const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
 
-    const thumbnailInView = elementIsInView(thumbnailWrapper);
+    const thumbnailInView = elementInViewHorizontally(thumbnailWrapper);
     if (thumbnailInView != 'visible') {
         const carouselId = makeCarouselId(game);
         slideCarousel(carouselId, thumbnailInView);

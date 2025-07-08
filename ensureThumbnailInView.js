@@ -1,4 +1,4 @@
-export function elementIsInView(element, padding = 0) {
+export function elementInViewHorizontally(element, padding = 0) {
     if (!element) return false;
 
     const rect = element.getBoundingClientRect();
@@ -34,5 +34,5 @@ export function slideCarousel(carouselId, direction) {
 }
 
 export function elementInViewVertically() {
-    
+
 }
