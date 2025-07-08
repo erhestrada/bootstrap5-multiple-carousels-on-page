@@ -32,3 +32,7 @@ export function slideCarousel(carouselId, direction) {
         behavior: "smooth"
     });
 }
+
+export function elementInViewVertically() {
+    
+}
