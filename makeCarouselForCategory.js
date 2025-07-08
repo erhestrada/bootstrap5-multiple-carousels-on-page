@@ -53,3 +53,12 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
         makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
     }
 }
+
+export function makeCarouselId(category) {
+    const idFormattedCategory = 'id-' + category
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    const carouselId = `${idFormattedCategory}-carousel`;
+    return carouselId;
+}
