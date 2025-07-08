@@ -23,3 +23,21 @@ export function ensureThumbnailInView(carouselId, highlightedThumbnail) {
         });
     }
 }
+
+export function elementIsInView(element, container, padding = 0) {
+    console.log('element', element);
+    console.log('container', container);
+    if (!container || !element) return false;
+    console.log('hey?');
+
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+
+    console.log('elementRect', elementRect);
+    console.log('container rect', containerRect);
+
+    return (
+        elementRect.left >= containerRect.left + padding &&
+        elementRect.right <= containerRect.right - padding
+    );
+}
