@@ -25,9 +25,11 @@ document.querySelector('#previous-carousel-button').addEventListener('click', ()
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowUp') {
+    event.preventDefault();
     changeCarousel('previous');
   }
   if (event.key === 'ArrowDown') {
+    event.preventDefault()
     changeCarousel('next');
   }
   if (event.key === 'ArrowLeft') {
