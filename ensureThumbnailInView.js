@@ -36,3 +36,8 @@ export function slideCarousel(carouselId, direction) {
 export function elementInViewVertically() {
 
 }
+
+// if highlighted thumbnail below viewport
+export function scrollDownToThumbnail() {
+
+}
