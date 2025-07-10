@@ -53,6 +53,10 @@ export function elementInViewVertically(element, padding = 0) {
 }
 
 // if highlighted thumbnail below viewport
-export function scrollDownToThumbnail() {
-
+export function scrollDownToThumbnail(amount = 100) {
+    window.scrollBy({
+        top: amount,
+        left: 0,
+        behavior: 'smooth'
+    });
 }
