@@ -4,6 +4,7 @@ import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
 import { elementInViewHorizontally } from './ensureThumbnailInView.js';
 import { elementInViewVertically } from './ensureThumbnailInView.js';
+import { scrollDownToThumbnail } from './ensureThumbnailInView.js';
 import { slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
 
@@ -94,7 +95,11 @@ export function changeCarousel(arrow) {
     const thumbnailInViewVertically = elementInViewVertically(thumbnailWrapper);
 
     if (thumbnailInViewVertically != 'visible') {
-        alert('out of view vertically');
+        if (thumbnailInViewVertically === 'below') {
+            scrollDownToThumbnail();
+        } else if (thumbnailInViewVertically === 'above') {
+
+        }
     }
 
     window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
