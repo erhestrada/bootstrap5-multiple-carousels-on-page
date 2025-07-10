@@ -33,8 +33,23 @@ export function slideCarousel(carouselId, direction) {
     });
 }
 
-export function elementInViewVertically() {
+export function elementInViewVertically(element, padding = 0) {
+    if (!element) return false;
 
+    const rect = element.getBoundingClientRect();
+
+    // viewport's top edge = 0
+    // viewport's bottom edge = window.innerHeight
+
+    if (rect.top < 0) {
+        return 'above';
+    }
+
+    if (rect.bottom > window.innerHeight - padding) {
+        return 'below';
+    }
+
+    return 'visible';
 }
 
 // if highlighted thumbnail below viewport
