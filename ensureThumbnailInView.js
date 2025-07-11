@@ -60,3 +60,7 @@ export function scrollDownToThumbnail(amount = 325) {
         behavior: 'smooth'
     });
 }
+
+export function scrollUpToThumbnail() {
+    
+}
