@@ -61,6 +61,10 @@ export function scrollDownToThumbnail(amount = 325) {
     });
 }
 
-export function scrollUpToThumbnail() {
-    
+export function scrollUpToThumbnail(amount = 325) {
+    window.scrollBy({
+        top: -amount, // negative to scroll up
+        left: 0,
+        behavior: 'smooth'
+    });
 }
