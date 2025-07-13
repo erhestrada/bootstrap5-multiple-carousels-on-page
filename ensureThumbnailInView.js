@@ -68,3 +68,8 @@ export function scrollUpToThumbnail(amount = 325) {
         behavior: 'smooth'
     });
 }
+
+function getHeightOfElement(selector) {
+    const element = document.querySelector(selector);
+    return element ? element.offsetHeight : 0;
+}
