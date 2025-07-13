@@ -2,10 +2,7 @@ import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
-import { elementInViewHorizontally } from './ensureThumbnailInView.js';
-import { elementInViewVertically } from './ensureThumbnailInView.js';
-import { scrollDownToThumbnail } from './ensureThumbnailInView.js';
-import { slideCarousel } from './ensureThumbnailInView.js';
+import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
 
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
