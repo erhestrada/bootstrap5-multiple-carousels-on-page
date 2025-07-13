@@ -40,12 +40,8 @@ export function elementInViewVertically(element, padding = 0) {
 
     const elementRect = element.getBoundingClientRect();
     const stickyHeight = getHeightOfElement('.sticky-stuff');
-    console.log('sticky height: ', stickyHeight);
 
-    // viewport's top edge = 0
-    // viewport's bottom edge = window.innerHeight
-
-    if (elementRect.top < 0) {
+    if (elementRect.top < stickyHeight) {
         return 'above';
     }
 
