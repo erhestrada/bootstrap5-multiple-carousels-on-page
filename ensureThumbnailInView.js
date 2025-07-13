@@ -33,10 +33,14 @@ export function slideCarousel(carouselId, direction) {
     });
 }
 
+// if clipPlayer open ...
+// if clipPlayer closed ...
 export function elementInViewVertically(element, padding = 0) {
     if (!element) return false;
 
     const rect = element.getBoundingClientRect();
+    const stickyHeight = getHeightOfElement('.sticky-stuff');
+    console.log('sticky height: ', stickyHeight);
 
     // viewport's top edge = 0
     // viewport's bottom edge = window.innerHeight
