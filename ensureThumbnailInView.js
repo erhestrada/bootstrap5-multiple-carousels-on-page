@@ -38,18 +38,18 @@ export function slideCarousel(carouselId, direction) {
 export function elementInViewVertically(element, padding = 0) {
     if (!element) return false;
 
-    const elementDomRect = element.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
     const stickyHeight = getHeightOfElement('.sticky-stuff');
     console.log('sticky height: ', stickyHeight);
 
     // viewport's top edge = 0
     // viewport's bottom edge = window.innerHeight
 
-    if (elementDomRect.top < 0) {
+    if (elementRect.top < 0) {
         return 'above';
     }
 
-    if (elementDomRect.bottom > window.innerHeight - padding) {
+    if (elementRect.bottom > window.innerHeight - padding) {
         return 'below';
     }
 
