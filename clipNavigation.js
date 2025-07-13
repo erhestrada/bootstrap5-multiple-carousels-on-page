@@ -94,7 +94,7 @@ export function changeCarousel(arrow) {
         if (thumbnailInViewVertically === 'below') {
             scrollDownToThumbnail();
         } else if (thumbnailInViewVertically === 'above') {
-
+            scrollUpToThumbnail();
         }
     }
 
