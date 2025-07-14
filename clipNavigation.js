@@ -42,27 +42,33 @@ export function playAdjacentClip(arrow) {
 
     const updatedIndex = window.currentClipPosition.index;
 
-    replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
-    const originalIndex = originalIndices[updatedIndex];
-    const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
-    highlightDiv(thumbnailWrapper);
+    if (updatedIndex in originalIndices) {
+        replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
+        const originalIndex = originalIndices[updatedIndex];
+        const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
+        highlightDiv(thumbnailWrapper);
 
-    const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
-    if (thumbnailInViewHorizontally != 'visible') {
-        const carouselId = makeCarouselId(game);
-        slideCarousel(carouselId, thumbnailInViewHorizontally);
+        const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
+        if (thumbnailInViewHorizontally != 'visible') {
+            const carouselId = makeCarouselId(game);
+            slideCarousel(carouselId, thumbnailInViewHorizontally);
+        }
+
+        // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
+        // updateStreamerBar()
+        const carousel2Inner = document.getElementById('carousel2-inner');
+        carousel2Inner.innerHTML = '';
+    
+        updateDonutPfp(streamerIds[updatedIndex]);
+        updateStreamerBarCarousel(streamerIds[updatedIndex]);
+    
+        //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+        console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
+    } else {
+        
     }
 
-    // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
-    // updateStreamerBar()
-    const carousel2Inner = document.getElementById('carousel2-inner');
-    carousel2Inner.innerHTML = '';
-  
-    updateDonutPfp(streamerIds[updatedIndex]);
-    updateStreamerBarCarousel(streamerIds[updatedIndex]);
-  
-    //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
-    console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
+
 }
 
 // track active carousels
