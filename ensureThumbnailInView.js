@@ -53,17 +53,24 @@ export function elementInViewVertically(element, padding = 0) {
 }
 
 // if highlighted thumbnail below viewport
-export function scrollDownToThumbnail(amount = 325) {
+export function scrollDownToThumbnail() {
+    const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
+    console.log('carousel height: ', carouselHeight);
+
     window.scrollBy({
-        top: amount,
+        top: carouselHeight,
         left: 0,
         behavior: 'smooth'
     });
 }
 
-export function scrollUpToThumbnail(amount = 325) {
+// have to scroll up by more because of the header
+export function scrollUpToThumbnail() {
+    const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
+    console.log('carousel height: ', carouselHeight);
+
     window.scrollBy({
-        top: -amount, // negative to scroll up
+        top: -carouselHeight, // negative to scroll up
         left: 0,
         behavior: 'smooth'
     });
