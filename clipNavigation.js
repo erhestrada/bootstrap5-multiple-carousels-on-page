@@ -8,17 +8,6 @@ import { makeCarouselId } from './makeCarouselForCategory.js';
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
 
 let isScrolling = false;
-let scrollTimeout;
-
-window.addEventListener('scroll', () => {
-  if (!isScrolling) return;  // ignore if not scrolling
-  
-  clearTimeout(scrollTimeout);
-
-  scrollTimeout = setTimeout(() => {
-    isScrolling = false;  // scrolling finished after 100ms of no scroll events
-  }, 100);
-});
 
 export function playAdjacentClip(arrow) {
     // in getTopClips.js:
@@ -128,6 +117,10 @@ export function changeCarousel(arrow) {
   
     updateDonutPfp(streamerIds[updatedIndex]);
     updateStreamerBarCarousel(streamerIds[updatedIndex]);
-  
+
+    setTimeout(() => {
+        isScrolling = false;
+    }, 400);
+
     //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
