@@ -70,7 +70,7 @@ export function playAdjacentClip(arrow) {
     updateDonutPfp(streamerIds[updatedIndex]);
     updateStreamerBarCarousel(streamerIds[updatedIndex]);
   
-    carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+    //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 }
 
@@ -129,5 +129,5 @@ export function changeCarousel(arrow) {
     updateDonutPfp(streamerIds[updatedIndex]);
     updateStreamerBarCarousel(streamerIds[updatedIndex]);
   
-    carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+    //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
