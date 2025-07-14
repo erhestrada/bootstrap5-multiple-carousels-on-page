@@ -7,6 +7,19 @@ import { makeCarouselId } from './makeCarouselForCategory.js';
 
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
 
+let isScrolling = false;
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+  if (!isScrolling) return;  // ignore if not scrolling
+  
+  clearTimeout(scrollTimeout);
+
+  scrollTimeout = setTimeout(() => {
+    isScrolling = false;  // scrolling finished after 100ms of no scroll events
+  }, 100);
+});
+
 export function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
@@ -63,6 +76,9 @@ export function playAdjacentClip(arrow) {
 
 // track active carousels
 export function changeCarousel(arrow) {
+    if (isScrolling) return;
+    isScrolling = true;
+    
     if (arrow === "next") {
         console.log('next carousel');
         if (window.carouselIndex < window.orderedCarousels.length) {
