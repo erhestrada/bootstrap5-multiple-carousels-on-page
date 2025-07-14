@@ -5,8 +5,7 @@ import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
 import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
-import { playAdjacentClip } from './clipNavigation.js';
-import { changeCarousel } from './clipNavigation.js';
+import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 
 window.clipsData = {};
 window.pageNumber = 1;
