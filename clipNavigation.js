@@ -4,12 +4,14 @@ import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
 import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
+import { carouselIsSliding } from './ensureThumbnailInView.js';
 
 // (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
 
 let isScrolling = false;
 
 export function playAdjacentClip(arrow) {
+    if (carouselIsSliding) return;
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
     // window.currentClipPosition = {'game': carouselName, 'index': index};

@@ -1,3 +1,5 @@
+export let carouselIsSliding = false;
+
 export function elementInViewHorizontally(element, padding = 0) {
     if (!element) return false;
 
@@ -18,6 +20,8 @@ export function elementInViewHorizontally(element, padding = 0) {
 }
 
 export function slideCarousel(carouselId, direction) {
+    carouselIsSliding = true;
+
     const carouselInner = document.querySelector(`#${carouselId} .carousel-inner`);
 
     let scrollAmount;
@@ -31,6 +35,10 @@ export function slideCarousel(carouselId, direction) {
         left: scrollAmount,
         behavior: "smooth"
     });
+
+    setTimeout(() => {
+        carouselIsSliding = false;
+    }, 400);
 }
 
 // if clipPlayer open ...
