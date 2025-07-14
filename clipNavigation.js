@@ -6,8 +6,6 @@ import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbna
 import { makeCarouselId } from './makeCarouselForCategory.js';
 import { carouselIsSliding } from './ensureThumbnailInView.js';
 
-// (how do i handle the case if arrow === next and currentClipPosition is at end of carousel?) <===============
-
 let isScrolling = false;
 
 export function playAdjacentClip(arrow) {
@@ -65,7 +63,7 @@ export function playAdjacentClip(arrow) {
         //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
         console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
     } else {
-        
+
     }
 
 
