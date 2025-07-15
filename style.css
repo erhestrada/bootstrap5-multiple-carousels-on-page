@@ -54,7 +54,7 @@ a:hover {
 }
 
 #clip-player-complex{
-  border-bottom: 2px solid white;  /* Adds a 2px solid black border at the bottom */
+  border-bottom: 1px solid grey;
 }
 
 #like-dislike-container{
