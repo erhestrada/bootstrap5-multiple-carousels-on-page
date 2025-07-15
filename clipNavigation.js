@@ -28,22 +28,25 @@ export function playAdjacentClip(arrow) {
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
     const clipsDataIndices = englishGameClipsData.map(d => d.clipsDataIndex);
 
+    let updatedClipsDataIndex;
+
     if (arrow === "next") {
-        window.currentClipPosition.index++;
+        updatedClipsDataIndex = currentClipsDataIndex + 1;
+        //window.currentClipPosition.index++;
         console.log('next clicked');
 
     } else {
         if (currentClipsDataIndex > 0) {
-            window.currentClipPosition.index--;
+            updatedClipsDataIndex = currentClipsDataIndex - 1;
+            //window.currentClipPosition.index--;
         }
     }
 
-    const updatedIndex = window.currentClipPosition.index;
+    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== currentClipsDataIndex) {
+        window.currentClipPosition.index = updatedClipsDataIndex;
 
-    // AND updatedIndex != startIndex
-    if (updatedIndex in clipsDataIndices) {
-        replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
-        const clipsDataIndex = clipsDataIndices[updatedIndex];
+        replaceCarouselItem(updatedClipsDataIndex, embedUrls, streamerIds, streamers);
+        const clipsDataIndex = clipsDataIndices[updatedClipsDataIndex];
         const thumbnailWrapper = window.thumbnailWrappers[`${game}-${clipsDataIndex}`];
         highlightDiv(thumbnailWrapper);
 
@@ -58,8 +61,8 @@ export function playAdjacentClip(arrow) {
         const carousel2Inner = document.getElementById('carousel2-inner');
         carousel2Inner.innerHTML = '';
     
-        updateDonutPfp(streamerIds[updatedIndex]);
-        updateStreamerBarCarousel(streamerIds[updatedIndex]);
+        updateDonutPfp(streamerIds[updatedClipsDataIndex]);
+        updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
     
         //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
         console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
