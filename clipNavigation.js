@@ -81,7 +81,7 @@ export function changeCarousel(arrow) {
 
     let {game, index: currentClipsDataIndex} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
-    slideCarousel(carouselId, 'left');
+    slideCarousel(carouselId, 'reset');
     
     if (arrow === "next") {
         console.log('next carousel');

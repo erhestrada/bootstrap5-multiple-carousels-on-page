@@ -27,8 +27,10 @@ export function slideCarousel(carouselId, direction) {
     let scrollAmount;
     if (direction === "right") {
         scrollAmount = carouselInner.offsetWidth;
-    } else {
+    } else if (direction === "left") {
         scrollAmount = -carouselInner.offsetWidth;
+    } else if (direction === "reset") {
+        carouselInner.scrollLeft = 0;
     }
 
     carouselInner.scrollBy({
