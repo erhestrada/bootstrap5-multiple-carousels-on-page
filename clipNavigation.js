@@ -49,6 +49,8 @@ export function playAdjacentClip(arrow) {
         const clipsDataIndex = clipsDataIndices[updatedClipsDataIndex];
         const thumbnailWrapper = window.thumbnailWrappers[`${game}-${clipsDataIndex}`];
         highlightDiv(thumbnailWrapper);
+        window.lastHighlightedThumbnailPerCarousel[game] = thumbnailWrapper;
+        console.log('thumbnail tracking: ', window.lastHighlightedThumbnailPerCarousel);
 
         const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
         if (thumbnailInViewHorizontally != 'visible') {
