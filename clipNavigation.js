@@ -13,7 +13,7 @@ export function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
     // window.currentClipPosition = {'game': carouselName, 'index': index};
-    let {game, index} = window.currentClipPosition;
+    let {game, index: currentClipsDataIndex} = window.currentClipPosition;
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
     const gameClipsData = clipsData[game].data;
@@ -33,7 +33,7 @@ export function playAdjacentClip(arrow) {
         console.log('next clicked');
 
     } else {
-        if (index > 0) {
+        if (currentClipsDataIndex > 0) {
             window.currentClipPosition.index--;
         }
     }
