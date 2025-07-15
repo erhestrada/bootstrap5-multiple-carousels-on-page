@@ -18,7 +18,7 @@ export function playAdjacentClip(arrow) {
 
     const gameClipsData = clipsData[game].data;
     const englishGameClipsData = gameClipsData
-        .map((datum, i) => ({ ...datum, originalIndex: i }))
+        .map((datum, i) => ({ ...datum, clipsDataIndex: i }))
         .filter(datum => datum.language === 'en');
 
     console.log(englishGameClipsData);
@@ -26,7 +26,7 @@ export function playAdjacentClip(arrow) {
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
-    const originalIndices = englishGameClipsData.map(d => d.originalIndex);
+    const clipsDataIndices = englishGameClipsData.map(d => d.clipsDataIndex);
 
     if (arrow === "next") {
         window.currentClipPosition.index++;
@@ -40,9 +40,10 @@ export function playAdjacentClip(arrow) {
 
     const updatedIndex = window.currentClipPosition.index;
 
-    if (updatedIndex in originalIndices) {
+    // AND updatedIndex != startIndex
+    if (updatedIndex in clipsDataIndices) {
         replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
-        const originalIndex = originalIndices[updatedIndex];
+        const originalIndex = clipsDataIndices[updatedIndex];
         const thumbnailWrapper = window.thumbnailWrappers[`${game}-${originalIndex}`];
         highlightDiv(thumbnailWrapper);
 
