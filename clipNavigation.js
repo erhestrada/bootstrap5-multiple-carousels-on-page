@@ -74,9 +74,14 @@ export function playAdjacentClip(arrow) {
 }
 
 // track active carousels
+// scroll all the way to the left
 export function changeCarousel(arrow) {
     if (isScrolling) return;
     isScrolling = true;
+
+    let {game, index: currentClipsDataIndex} = window.currentClipPosition;
+    const carouselId = makeCarouselId(game);
+    slideCarousel(carouselId, 'left');
     
     if (arrow === "next") {
         console.log('next carousel');
