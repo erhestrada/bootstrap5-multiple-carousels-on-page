@@ -13,7 +13,7 @@ export function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
     // window.currentClipPosition = {'game': carouselName, 'index': index};
-    let {game, index: currentClipsDataIndex} = window.currentClipPosition;
+    let {game, index: initialClipsDataIndex} = window.currentClipPosition;
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
     const gameClipsData = clipsData[game].data;
@@ -31,18 +31,18 @@ export function playAdjacentClip(arrow) {
     let updatedClipsDataIndex;
 
     if (arrow === "next") {
-        updatedClipsDataIndex = currentClipsDataIndex + 1;
+        updatedClipsDataIndex = initialClipsDataIndex + 1;
         //window.currentClipPosition.index++;
         console.log('next clicked');
 
     } else {
-        if (currentClipsDataIndex > 0) {
-            updatedClipsDataIndex = currentClipsDataIndex - 1;
+        if (initialClipsDataIndex > 0) {
+            updatedClipsDataIndex = initialClipsDataIndex - 1;
             //window.currentClipPosition.index--;
         }
     }
 
-    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== currentClipsDataIndex) {
+    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== initialClipsDataIndex) {
         window.currentClipPosition.index = updatedClipsDataIndex;
 
         replaceCarouselItem(updatedClipsDataIndex, embedUrls, streamerIds, streamers);
@@ -79,7 +79,7 @@ export function changeCarousel(arrow) {
     if (isScrolling) return;
     isScrolling = true;
 
-    let {game, index: currentClipsDataIndex} = window.currentClipPosition;
+    let {game, index: initialClipsDataIndex} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
     slideCarousel(carouselId, 'reset');
     
