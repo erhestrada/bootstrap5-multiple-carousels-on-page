@@ -161,6 +161,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       // this happens one time, not every time
       if (game === "Just Chatting") {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
+        window.activeCarousel = carouselName;
         saveClipPositionData(0, embedUrls, streamerIds);
         replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
