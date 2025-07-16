@@ -284,6 +284,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   });
 }
 
+// Skipping non-english clips so thumbnail's index in carousel is different from its index in clipsData e.g. the second english clip in clips data might be at index 7 in clips data but would be index 1 in the carousel
 function makeIndexInCarousel(carouselName) {
   let indexInCarousel;
   // if carousel not in window.carouselIndices
