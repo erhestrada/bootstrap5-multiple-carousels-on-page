@@ -13,7 +13,7 @@ export function playAdjacentClip(arrow) {
     // in getTopClips.js:
     // window.clipsData[carouselName] = clipsData;
     // window.currentClipPosition = {'game': carouselName, 'index': index};
-    let {game, index: initialClipsDataIndex} = window.currentClipPosition;
+    let {game, index: initialIndexInCarousel} = window.currentClipPosition;
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
     const gameClipsData = clipsData[game].data;
@@ -31,18 +31,18 @@ export function playAdjacentClip(arrow) {
     let updatedClipsDataIndex;
 
     if (arrow === "next") {
-        updatedClipsDataIndex = initialClipsDataIndex + 1;
+        updatedClipsDataIndex = initialIndexInCarousel + 1;
         //window.currentClipPosition.index++;
         console.log('next clicked');
 
     } else {
-        if (initialClipsDataIndex > 0) {
-            updatedClipsDataIndex = initialClipsDataIndex - 1;
+        if (initialIndexInCarousel > 0) {
+            updatedClipsDataIndex = initialIndexInCarousel - 1;
             //window.currentClipPosition.index--;
         }
     }
 
-    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== initialClipsDataIndex) {
+    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== initialIndexInCarousel) {
         window.currentClipPosition.index = updatedClipsDataIndex;
 
         replaceCarouselItem(updatedClipsDataIndex, embedUrls, streamerIds, streamers);
