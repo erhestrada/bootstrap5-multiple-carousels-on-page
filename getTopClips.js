@@ -65,18 +65,18 @@ export function getPastDateTime(daysBack) {
 }
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
-function thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) {
-  window.currentClipPosition = {'game': carouselName, 'index': index};
+function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers) {
+  window.currentClipPosition = {'game': carouselName, 'index': indexInCarousel};
 
-  saveClipPositionData(index, embedUrls, streamerIds);
-  replaceCarouselItem(index, embedUrls, streamerIds, streamers);
+  saveClipPositionData(indexInCarousel, embedUrls, streamerIds);
+  replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
   let carousel2 = document.getElementById('carousel2');
   const carousel2Inner = document.getElementById('carousel2-inner');
   carousel2Inner.innerHTML = '';
 
-  updateDonutPfp(streamerIds[index]);
-  updateStreamerBarCarousel(streamerIds[index]);
+  updateDonutPfp(streamerIds[indexInCarousel]);
+  updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
@@ -225,7 +225,8 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       const image = document.createElement('img');
       image.src = url + "?parent=localhost";
       image.classList.add('thumbnail');
-      image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
+      const indexInCarousel = makeIndexInCarousel(carouselName);
+      image.addEventListener('click', () => {thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers)});
       image.addEventListener('click', () => {highlightDiv(imageWrapper)});
       window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
 
@@ -281,4 +282,17 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
       }
     }
   });
+}
+
+function makeIndexInCarousel(carouselName) {
+  let indexInCarousel;
+  // if carousel not in window.carouselIndices
+  if (!Object.hasOwn(window.lastThumbnailIndexInCarousel, carouselName)) {
+    indexInCarousel = 0;
+  } else {
+    indexInCarousel = window.lastThumbnailIndexInCarousel[carouselName] + 1;
+  }
+  window.lastThumbnailIndexInCarousel[carouselName] = indexInCarousel;
+
+  return indexInCarousel;
 }
