@@ -79,7 +79,7 @@ export function changeCarousel(arrow) {
     if (isScrolling) return;
     isScrolling = true;
 
-    let {game, index: initialClipsDataIndex} = window.currentClipPosition;
+    let {game} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
     slideCarousel(carouselId, 'reset');
     
