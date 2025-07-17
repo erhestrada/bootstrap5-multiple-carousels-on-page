@@ -431,3 +431,7 @@ object-fit: cover;
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.boxart {
+  margin-right: 30px;
+}
