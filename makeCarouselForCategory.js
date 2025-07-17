@@ -17,22 +17,21 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselId = `${idFormattedCategory}-carousel`;
 
     const carouselDiv = `
-        <div id="${carouselId}" class="carousel slide">
-        <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
-            <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
-        </div>
+        <div id="${carouselId}" class="carousel slide carousel-no-overlap">
+            <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
+                <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
+            </div>
 
-        <button class="carousel-control-prev" type="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
         `;
-
 
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
