@@ -433,6 +433,7 @@ object-fit: cover;
 }
 
 .boxart {
+  margin-left: 30px;
   margin-right: 10px;
 }
 
