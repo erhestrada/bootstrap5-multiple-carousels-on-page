@@ -10,7 +10,9 @@ export function makeClipsCarouselSlide(carouselId) {
     }
 
     // Get the visible width of the carousel (how far to scroll per click)
-    const scrollAmount = carouselInner.offsetWidth;
+    //const scrollAmount = carouselInner.offsetWidth;
+    // Scroll by 4 carousel item widths
+    const scrollAmount = 383.05*4;
 
     nextBtn.addEventListener("click", () => {
         console.log("Right button clicked");
