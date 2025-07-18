@@ -17,9 +17,11 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselId = `${idFormattedCategory}-carousel`;
 
     const carouselDiv = `
-        <div id="${carouselId}" class="carousel slide carousel-no-overlap">
+        <div style="display: flex;">
+        <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
+
+        <div id="${carouselId}" class="carousel slide carousel-no-overlap" style="flex: 1; min-width: 0;">
             <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
-                <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
             </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
@@ -30,6 +32,7 @@ export async function makeCarouselForCategory(category, gameId, boxArtUrl) {
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
         </div>
         `;
 
