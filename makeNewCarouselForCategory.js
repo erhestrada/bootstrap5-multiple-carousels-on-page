@@ -37,17 +37,17 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
         `;
 
     const carouselDiv = `
-    <div class="carousel-row">
+    <div class="carousel-row" id=${carouselId}-row>
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
-        <button class="carousel-btn" id="prevBtn">‹</button>
+        <button class="carousel-btn prevBtn" id="prevBtn">‹</button>
         
         <div class="carousel-wrapper">
-            <div class="carousel" id=${carouselId}>
+            <div class="carousel">
                 <!-- Items will be dynamically generated -->
             </div>
         </div>
         
-        <button class="carousel-btn" id="nextBtn">›</button>
+        <button class="carousel-btn nextBtn" id="nextBtn">›</button>
     </div>`;
 
     const categoriesCarousels = document.getElementById('categories-carousels');
