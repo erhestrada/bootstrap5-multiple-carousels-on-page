@@ -1,8 +1,9 @@
 export class SmartCarousel {
-    constructor(carouselId, itemsPerView = 4) {
-        this.carousel = document.getElementById(carouselId);
-        this.prevBtn = document.getElementById('prevBtn');
-        this.nextBtn = document.getElementById('nextBtn');
+    constructor(carouselRowId, itemsPerView = 4) {
+        this.carouselRow = document.getElementById(carouselRowId);
+        this.carousel = this.carouselRow.querySelector('.carousel');
+        this.prevBtn = this.carouselRow.querySelector('.prevBtn');
+        this.nextBtn = this.carouselRow.querySelector('.nextBtn');
         
         this.itemsPerView = itemsPerView;
         this.currentIndex = 0;
