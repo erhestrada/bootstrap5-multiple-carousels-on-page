@@ -199,7 +199,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
-  const carouselId = makeCarouselId(carouselName);
+  const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
   thumbnailUrls.forEach((url, index) => {
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
@@ -216,7 +216,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
             });
         }
         
-        carousel = new SmartCarousel(carouselId, 4);
+        carousel = new SmartCarousel(carouselRowId, 4);
         carousel.setItems(items);
                 
         /*
