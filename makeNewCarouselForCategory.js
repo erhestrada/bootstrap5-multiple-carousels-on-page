@@ -17,7 +17,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselId = `${idFormattedCategory}-carousel`;
 
     const carouselDiv = `
-        <div style="display: flex;">
+        <div id="carousel-row" style="display: flex;">
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
 
         <div id="${carouselId}" class="carousel slide carousel-no-overlap" style="flex: 1; min-width: 0;">
