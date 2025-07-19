@@ -137,9 +137,9 @@ export function highlightDiv(div) {
   const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
-    lastHighlightedDiv.style.border = '';
+    lastHighlightedDiv.style.outline = '';
   }
-  div.style.border = '5px solid #6441A4';
+  div.style.outline = '5px solid #6441A4';
   window.highlightedDivId = div.id;
 }
 
