@@ -1,6 +1,6 @@
 export class SmartCarousel {
-    constructor(itemsPerView = 4) {
-        this.carousel = document.getElementById('carousel');
+    constructor(carouselId, itemsPerView = 4) {
+        this.carousel = document.getElementById(carouselId);
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
         
