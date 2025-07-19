@@ -2,6 +2,7 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { showClipPlayer } from "./toggleClipPlayer";
 import { SmartCarousel } from "./smartCarousel";
+import { makeCarouselId } from "./makeNewCarouselForCategory";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -198,7 +199,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
-  const popularClipsCarouselInner = document.getElementById(carouselInnerId);
+  const carouselId = makeCarouselId(carouselName);
 
   thumbnailUrls.forEach((url, index) => {
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
@@ -215,7 +216,7 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
             });
         }
         
-        carousel = new SmartCarousel(4);
+        carousel = new SmartCarousel(carouselId, 4);
         carousel.setItems(items);
                 
         /*
