@@ -157,8 +157,9 @@ a:hover {
 }
 
 #carousel2 .carousel-inner {
-  width: 50%;
   margin: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .streamer-bar{
@@ -172,12 +173,6 @@ a:hover {
   margin: 0 ;
 }
 
-#carousel2 .carousel-inner {
-  width: 100%;
-  overflow: hidden;
-}
-
-
 .meta-svg-container {
   width: 150px;
   height: 150px;
@@ -185,7 +180,6 @@ a:hover {
   position: relative;
   overflow: hidden;
 }
-
 
 .donut-chart {
   width: 300px;
@@ -201,7 +195,6 @@ a:hover {
 .sector:hover .sector-path {
   transform: scale(1.05);
 }
-
 
 .svg-container {
 transform: scale(0.4);
