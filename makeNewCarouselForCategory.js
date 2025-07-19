@@ -16,7 +16,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
         .replace(/^-+|-+$/g, '');
     const carouselId = `${idFormattedCategory}-carousel`;
 
-    const carouselDiv = `
+    const a = `
         <div id="carousel-row" style="display: flex;">
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
 
@@ -36,6 +36,20 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
         </div>
         `;
 
+    const carouselDiv = `
+    <div class="carousel-row">
+        <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
+        <button class="carousel-btn" id="prevBtn">‹</button>
+        
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel">
+                <!-- Items will be dynamically generated -->
+            </div>
+        </div>
+        
+        <button class="carousel-btn" id="nextBtn">›</button>
+    </div>`;
+
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
 
@@ -45,6 +59,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
     //if (carouselElement.id === 'id-rust-carousel') console.log(carouselElement.querySelector('.carousel-inner').children.length);
 
     // The first child in carousel-inner is always the boxArt (carouselDiv HTML above)
+    /*
     if (clipsData.data.length === 0 || carouselElement.querySelector('.carousel-inner').children.length === 1) {
         const carouselElement = document.getElementById(`${idFormattedCategory}-carousel`);
         if (carouselElement) {
@@ -54,6 +69,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
     } else {
         makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
     }
+    */
 }
 
 export function makeCarouselId(category) {
