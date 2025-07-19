@@ -39,7 +39,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselDiv = `
     <div class="carousel-row" id=${carouselId}-row>
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
-        <button class="carousel-btn prevBtn" id="prevBtn">‹</button>
+        <button class="carousel-btn prevBtn">‹</button>
         
         <div class="carousel-wrapper">
             <div class="carousel">
@@ -47,7 +47,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
             </div>
         </div>
         
-        <button class="carousel-btn nextBtn" id="nextBtn">›</button>
+        <button class="carousel-btn nextBtn">›</button>
     </div>`;
 
     const categoriesCarousels = document.getElementById('categories-carousels');
