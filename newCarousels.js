@@ -1,5 +1,5 @@
 import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
-import { makeTopCategoriesNewCarousels } from './makeTopCategoriesCarousels.js';
+import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { saveClip } from './saveClip.js';
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
