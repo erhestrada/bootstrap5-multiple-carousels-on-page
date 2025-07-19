@@ -1,5 +1,5 @@
 // basically a refactor of getTopClips
-import { getTopClips } from "./getTopClips";
+import { getTopClips } from "./getTopClipsRefactor";
 import { makeClipsCarouselSlide } from "./makeClipsCarouselNSlide";
 
 // example box art url
