@@ -42,7 +42,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
         <button class="carousel-btn" id="prevBtn">‹</button>
         
         <div class="carousel-wrapper">
-            <div class="carousel" id="carousel">
+            <div class="carousel" id=${carouselId}>
                 <!-- Items will be dynamically generated -->
             </div>
         </div>
