@@ -35,9 +35,6 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
 
     const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
 
-    const carouselElement = document.getElementById(`${idFormattedCategory}-carousel`);
-    //if (carouselElement.id === 'id-rust-carousel') console.log(carouselElement.querySelector('.carousel-inner').children.length);
-
     // The first child in carousel-inner is always the boxArt (carouselDiv HTML above)
     /*
     if (clipsData.data.length === 0 || carouselElement.querySelector('.carousel-inner').children.length === 1) {
