@@ -16,26 +16,6 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
         .replace(/^-+|-+$/g, '');
     const carouselId = `${idFormattedCategory}-carousel`;
 
-    const a = `
-        <div id="carousel-row" style="display: flex;">
-        <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
-
-        <div id="${carouselId}" class="carousel slide carousel-no-overlap" style="flex: 1; min-width: 0;">
-            <div class="carousel-inner thumbnails-carousel-inner" id="${category}-carousel-inner">
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        </div>
-        `;
-
     const carouselDiv = `
     <div class="carousel-row" id=${carouselId}-row>
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
