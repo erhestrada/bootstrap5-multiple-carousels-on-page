@@ -46,8 +46,6 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
             carouselElement.remove();
             window.orderedCarousels = window.orderedCarousels.filter(name => name != category);
         }
-    } else {
-        makeClipsCarouselSlide(`${idFormattedCategory}-carousel`);
     }
     */
 }
