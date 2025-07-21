@@ -488,6 +488,10 @@ object-fit: cover;
     gap: 20px;
 }
 
+.carousel-row .boxart {
+  align-self: stretch;
+}
+
 .carousel-wrapper {
     flex: 1;
     overflow: hidden;
