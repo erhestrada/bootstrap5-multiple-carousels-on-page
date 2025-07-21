@@ -578,11 +578,9 @@ object-fit: cover;
 
 #streamer-bar-carousel-container {
     height: 150px;
-    position: relative; /* Establish containing block */
 }
 
 #streamer-bar-carousel-container .carousel-row {
-    position: relative; /* Reset any absolute positioning */
     margin: 0; /* Remove any inherited margins */
     padding: 8px 10px; /* Smaller padding for smaller container */
     width: 100%;
