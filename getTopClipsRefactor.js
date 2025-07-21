@@ -181,13 +181,13 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
   let carousel;
-  const carouselItems = makeCarouselItems(clipsData);
+  const carouselItems = makeCarouselItems(carouselName, clipsData);
   
-  //carousel = new SmartCarousel(carouselRowId, 4);
-  //carousel.setItems(carouselItems);
+  carousel = new SmartCarousel(carouselRowId, 4);
+  carousel.setItems(carouselItems);
 }
 
-function makeCarouselItems(clipsData) {
+function makeCarouselItems(carouselName, clipsData) {
   const englishClips = clipsData.data.filter(clip => clip.language === 'en');
   console.log('english clips', englishClips);
 
@@ -212,80 +212,82 @@ function makeCarouselItems(clipsData) {
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
-  englishClips.forEach((clips) => {
-        /*
-        const carouselItem = document.createElement('div');
-        carouselItem.id = carouselName + index;
-        carouselItem.className = "carousel-item"
+  let carouselItems = [];
+  englishClips.forEach((clip, index) => {
+    const carouselItem = document.createElement('div');
+    carouselItem.id = carouselName + index;
+    carouselItem.className = "carousel-item"
 
-        const card = document.createElement('div');
-        card.className = "card";
-        card.style.height = "300px";
+    const card = document.createElement('div');
+    card.className = "card";
+    card.style.height = "300px";
 
-        const imageWrapper = document.createElement('div');
-        imageWrapper.className = "img-wrapper";
-        imageWrapper.id = gameId + "img-wrapper" + index;
-        imageWrapper.style.position = "relative";
+    const imageWrapper = document.createElement('div');
+    imageWrapper.className = "img-wrapper";
+    imageWrapper.id = gameId + "img-wrapper" + index;
+    imageWrapper.style.position = "relative";
 
-        // formerly thumbnail
-        const image = document.createElement('img');
-        image.src = url + "?parent=localhost";
-        image.classList.add('thumbnail');
-        const indexInCarousel = makeIndexInCarousel(carouselName);
-        image.addEventListener('click', () => {thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers)});
-        image.addEventListener('click', () => {highlightDiv(imageWrapper)});
-        window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
+    // formerly thumbnail
+    const image = document.createElement('img');
+    image.src = clip.thumbnail_url + "?parent=localhost";
+    image.classList.add('thumbnail');
+    //const indexInCarousel = makeIndexInCarousel(carouselName);
+    //image.addEventListener('click', () => {thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers)});
+    //image.addEventListener('click', () => {highlightDiv(imageWrapper)});
+    //window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
 
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
-        
-        const clipTitle = document.createElement('p');
-        clipTitle.innerText = titles[index];
-        clipTitle.style.color = "#FFFFFF";
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    
+    const clipTitle = document.createElement('p');
+    clipTitle.innerText = titles[index];
+    clipTitle.style.color = "#FFFFFF";
 
-        const viewCount = document.createElement('p');
-        viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
-        viewCount.style.color = "#FFFFFF";
-        viewCount.style.position = 'absolute';
-        viewCount.style.bottom = '0';
-        viewCount.style.left = '0';
+    const viewCount = document.createElement('p');
+    viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
+    viewCount.style.color = "#FFFFFF";
+    viewCount.style.position = 'absolute';
+    viewCount.style.bottom = '0';
+    viewCount.style.left = '0';
 
-        const streamer = document.createElement('p');
-        streamer.innerText = streamers[index];
-        streamer.style.color = "#FFFFFF";
+    const streamer = document.createElement('p');
+    streamer.innerText = streamers[index];
+    streamer.style.color = "#FFFFFF";
 
-        const creationDate = document.createElement('p');
-        creationDate.innerText = creationDateTimes[index];
-        creationDate.style.color = "#FFFFFF";
-        creationDate.style.position = 'absolute';
-        creationDate.style.bottom = '0';
-        creationDate.style.right = '0';
+    const creationDate = document.createElement('p');
+    creationDate.innerText = creationDateTimes[index];
+    creationDate.style.color = "#FFFFFF";
+    creationDate.style.position = 'absolute';
+    creationDate.style.bottom = '0';
+    creationDate.style.right = '0';
 
-        const duration = document.createElement('p');
-        duration.innerText = Math.round(durations[index]) + 's';
-        duration.style.color = "#FFFFFF";
+    const duration = document.createElement('p');
+    duration.innerText = Math.round(durations[index]) + 's';
+    duration.style.color = "#FFFFFF";
 
-        duration.style.position = 'absolute';
-        duration.style.top = '0';
-        duration.style.left = '0';
+    duration.style.position = 'absolute';
+    duration.style.top = '0';
+    duration.style.left = '0';
 
-        popularClipsCarouselInner.appendChild(carouselItem);
-        carouselItem.appendChild(card);
-        
-        card.appendChild(imageWrapper);
-        imageWrapper.appendChild(image);
-        card.appendChild(cardBody);
-        cardBody.appendChild(clipTitle);
-        cardBody.appendChild(streamer);
-        imageWrapper.appendChild(duration);
-        imageWrapper.appendChild(viewCount);
-        imageWrapper.appendChild(creationDate); 
-        
-        // Just Chatting is always the top carousel
-        if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
-        window.firstThumbnail = imageWrapper;
-        highlightDiv(imageWrapper);
-        }
-        */
-    });
+    carouselItem.appendChild(card);
+    card.appendChild(imageWrapper);
+    imageWrapper.appendChild(image);
+    card.appendChild(cardBody);
+    cardBody.appendChild(clipTitle);
+    cardBody.appendChild(streamer);
+    imageWrapper.appendChild(duration);
+    imageWrapper.appendChild(viewCount);
+    imageWrapper.appendChild(creationDate); 
+
+    carouselItems.push(carouselItem);
+    
+    // Just Chatting is always the top carousel
+    /*
+    if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
+    window.firstThumbnail = imageWrapper;
+    highlightDiv(imageWrapper);
+    }*/
+  });
+
+  return carouselItems;
 }
