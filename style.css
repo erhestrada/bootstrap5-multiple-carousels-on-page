@@ -576,11 +576,6 @@ object-fit: cover;
 
 /* tentative from this point onward */
 
-#streamer-bar-carousel-container .carousel-row {
-    transform: scale(0.7); /* Adjust scale factor as needed */
-    transform-origin: center;
-}
-
 #streamer-bar-carousel-container {
     height: 150px;
     position: relative; /* Establish containing block */
