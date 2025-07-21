@@ -17,22 +17,16 @@ export class SmartCarousel {
         this.bindEvents();
     }
     
-    setItems(items) {
-        this.totalItems = items.length;
+    setItems(carouselItems) {
+        this.totalItems = carouselItems.length;
         this.currentIndex = 0;
         
         // Clear existing items
         this.carousel.innerHTML = '';
         
         // Add new items
-        items.forEach((item, index) => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'carousel-element';
-            itemElement.innerHTML = `
-                <h3>${item.title}</h3>
-                <p>${item.content}</p>
-            `;
-            this.carousel.appendChild(itemElement);
+        carouselItems.forEach(carouselItem => {
+            this.carousel.appendChild(carouselItem);
         });
         
         this.updateCarousel();

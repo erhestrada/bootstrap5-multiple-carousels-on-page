@@ -216,7 +216,7 @@ function makeCarouselItems(carouselName, clipsData) {
   englishClips.forEach((clip, index) => {
     const carouselItem = document.createElement('div');
     carouselItem.id = carouselName + index;
-    carouselItem.className = "carousel-item"
+    carouselItem.className = "carousel-element";
 
     const card = document.createElement('div');
     card.className = "card";
