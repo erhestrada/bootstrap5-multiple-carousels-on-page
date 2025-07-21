@@ -481,7 +481,6 @@ object-fit: cover;
 .carousel-row {
     font-family: Arial, sans-serif;
     padding: 50px 20px;
-    max-width: 2000px;
     margin: 0 auto;
     position: relative;
     display: flex;
