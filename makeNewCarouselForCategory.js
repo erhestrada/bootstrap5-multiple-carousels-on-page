@@ -1,6 +1,5 @@
 // basically a refactor of getTopClips
 import { getTopClips } from "./getTopClipsRefactor";
-import { makeClipsCarouselSlide } from "./makeClipsCarouselNSlide";
 
 // example box art url
 // 'https://static-cdn.jtvnw.net/ttv-boxart/509658-{width}x{height}.jpg
