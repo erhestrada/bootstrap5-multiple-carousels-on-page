@@ -178,6 +178,30 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
   }
 
 function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
+  const carouselRowId = `${makeCarouselId(carouselName)}-row`;
+
+  let carousel;
+  const carouselItems = makeCarouselItems(clipsData);
+  
+  carousel = new SmartCarousel(carouselRowId, 4);
+  carousel.setItems(carouselItems);
+}
+
+// Skipping non-english clips so thumbnail's index in carousel is different from its index in clipsData e.g. the second english clip in clips data might be at index 7 in clips data but would be index 1 in the carousel
+function makeIndexInCarousel(carouselName) {
+  let indexInCarousel;
+  // if carousel not in window.carouselIndices
+  if (!Object.hasOwn(window.lastThumbnailIndexInCarousel, carouselName)) {
+    indexInCarousel = 0;
+  } else {
+    indexInCarousel = window.lastThumbnailIndexInCarousel[carouselName] + 1;
+  }
+  window.lastThumbnailIndexInCarousel[carouselName] = indexInCarousel;
+
+  return indexInCarousel;
+}
+
+function makeCarouselItems(clipsData) {
   const embedUrls = clipsData.data.map((datum) => datum.embed_url);
   const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
   const titles = clipsData.data.map((datum) => datum.title);
@@ -198,23 +222,6 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
-
-  const carouselRowId = `${makeCarouselId(carouselName)}-row`;
-
-  let carousel;
-
-  // Initialize with 13 items
-  const items = [];
-  for (let i = 1; i <= 13; i++) {
-      items.push({
-          title: `Item ${i}`,
-          content: `This is item number ${i} with some content`
-      });
-  }
-  
-  carousel = new SmartCarousel(carouselRowId, 4);
-  carousel.setItems(items);
-
 
   thumbnailUrls.forEach((url, index) => {
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
@@ -298,18 +305,4 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
         */
     }
   });
-}
-
-// Skipping non-english clips so thumbnail's index in carousel is different from its index in clipsData e.g. the second english clip in clips data might be at index 7 in clips data but would be index 1 in the carousel
-function makeIndexInCarousel(carouselName) {
-  let indexInCarousel;
-  // if carousel not in window.carouselIndices
-  if (!Object.hasOwn(window.lastThumbnailIndexInCarousel, carouselName)) {
-    indexInCarousel = 0;
-  } else {
-    indexInCarousel = window.lastThumbnailIndexInCarousel[carouselName] + 1;
-  }
-  window.lastThumbnailIndexInCarousel[carouselName] = indexInCarousel;
-
-  return indexInCarousel;
 }
