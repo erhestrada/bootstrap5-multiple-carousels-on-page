@@ -171,6 +171,7 @@ a:hover {
 #streamer-bar-carousel-container {
   width: 150%;
   margin: 0 ;
+  overflow: hidden;
 }
 
 .meta-svg-container {
