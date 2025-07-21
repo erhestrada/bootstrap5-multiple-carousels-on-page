@@ -170,14 +170,14 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         updateStreamerBarCarousel(streamerIds[0]);
       }
       
-      makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
+      makeClipsCarouselFromClipsData(clipsData, carouselName);
       return clipsData;
     } catch (error) {
       console.error(error);
     }
   }
 
-function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
+export function makeClipsCarouselFromClipsData(clipsData, carouselName) {
   const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
   let carousel;
