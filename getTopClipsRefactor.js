@@ -201,23 +201,26 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
 
   const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
+  let carousel;
+
+  // Initialize with 13 items
+  const items = [];
+  for (let i = 1; i <= 13; i++) {
+      items.push({
+          title: `Item ${i}`,
+          content: `This is item number ${i} with some content`
+      });
+  }
+  
+  carousel = new SmartCarousel(carouselRowId, 4);
+  carousel.setItems(items);
+
+
   thumbnailUrls.forEach((url, index) => {
     // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
     if(languages[index] === 'en') {
         // Initialize carousel
-        let carousel;
 
-        // Initialize with 13 items
-        const items = [];
-        for (let i = 1; i <= 13; i++) {
-            items.push({
-                title: `Item ${i}`,
-                content: `This is item number ${i} with some content`
-            });
-        }
-        
-        carousel = new SmartCarousel(carouselRowId, 4);
-        carousel.setItems(items);
                 
         /*
         const carouselItem = document.createElement('div');
