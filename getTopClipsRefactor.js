@@ -183,34 +183,23 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
   let carousel;
   const carouselItems = makeCarouselItems(clipsData);
   
-  carousel = new SmartCarousel(carouselRowId, 4);
-  carousel.setItems(carouselItems);
-}
-
-// Skipping non-english clips so thumbnail's index in carousel is different from its index in clipsData e.g. the second english clip in clips data might be at index 7 in clips data but would be index 1 in the carousel
-function makeIndexInCarousel(carouselName) {
-  let indexInCarousel;
-  // if carousel not in window.carouselIndices
-  if (!Object.hasOwn(window.lastThumbnailIndexInCarousel, carouselName)) {
-    indexInCarousel = 0;
-  } else {
-    indexInCarousel = window.lastThumbnailIndexInCarousel[carouselName] + 1;
-  }
-  window.lastThumbnailIndexInCarousel[carouselName] = indexInCarousel;
-
-  return indexInCarousel;
+  //carousel = new SmartCarousel(carouselRowId, 4);
+  //carousel.setItems(carouselItems);
 }
 
 function makeCarouselItems(clipsData) {
-  const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-  const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
-  const titles = clipsData.data.map((datum) => datum.title);
-  const languages = clipsData.data.map((datum) => datum.language);
-  const viewCounts = clipsData.data.map((datum) => datum.view_count);
-  const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
-  const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-  const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
-  const durations = clipsData.data.map((datum) => datum.duration);
+  const englishClips = clipsData.data.filter(clip => clip.language === 'en');
+  console.log('english clips', englishClips);
+
+  const embedUrls = englishClips.map((datum) => datum.embed_url);
+  const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
+  const titles = englishClips.map((datum) => datum.title);
+  const languages = englishClips.map((datum) => datum.language);
+  const viewCounts = englishClips.map((datum) => datum.view_count);
+  const streamers = englishClips.map((datum) => datum.broadcaster_name);
+  const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
+  const creationDateTimes = englishClips.map((datum) => datum.created_at);
+  const durations = englishClips.map((datum) => datum.duration);
 
   // same for all clips in a getTopClps request -- requesting top clips in category
   let gameId;
@@ -223,12 +212,7 @@ function makeCarouselItems(clipsData) {
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
-  thumbnailUrls.forEach((url, index) => {
-    // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
-    if(languages[index] === 'en') {
-        // Initialize carousel
-
-                
+  englishClips.forEach((clips) => {
         /*
         const carouselItem = document.createElement('div');
         carouselItem.id = carouselName + index;
@@ -303,6 +287,5 @@ function makeCarouselItems(clipsData) {
         highlightDiv(imageWrapper);
         }
         */
-    }
-  });
+    });
 }
