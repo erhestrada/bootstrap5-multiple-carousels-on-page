@@ -486,7 +486,7 @@ object-fit: cover;
     position: relative;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 0px;
 }
 
 .carousel-row .boxart {
