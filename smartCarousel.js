@@ -35,19 +35,11 @@ export class SmartCarousel {
     updateCarousel() {
         if (this.totalItems === 0) return;
         
-        // Get the actual width of one item including margin
-        const firstItem = this.carousel.querySelector('.carousel-element');
-        if (firstItem) {
-            const itemWidth = firstItem.offsetWidth + 20; // width + margin-right
-            const containerWidth = this.carousel.parentElement.offsetWidth;
-            const translatePercent = (this.currentIndex * itemWidth / containerWidth) * 100;
-            
-            this.carousel.style.transform = `translateX(-${translatePercent}%)`;
-        } else {
-            // Fallback to 25% if items aren't rendered yet
-            const translateX = -this.currentIndex * 25;
-            this.carousel.style.transform = `translateX(${translateX}%)`;
-        }
+        // Simple percentage-based translation
+        // Each item effectively takes 25% of container space
+        const translatePercent = this.currentIndex * 25;
+        
+        this.carousel.style.transform = `translateX(-${translatePercent}%)`;
         
         // Update button states
         this.prevBtn.disabled = this.currentIndex === 0;
