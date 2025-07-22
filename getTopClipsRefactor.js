@@ -220,7 +220,7 @@ function makeCarouselItems(carouselName, clipsData) {
 
     const card = document.createElement('div');
     card.className = "card";
-    card.style.height = "300px";
+    //card.style.height = "300px";
 
     const imageWrapper = document.createElement('div');
     imageWrapper.className = "img-wrapper";

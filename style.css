@@ -124,6 +124,10 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
+
+.card {
+  height: 300px;
+}
   
 .card img {
     max-height: 100%;
