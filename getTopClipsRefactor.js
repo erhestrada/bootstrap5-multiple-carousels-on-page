@@ -282,11 +282,10 @@ function makeCarouselItems(carouselName, clipsData) {
     carouselItems.push(carouselItem);
     
     // Just Chatting is always the top carousel
-    /*
     if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
     window.firstThumbnail = imageWrapper;
     highlightDiv(imageWrapper);
-    }*/
+    }
   });
 
   return carouselItems;
