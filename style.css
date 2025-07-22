@@ -504,7 +504,7 @@ object-fit: cover;
 }
 
 .carousel-element {
-    flex: 0 0 calc(25% - 15px);
+    flex: 0 0 calc(25% - 20px);
     color: white;
     text-align: left;
     min-height: 200px;
