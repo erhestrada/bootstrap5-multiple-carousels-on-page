@@ -589,15 +589,26 @@ object-fit: cover;
     }
 }
 
-/* tentative from this point onward */
-
-#streamer-bar-carousel-container {
-    height: 150px;
-}
+/* Streamer Bar styling */
 
 #streamer-bar-carousel-container .carousel-row {
     margin: 0; /* Remove any inherited margins */
     padding: 8px 10px; /* Smaller padding for smaller container */
     width: 100%;
     height: 100%;
+}
+
+#streamer-bar-carousel-container .carousel-element {
+    flex: 0 0 calc(25% - 10px); /* Smaller margins for smaller space */
+    height: 120px; /* Much smaller height to fit in 150px container */
+    min-height: auto; /* Override the 200px min-height */
+    margin-right: 10px; /* Smaller margin */
+}
+
+#streamer-bar-carousel-container .carousel-element .img-wrapper {
+    height: 8em; /* Smaller image height */
+}
+
+#streamer-bar-carousel-container .carousel-element:last-child {
+    margin-right: 0;
 }
