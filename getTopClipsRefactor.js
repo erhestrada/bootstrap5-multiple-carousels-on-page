@@ -269,10 +269,10 @@ function makeCarouselItems(carouselName, clipsData) {
     duration.style.top = '0';
     duration.style.left = '0';
 
-    carouselItem.appendChild(card);
-    card.appendChild(imageWrapper);
+    //carouselItem.appendChild(card);
+    carouselItem.appendChild(imageWrapper);
     imageWrapper.appendChild(image);
-    card.appendChild(cardBody);
+    carouselItem.appendChild(cardBody);
     cardBody.appendChild(clipTitle);
     cardBody.appendChild(streamer);
     imageWrapper.appendChild(duration);
