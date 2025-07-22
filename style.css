@@ -119,6 +119,7 @@ a:hover {
 
 .card {
   height: 300px;
+  width: fit-content;
 }
 
 .card .img-wrapper {
