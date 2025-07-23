@@ -518,6 +518,10 @@ object-fit: cover;
     margin-top: 5px; /* room for highlight */
 }
 
+.carousel-element:first-child {
+  margin-left: 5px; /* room for highlight */
+}
+
 .carousel-element:last-child {
     margin-right: 0;
 }
