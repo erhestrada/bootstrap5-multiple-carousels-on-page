@@ -78,7 +78,7 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
   carousel2Inner.innerHTML = '';
 
   updateDonutPfp(streamerIds[indexInCarousel]);
-  updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+  //updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
   carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
@@ -166,7 +166,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         saveClipPositionData(0, embedUrls, streamerIds);
         replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
-        updateStreamerBarCarousel(streamerIds[0]);
+        //updateStreamerBarCarousel(streamerIds[0]);
       }
       
       makeClipsCarouselFromClipsData(clipsData, carouselName);
