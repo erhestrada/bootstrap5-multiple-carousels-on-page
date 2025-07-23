@@ -1,7 +1,7 @@
 import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarouselRefactor";
-import { highlightDiv } from './getTopClips.js';
+import { highlightDiv } from './getTopClipsRefactor.js';
 import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInViewRefactor.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
 import { carouselIsSliding } from './ensureThumbnailInViewRefactor.js';
