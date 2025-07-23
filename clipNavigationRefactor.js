@@ -5,6 +5,8 @@ import { highlightDiv } from './getTopClips.js';
 import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeCarouselForCategory.js';
 import { carouselIsSliding } from './ensureThumbnailInView.js';
+import { makeClipsCarouselFromClipsData } from "./getTopClipsRefactor";
+
 
 let isScrolling = false;
 
@@ -58,11 +60,11 @@ export function playAdjacentClip(arrow) {
 
         // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
         // updateStreamerBar()
-        const carousel2Inner = document.getElementById('carousel2-inner');
-        carousel2Inner.innerHTML = '';
+        const streamerBarCarousel = document.getElementById('streamer-bar-carousel-container').querySelector('.carousel');
+        streamerBarCarousel.innerHTML = '';
     
         updateDonutPfp(streamerIds[updatedClipsDataIndex]);
-        updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
+        //makeClipsCarouselFromClipsData(gameClipsData, "streamer-bar-carousel"); // need to get clips for streamer, let me just put placeholder first
     
         //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
         console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
