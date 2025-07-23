@@ -189,7 +189,6 @@ export function makeClipsCarouselFromClipsData(clipsData, carouselName) {
 
 function makeCarouselItems(carouselName, clipsData) {
   const englishClips = clipsData.data.filter(clip => clip.language === 'en');
-  console.log('english clips', englishClips);
 
   const embedUrls = englishClips.map((datum) => datum.embed_url);
   const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
