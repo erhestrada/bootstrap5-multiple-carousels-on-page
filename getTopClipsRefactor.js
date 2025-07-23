@@ -231,7 +231,7 @@ function makeCarouselItems(carouselName, clipsData) {
     image.src = clip.thumbnail_url + "?parent=localhost";
     image.classList.add('thumbnail');
     //const indexInCarousel = makeIndexInCarousel(carouselName);
-    //image.addEventListener('click', () => {thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers)});
+    image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
     image.addEventListener('click', () => {highlightDiv(imageWrapper)});
     window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
 
