@@ -158,7 +158,6 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const embedUrls = clipsData.data.map((datum) => datum.embed_url);
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
-      window.clipsData[carouselName] = clipsData;
 
       // this happens one time, not every time
       if (game === "Just Chatting") {
@@ -189,6 +188,7 @@ export function makeClipsCarouselFromClipsData(clipsData, carouselName) {
 
 function makeCarouselItems(carouselName, clipsData) {
   const englishClips = clipsData.data.filter(clip => clip.language === 'en');
+  window.clipsData[carouselName] = englishClips;
 
   const embedUrls = englishClips.map((datum) => datum.embed_url);
   const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
