@@ -93,12 +93,6 @@ export class SmartCarousel {
         this.nextBtn.addEventListener('click', () => this.nextSlide());
         this.prevBtn.addEventListener('click', () => this.prevSlide());
         
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') this.prevSlide();
-            if (e.key === 'ArrowRight') this.nextSlide();
-        });
-        
         // Touch/swipe support
         let startX = 0;
         let endX = 0;
