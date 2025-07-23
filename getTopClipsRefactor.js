@@ -141,7 +141,7 @@ export function highlightDiv(div) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.outline = '';
   }
-  div.style.outline = '5px solid #6441A4';
+  div.style.outline = '5px solid #6441A4'; // Width stays within margins
   window.highlightedDivId = div.id;
 }
 

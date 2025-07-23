@@ -515,6 +515,7 @@ object-fit: cover;
     flex-direction: column;
     justify-content: center;
     margin-right: 20px;
+    margin-top: 5px; /* room for highlight */
 }
 
 .carousel-element:last-child {
