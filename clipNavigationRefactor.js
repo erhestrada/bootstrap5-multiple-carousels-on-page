@@ -41,8 +41,10 @@ export function playAdjacentClip(arrow) {
         window.currentClipPosition.index = updatedClipsDataIndex;
 
         replaceCarouselItem(updatedClipsDataIndex, embedUrls, streamerIds, streamers);
-        const clipsDataIndex = clipsDataIndices[updatedClipsDataIndex];
-        const thumbnailWrapper = window.thumbnailWrappers[`${game}-${clipsDataIndex}`];
+        const thumbnailWrapper = window.thumbnailWrappers[`${game}-${updatedClipsDataIndex}`];
+        console.log(game);
+        console.log(updatedClipsDataIndex);
+        console.log(thumbnailWrapper);
         highlightDiv(thumbnailWrapper);
 
         const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
