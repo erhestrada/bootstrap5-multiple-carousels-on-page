@@ -16,12 +16,7 @@ export function playAdjacentClip(arrow) {
     let {game, index: initialIndexInCarousel} = window.currentClipPosition;
     console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
 
-    const gameClipsData = clipsData[game].data;
-    const englishGameClipsData = gameClipsData
-        .map((datum, i) => ({ ...datum, clipsDataIndex: i }))
-        .filter(datum => datum.language === 'en');
-
-    console.log(englishGameClipsData);
+    const englishGameClipsData = window.clipsData[game];
 
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
