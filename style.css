@@ -539,6 +539,10 @@ object-fit: cover;
 }
 
 .carousel-element img {
+  /* Fill 100% of img-wrapper */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio, crop if needed */
   max-height: 100%;
 }
 
