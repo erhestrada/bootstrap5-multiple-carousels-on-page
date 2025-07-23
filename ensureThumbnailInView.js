@@ -22,18 +22,19 @@ export function elementInViewHorizontally(element, padding = 0) {
 export function slideCarousel(carouselId, direction) {
     carouselIsSliding = true;
 
-    const carouselInner = document.querySelector(`#${carouselId} .carousel-inner`);
+    // Get carousel within carousel row
+    const carousel = document.getElementById(`${carouselId}-row`).querySelector('.carousel');
 
     let scrollAmount;
     if (direction === "right") {
-        scrollAmount = carouselInner.offsetWidth;
+        scrollAmount = carousel.offsetWidth;
     } else if (direction === "left") {
-        scrollAmount = -carouselInner.offsetWidth;
+        scrollAmount = -carousel.offsetWidth;
     } else if (direction === "reset") {
-        carouselInner.scrollLeft = 0;
+        carousel.scrollLeft = 0;
     }
 
-    carouselInner.scrollBy({
+    carousel.scrollBy({
         left: scrollAmount,
         behavior: "smooth"
     });
