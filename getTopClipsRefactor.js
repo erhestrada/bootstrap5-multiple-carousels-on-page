@@ -70,7 +70,7 @@ export function getPastDateTime(daysBack) {
 function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers) {
   window.currentClipPosition = {'game': carouselName, 'index': indexInCarousel};
   window.activeCarousel = carouselName;
-  window.carouselIndex = indexInCarousel;
+  window.carouselIndex = window.orderedCarousels.indexOf(carouselName);
 
   saveClipPositionData(indexInCarousel, embedUrls, streamerIds);
   replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
