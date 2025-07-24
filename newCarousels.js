@@ -34,9 +34,11 @@ document.addEventListener('keydown', (event) => {
     changeCarousel('next');
   }
   if (event.key === 'ArrowLeft') {
+    event.preventDefault();
     playAdjacentClip('previous');
   }
   if (event.key === 'ArrowRight') {
+    event.preventDefault();
     playAdjacentClip('next');
   }
 });
