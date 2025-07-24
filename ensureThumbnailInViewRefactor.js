@@ -19,25 +19,20 @@ export function elementInViewHorizontally(element, padding = 0) {
     return 'visible';
 }
 
-export function slideCarousel(carouselId, direction) {
+export function slideCarousel(carouselName, direction) {
     carouselIsSliding = true;
 
     // Get carousel within carousel row
-    const carousel = document.getElementById(`${carouselId}-row`).querySelector('.carousel');
+    //const carousel = document.getElementById(`${carouselId}-row`).querySelector('.carousel');
+    const carouselInstance = window.carouselInstances[carouselName];
 
-    let scrollAmount;
     if (direction === "right") {
-        scrollAmount = carousel.offsetWidth;
+        carouselInstance.nextSlide();
     } else if (direction === "left") {
-        scrollAmount = -carousel.offsetWidth;
+        carouselInstance.prevSlide();
     } else if (direction === "reset") {
-        carousel.scrollLeft = 0;
     }
 
-    carousel.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth"
-    });
 
     setTimeout(() => {
         carouselIsSliding = false;

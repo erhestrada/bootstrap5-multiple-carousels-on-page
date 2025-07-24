@@ -50,7 +50,7 @@ export function playAdjacentClip(arrow) {
         const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
         if (thumbnailInViewHorizontally != 'visible') {
             const carouselId = makeCarouselId(game);
-            slideCarousel(carouselId, thumbnailInViewHorizontally);
+            slideCarousel(game, thumbnailInViewHorizontally);
         }
 
         // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
