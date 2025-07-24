@@ -77,7 +77,7 @@ export function changeCarousel(arrow) {
 
     let {game} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
-    slideCarousel(carouselId, 'reset');
+    //slideCarousel(carouselId, 'reset');
     
     if (arrow === "next") {
         console.log('next carousel');
@@ -95,12 +95,8 @@ export function changeCarousel(arrow) {
     }
 
     // highlight the correct thumbnails
-    const gameClipsData = clipsData[window.activeCarousel].data;
-    const englishGameClipsData = gameClipsData
-        .map((datum, i) => ({ ...datum, originalIndex: i }))
-        .filter(datum => datum.language === 'en');
-    const originalIndices = englishGameClipsData.map(d => d.originalIndex);
-    const originalIndex = originalIndices[0];
+    const englishGameClipsData = window.clipsData[window.activeCarousel];
+    const originalIndex = 0;
     const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${originalIndex}`];
     highlightDiv(thumbnailWrapper);
 
@@ -123,11 +119,10 @@ export function changeCarousel(arrow) {
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
     replaceCarouselItem(updatedIndex, embedUrls, streamerIds, streamers);
 
-    const carousel2Inner = document.getElementById('carousel2-inner');
-    carousel2Inner.innerHTML = '';
-  
+    const streamerBarCarousel = document.getElementById('streamer-bar-carousel-container').querySelector('.carousel');
+    streamerBarCarousel.innerHTML = '';
     updateDonutPfp(streamerIds[updatedIndex]);
-    updateStreamerBarCarousel(streamerIds[updatedIndex]);
+    //updateStreamerBarCarousel(streamerIds[updatedIndex]);
 
     setTimeout(() => {
         isScrolling = false;
