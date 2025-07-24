@@ -16,7 +16,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
     const carouselId = `${idFormattedCategory}-carousel`;
 
     const carouselDiv = `
-    <div class="carousel-row" id=${carouselId}-row>
+    <div class="carousel-row category-carousel-row" id=${carouselId}-row>
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
         <button class="carousel-btn prevBtn">‹</button>
         

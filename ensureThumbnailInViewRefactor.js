@@ -60,10 +60,7 @@ export function elementInViewVertically(element, padding = 0) {
 
 // if highlighted thumbnail below viewport
 export function scrollDownToThumbnail() {
-    //const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
-    //const carouselHeight = getHeightOfElement('.carousel-row');
-    const carouselHeight = 300;
-    console.log('carousel height: ', carouselHeight);
+    const carouselHeight = getHeightOfElement('.category-carousel-row');
 
     window.scrollBy({
         top: carouselHeight,
@@ -74,8 +71,7 @@ export function scrollDownToThumbnail() {
 
 // have to scroll up by more because of the header
 export function scrollUpToThumbnail() {
-    const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
-    console.log('carousel height: ', carouselHeight);
+    const carouselHeight = getHeightOfElement('.category-carousel-row');
 
     window.scrollBy({
         top: -carouselHeight, // negative to scroll up
