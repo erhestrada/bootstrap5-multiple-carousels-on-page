@@ -69,18 +69,20 @@ export function getPastDateTime(daysBack) {
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers) {
   window.currentClipPosition = {'game': carouselName, 'index': indexInCarousel};
+  window.activeCarousel = carouselName;
+  window.carouselIndex = indexInCarousel;
 
   saveClipPositionData(indexInCarousel, embedUrls, streamerIds);
   replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
-  let carousel2 = document.getElementById('carousel2');
-  const carousel2Inner = document.getElementById('carousel2-inner');
-  carousel2Inner.innerHTML = '';
+  //let carousel2 = document.getElementById('carousel2');
+  //const carousel2Inner = document.getElementById('carousel2-inner');
+  //carousel2Inner.innerHTML = '';
 
   updateDonutPfp(streamerIds[indexInCarousel]);
   //updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
-  carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+  //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
   // Show clipPlayer if it's hidden
   const clipPlayer = document.getElementById('clip-player-complex');
