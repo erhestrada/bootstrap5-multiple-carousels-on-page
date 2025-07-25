@@ -8,6 +8,7 @@ export class SmartCarousel {
         this.itemsPerView = itemsPerView;
         this.currentIndex = 0;
         this.totalItems = 0;
+        this.itemsInView = [];
         
         this.init();
     }
