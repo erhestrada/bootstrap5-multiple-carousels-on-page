@@ -34,16 +34,14 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl) {
 
     const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
 
-    // The first child in carousel-inner is always the boxArt (carouselDiv HTML above)
-    /*
-    if (clipsData.data.length === 0 || carouselElement.querySelector('.carousel-inner').children.length === 1) {
-        const carouselElement = document.getElementById(`${idFormattedCategory}-carousel`);
-        if (carouselElement) {
-            carouselElement.remove();
-            window.orderedCarousels = window.orderedCarousels.filter(name => name != category);
-        }
+    const carouselRow = document.getElementById(`${carouselId}-row`);
+    const carouselElement = carouselRow.querySelector('.carousel');
+
+    if (carouselElement.children.length === 0) {
+        carouselRow.remove();
+        window.orderedCarousels = window.orderedCarousels.filter(name => name != category);
     }
-    */
+
 }
 
 export function makeCarouselId(category) {
