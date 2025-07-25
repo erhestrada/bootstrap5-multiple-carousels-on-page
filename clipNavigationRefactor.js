@@ -105,7 +105,8 @@ export function changeCarousel(arrow) {
 
     // highlight the correct thumbnails
     const englishGameClipsData = window.clipsData[window.activeCarousel];
-    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${index}`];
+    //const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${index}`];
+    const thumbnailWrapper = activeElement.querySelector('.img-wrapper');
     highlightDiv(thumbnailWrapper);
 
     const thumbnailInViewVertically = elementInViewVertically(thumbnailWrapper);
