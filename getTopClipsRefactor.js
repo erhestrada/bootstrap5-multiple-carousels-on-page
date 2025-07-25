@@ -187,7 +187,6 @@ export function makeClipsCarouselFromClipsData(clipsData, carouselName, itemsPer
   carousel = new SmartCarousel(carouselRowId, itemsPerView);
   carousel.setItems(carouselItems);
   window.carouselInstances[carouselName] = carousel;
-  window.displayedThumbnails[carouselName] = carouselItems.slice(0, itemsPerView);
 }
 
 function makeCarouselItems(carouselName, clipsData) {
