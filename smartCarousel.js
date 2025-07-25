@@ -19,6 +19,7 @@ export class SmartCarousel {
     }
     
     setItems(carouselItems) {
+        this.items = carouselItems;
         this.totalItems = carouselItems.length;
         this.currentIndex = 0;
         this.itemsInView = carouselItems.slice(0, this.itemsPerView);
