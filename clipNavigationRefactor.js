@@ -1,4 +1,4 @@
-import { replaceCarouselItem } from './getTopClips.js';
+import { replaceCarouselItem } from './getTopClipsRefactor.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarouselRefactor";
 import { highlightDiv } from './getTopClipsRefactor.js';
