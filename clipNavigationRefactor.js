@@ -105,8 +105,7 @@ export function changeCarousel(arrow) {
 
     // highlight the correct thumbnails
     const englishGameClipsData = window.clipsData[window.activeCarousel];
-    const originalIndex = 0;
-    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${originalIndex}`];
+    const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${index}`];
     highlightDiv(thumbnailWrapper);
 
     const thumbnailInViewVertically = elementInViewVertically(thumbnailWrapper);
@@ -119,7 +118,7 @@ export function changeCarousel(arrow) {
         }
     }
 
-    window.currentClipPosition = {'game': window.activeCarousel, 'index': 0};
+    window.currentClipPosition = {'game': window.activeCarousel, 'index': index};
 
     // replace currently playing clip
     const updatedIndex = window.currentClipPosition.index;
