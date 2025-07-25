@@ -75,7 +75,7 @@ export function changeCarousel(arrow) {
     if (isScrolling) return;
     isScrolling = true;
 
-    let {game} = window.currentClipPosition;
+    let {game, index} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
     //slideCarousel(carouselId, 'reset');
     
@@ -93,6 +93,15 @@ export function changeCarousel(arrow) {
             window.activeCarousel = window.orderedCarousels[window.carouselIndex];
         }
     }
+
+    const activeCarouselInstance = window.carouselInstances[window.activeCarousel];
+    let activeElement;
+    if (index < activeCarouselInstance.itemsInView.length)
+        activeElement = activeCarouselInstance.itemsInView[index]; // Stay in the same column
+    else {
+        activeElement = activeCarouselInstance.itemsInView[array.length - 1]; // Go as far right as possible
+    }
+    console.log('LK;ASDJK;LFDASKL;J', activeElement);
 
     // highlight the correct thumbnails
     const englishGameClipsData = window.clipsData[window.activeCarousel];
