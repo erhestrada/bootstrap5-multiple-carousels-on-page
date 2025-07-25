@@ -21,7 +21,6 @@ export function playAdjacentClip(arrow) {
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
-    const clipsDataIndices = englishGameClipsData.map(d => d.clipsDataIndex);
 
     let updatedClipsDataIndex;
 
@@ -37,7 +36,7 @@ export function playAdjacentClip(arrow) {
         }
     }
 
-    if (updatedClipsDataIndex in clipsDataIndices && updatedClipsDataIndex !== initialIndexInCarousel) {
+    if (updatedClipsDataIndex !== initialIndexInCarousel) {
         window.currentClipPosition.index = updatedClipsDataIndex;
 
         replaceCarouselItem(updatedClipsDataIndex, embedUrls, streamerIds, streamers);
