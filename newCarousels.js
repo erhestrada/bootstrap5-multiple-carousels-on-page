@@ -16,6 +16,7 @@ window.activeCarousel = '';
 window.carouselIndex = 0;
 window.lastThumbnailIndexInCarousel = {};
 window.carouselInstances = {};
+window.displayedThumbnails = {};
 
 localStorage?.removeItem('highlightedDivId');
 
