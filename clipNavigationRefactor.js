@@ -99,7 +99,7 @@ export function changeCarousel(arrow) {
     if (index < activeCarouselInstance.itemsInView.length)
         activeElement = activeCarouselInstance.itemsInView[index]; // Stay in the same column
     else {
-        activeElement = activeCarouselInstance.itemsInView[array.length - 1]; // Go as far right as possible
+        activeElement = activeCarouselInstance.itemsInView[activeCarouselInstance.itemsInView.length - 1]; // Go as far right as possible
     }
     console.log('LK;ASDJK;LFDASKL;J', activeElement);
 
