@@ -178,15 +178,16 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
     }
   }
 
-export function makeClipsCarouselFromClipsData(clipsData, carouselName) {
+export function makeClipsCarouselFromClipsData(clipsData, carouselName, itemsPerView = 4) {
   const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
   let carousel;
   const carouselItems = makeCarouselItems(carouselName, clipsData);
   
-  carousel = new SmartCarousel(carouselRowId, 4);
+  carousel = new SmartCarousel(carouselRowId, itemsPerView);
   carousel.setItems(carouselItems);
   window.carouselInstances[carouselName] = carousel;
+  window.displayedThumbnails[carouselName] = carouselItems.slice(0, itemsPerView);
 }
 
 function makeCarouselItems(carouselName, clipsData) {
