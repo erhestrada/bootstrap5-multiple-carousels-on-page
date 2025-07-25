@@ -8,6 +8,7 @@ export class SmartCarousel {
         this.itemsPerView = itemsPerView;
         this.currentIndex = 0;
         this.totalItems = 0;
+        this.items = [];
         this.itemsInView = [];
         
         this.init();
@@ -22,7 +23,6 @@ export class SmartCarousel {
         this.items = carouselItems;
         this.totalItems = carouselItems.length;
         this.currentIndex = 0;
-        this.itemsInView = carouselItems.slice(0, this.itemsPerView);
         
         // Clear existing items
         this.carousel.innerHTML = '';
@@ -35,8 +35,17 @@ export class SmartCarousel {
         this.updateCarousel();
     }
     
+    updateItemsInView() {
+        // Calculate which items are currently in view
+        const endIndex = Math.min(this.currentIndex + this.itemsPerView, this.totalItems);
+        this.itemsInView = this.items.slice(this.currentIndex, endIndex);
+    }
+    
     updateCarousel() {
         if (this.totalItems === 0) return;
+        
+        // Update which items are in view
+        this.updateItemsInView();
         
         // Simple percentage-based translation
         // Each item effectively takes 25% of container space
@@ -90,6 +99,11 @@ export class SmartCarousel {
             this.currentIndex -= scrollAmount;
             this.updateCarousel();
         }
+    }
+    
+    // Getter method to access current items in view
+    getCurrentItemsInView() {
+        return this.itemsInView;
     }
     
     bindEvents() {
