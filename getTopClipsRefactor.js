@@ -127,6 +127,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   iframe.width = 640;
   iframe.frameBorder = 0;
   iframe.allowFullscreen = true;
+  iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
   flexContainer.appendChild(iframe);
   newItem.appendChild(flexContainer);
