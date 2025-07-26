@@ -86,6 +86,8 @@ export function changeCarousel(arrow) {
     let {game, index} = window.currentClipPosition;
     const carouselId = makeCarouselId(game);
     //slideCarousel(carouselId, 'reset');
+
+    const offset =  carouselInstances[game].viewOffset;
     
     if (arrow === "next") {
         console.log('next carousel');
@@ -110,10 +112,11 @@ export function changeCarousel(arrow) {
     // if the previously active carousel had scrolled to the right
     else {  
         // stay in the same column by calculating the remainder
-        thumbnailIndexInView = index % activeCarouselInstance.itemsInView.length;
+        thumbnailIndexInView = index - offset;
     }
 
-    const thumbnailIndexInCarousel = activeCarouselInstance.viewPosition * activeCarouselInstance.itemsPerView + thumbnailIndexInView;
+    //const thumbnailIndexInCarousel = activeCarouselInstance.viewPosition * activeCarouselInstance.itemsPerView + thumbnailIndexInView;
+    const thumbnailIndexInCarousel = activeCarouselInstance.viewOffset + thumbnailIndexInView;
 
     const activeElement = activeCarouselInstance.itemsInView[thumbnailIndexInView];
     console.log('LK;ASDJK;LFDASKL;J', activeElement);
