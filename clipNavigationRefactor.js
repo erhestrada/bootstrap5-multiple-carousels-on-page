@@ -29,10 +29,12 @@ export function playAdjacentClip(arrow) {
         //window.currentClipPosition.index++;
         console.log('next clicked');
 
-    } else {
+    } else if (arrow === "prev") {
         if (initialIndexInCarousel > 0) {
             updatedClipsDataIndex = initialIndexInCarousel - 1;
             //window.currentClipPosition.index--;
+        } else {
+            return;
         }
     }
 
