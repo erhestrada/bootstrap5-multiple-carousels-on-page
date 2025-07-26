@@ -35,7 +35,7 @@ document.addEventListener('keydown', (event) => {
   }
   if (event.key === 'ArrowLeft') {
     event.preventDefault();
-    playAdjacentClip('previous');
+    playAdjacentClip('prev');
   }
   if (event.key === 'ArrowRight') {
     event.preventDefault();
