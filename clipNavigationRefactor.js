@@ -97,17 +97,18 @@ export function changeCarousel(arrow) {
     }
 
     const activeCarouselInstance = window.carouselInstances[window.activeCarousel];
-    let viewIndex;
+    let thumbnailIndexInView;
+    let thumbnailIndexInCarousel;
 
     if (index < activeCarouselInstance.itemsInView.length)
-        viewIndex = index; // Stay in the same column
+        thumbnailIndexInView = index; // Stay in the same column
     // if the previously active carousel had scrolled to the right
     else {  
         // stay in the same column by calculating the remainder
-        viewIndex = index % activeCarouselInstance.itemsInView.length;
+        thumbnailIndexInView = index % activeCarouselInstance.itemsInView.length;
     }
 
-    const activeElement = activeCarouselInstance.itemsInView[viewIndex];
+    const activeElement = activeCarouselInstance.itemsInView[thumbnailIndexInView];
     console.log('LK;ASDJK;LFDASKL;J', activeElement);
 
     // highlight the correct thumbnails
