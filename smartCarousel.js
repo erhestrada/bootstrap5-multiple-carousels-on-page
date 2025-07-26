@@ -11,6 +11,7 @@ export class SmartCarousel {
         this.items = [];
         this.itemsInView = [];
         this.viewPosition = 0; // track which view the carousel is currently displaying
+        this.viewOffset = 0; // track total distance traveled (items scrolled past)
         
         this.init();
     }
@@ -24,6 +25,7 @@ export class SmartCarousel {
         this.items = carouselItems;
         this.totalItems = carouselItems.length;
         this.currentIndex = 0;
+        this.viewOffset = 0; // Reset offset when setting new items
         
         // Clear existing items
         this.carousel.innerHTML = '';
@@ -90,6 +92,7 @@ export class SmartCarousel {
         const scrollAmount = this.getNextScrollAmount();
         if (scrollAmount > 0) {
             this.currentIndex += scrollAmount;
+            this.viewOffset += scrollAmount; // Track actual distance traveled forward
             this.updateCarousel();
         }
     }
@@ -98,13 +101,24 @@ export class SmartCarousel {
         const scrollAmount = this.getPrevScrollAmount();
         if (scrollAmount > 0) {
             this.currentIndex -= scrollAmount;
+            this.viewOffset -= scrollAmount; // Track actual distance traveled backward
             this.updateCarousel();
         }
+    }
+    
+    // Helper method to calculate thumbnail index in carousel
+    getThumbnailIndexInCarousel(viewIndex) {
+        return this.viewOffset + viewIndex;
     }
     
     // Getter method to access current items in view
     getCurrentItemsInView() {
         return this.itemsInView;
+    }
+    
+    // Getter method to access view offset
+    getViewOffset() {
+        return this.viewOffset;
     }
     
     bindEvents() {
