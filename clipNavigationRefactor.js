@@ -94,12 +94,17 @@ export function changeCarousel(arrow) {
     }
 
     const activeCarouselInstance = window.carouselInstances[window.activeCarousel];
-    let activeElement;
+    let updatedIndex;
+
     if (index < activeCarouselInstance.itemsInView.length)
-        activeElement = activeCarouselInstance.itemsInView[index]; // Stay in the same column
-    else {
-        activeElement = activeCarouselInstance.itemsInView[index % activeCarouselInstance.itemsInView.length]; // Go as far right as possible
+        updatedIndex = index; // Stay in the same column
+    // if the previously active carousel had scrolled to the right
+    else {  
+        // stay in the same column by calculating the remainder
+        updatedIndex = index % activeCarouselInstance.itemsInView.length;
     }
+
+    const activeElement = activeCarouselInstance.itemsInView[updatedIndex];
     console.log('LK;ASDJK;LFDASKL;J', activeElement);
 
     // highlight the correct thumbnails
@@ -118,10 +123,10 @@ export function changeCarousel(arrow) {
         }
     }
 
-    window.currentClipPosition = {'game': window.activeCarousel, 'index': index};
+    window.currentClipPosition = {'game': window.activeCarousel, 'index': updatedIndex};
 
     // replace currently playing clip
-    const updatedIndex = window.currentClipPosition.index;
+    //const updatedIndex = window.currentClipPosition.index;
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
