@@ -53,6 +53,12 @@ export function playAdjacentClip(arrow) {
         if (thumbnailInViewHorizontally != 'visible') {
             const carouselId = makeCarouselId(game);
             slideCarousel(game, thumbnailInViewHorizontally);
+
+            if (thumbnailInViewHorizontally === 'right') {
+                activeCarouselInstance.viewPosition++;
+            } else if (thumbnailInViewHorizontally === 'left') {
+                activeCarouselInstance.viewPosition--;
+            }
         }
 
         // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
@@ -98,7 +104,6 @@ export function changeCarousel(arrow) {
 
     const activeCarouselInstance = window.carouselInstances[window.activeCarousel];
     let thumbnailIndexInView;
-    let thumbnailIndexInCarousel;
 
     if (index < activeCarouselInstance.itemsInView.length)
         thumbnailIndexInView = index; // Stay in the same column
@@ -107,6 +112,8 @@ export function changeCarousel(arrow) {
         // stay in the same column by calculating the remainder
         thumbnailIndexInView = index % activeCarouselInstance.itemsInView.length;
     }
+
+    const thumbnailIndexInCarousel = activeCarouselInstance.viewPosition * activeCarouselInstance.itemsPerView + thumbnailIndexInView;
 
     const activeElement = activeCarouselInstance.itemsInView[thumbnailIndexInView];
     console.log('LK;ASDJK;LFDASKL;J', activeElement);
@@ -127,18 +134,18 @@ export function changeCarousel(arrow) {
         }
     }
 
-    window.currentClipPosition = {'game': window.activeCarousel, 'index': index};
+    window.currentClipPosition = {'game': window.activeCarousel, 'index': thumbnailIndexInCarousel};
 
     // replace currently playing clip
     //const updatedIndex = window.currentClipPosition.index;
     const embedUrls = englishGameClipsData.map(d => d.embed_url);
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
-    replaceCarouselItem(index, embedUrls, streamerIds, streamers);
+    replaceCarouselItem(thumbnailIndexInCarousel, embedUrls, streamerIds, streamers);
 
     const streamerBarCarousel = document.getElementById('streamer-bar-carousel-container').querySelector('.carousel');
     streamerBarCarousel.innerHTML = '';
-    updateDonutPfp(streamerIds[index]);
+    updateDonutPfp(streamerIds[thumbnailIndexInCarousel]);
     //updateStreamerBarCarousel(streamerIds[updatedIndex]);
 
     setTimeout(() => {
