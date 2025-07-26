@@ -10,6 +10,7 @@ export class SmartCarousel {
         this.totalItems = 0;
         this.items = [];
         this.itemsInView = [];
+        this.viewPosition = 0; // track which view the carousel is currently displaying
         
         this.init();
     }
