@@ -22,13 +22,14 @@ export function playAdjacentClip(arrow) {
     const streamerIds = englishGameClipsData.map(d => d.broadcaster_id);
     const streamers = englishGameClipsData.map(d => d.broadcaster_name);
 
+    const activeCarouselInstance = window.carouselInstances[window.activeCarousel];
+    const numberOfThumbnails = activeCarouselInstance.totalItems;
+
     let updatedClipsDataIndex;
 
     if (arrow === "next") {
         updatedClipsDataIndex = initialIndexInCarousel + 1;
-        //window.currentClipPosition.index++;
-        console.log('next clicked');
-
+        if (updatedClipsDataIndex >= numberOfThumbnails) return;
     } else if (arrow === "prev") {
         if (initialIndexInCarousel > 0) {
             updatedClipsDataIndex = initialIndexInCarousel - 1;
