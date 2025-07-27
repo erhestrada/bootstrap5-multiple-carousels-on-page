@@ -67,7 +67,7 @@ export function playAdjacentClip(arrow) {
         streamerBarCarousel.innerHTML = '';
     
         updateDonutPfp(streamerIds[updatedClipsDataIndex]);
-        //updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
+        updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
     
         console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
     } else {
