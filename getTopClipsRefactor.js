@@ -169,7 +169,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         saveClipPositionData(0, embedUrls, streamerIds);
         replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
-        //updateStreamerBarCarousel(streamerIds[0]);
+        updateStreamerBarCarousel(streamerIds[0]);
       }
       
       makeClipsCarouselFromClipsData(clipsData, carouselName);
