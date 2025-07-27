@@ -163,7 +163,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
       // this happens one time, not every time
-      if (game === "Just Chatting") {
+      if (game === window.orderedCarousels[0]) {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
         window.activeCarousel = carouselName;
         saveClipPositionData(0, embedUrls, streamerIds);
@@ -285,7 +285,7 @@ function makeCarouselItems(carouselName, clipsData) {
     carouselItems.push(carouselItem);
     
     // Just Chatting is always the top carousel
-    if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
+    if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
     window.firstThumbnail = imageWrapper;
     highlightDiv(imageWrapper);
     }
