@@ -284,7 +284,6 @@ function makeCarouselItems(carouselName, clipsData) {
 
     carouselItems.push(carouselItem);
     
-    // Just Chatting is always the top carousel
     if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
     window.firstThumbnail = imageWrapper;
     highlightDiv(imageWrapper);
