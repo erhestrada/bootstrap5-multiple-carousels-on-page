@@ -227,7 +227,7 @@ function makeCarouselItems(carouselName, clipsData) {
 
     const imageWrapper = document.createElement('div');
     imageWrapper.className = "img-wrapper";
-    imageWrapper.id = gameId + "img-wrapper" + index;
+    imageWrapper.id = carouselName + "img-wrapper" + index;
     imageWrapper.style.position = "relative";
 
     // formerly thumbnail
