@@ -149,7 +149,7 @@ export function changeCarousel(arrow) {
     const streamerBarCarousel = document.getElementById('streamer-bar-carousel-container').querySelector('.carousel');
     streamerBarCarousel.innerHTML = '';
     updateDonutPfp(streamerIds[thumbnailIndexInCarousel]);
-    //updateStreamerBarCarousel(streamerIds[updatedIndex]);
+    updateStreamerBarCarousel(streamerIds[thumbnailIndexInCarousel]);
 
     setTimeout(() => {
         isScrolling = false;
