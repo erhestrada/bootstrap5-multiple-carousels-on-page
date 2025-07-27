@@ -80,7 +80,7 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
   //carousel2Inner.innerHTML = '';
 
   updateDonutPfp(streamerIds[indexInCarousel]);
-  //updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+  updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
   //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 
