@@ -77,8 +77,6 @@ export function playAdjacentClip(arrow) {
 
 }
 
-// track active carousels
-// scroll all the way to the left
 export function changeCarousel(arrow) {
     if (isScrolling) return;
     isScrolling = true;
