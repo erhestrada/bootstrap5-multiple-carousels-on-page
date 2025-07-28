@@ -8,7 +8,6 @@ import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigationRefactor.js';
 
 window.clipsData = {};
-window.pageNumber = 1;
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
 window.orderedCarousels = [];
@@ -56,7 +55,6 @@ document.getElementById('donut-button-bottom').addEventListener('click', () => u
 // think ALL is the default if not start/end parameters
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(3650));
 
-document.getElementById('next-page-button').addEventListener('click', () => makeTopCategoriesCarousels(window.pageNumber));
 document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
 
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
