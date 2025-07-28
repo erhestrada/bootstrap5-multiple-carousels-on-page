@@ -570,7 +570,7 @@ object-fit: cover;
 
 .carousel-btn:disabled {
     background: #ccc;
-    cursor: not-allowed;
+    cursor: default;
     transform: none;
 }
 
