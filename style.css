@@ -563,6 +563,18 @@ object-fit: cover;
     margin: 10px;
 }
 
+/* Nudge text (arrow) a little down and to the right for better centering in circular background */
+.nextBtn {
+  padding-top: 2px;
+  padding-left: 2px;
+}
+
+/* Nudge text (arrow) a little down and to the left for better centering in circular background */
+.prevBtn {
+  padding-top: 2px;
+  padding-right: 2px;
+}
+
 .carousel-btn:hover {
     background: #555;
 }
