@@ -149,6 +149,11 @@ export function changeCarousel(arrow) {
     updateDonutPfp(streamerIds[thumbnailIndexInCarousel]);
     updateStreamerBarCarousel(streamerIds[thumbnailIndexInCarousel]);
 
+    const currentCarouselLabels = document.querySelectorAll('.carousel-label');
+    currentCarouselLabels.forEach(label => {
+        label.textContent = window.activeCarousel;
+    });
+
     setTimeout(() => {
         isScrolling = false;
     }, 400);
