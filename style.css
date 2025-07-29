@@ -565,7 +565,6 @@ object-fit: cover;
 
 .carousel-btn:hover {
     background: #555;
-    transform: scale(1.1);
 }
 
 .carousel-btn:disabled {
