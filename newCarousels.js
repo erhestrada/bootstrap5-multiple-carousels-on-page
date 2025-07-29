@@ -66,6 +66,7 @@ const toggle = document.getElementById('modeToggle');
 const labelLeft = document.getElementById('label-left');
 const labelRight = document.getElementById('label-right');
 
+
 const updateLabels = () => {
   if (toggle.checked) {
     labelLeft.style.opacity = '0.4';
@@ -81,4 +82,3 @@ const updateLabels = () => {
 };
 
 toggle.addEventListener('change', updateLabels);
-window.addEventListener('DOMContentLoaded', updateLabels);
