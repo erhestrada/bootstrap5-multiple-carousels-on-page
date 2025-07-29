@@ -547,7 +547,7 @@ object-fit: cover;
 }
 
 .carousel-btn {
-    background: #333;
+    background: none;
     color: white;
     border: none;
     width: 50px;
@@ -569,7 +569,7 @@ object-fit: cover;
 }
 
 .carousel-btn:disabled {
-    background: #ccc;
+    background: none;
     cursor: default;
     transform: none;
 }
