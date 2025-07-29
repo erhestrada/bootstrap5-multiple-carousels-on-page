@@ -74,7 +74,9 @@ const updateLabels = () => {
   } else {
     labelLeft.style.opacity = '1';
     labelRight.style.opacity = '0.4';
-    //makeTopCategoriesNewCarousels(window.pageNumber); // This doesn't work
+    const categoriesCarousels = document.getElementById('categories-carousels');
+    categoriesCarousels.innerHTML = '';
+    makeTopCategoriesNewCarousels(window.pageNumber); // This doesn't work
   }
 };
 
