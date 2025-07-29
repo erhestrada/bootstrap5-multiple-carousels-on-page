@@ -60,3 +60,23 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
 makeTopCategoriesNewCarousels(window.pageNumber);
+
+
+const toggle = document.getElementById('modeToggle');
+const labelLeft = document.getElementById('label-left');
+const labelRight = document.getElementById('label-right');
+
+const updateLabels = () => {
+  if (toggle.checked) {
+    labelLeft.style.opacity = '0.4';
+    labelRight.style.opacity = '1';
+    makeFollowedCategoriesCarousels();
+  } else {
+    labelLeft.style.opacity = '1';
+    labelRight.style.opacity = '0.4';
+    //makeTopCategoriesNewCarousels(window.pageNumber); // This doesn't work
+  }
+};
+
+toggle.addEventListener('change', updateLabels);
+window.addEventListener('DOMContentLoaded', updateLabels);
