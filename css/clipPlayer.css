@@ -2,6 +2,12 @@
   border-bottom: 1px solid grey;
 }
 
+#clip-player-carousel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .carousel-inner {
     padding: 1em;
   }
