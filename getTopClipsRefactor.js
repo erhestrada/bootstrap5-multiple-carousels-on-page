@@ -170,6 +170,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         replaceCarouselItem(0, embedUrls, streamerIds, streamers);
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
+        updateCarouselLabels();
       }
       
       makeClipsCarouselFromClipsData(clipsData, carouselName);
@@ -291,4 +292,11 @@ function makeCarouselItems(carouselName, clipsData) {
   });
 
   return carouselItems;
+}
+
+function updateCarouselLabels() {
+  const currentCarouselLabels = document.querySelectorAll('.carousel-label');
+  currentCarouselLabels.forEach(label => {
+      label.textContent = window.activeCarousel;
+  });
 }
