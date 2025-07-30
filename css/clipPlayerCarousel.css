@@ -1,3 +1,7 @@
+#clip-player-complex{
+  border-bottom: 1px solid grey;
+}
+
 /* Position controls outside the image area */
 .carousel-no-overlap {
     position: relative;

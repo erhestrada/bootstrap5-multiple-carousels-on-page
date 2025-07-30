@@ -31,10 +31,6 @@ a:hover {
   text-decoration: none; /* Keep no underline on hover */
 }
 
-#clip-player-complex{
-  border-bottom: 1px solid grey;
-}
-
 #like-dislike-container{
   display: flex;
   flex-direction: row;
