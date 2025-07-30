@@ -8,6 +8,18 @@
   justify-content: space-between; /*or justify-content: center with gap*/
 }
 
+#carouselExampleControls {
+  position: relative; /* make it the positioning context */
+}
+
+#carouselExampleControls .carousel-control-prev {
+  left: 0;
+}
+
+#carouselExampleControls .carousel-control-next {
+  right: 0;
+}
+
 .carousel-inner {
     padding: 1em;
   }
@@ -41,14 +53,6 @@
 
 #carouselExampleControls .carousel-inner{
   padding: 0;
-}
-
-#clip-player-carousel-container .carousel-control-prev {
-  left: 500px; /* You can also specifically adjust the left one */
-}
-
-#clip-player-carousel-container .carousel-control-next {
-  right: 500px;
 }
 
 #carouselExample .carousel-inner{
