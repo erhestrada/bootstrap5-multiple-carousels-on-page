@@ -41,19 +41,6 @@ a:hover {
   width: fit-content;
 }
   
-#change-carousel-buttons-container {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  flex-grow: 1; /* Take available space */
-}
-
-.change-carousel-button {
-  flex: 1; /* Each button takes equal space */
-  width: 100%;
-  box-sizing: border-box;
-}
-
 #disclosure-button-container {
   display: flex;
   justify-content: center;  /* centers horizontally */
