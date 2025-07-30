@@ -1,0 +1,18 @@
+#for-you-iframe-container {
+  width: 100%; /* Use full width of the popup */
+
+  height: 360px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+#for-you-container {
+  margin-left: 220px;  /* Space for the fixed sidebar */
+  padding: 20px; 
+}
+
+#for-you-clip-player {
+  position: sticky;
+  top: 64px;
+  z-index: 1; 
+}
