@@ -148,15 +148,18 @@ export function changeCarousel(arrow) {
     streamerBarCarousel.innerHTML = '';
     updateDonutPfp(streamerIds[thumbnailIndexInCarousel]);
     updateStreamerBarCarousel(streamerIds[thumbnailIndexInCarousel]);
-
-    const currentCarouselLabels = document.querySelectorAll('.carousel-label');
-    currentCarouselLabels.forEach(label => {
-        label.textContent = window.activeCarousel;
-    });
+    updateCarouselLabels();
 
     setTimeout(() => {
         isScrolling = false;
     }, 400);
 
     //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+}
+
+function updateCarouselLabels() {
+  const currentCarouselLabels = document.querySelectorAll('.carousel-label');
+  currentCarouselLabels.forEach(label => {
+      label.textContent = window.activeCarousel;
+  });
 }
