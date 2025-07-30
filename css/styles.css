@@ -40,19 +40,6 @@ a:hover {
 .valence-button{
   width: fit-content;
 }
-  
-#disclosure-button-container {
-  display: flex;
-  justify-content: center;  /* centers horizontally */
-}
-
-.caret-up {
-  transform: rotate(0deg);
-}
-
-.caret-down {
-  transform: rotate(180deg);
-}
 
 #categories-to-browse {
   display: flex;
