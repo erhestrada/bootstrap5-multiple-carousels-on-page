@@ -163,18 +163,6 @@ a:hover {
   overflow: hidden;
 }
 
-.streamer-bar{
-  display: flex;
-  width: 50%;
-  margin: 0 auto;
-}
-
-#streamer-bar-carousel-container {
-  width: 150%;
-  margin: 0 ;
-  overflow: hidden;
-}
-
 .meta-svg-container {
   width: 150px;
   height: 150px;
@@ -220,10 +208,6 @@ object-fit: cover;
 #carouselExample .carousel-inner{
   height: 350px;
   overflow: hidden;
-}
-
-#streamer-bar-carousel-container{
-  height: 150px;
 }
 
 #disclosure-button-container {
@@ -295,27 +279,6 @@ object-fit: cover;
 
 .iframe-slide {
   background-color: #333; /* Dark grey background */
-}
-
-/* Style for the container of each streamer entry */
-.streamer-entry {
-  display: flex;            /* Use flexbox for horizontal layout */
-  align-items: center;      /* Vertically center the content */
-  margin-bottom: 10px;      /* Space between entries */
-}
-
-/* Style for the image (profile picture) */
-.streamer-pfp {
-  width: 40px;              /* Set a fixed size for the profile picture */
-  height: 40px;             /* Make sure the height matches the width */
-  border-radius: 50%;       /* Make the image circular */
-  margin-right: 10px;       /* Add some space between the image and the name */
-}
-
-/* Style for the name of the streamer */
-.streamer-name {
-  margin: 0;                /* Remove any default margin */
-  font-size: 16px;          /* Set a font size for the name */
 }
 
 #sidebar {
@@ -613,26 +576,3 @@ object-fit: cover;
     }
 }
 
-/* Streamer Bar styling */
-
-#streamer-bar-carousel-container .carousel-row {
-    margin: 0; /* Remove any inherited margins */
-    padding: 8px 10px; /* Smaller padding for smaller container */
-    width: 100%;
-    height: 100%;
-}
-
-#streamer-bar-carousel-container .carousel-element {
-    flex: 0 0 calc(25% - 10px); /* Smaller margins for smaller space */
-    height: 120px; /* Much smaller height to fit in 150px container */
-    min-height: auto; /* Override the 200px min-height */
-    margin-right: 10px; /* Smaller margin */
-}
-
-#streamer-bar-carousel-container .carousel-element .img-wrapper {
-    height: 8em; /* Smaller image height */
-}
-
-#streamer-bar-carousel-container .carousel-element:last-child {
-    margin-right: 0;
-}
