@@ -152,17 +152,6 @@ a:hover {
   right: 500px;
 }
 
-#carousel2{
-  transform: scale(0.5);
-  transform-origin: top left;
-}
-
-#carousel2 .carousel-inner {
-  margin: 0;
-  width: 100%;
-  overflow: hidden;
-}
-
 .meta-svg-container {
   width: 150px;
   height: 150px;
