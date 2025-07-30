@@ -125,53 +125,6 @@ a:hover {
   background-color: #333; /* Dark grey background */
 }
 
-#sidebar {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  width: 200px;
-  height: calc(100vh - 60px);  /* Adjust height to avoid overlap with navbar */
-  background-color: #333;
-  color: white;
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
-}
-
-#sidebar ul {
-  list-style-type: none;
-}
-
-#sidebar ul li {
-  margin-bottom: 20px;
-}
-
-#sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 15px;
-  display: block;
-}
-
-#sidebar ul li a:hover {
-  background-color: #575757;
-}
-
-#for-you-container {
-  margin-left: 220px;  /* Space for the fixed sidebar */
-  padding: 20px;
-  
-}
-
-#for-you-clip-player {
-  position: sticky;
-  top: 64px;
-  z-index: 1;
-  
-}
-
 #x{
   position: sticky;
   top: 0;
