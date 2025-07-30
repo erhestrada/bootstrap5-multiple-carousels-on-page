@@ -11,31 +11,10 @@ p {
   margin: 0;
 }
 
-#nav-bar-sticky-container{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
 .sticky-stuff{
   position: sticky;
   top: 0;
   z-index: 1;
-}
-
-#nav-bar-items {
-  display: flex;
-  flex-direction: row;
-  gap: 100px;
-  background-color: rgb(31, 31, 31);
-  color: white;
-  padding: 0;
-  align-items: center;
-  color: white;
-}
-
-.nav-bar-button {
-  cursor: pointer;
 }
 
 ul {
@@ -266,12 +245,6 @@ a:hover {
   margin-left: 220px;  /* Space for the fixed sidebar */
   padding: 20px;
   
-}
-
-#nav-bar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 
 #for-you-clip-player {

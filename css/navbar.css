@@ -1,0 +1,26 @@
+#nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#nav-bar-sticky-container{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#nav-bar-items {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  background-color: rgb(31, 31, 31);
+  color: white;
+  padding: 0;
+  align-items: center;
+  color: white;
+}
+
+.nav-bar-button {
+  cursor: pointer;
+}
