@@ -6,12 +6,9 @@
 
 #streamer-bar-carousel-container {
   width: 150%;
+  height: 150px;
   margin: 0 ;
   overflow: hidden;
-}
-
-#streamer-bar-carousel-container{
-  height: 150px;
 }
 
 /* Style for the container of each streamer entry */
@@ -34,7 +31,6 @@
   margin: 0;                /* Remove any default margin */
   font-size: 16px;          /* Set a font size for the name */
 }
-
 
 /* Streamer Bar styling */
 
