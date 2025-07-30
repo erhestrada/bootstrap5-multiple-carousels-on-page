@@ -72,9 +72,3 @@ a:hover {
   object-fit: cover; /* Optional: This will ensure the image doesn't stretch or squash */
   image-rendering: crisp-edges; /* Attempt to preserve sharpness during scaling */
 }
-
-.boxart {
-  margin-left: 30px;
-  margin-right: 10px;
-  padding: 16px 0; /* Same padding as carousel-inner */
-}
