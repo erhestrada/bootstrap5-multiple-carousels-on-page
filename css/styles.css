@@ -195,42 +195,6 @@ a:hover {
   image-rendering: crisp-edges; /* Attempt to preserve sharpness during scaling */
 }
 
-.tabs {
-  display: flex;
-  background-color: #f1f1f1;
-  border-bottom: 2px solid #ccc;
-}
-
-.tab-link {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  background-color: #ddd;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.tab-link:hover {
-  background-color: #ccc;
-}
-
-.tab-link.active {
-  background-color: #fff;
-  border-bottom: 2px solid #000;
-}
-
-.tab-content {
-  display: none;
-  padding: 20px;
-}
-
-.tab-content.active {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 .boxart {
   margin-left: 30px;
   margin-right: 10px;
