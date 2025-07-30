@@ -2,46 +2,6 @@
   border-bottom: 1px solid grey;
 }
 
-/* Position controls outside the image area */
-.carousel-no-overlap {
-    position: relative;
-    padding: 0 50px; /* Add padding to create space for controls */
-}
-
-.carousel-no-overlap .carousel-inner {
-    margin: 0 auto;
-}
-
-.carousel-no-overlap .carousel-control-prev,
-.carousel-no-overlap .carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.7);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
-}
-
-.carousel-no-overlap .carousel-control-prev:hover,
-.carousel-no-overlap .carousel-control-next:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.carousel-no-overlap .carousel-control-prev {
-    left: 5px;
-}
-
-.carousel-no-overlap .carousel-control-next {
-    right: 5px;
-}
-
 .carousel-inner {
     padding: 1em;
   }
@@ -101,4 +61,46 @@
 
 .caret-down {
   transform: rotate(180deg);
+}
+
+/* ----------------------------------------------------------------- */
+
+/* Position controls outside the image area */
+.carousel-no-overlap {
+    position: relative;
+    padding: 0 50px; /* Add padding to create space for controls */
+}
+
+.carousel-no-overlap .carousel-inner {
+    margin: 0 auto;
+}
+
+.carousel-no-overlap .carousel-control-prev,
+.carousel-no-overlap .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.carousel-no-overlap .carousel-control-prev:hover,
+.carousel-no-overlap .carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.carousel-no-overlap .carousel-control-prev {
+    left: 5px;
+}
+
+.carousel-no-overlap .carousel-control-next {
+    right: 5px;
 }
