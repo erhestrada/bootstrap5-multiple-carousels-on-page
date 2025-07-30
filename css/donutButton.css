@@ -1,7 +1,7 @@
 .meta-svg-container {
-  width: 150px;
-  height: 150px;
-  min-width: 150px;
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
   position: relative;
   overflow: hidden;
 }
