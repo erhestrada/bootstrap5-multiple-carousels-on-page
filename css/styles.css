@@ -293,6 +293,9 @@ object-fit: cover;
   height: 640px;
 }
 
+.iframe-slide {
+  background-color: #333; /* Dark grey background */
+}
 
 /* Style for the container of each streamer entry */
 .streamer-entry {
