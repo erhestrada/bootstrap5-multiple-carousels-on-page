@@ -81,6 +81,8 @@
   min-width: 120px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .donut-chart {
@@ -100,7 +102,7 @@
 
 .svg-container {
 transform: scale(0.4);
-transform-origin: top left;
+transform-origin: top right;
 position: relative;
 width: 300px;
 height: 300px;
