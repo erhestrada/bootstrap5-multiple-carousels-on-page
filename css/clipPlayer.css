@@ -56,11 +56,11 @@
 
 /* Eventually refactor into elements in flexbox row */
 #clip-player-carousel-container .carousel-control-prev {
-  left: -100px; /* You can also specifically adjust the left one */
+  left: 50px; /* You can also specifically adjust the left one */
 }
 
 #clip-player-carousel-container .carousel-control-next {
-  right: -100px;
+  right: 50px;
 }
 
 #carouselExample .carousel-inner{
