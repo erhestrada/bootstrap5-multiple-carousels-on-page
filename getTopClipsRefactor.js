@@ -108,19 +108,9 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   console.log('current streamer: ', streamers[index]);
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
   updateHistory(embedUrls, index); // kind of just want to pass clipsData
-
-  const currentClip = document.getElementById('current-clip');
-  currentClip.remove();
-
-  const carouselInner = document.querySelector('.carousel-inner');
-
-  const newItem = document.createElement('div');
-  newItem.className = 'carousel-item iframe-slide active';
-  newItem.id = "current-clip";
   
-  const flexContainer = document.createElement('div');
-  flexContainer.className = 'd-flex justify-content-center align-items-center';
-  
+  const flexContainer = document.getElementById('iframe-container');
+  flexContainer.innerHTML = '';
   const iframe = document.createElement('iframe');
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
@@ -131,11 +121,6 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
   flexContainer.appendChild(iframe);
-  newItem.appendChild(flexContainer);
-  carouselInner.appendChild(newItem);
-
-  // Refresh the carousel to recognize the new item
-  const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
 }
 
 // use window instead of localStorage
