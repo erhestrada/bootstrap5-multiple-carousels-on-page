@@ -110,13 +110,9 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   updateHistory(embedUrls, index); // kind of just want to pass clipsData
   
   const iframeContainer = document.getElementById('iframe-container');
-  iframeContainer.innerHTML = '';
-  const iframe = document.createElement('iframe');
+  const iframe = iframeContainer.querySelector('iframe');
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
-  iframe.height = 360;
-  iframe.width = 640;
-  iframe.frameBorder = 0;
   iframe.allowFullscreen = true;
   iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
