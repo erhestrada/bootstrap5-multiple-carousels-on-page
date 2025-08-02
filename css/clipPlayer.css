@@ -83,6 +83,14 @@
 
 /* ----------------------------------------------------------------- */
 
+#history-container, #comments-section {
+  border: 2px solid #ccc; /* Light gray border */
+  padding: 10px;
+  border-radius: 5px;     /* rounded corners */
+}
+
+/* ----------------------------------------------------------------- */
+
 /* Position controls outside the image area */
 .carousel-no-overlap {
     position: relative;
