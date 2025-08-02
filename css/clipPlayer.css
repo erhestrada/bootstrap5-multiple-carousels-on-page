@@ -83,10 +83,25 @@
 
 /* ----------------------------------------------------------------- */
 
+#thing {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between; /*or justify-content: center with gap*/  
+}
+
+#clip-player-and-streamer-bar{
+    flex: 1;
+  min-width: 0;
+}
+
 #history-container, #comments-section {
   border: 2px solid #ccc; /* Light gray border */
   padding: 10px;
   border-radius: 5px;     /* rounded corners */
+  flex: 1;
+  min-width: 0;
+  flex: 0.5;
 }
 
 /* ----------------------------------------------------------------- */
