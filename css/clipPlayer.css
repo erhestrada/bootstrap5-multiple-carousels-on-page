@@ -90,8 +90,8 @@
   justify-content: space-between; /*or justify-content: center with gap*/  
 }
 
-#clip-player-and-streamer-bar{
-    flex: 1;
+#expanded-clip-player{
+  flex: 1;
   min-width: 0;
 }
 
