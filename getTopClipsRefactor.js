@@ -315,5 +315,5 @@ function updateHistory(embedUrls, index) {
   clipItem.textContent = `${clip}`;
   clipItem.classList.add('clip-history-item');
 
-  historyContainer.appendChild(clipItem);
+  historyContainer.prepend(clipItem);
 }
