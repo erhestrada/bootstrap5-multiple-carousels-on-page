@@ -109,8 +109,8 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
   updateHistory(embedUrls, index); // kind of just want to pass clipsData
   
-  const flexContainer = document.getElementById('iframe-container');
-  flexContainer.innerHTML = '';
+  const iframeContainer = document.getElementById('iframe-container');
+  iframeContainer.innerHTML = '';
   const iframe = document.createElement('iframe');
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
@@ -120,7 +120,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   iframe.allowFullscreen = true;
   iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
-  flexContainer.appendChild(iframe);
+  iframeContainer.appendChild(iframe);
 }
 
 // use window instead of localStorage
