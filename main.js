@@ -16,7 +16,7 @@ window.carouselIndex = 0;
 window.lastThumbnailIndexInCarousel = {};
 window.carouselInstances = {};
 window.boxArtUrls = {};
-window.history = [];
+window.watchHistory = [];
 
 localStorage?.removeItem('highlightedDivId');
 
