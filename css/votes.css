@@ -4,11 +4,8 @@
   justify-content: center;
 }
 
-.valence-button{
-  width: fit-content;
-}
-
 .valence-button {
+  width: fit-content;
   color: gray;
   background: none;
   border: none;
