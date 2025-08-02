@@ -72,3 +72,16 @@ a:hover {
   object-fit: cover; /* Optional: This will ensure the image doesn't stretch or squash */
   image-rendering: crisp-edges; /* Attempt to preserve sharpness during scaling */
 }
+
+.valence-button {
+  color: gray;
+  background: none;
+  border: none;
+  padding: 0;
+  color: gray;
+  cursor: pointer;
+}
+
+.triangle-down {
+  transform: rotate(180deg);
+}
