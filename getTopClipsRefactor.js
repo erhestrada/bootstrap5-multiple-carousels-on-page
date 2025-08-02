@@ -107,6 +107,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   localStorage.setItem('currentClipStreamer', streamers[index]);
   console.log('current streamer: ', streamers[index]);
   localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
+  updateHistory(embedUrls, index); // kind of just want to pass clipsData
 
   const currentClip = document.getElementById('current-clip');
   currentClip.remove();
@@ -299,4 +300,20 @@ function updateCarouselLabels() {
   currentCarouselLabels.forEach(label => {
       label.textContent = window.activeCarousel;
   });
+}
+
+function updateHistory(embedUrls, index) {
+  const clip = embedUrls[index];
+
+  // Add clip to custom history array
+  window.watchHistory.push(clip);
+
+  // Update the history container in the UI
+  const historyContainer = document.getElementById('history-container');
+
+  const clipItem = document.createElement('div');
+  clipItem.textContent = `${clip}`;
+  clipItem.classList.add('clip-history-item');
+
+  historyContainer.appendChild(clipItem);
 }
