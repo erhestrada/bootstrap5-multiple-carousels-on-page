@@ -202,66 +202,7 @@ function makeCarouselItems(carouselName, clipsData) {
 
   let carouselItems = [];
   englishClips.forEach((clip, index) => {
-    const carouselItem = document.createElement('div');
-    carouselItem.id = carouselName + index;
-    carouselItem.className = "carousel-element";
-
-    const imageWrapper = document.createElement('div');
-    imageWrapper.className = "img-wrapper";
-    imageWrapper.id = carouselName + "img-wrapper" + index;
-    imageWrapper.style.position = "relative";
-
-    // formerly thumbnail
-    const image = document.createElement('img');
-    image.src = clip.thumbnail_url + "?parent=localhost";
-    image.classList.add('thumbnail');
-    //const indexInCarousel = makeIndexInCarousel(carouselName);
-    image.addEventListener('click', () => {thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers)});
-    image.addEventListener('click', () => {highlightDiv(imageWrapper)});
-    window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
-
-    const cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
-    
-    const clipTitle = document.createElement('p');
-    clipTitle.innerText = titles[index];
-    clipTitle.style.color = "#FFFFFF";
-
-    const viewCount = document.createElement('p');
-    viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
-    viewCount.style.color = "#FFFFFF";
-    viewCount.style.position = 'absolute';
-    viewCount.style.bottom = '0';
-    viewCount.style.left = '0';
-
-    const streamer = document.createElement('p');
-    streamer.innerText = streamers[index];
-    streamer.style.color = "#FFFFFF";
-
-    const creationDate = document.createElement('p');
-    creationDate.innerText = creationDateTimes[index];
-    creationDate.style.color = "#FFFFFF";
-    creationDate.style.position = 'absolute';
-    creationDate.style.bottom = '0';
-    creationDate.style.right = '0';
-
-    const duration = document.createElement('p');
-    duration.innerText = Math.round(durations[index]) + 's';
-    duration.style.color = "#FFFFFF";
-
-    duration.style.position = 'absolute';
-    duration.style.top = '0';
-    duration.style.left = '0';
-
-    carouselItem.appendChild(imageWrapper);
-    imageWrapper.appendChild(image);
-    carouselItem.appendChild(cardBody);
-    cardBody.appendChild(clipTitle);
-    cardBody.appendChild(streamer);
-    imageWrapper.appendChild(duration);
-    imageWrapper.appendChild(viewCount);
-    imageWrapper.appendChild(creationDate); 
-
+    const { carouselItem, imageWrapper } = makeCarouselItem(carouselName, clip, index, embedUrls, streamerIds, streamers, titles, viewCounts, creationDateTimes, durations);
     carouselItems.push(carouselItem);
     
     if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
@@ -271,6 +212,67 @@ function makeCarouselItems(carouselName, clipsData) {
   });
 
   return carouselItems;
+}
+
+function makeCarouselItem(carouselName, clip, index, embedUrls, streamerIds, streamers, titles, viewCounts, creationDateTimes, durations) {
+  const carouselItem = document.createElement('div');
+  carouselItem.id = carouselName + index;
+  carouselItem.className = "carousel-element";
+
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = "img-wrapper";
+  imageWrapper.id = carouselName + "img-wrapper" + index;
+  imageWrapper.style.position = "relative";
+
+  const image = document.createElement('img');
+  image.src = clip.thumbnail_url + "?parent=localhost";
+  image.classList.add('thumbnail');
+  image.addEventListener('click', () => { thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) });
+  image.addEventListener('click', () => { highlightDiv(imageWrapper) });
+  window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper;
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  const clipTitle = document.createElement('p');
+  clipTitle.innerText = titles[index];
+  clipTitle.style.color = "#FFFFFF";
+
+  const viewCount = document.createElement('p');
+  viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
+  viewCount.style.color = "#FFFFFF";
+  viewCount.style.position = 'absolute';
+  viewCount.style.bottom = '0';
+  viewCount.style.left = '0';
+
+  const streamer = document.createElement('p');
+  streamer.innerText = streamers[index];
+  streamer.style.color = "#FFFFFF";
+
+  const creationDate = document.createElement('p');
+  creationDate.innerText = creationDateTimes[index];
+  creationDate.style.color = "#FFFFFF";
+  creationDate.style.position = 'absolute';
+  creationDate.style.bottom = '0';
+  creationDate.style.right = '0';
+
+  const duration = document.createElement('p');
+  duration.innerText = Math.round(durations[index]) + 's';
+  duration.style.color = "#FFFFFF";
+  duration.style.position = 'absolute';
+  duration.style.top = '0';
+  duration.style.left = '0';
+
+  carouselItem.appendChild(imageWrapper);
+  imageWrapper.appendChild(image);
+  carouselItem.appendChild(cardBody);
+  cardBody.appendChild(clipTitle);
+  cardBody.appendChild(streamer);
+  imageWrapper.appendChild(duration);
+  imageWrapper.appendChild(viewCount);
+  imageWrapper.appendChild(creationDate);
+
+  return { carouselItem, imageWrapper };
 }
 
 function updateCarouselLabels() {
