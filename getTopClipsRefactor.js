@@ -72,7 +72,6 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
   window.activeCarousel = carouselName;
   window.carouselIndex = window.orderedCarousels.indexOf(carouselName);
 
-  saveClipPositionData(indexInCarousel, embedUrls, streamerIds);
   replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
   updateDonutPfp(streamerIds[indexInCarousel]);
@@ -89,18 +88,9 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
 
 }
 
-export function saveClipPositionData(index, embedUrls, streamerIds) {
-  localStorage.setItem('clipIndex', JSON.stringify(index));
-  localStorage.setItem('clipEmbedUrls', JSON.stringify(embedUrls));
-  localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
-}
-
 export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
-  localStorage.setItem('currentClipStreamerId', streamerIds[index]);
-  localStorage.setItem('currentClipStreamer', streamers[index]);
   console.log('current streamer: ', streamers[index]);
-  localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
   updateHistory(embedUrls, index); // kind of just want to pass clipsData
   
   const iframeContainer = document.getElementById('iframe-container');
@@ -113,7 +103,6 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   iframeContainer.appendChild(iframe);
 }
 
-// use window instead of localStorage
 export function highlightDiv(div) {
   const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
@@ -142,7 +131,6 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       if (game === window.orderedCarousels[0]) {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
         window.activeCarousel = carouselName;
-        saveClipPositionData(0, embedUrls, streamerIds);
 
         // making clips data exist for updateHistory; moving makeClipsCarouselFromClipsData before this block breaks first thumbnail highlighting
         // refactor because duplicating making english clips
@@ -212,9 +200,6 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
     gameId = carouselName;
   }
   
-  localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
-  embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
-
   const carouselItem = document.createElement('div');
   carouselItem.id = carouselName + index;
   carouselItem.className = "carousel-element";
