@@ -144,6 +144,9 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
+      // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
+      makeClipsCarouselFromClipsData(clipsData, carouselName);
+
       // this happens one time, not every time
       if (game === window.orderedCarousels[0]) {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
@@ -155,7 +158,6 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         updateCarouselLabels();
       }
       
-      makeClipsCarouselFromClipsData(clipsData, carouselName);
       return clipsData;
     } catch (error) {
       console.error(error);
@@ -284,6 +286,13 @@ function updateCarouselLabels() {
 }
 
 function updateHistory(embedUrls, index) {
+  const { game, index: index1 } = window.currentClipPosition;
+  console.log(game);
+  console.log(index1);
+  console.log(window.clipsData);
+  const clipData = window.clipsData[game][index1];
+  console.log(clipData);
+
   const clip = embedUrls[index];
 
   // Add clip to custom history array
