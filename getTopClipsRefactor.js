@@ -182,6 +182,11 @@ function makeCarouselItems(carouselName, clipsData) {
 }
 
 function makeCarouselItem(carouselName, clip, index, englishClips) {
+  console.assert(Array.isArray(englishClips), "englishClips is not an array");
+  console.assert(
+    typeof englishClips[0] === 'object' && englishClips[0] !== null && !Array.isArray(englishClips[0]),
+    'englishClips is not an array of objects'
+  );
   const embedUrls = englishClips.map((datum) => datum.embed_url);
   const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
   const titles = englishClips.map((datum) => datum.title);
@@ -269,13 +274,12 @@ function updateCarouselLabels() {
 
 function updateHistory(embedUrls, index) {
   const { game, index: index1 } = window.currentClipPosition;
-  console.log(game);
-  console.log(index1);
-  console.log(window.clipsData);
   const clipData = window.clipsData[game][index1];
-  console.log(clipData);
-
   const clip = embedUrls[index];
+
+  console.log(clipData);
+  const { carouselItem: clipItem } = makeCarouselItem(game, clip, index1, [clipData]);
+  console.log(clipItem);
 
   // Add clip to custom history array
   window.watchHistory.push(clip);
@@ -283,9 +287,9 @@ function updateHistory(embedUrls, index) {
   // Update the history container in the UI
   const historyContainer = document.getElementById('history-container');
 
-  const clipItem = document.createElement('div');
-  clipItem.textContent = `${clip}`;
-  clipItem.classList.add('clip-history-item');
+  //const clipItem = document.createElement('div');
+  //clipItem.textContent = `${clip}`;
+  //clipItem.classList.add('clip-history-item');
 
   historyContainer.prepend(clipItem);
 }
