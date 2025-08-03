@@ -276,7 +276,8 @@ function updateHistory() {
   const { game, index: index1 } = window.currentClipPosition;
   const clip = window.clipsData[game][index1];
 
-  const { carouselItem: clipItem } = makeCarouselItem(game, clip, index1, [clip]);
+  const carouselName = 'history-' + game;
+  const { carouselItem: clipItem } = makeCarouselItem(carouselName, clip, 0, [clip]);
 
   window.watchHistory.push(clip);
   
