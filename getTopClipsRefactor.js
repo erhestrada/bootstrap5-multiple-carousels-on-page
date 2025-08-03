@@ -274,10 +274,9 @@ function updateCarouselLabels() {
 
 function updateHistory(embedUrls, index) {
   const { game, index: index1 } = window.currentClipPosition;
-  const clipData = window.clipsData[game][index1];
-  const clip = embedUrls[index];
+  const clip = window.clipsData[game][index1];
 
-  const { carouselItem: clipItem } = makeCarouselItem(game, clip, index1, [clipData]);
+  const { carouselItem: clipItem } = makeCarouselItem(game, clip, index1, [clip]);
 
   window.watchHistory.push(clip);
   
