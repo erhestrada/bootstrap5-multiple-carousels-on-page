@@ -144,19 +144,25 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
       const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
-      // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
-      makeClipsCarouselFromClipsData(clipsData, carouselName);
-
       // this happens one time, not every time
       if (game === window.orderedCarousels[0]) {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
         window.activeCarousel = carouselName;
         saveClipPositionData(0, embedUrls, streamerIds);
-        replaceCarouselItem(0, embedUrls, streamerIds, streamers);
+
+        // making clips data exist for updateHistory; moving makeClipsCarouselFromClipsData before this block breaks first thumbnail highlighting
+        // refactor because duplicating making english clips
+        const englishClips = clipsData.data.filter(clip => clip.language === 'en');
+        window.clipsData[carouselName] = englishClips;
+
+        replaceCarouselItem(0, embedUrls, streamerIds, streamers); // im updating history here, so i need clip data to exist
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
         updateCarouselLabels();
       }
+      
+      // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
+      makeClipsCarouselFromClipsData(clipsData, carouselName);
       
       return clipsData;
     } catch (error) {
