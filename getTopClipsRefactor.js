@@ -160,7 +160,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         updateStreamerBarCarousel(streamerIds[0]);
         updateCarouselLabels();
       }
-      
+
       // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
       makeClipsCarouselFromClipsData(clipsData, carouselName);
       
@@ -212,10 +212,6 @@ function makeCarouselItems(carouselName, clipsData) {
     carouselItem.id = carouselName + index;
     carouselItem.className = "carousel-element";
 
-    const card = document.createElement('div');
-    card.className = "card";
-    //card.style.height = "300px";
-
     const imageWrapper = document.createElement('div');
     imageWrapper.className = "img-wrapper";
     imageWrapper.id = carouselName + "img-wrapper" + index;
@@ -263,7 +259,6 @@ function makeCarouselItems(carouselName, clipsData) {
     duration.style.top = '0';
     duration.style.left = '0';
 
-    //carouselItem.appendChild(card);
     carouselItem.appendChild(imageWrapper);
     imageWrapper.appendChild(image);
     carouselItem.appendChild(cardBody);
