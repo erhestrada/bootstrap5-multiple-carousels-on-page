@@ -100,7 +100,7 @@
   padding: 10px;
   border-radius: 5px;     /* rounded corners */
   min-width: 0;
-  flex: 0.5;
+  flex: 0.3;
   height: 54vh;
   overflow-y: auto;
 }
