@@ -91,7 +91,7 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
 export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
   console.log('current streamer: ', streamers[index]);
-  updateHistory(embedUrls, index); // kind of just want to pass clipsData
+  updateHistory(); // kind of just want to pass clipsData
   
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
@@ -272,7 +272,7 @@ function updateCarouselLabels() {
   });
 }
 
-function updateHistory(embedUrls, index) {
+function updateHistory() {
   const { game, index: index1 } = window.currentClipPosition;
   const clip = window.clipsData[game][index1];
 
