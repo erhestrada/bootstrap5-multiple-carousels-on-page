@@ -277,19 +277,10 @@ function updateHistory(embedUrls, index) {
   const clipData = window.clipsData[game][index1];
   const clip = embedUrls[index];
 
-  console.log(clipData);
   const { carouselItem: clipItem } = makeCarouselItem(game, clip, index1, [clipData]);
-  console.log(clipItem);
 
-  // Add clip to custom history array
   window.watchHistory.push(clip);
-
-  // Update the history container in the UI
+  
   const historyContainer = document.getElementById('history-container');
-
-  //const clipItem = document.createElement('div');
-  //clipItem.textContent = `${clip}`;
-  //clipItem.classList.add('clip-history-item');
-
   historyContainer.prepend(clipItem);
 }
