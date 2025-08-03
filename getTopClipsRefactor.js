@@ -281,6 +281,6 @@ function updateHistory() {
 
   window.watchHistory.push(clip);
   
-  const historyContainer = document.getElementById('history-container');
+  const historyContainer = document.getElementById('history-items');
   historyContainer.prepend(clipItem);
 }
