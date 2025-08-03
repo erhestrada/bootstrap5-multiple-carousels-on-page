@@ -179,6 +179,21 @@ function makeCarouselItems(carouselName, clipsData) {
   const englishClips = clipsData.data.filter(clip => clip.language === 'en');
   window.clipsData[carouselName] = englishClips;
 
+  let carouselItems = [];
+  englishClips.forEach((clip, index) => {
+    const { carouselItem, imageWrapper } = makeCarouselItem(carouselName, clip, index, englishClips);
+    carouselItems.push(carouselItem);
+    
+    if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
+      window.firstThumbnail = imageWrapper;
+      highlightDiv(imageWrapper);
+    }
+  });
+
+  return carouselItems;
+}
+
+function makeCarouselItem(carouselName, clip, index, englishClips) {
   const embedUrls = englishClips.map((datum) => datum.embed_url);
   const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
   const titles = englishClips.map((datum) => datum.title);
@@ -200,21 +215,6 @@ function makeCarouselItems(carouselName, clipsData) {
   localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
   embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
 
-  let carouselItems = [];
-  englishClips.forEach((clip, index) => {
-    const { carouselItem, imageWrapper } = makeCarouselItem(carouselName, clip, index, embedUrls, streamerIds, streamers, titles, viewCounts, creationDateTimes, durations);
-    carouselItems.push(carouselItem);
-    
-    if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
-      window.firstThumbnail = imageWrapper;
-      highlightDiv(imageWrapper);
-    }
-  });
-
-  return carouselItems;
-}
-
-function makeCarouselItem(carouselName, clip, index, embedUrls, streamerIds, streamers, titles, viewCounts, creationDateTimes, durations) {
   const carouselItem = document.createElement('div');
   carouselItem.id = carouselName + index;
   carouselItem.className = "carousel-element";
