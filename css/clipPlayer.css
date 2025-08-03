@@ -99,7 +99,6 @@
   border: 2px solid #ccc; /* Light gray border */
   padding: 10px;
   border-radius: 5px;     /* rounded corners */
-  flex: 1;
   min-width: 0;
   flex: 0.5;
   height: 54vh;
