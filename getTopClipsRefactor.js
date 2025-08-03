@@ -270,8 +270,8 @@ function makeCarouselItems(carouselName, clipsData) {
     carouselItems.push(carouselItem);
     
     if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
-    window.firstThumbnail = imageWrapper;
-    highlightDiv(imageWrapper);
+      window.firstThumbnail = imageWrapper;
+      highlightDiv(imageWrapper);
     }
   });
 
