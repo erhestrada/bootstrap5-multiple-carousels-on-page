@@ -201,12 +201,12 @@ function showReplyBox(button) {
             </div>
             <div class="reply-buttons">
                 <button class="reply-btn cancel-btn">Cancel</button>
-                <button class="reply-btn">Reply</button>
+                <button class="reply-btn actual-reply-btn">Reply</button>
             </div>
         `;
         commentContent.appendChild(replyBox);
 
-        const replyBtn = replyBox.querySelector('.reply-btn');
+        const replyBtn = replyBox.querySelector('.actual-reply-btn');
         replyBtn.addEventListener('click', () => postReply(replyBtn));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
