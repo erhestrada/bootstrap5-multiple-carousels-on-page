@@ -314,3 +314,7 @@ document.getElementById('new-comment').addEventListener('keydown', function(e) {
 
 // Initial render
 renderComments();
+document.addEventListener('DOMContentLoaded', () => {
+    const postBtn = document.querySelector('.comment-btn');
+    postBtn.addEventListener('click', postComment);
+});
