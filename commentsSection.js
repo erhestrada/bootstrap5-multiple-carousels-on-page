@@ -147,7 +147,7 @@ function renderComments() {
                         </div>
                         <div class="comment-text">${reply.text}</div>
                         <div class="comment-actions-row">
-                            <button class="action-btn"">
+                            <button class="action-btn">
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn" onclick="showReplyBox(this)">💬 Reply</button>
