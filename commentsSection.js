@@ -204,6 +204,11 @@ function showReplyBox(button) {
             </div>
         `;
         commentContent.appendChild(replyBox);
+
+        const cancelBtn = replyBox.querySelector('.cancel-btn');
+        cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
+
+
     }
     
     replyBox.style.display = 'block';
