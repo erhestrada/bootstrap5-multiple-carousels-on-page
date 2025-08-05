@@ -147,7 +147,7 @@ function renderComments() {
                         </div>
                         <div class="comment-text">${reply.text}</div>
                         <div class="comment-actions-row">
-                            <button class="action-btn" onclick="toggleLike(this)">
+                            <button class="action-btn"">
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn" onclick="showReplyBox(this)">💬 Reply</button>
@@ -167,7 +167,7 @@ function renderComments() {
                     </div>
                     <div class="comment-text">${comment.text}</div>
                     <div class="comment-actions-row">
-                        <button class="action-btn" onclick="toggleLike(this)">
+                        <button class="action-btn">
                             ❤️ <span>${Math.abs(comment.likes)}</span>
                         </button>
                         <button class="action-btn" onclick="showReplyBox(this)">💬 Reply</button>
@@ -242,7 +242,7 @@ function postReply(button) {
                     </div>
                     <div class="comment-text">${replyText}</div>
                     <div class="comment-actions-row">
-                        <button class="action-btn" onclick="toggleLike(this)">
+                        <button class="action-btn">
                             ❤️ <span>0</span>
                         </button>
                         <button class="action-btn" onclick="showReplyBox(this)">💬 Reply</button>
@@ -317,4 +317,10 @@ renderComments();
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
     postBtn.addEventListener('click', postComment);
+
+    const likeBtns = document.querySelectorAll('.action-btn');
+    for (const likeBtn of likeBtns) {
+        likeBtn.addEventListener('click', () => toggleLike(likeBtn));
+    }
 });
+
