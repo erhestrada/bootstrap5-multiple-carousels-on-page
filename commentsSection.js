@@ -199,7 +199,7 @@ function showReplyBox(button) {
                 <textarea class="reply-textarea" placeholder="Write a reply..."></textarea>
             </div>
             <div class="reply-buttons">
-                <button class="reply-btn cancel-btn" onclick="hideReplyBox(this)">Cancel</button>
+                <button class="reply-btn cancel-btn">Cancel</button>
                 <button class="reply-btn" onclick="postReply(this)">Reply</button>
             </div>
         `;
@@ -326,6 +326,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const replyBtns = document.querySelectorAll('.show-reply-btn');
     for (const replyBtn of replyBtns) {
         replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
+    }
+
+    const cancelBtns = document.querySelectorAll('.cancel-btn');
+    for (const cancelBtn of cancelBtns) {
+        cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
     }
 
 });
