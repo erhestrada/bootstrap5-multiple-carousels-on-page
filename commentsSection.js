@@ -259,6 +259,17 @@ function postReply(button) {
         `;
         
         repliesContainer.appendChild(newReply);
+
+        const likeBtn = newReply.querySelector('.like-btn');
+        if (likeBtn) {
+            likeBtn.addEventListener('click', () => toggleLike(likeBtn));
+        }
+        
+        const replyBtn = newReply.querySelector('.show-reply-btn');
+        if (replyBtn) {
+            replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
+        }
+
         textarea.value = '';
         replyBox.style.display = 'none';
     }
