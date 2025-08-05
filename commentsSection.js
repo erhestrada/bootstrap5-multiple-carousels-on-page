@@ -249,7 +249,7 @@ function postReply(button) {
                     </div>
                     <div class="comment-text">${replyText}</div>
                     <div class="comment-actions-row">
-                        <button class="action-btn">
+                        <button class="action-btn like-btn">
                             ❤️ <span>0</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
