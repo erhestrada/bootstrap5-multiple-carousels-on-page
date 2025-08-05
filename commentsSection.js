@@ -179,6 +179,7 @@ function renderComments() {
 
         commentsList.appendChild(commentElement);
     });
+    attachEventListeners();
 }
 
 function showReplyBox(button) {
@@ -200,15 +201,16 @@ function showReplyBox(button) {
             </div>
             <div class="reply-buttons">
                 <button class="reply-btn cancel-btn">Cancel</button>
-                <button class="reply-btn" onclick="postReply(this)">Reply</button>
+                <button class="reply-btn">Reply</button>
             </div>
         `;
         commentContent.appendChild(replyBox);
 
+        const replyBtn = replyBox.querySelector('.reply-btn');
+        replyBtn.addEventListener('click', () => postReply(replyBtn));
+
         const cancelBtn = replyBox.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
-
-
     }
     
     replyBox.style.display = 'block';
@@ -310,6 +312,18 @@ function postComment() {
     }
 }
 
+function attachEventListeners() {
+    const likeBtns = document.querySelectorAll('.like-btn');
+    likeBtns.forEach(btn => {
+        btn.addEventListener('click', () => toggleLike(btn));
+    });
+
+    const replyBtns = document.querySelectorAll('.show-reply-btn');
+    replyBtns.forEach(btn => {
+        btn.addEventListener('click', () => showReplyBox(btn));
+    });
+}
+
 // Allow Enter to post comment
 document.getElementById('new-comment').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.ctrlKey) {
@@ -322,21 +336,6 @@ renderComments();
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
     postBtn.addEventListener('click', postComment);
-
-    const likeBtns = document.querySelectorAll('.like-btn');
-    for (const likeBtn of likeBtns) {
-        likeBtn.addEventListener('click', () => toggleLike(likeBtn));
-    }
-
-    const replyBtns = document.querySelectorAll('.show-reply-btn');
-    for (const replyBtn of replyBtns) {
-        replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
-    }
-
-    const cancelBtns = document.querySelectorAll('.cancel-btn');
-    for (const cancelBtn of cancelBtns) {
-        cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
-    }
 
 });
 
