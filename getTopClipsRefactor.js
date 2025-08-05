@@ -123,9 +123,9 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         }
       });
       const clipsData = await response.json();
-      const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-      const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-      const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
+      //const embedUrls = clipsData.data.map((datum) => datum.embed_url);
+      //const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+      //const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
       // this happens one time, not every time
       if (game === window.orderedCarousels[0]) {
@@ -137,6 +137,11 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         const englishClips = clipsData.data.filter(clip => clip.language === 'en');
         window.clipsData[carouselName] = englishClips;
 
+        const embedUrls = englishClips.map((datum) => datum.embed_url);
+        const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
+        const streamers = englishClips.map((datum) => datum.broadcaster_name);
+
+        // these need to come from englishClips
         replaceCarouselItem(0, embedUrls, streamerIds, streamers); // im updating history here, so i need clip data to exist
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
