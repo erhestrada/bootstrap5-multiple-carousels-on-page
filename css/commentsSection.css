@@ -90,11 +90,11 @@
 }
 
 .comment-btn {
-    background: #6366f1;
+    background: none;
     color: white;
     border: none;
     border-radius: 6px;
-    padding: 8px 16px;
+    padding: 0px 8px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
