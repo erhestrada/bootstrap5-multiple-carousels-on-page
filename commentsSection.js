@@ -219,6 +219,8 @@ function showReplyBox(button) {
 
 function hideReplyBox(button) {
     const replyBox = button.closest('.reply-box');
+    const replyTextarea = replyBox.querySelector('.reply-textarea');
+    replyTextarea.value = '';
     replyBox.style.display = 'none';
 }
 
