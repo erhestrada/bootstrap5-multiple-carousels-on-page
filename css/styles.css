@@ -65,18 +65,13 @@ a:hover {
 
 .follow-button {
   width: fit-content;
-  color: gray;
-  background: none;
+  color: white;
+  background-color: #9147FF; /* purple highlight */
   border: none;
   padding: 6px 12px;
   border-radius: 999px; /* makes it fully rounded */
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
-  font-weight: bold;
-}
-
-.follow-button:hover {
-  background-color: #9147FF; /* purple highlight */
-  color: white;
-  font-weight: bold; 
+  font-weight: 600;
+  font-size: 15px;
 }
