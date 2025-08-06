@@ -15,11 +15,6 @@
   min-width: 0;
 }
 
-#comments-section {
-  display: flex;
-  justify-content: center;
-}
-
 .carousel-inner {
     padding: 1em;
   }
