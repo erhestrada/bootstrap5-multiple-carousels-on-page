@@ -17,6 +17,8 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    position: sticky;
+    top: 0;
 }
 
 .comments-header h2 {
