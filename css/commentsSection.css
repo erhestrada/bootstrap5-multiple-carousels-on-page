@@ -11,6 +11,23 @@
     justify-content: flex-start;
 }
 
+#comments-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+#comments-section::-webkit-scrollbar-track {
+  background: transparent; /* invisible track */
+}
+
+#comments-section::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* subtle thumb */
+  border-radius: 8px;
+}
+
+#comments-section::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* thumb highlight on hover */
+}
+
 .comments-header {
     padding: 20px;
     border-bottom: 1px solid #333;
