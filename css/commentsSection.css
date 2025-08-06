@@ -35,6 +35,8 @@
 .comment-input {
     padding: 20px;
     border-bottom: 1px solid #333;
+    position: sticky;
+    bottom: 0;
 }
 
 .input-wrapper {
