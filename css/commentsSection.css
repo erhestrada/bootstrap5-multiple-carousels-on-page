@@ -28,6 +28,12 @@
   background-color: rgba(255, 255, 255, 0.4); /* thumb highlight on hover */
 }
 
+/* firefox scrollbar styling */
+#comments-section {
+  scrollbar-width: thin; /* makes it slimmer */
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
 .comments-header {
     padding: 20px;
     border-bottom: 1px solid #333;
