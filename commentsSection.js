@@ -250,6 +250,7 @@ function postReply(button) {
                             ❤️ <span>0</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
+                        <button class="action-btn delete-btn" onclick="deleteComment(this)">🗑️ Delete</button>
                     </div>
                 </div>
             </div>
@@ -265,6 +266,11 @@ function postReply(button) {
         const replyBtn = newReply.querySelector('.show-reply-btn');
         if (replyBtn) {
             replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
+        }
+
+        const deleteBtn = newReply.querySelector('.delete-btn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', () => deleteComment(replyBtn));
         }
 
         textarea.value = '';
@@ -319,6 +325,49 @@ function postComment() {
     }
 }
 
+let pendingDeleteElement = null;
+
+function deleteComment(button) {
+    pendingDeleteElement = button;
+    showDeleteModal();
+}
+
+function showDeleteModal() {
+    const modal = document.getElementById('delete-modal');
+    modal.classList.add('show');
+}
+
+function hideDeleteModal() {
+    const modal = document.getElementById('delete-modal');
+    modal.classList.remove('show');
+    pendingDeleteElement = null;
+}
+
+function confirmDelete() {
+    if (pendingDeleteElement) {
+        const commentElement = pendingDeleteElement.closest('.comment');
+        const replyElement = pendingDeleteElement.closest('.reply');
+        
+        if (replyElement && !commentElement) {
+            // Deleting a reply (make sure it's not also inside a main comment)
+            replyElement.remove();
+        } else if (commentElement) {
+            // Deleting a main comment
+            const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
+            const commentIndex = comments.findIndex(c => c.id === commentId);
+            if (commentIndex !== -1) {
+                comments.splice(commentIndex, 1);
+                // Update comment count
+                const countElement = document.getElementById('comment-count');
+                countElement.textContent = parseInt(countElement.textContent) - 1;
+            }
+            commentElement.remove();
+        }
+    }
+    hideDeleteModal();
+}
+
+
 function attachEventListeners() {
     const likeBtns = document.querySelectorAll('.like-btn');
     likeBtns.forEach(btn => {
@@ -329,6 +378,12 @@ function attachEventListeners() {
     replyBtns.forEach(btn => {
         btn.addEventListener('click', () => showReplyBox(btn));
     });
+
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    deleteBtns.forEach(btn => {
+        btn.addEventListener('click', () => deleteComment(btn));
+    });
+
 }
 
 // Allow Enter to post comment
