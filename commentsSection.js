@@ -144,6 +144,7 @@ function renderComments() {
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn show-reply-btn">💬 Reply</button>
+                            ${reply.username === 'You' ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
                         </div>
                     </div>
                 </div>
@@ -164,6 +165,7 @@ function renderComments() {
                             ❤️ <span>${Math.abs(comment.likes)}</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
+                        ${comment.username === 'You' ? '<button class="action-btn delete-btn"">🗑️ Delete</button>' : ''}
                     </div>
                     ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
                 </div>
@@ -301,7 +303,6 @@ function postComment() {
             id: comments.length + 1,
             avatar: "Y",
             username: "You",
-            
             time: "now",
             text: commentText,
             likes: 0,
