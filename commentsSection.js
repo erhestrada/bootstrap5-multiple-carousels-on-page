@@ -399,5 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
     postBtn.addEventListener('click', postComment);
 
+    const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
+    deleteCancelButton.addEventListener('click', hideDeleteModal);
+
+    const deleteConfirmButton = document.querySelector('.delete-modal-btn.delete-confirm');
+    deleteConfirmButton.addEventListener('click', confirmDelete);
 });
 
