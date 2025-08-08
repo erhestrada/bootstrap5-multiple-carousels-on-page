@@ -178,14 +178,16 @@ function renderComments() {
 }
 
 function showReplyBox(button) {
-    // Hide any existing reply boxes
     document.querySelectorAll('.reply-box').forEach(box => {
         box.style.display = 'none';
     });
 
     const commentContent = button.closest('.comment-content');
     let replyBox = commentContent.querySelector('.reply-box');
-    
+
+    const usernameEl = commentContent.querySelector('.username');
+    const username = usernameEl ? usernameEl.textContent.trim() : '';
+
     if (!replyBox) {
         replyBox = document.createElement('div');
         replyBox.className = 'reply-box';
@@ -207,9 +209,20 @@ function showReplyBox(button) {
         const cancelBtn = replyBox.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
     }
-    
+
     replyBox.style.display = 'block';
-    replyBox.querySelector('.reply-textarea').focus();
+
+    const textarea = replyBox.querySelector('.reply-textarea');
+
+    // Only prefill @username if replying to a reply (i.e. inside .reply)
+    const isReplyToReply = button.closest('.reply') !== null;
+    if (isReplyToReply && username) {
+        textarea.value = `@${username} `;
+    } else {
+        textarea.value = '';
+    }
+
+    textarea.focus();
 }
 
 function hideReplyBox(button) {
