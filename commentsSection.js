@@ -226,7 +226,9 @@ function postReply(button) {
     
     if (replyText) {
         const commentContent = replyBox.closest('.comment-content');
-        let repliesContainer = commentContent.querySelector('.replies');
+
+        let parentComment = button.closest('.comment');
+        let repliesContainer = parentComment.querySelector('.replies');
         
         if (!repliesContainer) {
             repliesContainer = document.createElement('div');
