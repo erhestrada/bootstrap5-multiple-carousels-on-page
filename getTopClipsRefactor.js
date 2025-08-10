@@ -313,6 +313,7 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
 
   // Thumbnail wrapper
   const thumbWrapper = document.createElement('div');
+  thumbWrapper.className = 'playlist-thumb-wrapper';
   thumbWrapper.style.position = "relative";
   thumbWrapper.style.flex = "0 0 168px"; // Similar to YouTube's playlist thumbnail width
   thumbWrapper.style.marginRight = "10px";
@@ -341,6 +342,7 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
 
   // Right-side info column
   const infoCol = document.createElement('div');
+  infoCol.className = 'info-col'; // or add classList.add('info-col')
   infoCol.style.flex = "1";
 
   const titleEl = document.createElement('p');

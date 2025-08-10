@@ -110,3 +110,17 @@ a:hover {
 .pill-part:hover:not(.active) {
   background-color: rgba(169, 112, 255, 0.1);
 }
+
+/* hover grey on playlist row */
+.playlist-row:hover {
+  background-color: #272727; /* YouTube’s dark hover */
+  cursor: pointer;
+}
+
+.info-col {
+  background-color: transparent;
+}
+
+.playlist-thumb-wrapper {
+  background-color: transparent;
+}
