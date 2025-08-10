@@ -193,9 +193,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
     'englishClips is not an array of objects'
   );
   const embedUrls = englishClips.map((datum) => datum.embed_url);
-  const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
   const titles = englishClips.map((datum) => datum.title);
-  const languages = englishClips.map((datum) => datum.language);
   const viewCounts = englishClips.map((datum) => datum.view_count);
   const streamers = englishClips.map((datum) => datum.broadcaster_name);
   const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
@@ -298,9 +296,7 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
     'englishClips is not an array of objects'
   );
   const embedUrls = englishClips.map((datum) => datum.embed_url);
-  const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
   const titles = englishClips.map((datum) => datum.title);
-  const languages = englishClips.map((datum) => datum.language);
   const viewCounts = englishClips.map((datum) => datum.view_count);
   const streamers = englishClips.map((datum) => datum.broadcaster_name);
   const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
