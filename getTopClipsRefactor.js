@@ -278,15 +278,20 @@ function updateCarouselLabels() {
 function updateHistory() {
   const { game, index: index1 } = window.currentClipPosition;
   const clip = window.clipsData[game][index1];
+  window.watchHistory.push(clip);
 
   const carouselName = 'history-' + game;
-  const { carouselItem: clipItem } = makeHistoryRow(carouselName, clip, 0, [clip]);
-
-  window.watchHistory.push(clip);
+  const { carouselItem: historyRow } = makeHistoryRow(carouselName, clip, 0, [clip]);
   
   const historyContainer = document.getElementById('history-items');
+  historyContainer.prepend(historyRow);
 
-  historyContainer.prepend(clipItem);
+  const previousCurrent = document.querySelector('.playlist-row.current');
+  if (previousCurrent) {
+    previousCurrent.classList.remove('current');
+  }
+
+  historyRow.classList.add('current');
 }
 
 function makeHistoryRow(carouselName, clip, index, englishClips) {
