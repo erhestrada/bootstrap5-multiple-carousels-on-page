@@ -111,6 +111,10 @@ a:hover {
   background-color: rgba(169, 112, 255, 0.1);
 }
 
+.playlist-row {
+  padding: 8px;
+}
+
 /* hover grey on playlist row */
 .playlist-row:hover {
   background-color: #272727; /* YouTube’s dark hover */
