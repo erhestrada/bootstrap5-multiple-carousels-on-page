@@ -117,7 +117,7 @@ a:hover {
 
 /* hover grey on playlist row */
 .playlist-row:hover {
-  background-color: #272727; /* YouTube’s dark hover */
+  background-color: #272727;
   cursor: pointer;
 }
 
@@ -127,4 +127,8 @@ a:hover {
 
 .playlist-thumb-wrapper {
   background-color: transparent;
+}
+
+.playlist-row.current {
+  background-color: #4b367c;
 }
