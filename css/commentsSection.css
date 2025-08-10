@@ -331,3 +331,80 @@
     box-sizing: border-box;
     overflow-x: hidden;
 }
+
+/* ------- */
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.delete-modal.show {
+    display: flex;
+}
+
+.delete-modal-content {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid #333;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.delete-modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.delete-modal-text {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.delete-modal-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-confirm {
+    background: #ff4444;
+    color: white;
+}
+
+.delete-confirm:hover {
+    background: #ff3333;
+}
+
+.delete-cancel {
+    background: transparent;
+    color: #888;
+    border: 1px solid #555;
+}
+
+.delete-cancel:hover {
+    background: #333;
+    color: #fff;
+}
