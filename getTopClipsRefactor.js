@@ -278,13 +278,11 @@ function updateCarouselLabels() {
 }
 
 function updateHistory() {
-  const historyRow = document.createElement('div');
-
   const { game, index: index1 } = window.currentClipPosition;
   const clip = window.clipsData[game][index1];
 
   const carouselName = 'history-' + game;
-  const { carouselItem: clipItem } = makeCarouselItem(carouselName, clip, 0, [clip]);
+  const { carouselItem: clipItem } = makeHistoryRow(carouselName, clip, 0, [clip]);
 
   window.watchHistory.push(clip);
   
@@ -293,6 +291,86 @@ function updateHistory() {
   historyContainer.prepend(clipItem);
 }
 
-function makeHistoryRow() {
+function makeHistoryRow(carouselName, clip, index, englishClips) {
+  console.assert(Array.isArray(englishClips), "englishClips is not an array");
+  console.assert(
+    typeof englishClips[0] === 'object' && englishClips[0] !== null && !Array.isArray(englishClips[0]),
+    'englishClips is not an array of objects'
+  );
+  const embedUrls = englishClips.map((datum) => datum.embed_url);
+  const thumbnailUrls = englishClips.map((datum) => datum.thumbnail_url);
+  const titles = englishClips.map((datum) => datum.title);
+  const languages = englishClips.map((datum) => datum.language);
+  const viewCounts = englishClips.map((datum) => datum.view_count);
+  const streamers = englishClips.map((datum) => datum.broadcaster_name);
+  const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
+  const creationDateTimes = englishClips.map((datum) => datum.created_at);
+  const durations = englishClips.map((datum) => datum.duration);
+
+  // same for all clips in a getTopClps request -- requesting top clips in category
+  let gameId;
+  try {
+    gameId = clipsData.data[0].game_id;
+  } catch(error) {
+    gameId = carouselName;
+  }
   
+  const carouselItem = document.createElement('div');
+  carouselItem.id = carouselName + index;
+  carouselItem.className = "carousel-element";
+
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = "img-wrapper";
+  imageWrapper.id = carouselName + "img-wrapper" + index;
+  imageWrapper.style.position = "relative";
+
+  const image = document.createElement('img');
+  image.src = clip.thumbnail_url + "?parent=localhost";
+  image.classList.add('thumbnail');
+  image.addEventListener('click', () => { thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) });
+  image.addEventListener('click', () => { highlightDiv(imageWrapper) });
+  window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper;
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  const clipTitle = document.createElement('p');
+  clipTitle.innerText = titles[index];
+  clipTitle.style.color = "#FFFFFF";
+
+  const viewCount = document.createElement('p');
+  viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
+  viewCount.style.color = "#FFFFFF";
+  viewCount.style.position = 'absolute';
+  viewCount.style.bottom = '0';
+  viewCount.style.left = '0';
+
+  const streamer = document.createElement('p');
+  streamer.innerText = streamers[index];
+  streamer.style.color = "#FFFFFF";
+
+  const creationDate = document.createElement('p');
+  creationDate.innerText = creationDateTimes[index];
+  creationDate.style.color = "#FFFFFF";
+  creationDate.style.position = 'absolute';
+  creationDate.style.bottom = '0';
+  creationDate.style.right = '0';
+
+  const duration = document.createElement('p');
+  duration.innerText = Math.round(durations[index]) + 's';
+  duration.style.color = "#FFFFFF";
+  duration.style.position = 'absolute';
+  duration.style.top = '0';
+  duration.style.left = '0';
+
+  carouselItem.appendChild(imageWrapper);
+  imageWrapper.appendChild(image);
+  carouselItem.appendChild(cardBody);
+  cardBody.appendChild(clipTitle);
+  cardBody.appendChild(streamer);
+  imageWrapper.appendChild(duration);
+  imageWrapper.appendChild(viewCount);
+  imageWrapper.appendChild(creationDate);
+
+  return { carouselItem, imageWrapper };
 }
