@@ -278,6 +278,8 @@ function updateCarouselLabels() {
 }
 
 function updateHistory() {
+  const historyRow = document.createElement('div');
+
   const { game, index: index1 } = window.currentClipPosition;
   const clip = window.clipsData[game][index1];
 
@@ -287,5 +289,6 @@ function updateHistory() {
   window.watchHistory.push(clip);
   
   const historyContainer = document.getElementById('history-items');
+
   historyContainer.prepend(clipItem);
 }
