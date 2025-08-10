@@ -295,78 +295,74 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
     typeof englishClips[0] === 'object' && englishClips[0] !== null && !Array.isArray(englishClips[0]),
     'englishClips is not an array of objects'
   );
-  const embedUrls = englishClips.map((datum) => datum.embed_url);
-  const titles = englishClips.map((datum) => datum.title);
-  const viewCounts = englishClips.map((datum) => datum.view_count);
-  const streamers = englishClips.map((datum) => datum.broadcaster_name);
-  const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
-  const creationDateTimes = englishClips.map((datum) => datum.created_at);
-  const durations = englishClips.map((datum) => datum.duration);
 
-  // same for all clips in a getTopClps request -- requesting top clips in category
-  let gameId;
-  try {
-    gameId = clipsData.data[0].game_id;
-  } catch(error) {
-    gameId = carouselName;
-  }
-  
-  const carouselItem = document.createElement('div');
-  carouselItem.id = carouselName + index;
-  carouselItem.className = "carousel-element";
+  const embedUrls = englishClips.map(d => d.embed_url);
+  const titles = englishClips.map(d => d.title);
+  const viewCounts = englishClips.map(d => d.view_count);
+  const streamers = englishClips.map(d => d.broadcaster_name);
+  const streamerIds = englishClips.map(d => d.broadcaster_id);
+  const creationDateTimes = englishClips.map(d => d.created_at);
+  const durations = englishClips.map(d => d.duration);
 
-  const imageWrapper = document.createElement('div');
-  imageWrapper.className = "img-wrapper";
-  imageWrapper.id = carouselName + "img-wrapper" + index;
-  imageWrapper.style.position = "relative";
+  // Create outer row container
+  const row = document.createElement('div');
+  row.className = "playlist-row";
+  row.style.display = "flex";
+  row.style.alignItems = "flex-start";
+  row.style.marginBottom = "10px";
 
-  const image = document.createElement('img');
-  image.src = clip.thumbnail_url + "?parent=localhost";
-  image.classList.add('thumbnail');
-  image.addEventListener('click', () => { thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) });
-  image.addEventListener('click', () => { highlightDiv(imageWrapper) });
-  window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper;
+  // Thumbnail wrapper
+  const thumbWrapper = document.createElement('div');
+  thumbWrapper.style.position = "relative";
+  thumbWrapper.style.flex = "0 0 168px"; // Similar to YouTube's playlist thumbnail width
+  thumbWrapper.style.marginRight = "10px";
 
-  const cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
+  const thumb = document.createElement('img');
+  thumb.src = clip.thumbnail_url + "?parent=localhost";
+  thumb.classList.add('thumbnail');
+  thumb.style.width = "100%";
+  thumb.style.cursor = "pointer";
+  thumb.addEventListener('click', () => { 
+    thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers);
+    highlightDiv(thumbWrapper);
+  });
 
-  const clipTitle = document.createElement('p');
-  clipTitle.innerText = titles[index];
-  clipTitle.style.color = "#FFFFFF";
+  // Duration overlay
+  const durationOverlay = document.createElement('span');
+  durationOverlay.innerText = Math.round(durations[index]) + 's';
+  durationOverlay.style.position = 'absolute';
+  durationOverlay.style.bottom = '4px';
+  durationOverlay.style.right = '4px';
+  durationOverlay.style.background = 'rgba(0, 0, 0, 0.75)';
+  durationOverlay.style.color = '#fff';
+  durationOverlay.style.padding = '2px 4px';
+  durationOverlay.style.fontSize = '12px';
+  durationOverlay.style.borderRadius = '2px';
 
-  const viewCount = document.createElement('p');
-  viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
-  viewCount.style.color = "#FFFFFF";
-  viewCount.style.position = 'absolute';
-  viewCount.style.bottom = '0';
-  viewCount.style.left = '0';
+  // Right-side info column
+  const infoCol = document.createElement('div');
+  infoCol.style.flex = "1";
 
-  const streamer = document.createElement('p');
-  streamer.innerText = streamers[index];
-  streamer.style.color = "#FFFFFF";
+  const titleEl = document.createElement('p');
+  titleEl.innerText = titles[index];
+  titleEl.style.margin = "0";
+  titleEl.style.fontWeight = "bold";
+  titleEl.style.color = "#FFFFFF";
+  titleEl.style.cursor = "pointer";
 
-  const creationDate = document.createElement('p');
-  creationDate.innerText = creationDateTimes[index];
-  creationDate.style.color = "#FFFFFF";
-  creationDate.style.position = 'absolute';
-  creationDate.style.bottom = '0';
-  creationDate.style.right = '0';
+  const streamerEl = document.createElement('p');
+  streamerEl.innerText = streamers[index];
+  streamerEl.style.margin = "2px 0 0 0";
+  streamerEl.style.color = "#AAAAAA";
+  streamerEl.style.fontSize = "14px";
 
-  const duration = document.createElement('p');
-  duration.innerText = Math.round(durations[index]) + 's';
-  duration.style.color = "#FFFFFF";
-  duration.style.position = 'absolute';
-  duration.style.top = '0';
-  duration.style.left = '0';
+  // Append elements
+  thumbWrapper.appendChild(thumb);
+  thumbWrapper.appendChild(durationOverlay);
+  infoCol.appendChild(titleEl);
+  infoCol.appendChild(streamerEl);
+  row.appendChild(thumbWrapper);
+  row.appendChild(infoCol);
 
-  carouselItem.appendChild(imageWrapper);
-  imageWrapper.appendChild(image);
-  carouselItem.appendChild(cardBody);
-  cardBody.appendChild(clipTitle);
-  cardBody.appendChild(streamer);
-  imageWrapper.appendChild(duration);
-  imageWrapper.appendChild(viewCount);
-  imageWrapper.appendChild(creationDate);
-
-  return { carouselItem, imageWrapper };
+  return { carouselItem: row, imageWrapper: thumbWrapper };
 }
