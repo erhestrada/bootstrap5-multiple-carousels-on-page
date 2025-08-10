@@ -90,7 +90,18 @@
   min-width: 0;
 }
 
-#history-container, #comments-section {
+#history-container {
+  border: 2px solid #ccc; /* Light gray border */
+  padding: 10px;
+  padding-left: 0;
+  border-radius: 5px;     /* rounded corners */
+  min-width: 0;
+  flex: 0.3;
+  height: 54vh;
+  overflow-y: auto;
+}
+
+#comments-section {
   border: 2px solid #ccc; /* Light gray border */
   padding: 10px;
   border-radius: 5px;     /* rounded corners */
