@@ -292,3 +292,7 @@ function updateHistory() {
 
   historyContainer.prepend(clipItem);
 }
+
+function makeHistoryRow() {
+  
+}
