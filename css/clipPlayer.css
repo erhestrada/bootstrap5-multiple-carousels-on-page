@@ -156,3 +156,9 @@
 .carousel-no-overlap .carousel-control-next {
     right: 5px;
 }
+
+
+.carousel-control-prev,
+.carousel-control-next {
+  opacity: 1 !important;  /* Override Bootstrap's default 0.5 opacity */
+}
