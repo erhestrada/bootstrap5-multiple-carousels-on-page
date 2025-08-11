@@ -29,6 +29,10 @@
   z-index: 0;
 }
 
+.main-carousel-btn i {
+  font-size: 2rem;
+}
+
 .thumbnails-carousel-inner .carousel-item {
   display: flex;
   justify-content: space-between;
