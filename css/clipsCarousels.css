@@ -106,7 +106,6 @@
 .carousel-btn:disabled {
     background: none;
     cursor: default;
-    transform: none;
     opacity: 0.4;
 }
 
