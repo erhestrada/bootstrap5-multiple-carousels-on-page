@@ -110,6 +110,12 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const clipPlayerNextButton = document.getElementById('clip-player-next-btn');
   clipPlayerNextButton.disabled = index >= embedUrls.length - 1;
 
+  // Disable appropriate carousel button if at topmost carousel or bottommost carousel
+  const prevCarouselBtn = document.getElementById('previous-carousel-button');
+  prevCarouselBtn.disabled = window.carouselIndex === 0;
+
+  const nextCarouselBtn = document.getElementById('next-carousel-button');
+  nextCarouselBtn.disabled = window.activeCarousel === window.orderedCarousels[window.orderedCarousels.length - 1];
 }
 
 export function highlightDiv(div) {

@@ -149,13 +149,7 @@ export function changeCarousel(arrow) {
     updateDonutPfp(streamerIds[thumbnailIndexInCarousel]);
     updateStreamerBarCarousel(streamerIds[thumbnailIndexInCarousel]);
     updateCarouselLabels();
-
-    const prevCarouselBtn = document.getElementById('previous-carousel-button');
-    prevCarouselBtn.disabled = window.carouselIndex === 0;
-
-    const nextCarouselBtn = document.getElementById('next-carousel-button');
-    nextCarouselBtn.disabled = window.activeCarousel === window.orderedCarousels[window.orderedCarousels.length - 1];
-
+    
     setTimeout(() => {
         isScrolling = false;
     }, 400);
