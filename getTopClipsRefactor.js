@@ -101,6 +101,17 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
   iframeContainer.appendChild(iframe);
+
+  // Disable prevBtn/nextBtn if no clip to left (prevBtn disable condition) or right (nextBtn disable condition)
+  const clipPlayerPreviousButton = document.getElementById('clip-player-prev-btn');
+
+  if (index === 0) {
+    clipPlayerPreviousButton.disabled = true;
+    console.log(clipPlayerPreviousButton.disabled, "DISABLED?");
+  } else {
+    clipPlayerPreviousButton.disabled = false;
+  }
+
 }
 
 export function highlightDiv(div) {
