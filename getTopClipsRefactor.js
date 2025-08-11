@@ -104,13 +104,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
 
   // Disable prevBtn/nextBtn if no clip to left (prevBtn disable condition) or right (nextBtn disable condition)
   const clipPlayerPreviousButton = document.getElementById('clip-player-prev-btn');
-
-  if (index === 0) {
-    clipPlayerPreviousButton.disabled = true;
-    console.log(clipPlayerPreviousButton.disabled, "DISABLED?");
-  } else {
-    clipPlayerPreviousButton.disabled = false;
-  }
+  clipPlayerPreviousButton.disabled = index === 0;
 
   const clipPlayerNextButton = document.getElementById('clip-player-next-btn');
   if (index >= embedUrls.length - 1) {
