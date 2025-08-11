@@ -27,6 +27,7 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 0;
+  opacity: 1 !important;
 }
 
 .main-carousel-btn i {
@@ -155,10 +156,4 @@
 
 .carousel-no-overlap .carousel-control-next {
     right: 5px;
-}
-
-
-.carousel-control-prev,
-.carousel-control-next {
-  opacity: 1 !important;  /* Override Bootstrap's default 0.5 opacity */
 }
