@@ -112,6 +112,13 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
     clipPlayerPreviousButton.disabled = false;
   }
 
+  const clipPlayerNextButton = document.getElementById('clip-player-next-btn');
+  if (index >= embedUrls.length - 1) {
+    clipPlayerNextButton.disabled = true;
+  } else {
+    clipPlayerNextButton.disabled = false;
+  }
+
 }
 
 export function highlightDiv(div) {
