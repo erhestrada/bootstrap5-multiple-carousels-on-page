@@ -86,9 +86,6 @@ export function changeCarousel(arrow) {
     //slideCarousel(carouselId, 'reset');
 
     const offset =  carouselInstances[game].viewOffset;
-
-    const prevCarouselBtn = document.getElementById('previous-carousel-button');
-    const nextCarouselBtn = document.getElementById('next-carousel-button');
     
     if (arrow === "next") {
         console.log('next carousel');
@@ -153,11 +150,15 @@ export function changeCarousel(arrow) {
     updateStreamerBarCarousel(streamerIds[thumbnailIndexInCarousel]);
     updateCarouselLabels();
 
+    const prevCarouselBtn = document.getElementById('previous-carousel-button');
+    prevCarouselBtn.disabled = window.carouselIndex === 0;
+
+    const nextCarouselBtn = document.getElementById('next-carousel-button');
+    nextCarouselBtn.disabled = window.activeCarousel === window.orderedCarousels[window.orderedCarousels.length - 1];
+
     setTimeout(() => {
         isScrolling = false;
     }, 400);
-
-    //carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
 }
 
 function updateCarouselLabels() {
