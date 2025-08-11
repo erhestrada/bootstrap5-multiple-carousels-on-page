@@ -87,8 +87,8 @@ export function changeCarousel(arrow) {
 
     const offset =  carouselInstances[game].viewOffset;
 
-    const prevCarouselBtn = document.getElementyById('previous-carousel-button');
-    const nextCarouselBtn = document.getElementyById('next-carousel-button');
+    const prevCarouselBtn = document.getElementById('previous-carousel-button');
+    const nextCarouselBtn = document.getElementById('next-carousel-button');
     
     if (arrow === "next") {
         console.log('next carousel');
