@@ -76,6 +76,7 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
 
   updateDonutPfp(streamerIds[indexInCarousel]);
   updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+  updateCarouselLabels();
 
   // Show clipPlayer if it's hidden
   const clipPlayer = document.getElementById('clip-player-complex');
