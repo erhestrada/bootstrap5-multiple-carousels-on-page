@@ -74,6 +74,13 @@
   box-sizing: border-box;
 }
 
+.change-carousel-button:disabled {
+    background: none;
+    cursor: default;
+    opacity: 0.4;
+}
+
+
 /* Donut Button */
 
 .meta-svg-container {
