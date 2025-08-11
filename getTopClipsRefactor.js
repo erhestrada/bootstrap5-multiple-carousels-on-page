@@ -107,11 +107,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   clipPlayerPreviousButton.disabled = index === 0;
 
   const clipPlayerNextButton = document.getElementById('clip-player-next-btn');
-  if (index >= embedUrls.length - 1) {
-    clipPlayerNextButton.disabled = true;
-  } else {
-    clipPlayerNextButton.disabled = false;
-  }
+  clipPlayerNextButton.disabled = index >= embedUrls.length - 1;
 
 }
 
