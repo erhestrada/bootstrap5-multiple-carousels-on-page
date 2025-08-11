@@ -76,7 +76,6 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
 
   updateDonutPfp(streamerIds[indexInCarousel]);
   updateStreamerBarCarousel(streamerIds[indexInCarousel]);
-  updateCarouselLabels();
 
   // Show clipPlayer if it's hidden
   const clipPlayer = document.getElementById('clip-player-complex');
@@ -93,6 +92,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
   console.log('current streamer: ', streamers[index]);
   updateHistory(); // kind of just want to pass clipsData
+  updateCarouselLabels();
   
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
