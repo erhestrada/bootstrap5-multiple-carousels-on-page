@@ -3,7 +3,7 @@ import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarouselRefactor";
 import { highlightDiv } from './getTopClipsRefactor.js';
 import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInViewRefactor.js';
-import { makeCarouselId } from './makeCarouselForCategory.js';
+import { makeCarouselId } from './makeNewCarouselForCategory.js';
 import { carouselIsSliding } from './ensureThumbnailInViewRefactor.js';
 
 let isScrolling = false;
