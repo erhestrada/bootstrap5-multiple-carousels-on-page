@@ -64,9 +64,18 @@
 #change-carousel-buttons-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 4px; /* spacing between elements */
   height: auto;
   flex: 0.1;
 }
+
+.carousel-label {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
 
 .change-carousel-button {
   flex: 1; /* Each button takes equal space */
