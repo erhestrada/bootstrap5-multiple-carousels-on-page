@@ -68,24 +68,28 @@ export function getPastDateTime(daysBack) {
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers) {
+  window.initialClipPosition = window.currentClipPosition;
   window.currentClipPosition = {'game': carouselName, 'index': indexInCarousel};
-  window.activeCarousel = carouselName;
-  window.carouselIndex = window.orderedCarousels.indexOf(carouselName);
 
-  replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
+  // if different thumbnail was clicked
+  if (window.currentClipPosition.game !== window.initialClipPosition.game || window.currentClipPosition.index !== window.initialClipPosition.index) {
+    window.activeCarousel = carouselName;
+    window.carouselIndex = window.orderedCarousels.indexOf(carouselName);
 
-  updateDonutPfp(streamerIds[indexInCarousel]);
-  updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+    replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
-  // Show clipPlayer if it's hidden
-  const clipPlayer = document.getElementById('clip-player-complex');
-  const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
+    updateDonutPfp(streamerIds[indexInCarousel]);
+    updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
-  if (!clipPlayerIsVisible) {
-    const disclosureButton = document.getElementById('disclosure-button');
-    showClipPlayer(clipPlayer, disclosureButton);
+    // Show clipPlayer if it's hidden
+    const clipPlayer = document.getElementById('clip-player-complex');
+    const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
+
+    if (!clipPlayerIsVisible) {
+      const disclosureButton = document.getElementById('disclosure-button');
+      showClipPlayer(clipPlayer, disclosureButton);
+    }
   }
-
 }
 
 export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
