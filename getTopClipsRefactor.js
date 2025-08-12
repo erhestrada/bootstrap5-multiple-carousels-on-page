@@ -129,6 +129,7 @@ export function highlightDiv(div) {
     lastHighlightedDiv.style.outline = '';
   }
   div.style.outline = '5px solid #6441A4'; // Width stays within margins
+  div.style.cursor = 'default';
   window.highlightedDivId = div.id;
 }
 
