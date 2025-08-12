@@ -1,4 +1,4 @@
-import {makeCarouselForCategory} from './makeCarouselForCategory.js'
+import {makeNewCarouselForCategory} from './makeNewCarouselForCategory.js'
 
 export async function makeFollowedCategoriesCarousels() {
     const categoriesCarousels = document.getElementById('categories-carousels');
@@ -16,5 +16,5 @@ export async function makeFollowedCategoriesCarousels() {
         gameIds.push(categoryId);
     }
 
-    followedCategories.forEach((category, index) => makeCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
+    followedCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
 }
