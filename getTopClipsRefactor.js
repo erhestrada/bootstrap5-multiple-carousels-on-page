@@ -1,5 +1,5 @@
 import { updateDonutPfp } from "./updateDonutPfp";
-import { updateStreamerBarCarousel } from "./updateStreamerBarCarouselRefactor";
+import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { showClipPlayer } from "./toggleClipPlayer";
 import { SmartCarousel } from "./smartCarousel";
 import { makeCarouselId } from "./makeNewCarouselForCategory";

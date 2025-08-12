@@ -1,6 +1,6 @@
 import {getCurrentDateTime} from './getTopClips'
 import {getPastDateTime} from './getTopClips'
-import { makeCarousel2FromClipsData } from './getCarousel2Clips';
+import { makeClipsCarouselFromClipsData } from "./getTopClipsRefactor";
 
 export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
     try {
@@ -16,9 +16,7 @@ export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
         });
 
         const clipsData = await response.json();
-        makeCarousel2FromClipsData(clipsData, 'carousel2-inner', 'carousel2');
-        // why is this working when i take it out?
-        //document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
+        makeClipsCarouselFromClipsData(clipsData, "streamer-bar-carousel");
 
     } catch (error) {
         console.error(error);
