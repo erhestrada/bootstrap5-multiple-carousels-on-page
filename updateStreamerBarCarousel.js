@@ -1,6 +1,6 @@
 import {getCurrentDateTime} from './getTopClips'
 import {getPastDateTime} from './getTopClips'
-import { makeClipsCarouselFromClipsData } from "./getTopClipsRefactor";
+import { makeClipsCarouselFromClipsData } from "./getTopClips";
 
 export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
     try {

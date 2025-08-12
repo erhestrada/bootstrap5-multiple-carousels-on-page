@@ -1,6 +1,8 @@
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { showClipPlayer } from "./toggleClipPlayer";
+import { SmartCarousel } from "./smartCarousel";
+import { makeCarouselId } from "./makeNewCarouselForCategory";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -66,80 +68,68 @@ export function getPastDateTime(daysBack) {
 
 // need to recalculate carousel2, 3 based on which thumnail was clicked
 function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers) {
+  window.initialClipPosition = window.currentClipPosition;
   window.currentClipPosition = {'game': carouselName, 'index': indexInCarousel};
 
-  saveClipPositionData(indexInCarousel, embedUrls, streamerIds);
-  replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
+  // if different thumbnail was clicked
+  if (window.currentClipPosition.game !== window.initialClipPosition.game || window.currentClipPosition.index !== window.initialClipPosition.index) {
+    window.activeCarousel = carouselName;
+    window.carouselIndex = window.orderedCarousels.indexOf(carouselName);
 
-  let carousel2 = document.getElementById('carousel2');
-  const carousel2Inner = document.getElementById('carousel2-inner');
-  carousel2Inner.innerHTML = '';
+    replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
-  updateDonutPfp(streamerIds[indexInCarousel]);
-  updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+    updateDonutPfp(streamerIds[indexInCarousel]);
+    updateStreamerBarCarousel(streamerIds[indexInCarousel]);
 
-  carousel2 = new bootstrap.Carousel(document.querySelector('#carousel2'));
+    // Show clipPlayer if it's hidden
+    const clipPlayer = document.getElementById('clip-player-complex');
+    const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
 
-  // Show clipPlayer if it's hidden
-  const clipPlayer = document.getElementById('clip-player-complex');
-  const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
-
-  if (!clipPlayerIsVisible) {
-    const disclosureButton = document.getElementById('disclosure-button');
-    showClipPlayer(clipPlayer, disclosureButton);
+    if (!clipPlayerIsVisible) {
+      const disclosureButton = document.getElementById('disclosure-button');
+      showClipPlayer(clipPlayer, disclosureButton);
+    }
   }
-
-}
-
-export function saveClipPositionData(index, embedUrls, streamerIds) {
-  localStorage.setItem('clipIndex', JSON.stringify(index));
-  localStorage.setItem('clipEmbedUrls', JSON.stringify(embedUrls));
-  localStorage.setItem('clipStreamerIds', JSON.stringify(streamerIds));
 }
 
 export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
-  localStorage.setItem('currentClipStreamerId', streamerIds[index]);
-  localStorage.setItem('currentClipStreamer', streamers[index]);
   console.log('current streamer: ', streamers[index]);
-  localStorage.setItem("currentClipUrl", embedUrl + "&parent=localhost&autoplay=true");
-
-  const currentClip = document.getElementById('current-clip');
-  currentClip.remove();
-
-  const carouselInner = document.querySelector('.carousel-inner');
-
-  const newItem = document.createElement('div');
-  newItem.className = 'carousel-item iframe-slide active';
-  newItem.id = "current-clip";
+  updateHistory(); // kind of just want to pass clipsData
+  updateCarouselLabels();
   
-  const flexContainer = document.createElement('div');
-  flexContainer.className = 'd-flex justify-content-center align-items-center';
-  
-  const iframe = document.createElement('iframe');
+  const iframeContainer = document.getElementById('iframe-container');
+  const iframe = iframeContainer.querySelector('iframe');
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
-  iframe.height = 360;
-  iframe.width = 640;
-  iframe.frameBorder = 0;
   iframe.allowFullscreen = true;
+  iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
 
-  flexContainer.appendChild(iframe);
-  newItem.appendChild(flexContainer);
-  carouselInner.appendChild(newItem);
+  iframeContainer.appendChild(iframe);
 
-  // Refresh the carousel to recognize the new item
-  const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleControls'));
+  // Disable prevBtn/nextBtn if no clip to left (prevBtn disable condition) or right (nextBtn disable condition)
+  const clipPlayerPreviousButton = document.getElementById('clip-player-prev-btn');
+  clipPlayerPreviousButton.disabled = index === 0;
+
+  const clipPlayerNextButton = document.getElementById('clip-player-next-btn');
+  clipPlayerNextButton.disabled = index >= embedUrls.length - 1;
+
+  // Disable appropriate carousel button if at topmost carousel or bottommost carousel
+  const prevCarouselBtn = document.getElementById('previous-carousel-button');
+  prevCarouselBtn.disabled = window.carouselIndex === 0;
+
+  const nextCarouselBtn = document.getElementById('next-carousel-button');
+  nextCarouselBtn.disabled = window.activeCarousel === window.orderedCarousels[window.orderedCarousels.length - 1];
 }
 
-// use window instead of localStorage
 export function highlightDiv(div) {
   const lastHighlightedDivId = window.highlightedDivId;
   if (lastHighlightedDivId) {
     const lastHighlightedDiv = document.getElementById(lastHighlightedDivId);
     lastHighlightedDiv.style.outline = '';
   }
-  div.style.outline = '5px solid #6441A4';
+  div.style.outline = '5px solid #6441A4'; // Width stays within margins
+  div.style.cursor = 'default';
   window.highlightedDivId = div.id;
 }
 
@@ -153,38 +143,82 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         }
       });
       const clipsData = await response.json();
-      const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-      const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-      const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
-      window.clipsData[carouselName] = clipsData;
+      //const embedUrls = clipsData.data.map((datum) => datum.embed_url);
+      //const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
+      //const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
 
       // this happens one time, not every time
-      if (game === "Just Chatting") {
+      if (game === window.orderedCarousels[0]) {
         window.currentClipPosition = {'game': carouselName, 'index': 0};
         window.activeCarousel = carouselName;
-        saveClipPositionData(0, embedUrls, streamerIds);
-        replaceCarouselItem(0, embedUrls, streamerIds, streamers);
+
+        // making clips data exist for updateHistory; moving makeClipsCarouselFromClipsData before this block breaks first thumbnail highlighting
+        // refactor because duplicating making english clips
+        const englishClips = clipsData.data.filter(clip => clip.language === 'en');
+        window.clipsData[carouselName] = englishClips;
+
+        const embedUrls = englishClips.map((datum) => datum.embed_url);
+        const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
+        const streamers = englishClips.map((datum) => datum.broadcaster_name);
+
+        // these need to come from englishClips
+        replaceCarouselItem(0, embedUrls, streamerIds, streamers); // im updating history here, so i need clip data to exist
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
+        updateCarouselLabels();
       }
+
+      // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
+      makeClipsCarouselFromClipsData(clipsData, carouselName);
       
-      makeClipsCarouselFromClipsData(clipsData, carouselName +"-carousel-inner", carouselName);
       return clipsData;
     } catch (error) {
       console.error(error);
     }
   }
 
-function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName) {
-  const embedUrls = clipsData.data.map((datum) => datum.embed_url);
-  const thumbnailUrls = clipsData.data.map((datum) => datum.thumbnail_url);
-  const titles = clipsData.data.map((datum) => datum.title);
-  const languages = clipsData.data.map((datum) => datum.language);
-  const viewCounts = clipsData.data.map((datum) => datum.view_count);
-  const streamers = clipsData.data.map((datum) => datum.broadcaster_name);
-  const streamerIds = clipsData.data.map((datum) => datum.broadcaster_id);
-  const creationDateTimes = clipsData.data.map((datum) => datum.created_at);
-  const durations = clipsData.data.map((datum) => datum.duration);
+export function makeClipsCarouselFromClipsData(clipsData, carouselName, itemsPerView = 4) {
+  const carouselRowId = `${makeCarouselId(carouselName)}-row`;
+
+  let carousel;
+  const carouselItems = makeCarouselItems(carouselName, clipsData);
+  
+  carousel = new SmartCarousel(carouselRowId, itemsPerView);
+  carousel.setItems(carouselItems);
+  window.carouselInstances[carouselName] = carousel;
+}
+
+function makeCarouselItems(carouselName, clipsData) {
+  const englishClips = clipsData.data.filter(clip => clip.language === 'en');
+  window.clipsData[carouselName] = englishClips;
+
+  let carouselItems = [];
+  englishClips.forEach((clip, index) => {
+    const { carouselItem, imageWrapper } = makeCarouselItem(carouselName, clip, index, englishClips);
+    carouselItems.push(carouselItem);
+    
+    if (!window.firstThumbnail && window.currentClipPosition?.game === window.orderedCarousels[0]) {
+      window.firstThumbnail = imageWrapper;
+      highlightDiv(imageWrapper);
+    }
+  });
+
+  return carouselItems;
+}
+
+function makeCarouselItem(carouselName, clip, index, englishClips) {
+  console.assert(Array.isArray(englishClips), "englishClips is not an array");
+  console.assert(
+    typeof englishClips[0] === 'object' && englishClips[0] !== null && !Array.isArray(englishClips[0]),
+    'englishClips is not an array of objects'
+  );
+  const embedUrls = englishClips.map((datum) => datum.embed_url);
+  const titles = englishClips.map((datum) => datum.title);
+  const viewCounts = englishClips.map((datum) => datum.view_count);
+  const streamers = englishClips.map((datum) => datum.broadcaster_name);
+  const streamerIds = englishClips.map((datum) => datum.broadcaster_id);
+  const creationDateTimes = englishClips.map((datum) => datum.created_at);
+  const durations = englishClips.map((datum) => datum.duration);
 
   // same for all clips in a getTopClps request -- requesting top clips in category
   let gameId;
@@ -194,106 +228,168 @@ function makeClipsCarouselFromClipsData(clipsData, carouselInnerId, carouselName
     gameId = carouselName;
   }
   
-  localStorage.setItem("embedUrls", JSON.stringify(embedUrls));
-  embedUrls.forEach((element, index) => {localStorage.setItem(index, element)});
+  const carouselItem = document.createElement('div');
+  carouselItem.id = carouselName + index;
+  carouselItem.className = "carousel-element";
 
-  const popularClipsCarouselInner = document.getElementById(carouselInnerId);
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = "img-wrapper";
+  imageWrapper.id = carouselName + "img-wrapper" + index;
+  imageWrapper.style.position = "relative";
 
-  thumbnailUrls.forEach((url, index) => {
-    // checking for english should happen higher up - that's why i'm getting non english clips in my main carousel
-    if(languages[index] === 'en') {
+  const image = document.createElement('img');
+  image.src = clip.thumbnail_url + "?parent=localhost";
+  image.classList.add('thumbnail');
+  image.addEventListener('click', () => { thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers) });
+  image.addEventListener('click', () => { highlightDiv(imageWrapper) });
+  window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper;
 
-      const carouselItem = document.createElement('div');
-      carouselItem.id = carouselName + index;
-      carouselItem.className = "carousel-item"
-      // Including this makes first thumbnail snap to top of container, included because bootstrap carousel supposedly needs a .active item, but everything's working fine without it
-      /*
-      if (index === 0) {
-        carouselItem.classList.add('active');
-      }*/
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
 
-      const card = document.createElement('div');
-      card.className = "card";
-      card.style.height = "300px";
+  const clipTitle = document.createElement('p');
+  clipTitle.innerText = titles[index];
+  clipTitle.style.color = "#FFFFFF";
 
-      const imageWrapper = document.createElement('div');
-      imageWrapper.className = "img-wrapper";
-      imageWrapper.id = gameId + "img-wrapper" + index;
-      imageWrapper.style.position = "relative";
+  const viewCount = document.createElement('p');
+  viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
+  viewCount.style.color = "#FFFFFF";
+  viewCount.style.position = 'absolute';
+  viewCount.style.bottom = '0';
+  viewCount.style.left = '0';
 
-      // formerly thumbnail
-      const image = document.createElement('img');
-      image.src = url + "?parent=localhost";
-      image.classList.add('thumbnail');
-      const indexInCarousel = makeIndexInCarousel(carouselName);
-      image.addEventListener('click', () => {thumbnailClickListener(carouselName, indexInCarousel, embedUrls, streamerIds, streamers)});
-      image.addEventListener('click', () => {highlightDiv(imageWrapper)});
-      window.thumbnailWrappers[`${carouselName}-${index}`] = imageWrapper; // For highlighting appropriate thumbnail when clip player arrows are used
+  const streamer = document.createElement('p');
+  streamer.innerText = streamers[index];
+  streamer.style.color = "#FFFFFF";
 
-      const cardBody = document.createElement('div');
-      cardBody.className = 'card-body';
-      
-      const clipTitle = document.createElement('p');
-      clipTitle.innerText = titles[index];
-      clipTitle.style.color = "#FFFFFF";
+  const creationDate = document.createElement('p');
+  creationDate.innerText = creationDateTimes[index];
+  creationDate.style.color = "#FFFFFF";
+  creationDate.style.position = 'absolute';
+  creationDate.style.bottom = '0';
+  creationDate.style.right = '0';
 
-      const viewCount = document.createElement('p');
-      viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
-      viewCount.style.color = "#FFFFFF";
-      viewCount.style.position = 'absolute';
-      viewCount.style.bottom = '0';
-      viewCount.style.left = '0';
+  const duration = document.createElement('p');
+  duration.innerText = Math.round(durations[index]) + 's';
+  duration.style.color = "#FFFFFF";
+  duration.style.position = 'absolute';
+  duration.style.top = '0';
+  duration.style.left = '0';
 
-      const streamer = document.createElement('p');
-      streamer.innerText = streamers[index];
-      streamer.style.color = "#FFFFFF";
+  carouselItem.appendChild(imageWrapper);
+  imageWrapper.appendChild(image);
+  carouselItem.appendChild(cardBody);
+  cardBody.appendChild(clipTitle);
+  cardBody.appendChild(streamer);
+  imageWrapper.appendChild(duration);
+  imageWrapper.appendChild(viewCount);
+  imageWrapper.appendChild(creationDate);
 
-      const creationDate = document.createElement('p');
-      creationDate.innerText = creationDateTimes[index];
-      creationDate.style.color = "#FFFFFF";
-      creationDate.style.position = 'absolute';
-      creationDate.style.bottom = '0';
-      creationDate.style.right = '0';
+  return { carouselItem, imageWrapper };
+}
 
-      const duration = document.createElement('p');
-      duration.innerText = Math.round(durations[index]) + 's';
-      duration.style.color = "#FFFFFF";
-
-      duration.style.position = 'absolute';
-      duration.style.top = '0';
-      duration.style.left = '0';
-
-      popularClipsCarouselInner.appendChild(carouselItem);
-      carouselItem.appendChild(card);
-      
-      card.appendChild(imageWrapper);
-      imageWrapper.appendChild(image);
-      card.appendChild(cardBody);
-      cardBody.appendChild(clipTitle);
-      cardBody.appendChild(streamer);
-      imageWrapper.appendChild(duration);
-      imageWrapper.appendChild(viewCount);
-      imageWrapper.appendChild(creationDate); 
-      
-      // Just Chatting is always the top carousel
-      if (!window.firstThumbnail && window.currentClipPosition?.game === 'Just Chatting') {
-        window.firstThumbnail = imageWrapper;
-        highlightDiv(imageWrapper);
-      }
-    }
+function updateCarouselLabels() {
+  const currentCarouselLabels = document.querySelectorAll('.carousel-label');
+  currentCarouselLabels.forEach(label => {
+      label.textContent = window.activeCarousel;
   });
 }
 
-// Skipping non-english clips so thumbnail's index in carousel is different from its index in clipsData e.g. the second english clip in clips data might be at index 7 in clips data but would be index 1 in the carousel
-function makeIndexInCarousel(carouselName) {
-  let indexInCarousel;
-  // if carousel not in window.carouselIndices
-  if (!Object.hasOwn(window.lastThumbnailIndexInCarousel, carouselName)) {
-    indexInCarousel = 0;
-  } else {
-    indexInCarousel = window.lastThumbnailIndexInCarousel[carouselName] + 1;
-  }
-  window.lastThumbnailIndexInCarousel[carouselName] = indexInCarousel;
+function updateHistory() {
+  const { game, index: index1 } = window.currentClipPosition;
+  const clip = window.clipsData[game][index1];
+  window.watchHistory.push(clip);
 
-  return indexInCarousel;
+  const carouselName = 'history-' + game;
+  const { carouselItem: historyRow } = makeHistoryRow(carouselName, clip, 0, [clip]);
+  
+  const historyContainer = document.getElementById('history-items');
+  historyContainer.prepend(historyRow);
+
+  const previousCurrent = document.querySelector('.playlist-row.current');
+  if (previousCurrent) {
+    previousCurrent.classList.remove('current');
+  }
+
+  historyRow.classList.add('current');
+}
+
+function makeHistoryRow(carouselName, clip, index, englishClips) {
+  console.assert(Array.isArray(englishClips), "englishClips is not an array");
+  console.assert(
+    typeof englishClips[0] === 'object' && englishClips[0] !== null && !Array.isArray(englishClips[0]),
+    'englishClips is not an array of objects'
+  );
+
+  const embedUrls = englishClips.map(d => d.embed_url);
+  const titles = englishClips.map(d => d.title);
+  const viewCounts = englishClips.map(d => d.view_count);
+  const streamers = englishClips.map(d => d.broadcaster_name);
+  const streamerIds = englishClips.map(d => d.broadcaster_id);
+  const creationDateTimes = englishClips.map(d => d.created_at);
+  const durations = englishClips.map(d => d.duration);
+
+  // Create outer row container
+  const row = document.createElement('div');
+  row.className = "playlist-row";
+  row.style.display = "flex";
+  row.style.alignItems = "flex-start";
+  row.style.marginBottom = "10px";
+
+  // Thumbnail wrapper
+  const thumbWrapper = document.createElement('div');
+  thumbWrapper.className = 'playlist-thumb-wrapper';
+  thumbWrapper.style.position = "relative";
+  thumbWrapper.style.flex = "0 0 168px"; // Similar to YouTube's playlist thumbnail width
+  thumbWrapper.style.marginRight = "10px";
+
+  const thumb = document.createElement('img');
+  thumb.src = clip.thumbnail_url + "?parent=localhost";
+  thumb.classList.add('thumbnail');
+  thumb.style.width = "100%";
+  thumb.style.cursor = "pointer";
+  thumb.addEventListener('click', () => { 
+    thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers);
+    highlightDiv(thumbWrapper);
+  });
+
+  // Duration overlay
+  const durationOverlay = document.createElement('span');
+  durationOverlay.innerText = Math.round(durations[index]) + 's';
+  durationOverlay.style.position = 'absolute';
+  durationOverlay.style.bottom = '4px';
+  durationOverlay.style.right = '4px';
+  durationOverlay.style.background = 'rgba(0, 0, 0, 0.75)';
+  durationOverlay.style.color = '#fff';
+  durationOverlay.style.padding = '2px 4px';
+  durationOverlay.style.fontSize = '12px';
+  durationOverlay.style.borderRadius = '2px';
+
+  // Right-side info column
+  const infoCol = document.createElement('div');
+  infoCol.className = 'info-col'; // or add classList.add('info-col')
+  infoCol.style.flex = "1";
+
+  const titleEl = document.createElement('p');
+  titleEl.innerText = titles[index];
+  titleEl.style.margin = "0";
+  titleEl.style.fontWeight = "bold";
+  titleEl.style.color = "#FFFFFF";
+  titleEl.style.cursor = "pointer";
+
+  const streamerEl = document.createElement('p');
+  streamerEl.innerText = streamers[index];
+  streamerEl.style.margin = "2px 0 0 0";
+  streamerEl.style.color = "#AAAAAA";
+  streamerEl.style.fontSize = "14px";
+
+  // Append elements
+  thumbWrapper.appendChild(thumb);
+  thumbWrapper.appendChild(durationOverlay);
+  infoCol.appendChild(titleEl);
+  infoCol.appendChild(streamerEl);
+  row.appendChild(thumbWrapper);
+  row.appendChild(infoCol);
+
+  return { carouselItem: row, imageWrapper: thumbWrapper };
 }
