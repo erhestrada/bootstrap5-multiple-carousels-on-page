@@ -19,24 +19,20 @@ export function elementInViewHorizontally(element, padding = 0) {
     return 'visible';
 }
 
-export function slideCarousel(carouselId, direction) {
+export function slideCarousel(carouselName, direction) {
     carouselIsSliding = true;
 
-    const carouselInner = document.querySelector(`#${carouselId} .carousel-inner`);
+    // Get carousel within carousel row
+    //const carousel = document.getElementById(`${carouselId}-row`).querySelector('.carousel');
+    const carouselInstance = window.carouselInstances[carouselName];
 
-    let scrollAmount;
     if (direction === "right") {
-        scrollAmount = carouselInner.offsetWidth;
+        carouselInstance.nextSlide();
     } else if (direction === "left") {
-        scrollAmount = -carouselInner.offsetWidth;
+        carouselInstance.prevSlide();
     } else if (direction === "reset") {
-        carouselInner.scrollLeft = 0;
     }
 
-    carouselInner.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth"
-    });
 
     setTimeout(() => {
         carouselIsSliding = false;
@@ -64,8 +60,7 @@ export function elementInViewVertically(element, padding = 0) {
 
 // if highlighted thumbnail below viewport
 export function scrollDownToThumbnail() {
-    const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
-    console.log('carousel height: ', carouselHeight);
+    const carouselHeight = getHeightOfElement('.category-carousel-row');
 
     window.scrollBy({
         top: carouselHeight,
@@ -76,8 +71,7 @@ export function scrollDownToThumbnail() {
 
 // have to scroll up by more because of the header
 export function scrollUpToThumbnail() {
-    const carouselHeight = getHeightOfElement('.carousel-inner.thumbnails-carousel-inner');
-    console.log('carousel height: ', carouselHeight);
+    const carouselHeight = getHeightOfElement('.category-carousel-row');
 
     window.scrollBy({
         top: -carouselHeight, // negative to scroll up
