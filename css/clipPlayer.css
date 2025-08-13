@@ -96,6 +96,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between; /*or justify-content: center with gap*/  
+  gap: 10px;
 }
 
 #expanded-clip-player{
