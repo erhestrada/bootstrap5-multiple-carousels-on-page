@@ -22,13 +22,3 @@ export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
         console.error(error);
     }
 }
-
-function tweakStreamerBarCarousel() {
-    const streamerBarCarousel = document.getElementById('id-streamer-bar-carousel-carousel-row');
-    // remove all text, and then bring it back
-    // viewcount
-    // duration
-    // creationDate
-    // streamer
-    // title
-}

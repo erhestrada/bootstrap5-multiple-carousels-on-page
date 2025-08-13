@@ -283,12 +283,15 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
 
   carouselItem.appendChild(imageWrapper);
   imageWrapper.appendChild(image);
-  carouselItem.appendChild(cardBody);
-  cardBody.appendChild(clipTitle);
-  cardBody.appendChild(streamer);
-  imageWrapper.appendChild(duration);
-  imageWrapper.appendChild(viewCount);
-  imageWrapper.appendChild(creationDate);
+
+  if (carouselName !== 'streamer-bar-carousel') {
+    carouselItem.appendChild(cardBody);
+    cardBody.appendChild(clipTitle);
+    cardBody.appendChild(streamer);
+    imageWrapper.appendChild(duration);
+    imageWrapper.appendChild(viewCount);
+    imageWrapper.appendChild(creationDate);    
+  }
 
   return { carouselItem, imageWrapper };
 }
