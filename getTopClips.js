@@ -253,6 +253,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   clipTitle.style.color = "#FFFFFF";
 
   const viewCount = document.createElement('p');
+  viewCount.className = 'view-count';
   viewCount.innerText = viewCounts[index].toLocaleString() + ' views';
   viewCount.style.color = "#FFFFFF";
   viewCount.style.position = 'absolute';
@@ -265,6 +266,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   streamer.style.color = "#FFFFFF";
 
   const creationDate = document.createElement('p');
+  creationDate.className = 'creation-date';
   creationDate.innerText = creationDateTimes[index];
   creationDate.style.color = "#FFFFFF";
   creationDate.style.position = 'absolute';
@@ -272,6 +274,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   creationDate.style.right = '0';
 
   const duration = document.createElement('p');
+  duration.className = 'duration';
   duration.innerText = Math.round(durations[index]) + 's';
   duration.style.color = "#FFFFFF";
   duration.style.position = 'absolute';
