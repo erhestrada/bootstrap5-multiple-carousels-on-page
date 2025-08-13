@@ -248,6 +248,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   cardBody.className = 'card-body';
 
   const clipTitle = document.createElement('p');
+  clipTitle.className = 'clip-title';
   clipTitle.innerText = titles[index];
   clipTitle.style.color = "#FFFFFF";
 
@@ -259,6 +260,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   viewCount.style.left = '0';
 
   const streamer = document.createElement('p');
+  streamer.className = 'streamer';
   streamer.innerText = streamers[index];
   streamer.style.color = "#FFFFFF";
 
