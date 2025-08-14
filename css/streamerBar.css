@@ -26,14 +26,27 @@
 }
 
 #streamer-bar-carousel-container .carousel-element {
-    flex: 0 0 calc(25% - 10px); /* Smaller margins for smaller space */
-    height: 140px; /* Much smaller height to fit in 150px container */
-    min-height: auto; /* Override the 200px min-height */
-    margin-right: 10px; /* Smaller margin */
+    flex: 0 0 calc(25% - 10px);
+    height: 140px;
+    min-height: auto;
+    margin-right: 10px;
+
+    display: flex;
+    flex-direction: column; /* Stack image over text */
+    overflow: hidden; /* Avoid overflow when text is long */
 }
 
 #streamer-bar-carousel-container .carousel-element .img-wrapper {
-    height: 8em; /* Smaller image height */
+    flex: 0 0 7em; /* Lock image height */
+    height: 7em; /* Matches last flex value */
+    overflow: hidden;
+}
+
+/* text under thumbnail */
+#streamer-bar-carousel-container .card-body {
+    flex: 1 1 auto; /* Take remaining space, allow scrolling if needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #streamer-bar-carousel-container .carousel-element:last-child {
