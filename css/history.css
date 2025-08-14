@@ -1,11 +1,3 @@
-#history-expanded-clip-player-comments-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between; /*or justify-content: center with gap*/  
-  gap: 10px;
-}
-
 #history-container {
   border: 2px solid #ccc; /* Light gray border */
   padding: 10px 0;
