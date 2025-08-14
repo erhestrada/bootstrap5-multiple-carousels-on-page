@@ -27,7 +27,7 @@
 
 #streamer-bar-carousel-container .carousel-element {
     flex: 0 0 calc(25% - 10px); /* Smaller margins for smaller space */
-    height: 120px; /* Much smaller height to fit in 150px container */
+    height: 140px; /* Much smaller height to fit in 150px container */
     min-height: auto; /* Override the 200px min-height */
     margin-right: 10px; /* Smaller margin */
 }
