@@ -16,6 +16,7 @@
   height: 150px;
   margin: 0;
   overflow: hidden;
+  --img-height: 7em;
 }
 
 #streamer-bar-carousel-container .carousel-row {
@@ -37,8 +38,8 @@
 }
 
 #streamer-bar-carousel-container .carousel-element .img-wrapper {
-    flex: 0 0 7em; /* Lock image height */
-    height: 7em; /* Matches last flex value */
+    flex: 0 0 var(--img-height);
+    height: var(--img-height);
     overflow: hidden;
 }
 
