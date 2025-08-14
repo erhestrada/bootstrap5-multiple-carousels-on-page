@@ -1,22 +1,16 @@
 #comments-section {
-  border: 2px solid #ccc; /* Light gray border */
-  padding: 10px;
-  border-radius: 5px;     /* rounded corners */
-  min-width: 0;
-  flex: 0.3;
-  height: 54vh;
-  overflow-y: auto;
-}
-
-#comments-section {
+    height: 54vh;
+    min-width: 0;
     max-width: 800px;
     margin: 0;
     padding: 0;
     border-radius: 12px;
     overflow-y: auto;
     overflow-x: hidden;
+    border: 2px solid #ccc; /* Light gray border */
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     display: flex;
+    flex: 0.3;
     flex-direction: column;
     justify-content: flex-start;
 }
