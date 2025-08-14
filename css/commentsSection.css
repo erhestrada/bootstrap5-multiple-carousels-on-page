@@ -4,7 +4,7 @@
     max-width: 800px;
     margin: 0;
     padding: 0;
-    border-radius: 12px;
+    border-radius: 12px; /* rounded corners, matches history */
     overflow-y: auto;
     overflow-x: hidden;
     border: 2px solid #ccc; /* Light gray border */
