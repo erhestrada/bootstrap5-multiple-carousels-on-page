@@ -44,7 +44,7 @@
 
 /* text under thumbnail */
 #streamer-bar-carousel-container .card-body {
-    flex: 1 1 auto; /* Take remaining space, allow scrolling if needed */
+    flex: 1 1 auto;
     overflow: hidden;
     text-overflow: ellipsis;
 }
