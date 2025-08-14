@@ -1,4 +1,14 @@
 #comments-section {
+  border: 2px solid #ccc; /* Light gray border */
+  padding: 10px;
+  border-radius: 5px;     /* rounded corners */
+  min-width: 0;
+  flex: 0.3;
+  height: 54vh;
+  overflow-y: auto;
+}
+
+#comments-section {
     max-width: 800px;
     margin: 0;
     padding: 0;
