@@ -41,6 +41,7 @@
     flex: 0 0 var(--img-height);
     height: var(--img-height);
     overflow: hidden;
+    margin: 5px;
 }
 
 /* text under thumbnail */
