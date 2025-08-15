@@ -167,7 +167,6 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
         replaceCarouselItem(0, embedUrls, streamerIds, streamers); // im updating history here, so i need clip data to exist
         updateDonutPfp(streamerIds[0]);
         updateStreamerBarCarousel(streamerIds[0]);
-        updateCarouselLabels();
       }
 
       // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
