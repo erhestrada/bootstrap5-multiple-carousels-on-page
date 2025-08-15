@@ -79,7 +79,9 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
     replaceCarouselItem(indexInCarousel, embedUrls, streamerIds, streamers);
 
     updateDonutPfp(streamerIds[indexInCarousel]);
-    updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+    if (carouselName !== 'streamer-bar-carousel') {
+      updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+    }
 
     // Show clipPlayer if it's hidden
     const clipPlayer = document.getElementById('clip-player-complex');
