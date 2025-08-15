@@ -301,10 +301,12 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
 }
 
 function updateCarouselLabels() {
-  const currentCarouselLabels = document.querySelectorAll('.carousel-label');
-  currentCarouselLabels.forEach(label => {
-      label.textContent = window.activeCarousel;
-  });
+  const currentCarouselLabel = document.querySelector('.carousel-label');
+  if (window.activeCarousel !== 'streamer-bar-carousel') {
+    currentCarouselLabel.textContent = window.activeCarousel;
+  } else {
+    currentCarouselLabel.textContent = 'streamer';
+  }
 }
 
 function updateHistory() {
