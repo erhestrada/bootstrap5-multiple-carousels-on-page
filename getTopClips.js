@@ -3,6 +3,7 @@ import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { showClipPlayer } from "./toggleClipPlayer";
 import { SmartCarousel } from "./smartCarousel";
 import { makeCarouselId } from "./makeNewCarouselForCategory";
+import { getGameFromId } from "./getGameFromId";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -305,8 +306,9 @@ function updateCarouselLabels(clipIndex) {
     currentCarouselLabel.textContent = window.activeCarousel;
   } else {
     const clip = window.clipsData[window.activeCarousel][clipIndex];
+    const game = getGameFromId();
     console.log('clip: ', clip);
-    currentCarouselLabel.textContent = 'streamer';
+    currentCarouselLabel.textContent = `${game}`;
   }
 }
 
