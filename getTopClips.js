@@ -98,7 +98,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
   console.log('current streamer: ', streamers[index]);
   updateHistory(); // kind of just want to pass clipsData
-  updateCarouselLabels();
+  updateCarouselLabels(index);
   
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
@@ -299,11 +299,13 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   return { carouselItem, imageWrapper };
 }
 
-function updateCarouselLabels() {
+function updateCarouselLabels(clipIndex) {  
   const currentCarouselLabel = document.querySelector('.carousel-label');
   if (window.activeCarousel !== 'streamer-bar-carousel') {
     currentCarouselLabel.textContent = window.activeCarousel;
   } else {
+    const clip = window.clipsData[window.activeCarousel][clipIndex];
+    console.log('clip: ', clip);
     currentCarouselLabel.textContent = 'streamer';
   }
 }
