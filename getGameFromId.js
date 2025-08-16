@@ -13,7 +13,7 @@ export async function getGameFromId(gameId, clientId, authToken) {
 
     const clipData = await response.json();
 
-    if (data.data && data.data.length > 0) {
+    if (clipData.data && clipData.data.length > 0) {
       const game = clipData.data[0].name;
       return game;
     } else {
