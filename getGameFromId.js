@@ -1,3 +1,6 @@
+// let me do local storage for now to avoid the request
+// turn off carousel arrows for streamer bar carousel
+
 export async function getGameFromId(gameId, clientId, authToken) {
   try {
     const response = await fetch(`https://api.twitch.tv/helix/games?id=${gameId}`, {
@@ -8,19 +11,18 @@ export async function getGameFromId(gameId, clientId, authToken) {
       }
     });
 
-    const data = await response.json();
-    const x = data.data[0].name;
-    console.log('game data: ', data);
+    const clipData = await response.json();
 
     if (data.data && data.data.length > 0) {
-      return x;
+      const game = clipData.data[0].name;
+      return game;
     } else {
-      return null; // No game found
+      return '';
     }
 
   } catch (error) {
     console.error('Failed to fetch game info:', error);
-    return null;
+    return '';
   }
 }
 
