@@ -9,9 +9,11 @@ export async function getGameFromId(gameId, clientId, authToken) {
     });
 
     const data = await response.json();
+    const x = data.data[0].name;
+    console.log('game data: ', data);
 
     if (data.data && data.data.length > 0) {
-      return data.data[0]; // The game object (e.g., name, id, box_art_url)
+      return x;
     } else {
       return null; // No game found
     }
@@ -21,3 +23,4 @@ export async function getGameFromId(gameId, clientId, authToken) {
     return null;
   }
 }
+
