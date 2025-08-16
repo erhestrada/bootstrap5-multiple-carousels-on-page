@@ -1,3 +1,3 @@
-export function getGameFromId() {
+export function getGameFromId(gameId) {
     return 'game';
 }

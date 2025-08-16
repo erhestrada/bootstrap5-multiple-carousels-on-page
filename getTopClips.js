@@ -306,7 +306,7 @@ function updateCarouselLabels(clipIndex) {
     currentCarouselLabel.textContent = window.activeCarousel;
   } else {
     const clip = window.clipsData[window.activeCarousel][clipIndex];
-    const game = getGameFromId();
+    const game = getGameFromId(clip.game_id);
     console.log('clip: ', clip);
     currentCarouselLabel.textContent = `${game}`;
   }
