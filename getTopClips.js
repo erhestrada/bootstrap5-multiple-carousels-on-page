@@ -300,13 +300,13 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   return { carouselItem, imageWrapper };
 }
 
-function updateCarouselLabels(clipIndex) {  
+async function updateCarouselLabels(clipIndex) {  
   const currentCarouselLabel = document.querySelector('.carousel-label');
   if (window.activeCarousel !== 'streamer-bar-carousel') {
     currentCarouselLabel.textContent = window.activeCarousel;
   } else {
     const clip = window.clipsData[window.activeCarousel][clipIndex];
-    const game = getGameFromId(clip.game_id);
+    const game = await getGameFromId(clip.game_id, clientId, authToken);
     console.log('clip: ', clip);
     currentCarouselLabel.textContent = `${game}`;
   }
