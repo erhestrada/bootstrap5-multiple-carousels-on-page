@@ -67,11 +67,7 @@ export function playAdjacentClip(arrow) {
             updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
         }
 
-    } else {
-
     }
-
-
 }
 
 export function changeCarousel(arrow) {
