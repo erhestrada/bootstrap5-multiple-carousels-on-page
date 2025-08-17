@@ -1,7 +1,22 @@
-// let me do local storage for now to avoid the request
 // turn off carousel arrows for streamer bar carousel
-
+// refactor to use database
 export async function getGameFromId(gameId, clientId, authToken) {
+  const gameCacheRaw = localStorage.getItem('gameCacheById');
+  const gameCache = gameCacheRaw ? JSON.parse(gameCacheRaw) : {};
+
+  let game;
+  if (gameCache.hasOwnProperty(gameId)) {
+    game = gameCache[gameId];
+  } else {
+    game = await fetchGameFromId(gameId, clientId, authToken);
+    gameCache[gameId] = game;
+    localStorage.setItem('gameCacheById', JSON.stringify(gameCache));
+  }
+
+  return game;
+}
+
+export async function fetchGameFromId(gameId, clientId, authToken) {
   try {
     const response = await fetch(`https://api.twitch.tv/helix/games?id=${gameId}`, {
       method: 'GET',
