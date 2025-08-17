@@ -61,6 +61,7 @@ export function playAdjacentClip(arrow) {
             }
         }
 
+        // Can make this condition more general - whenever streamer stays the same
         if (window.activeCarousel !== "streamer-bar-carousel") {    
             updateDonutPfp(streamerIds[updatedClipsDataIndex]);
             updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
