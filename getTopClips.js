@@ -82,6 +82,11 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
     updateDonutPfp(streamerIds[indexInCarousel]);
     if (carouselName !== 'streamer-bar-carousel') {
       updateStreamerBarCarousel(streamerIds[indexInCarousel]);
+    } else {
+      const prevCarouselButton = document.getElementById('previous-carousel-button');
+      prevCarouselButton.disabled = true;
+      const nextCarouselButton = document.getElementById('next-carousel-button');
+      nextCarouselButton.disabled = true;
     }
 
     // Show clipPlayer if it's hidden
