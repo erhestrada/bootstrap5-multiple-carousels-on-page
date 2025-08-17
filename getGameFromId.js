@@ -1,4 +1,3 @@
-// turn off carousel arrows for streamer bar carousel
 // refactor to use database
 export async function getGameFromId(gameId, clientId, authToken) {
   const gameCacheRaw = localStorage.getItem('gameCacheById');
