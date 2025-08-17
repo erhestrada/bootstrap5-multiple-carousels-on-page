@@ -61,15 +61,11 @@ export function playAdjacentClip(arrow) {
             }
         }
 
-        // if streamer stays the same, don't have to update streamerBar e.g. clicked into streamerBarCarousel
-        // updateStreamerBar()
-        const streamerBarCarousel = document.getElementById('streamer-bar-carousel-container').querySelector('.carousel');
-        streamerBarCarousel.innerHTML = '';
-    
-        updateDonutPfp(streamerIds[updatedClipsDataIndex]);
-        updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
-    
-        console.log(JSON.parse(JSON.stringify(window.currentClipPosition)));
+        if (window.activeCarousel !== "streamer-bar-carousel") {    
+            updateDonutPfp(streamerIds[updatedClipsDataIndex]);
+            updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
+        }
+
     } else {
 
     }
