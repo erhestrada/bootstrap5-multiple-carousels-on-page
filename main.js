@@ -55,7 +55,7 @@ document.getElementById('donut-button-top').addEventListener('click', () => upda
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 7));
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 30));
 // think ALL is the default if not start/end parameters
-document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 3650));
+document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 5500));
 
 //document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
 
