@@ -105,6 +105,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   console.log('current streamer: ', streamers[index]);
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
+  window.currentStreamerId = streamerIds[index];
   
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');

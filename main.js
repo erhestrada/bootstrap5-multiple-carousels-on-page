@@ -17,6 +17,7 @@ window.lastThumbnailIndexInCarousel = {};
 window.carouselInstances = {};
 window.boxArtUrls = {};
 window.watchHistory = [];
+window.currentStreamerId = '';
 
 localStorage?.removeItem('highlightedDivId');
 
