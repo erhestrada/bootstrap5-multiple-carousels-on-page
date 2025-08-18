@@ -42,6 +42,14 @@
     padding-right: 4px;
 }
 
+.nudge-up {
+  padding-bottom: 4px;
+}
+
+.nudge-down {
+  padding-top: 4px;
+}
+
 .thumbnails-carousel-inner .carousel-item {
   display: flex;
   justify-content: space-between;
