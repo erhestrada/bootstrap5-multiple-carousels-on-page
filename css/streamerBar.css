@@ -110,6 +110,14 @@
     opacity: 0.4;
 }
 
+#previous-carousel-button {
+  margin: 0;
+}
+
+#next-carousel-button {
+  margin: 0;
+}
+
 
 /* Donut Button */
 
