@@ -51,7 +51,6 @@ export function playAdjacentClip(arrow) {
 
         const thumbnailInViewHorizontally = elementInViewHorizontally(thumbnailWrapper);
         if (thumbnailInViewHorizontally != 'visible') {
-            const carouselId = makeCarouselId(game);
             slideCarousel(game, thumbnailInViewHorizontally);
 
             if (thumbnailInViewHorizontally === 'right') {
