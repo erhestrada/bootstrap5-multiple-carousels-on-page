@@ -65,6 +65,11 @@ export function playAdjacentClip(arrow) {
         if (window.activeCarousel !== "streamer-bar-carousel") {    
             updateDonutPfp(streamerIds[updatedClipsDataIndex]);
             updateStreamerBarCarousel(streamerIds[updatedClipsDataIndex]);
+        } else {
+            const prevCarouselButton = document.getElementById('previous-carousel-button');
+            prevCarouselButton.disabled = true;
+            const nextCarouselButton = document.getElementById('next-carousel-button');
+            nextCarouselButton.disabled = true;
         }
 
     }
