@@ -3,16 +3,17 @@ export let carouselIsSliding = false;
 export function elementInViewHorizontally(element, padding = 0) {
     if (!element) return false;
 
-    const rect = element.getBoundingClientRect();
+    const elRect = element.getBoundingClientRect();
+    const container = element.closest('.carousel-row');
+    if (!container) return false;
 
-    // viewport's left edge = 0
-    // viewport's right edge = window.innerWidth
+    const containerRect = container.getBoundingClientRect();
 
-    if (rect.left < 0) {
+    if (elRect.left < containerRect.left + padding) {
         return 'left';
     }
 
-    if (rect.right > window.innerWidth - padding) {
+    if (elRect.right > containerRect.right - padding) {
         return 'right';
     }
 
