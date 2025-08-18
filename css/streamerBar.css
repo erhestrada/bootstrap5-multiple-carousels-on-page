@@ -95,11 +95,14 @@
   text-align: center;
   font-size: 15px;
   line-height: 1.2;
+  flex: 2; /* Takes 50% of the vertical space (1 2 1 - button label button) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .change-carousel-button {
-  flex: 1; /* Each button takes equal space */
+  flex: 1; /* Takes 25% of the vertical space (1 2 1 - button label button) */
   width: 100%;
   box-sizing: border-box;
 }
