@@ -1,4 +1,3 @@
-import { updateStreamerBarCarouselFromDonut } from './updateStreamerBarCarouselFromDonut.js';
 import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { saveClip } from './saveClip.js';
 import { followStreamer } from './followStreamer.js';
@@ -6,6 +5,7 @@ import { followCategory } from './followCategory.js';
 import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
+import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 
 window.clipsData = {};
 window.firstThumbnail = false;
@@ -45,18 +45,17 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-
 document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
 document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
 document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamer'), localStorage.getItem('currentClipStreamerId')));
 document.getElementById('follow-category-button').addEventListener('click', () => followCategory(window.currentClipPosition['game']));
 
-document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarouselFromDonut(1));
-document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarouselFromDonut(7));
-document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarouselFromDonut(30));
+document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 1));
+document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 7));
+document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 30));
 // think ALL is the default if not start/end parameters
-document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarouselFromDonut(3650));
+document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 3650));
 
 //document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
 
