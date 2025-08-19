@@ -2,7 +2,7 @@ import { replaceCarouselItem } from './getTopClips.js';
 import { updateDonutPfp } from "./updateDonutPfp";
 import { updateStreamerBarCarousel } from "./updateStreamerBarCarousel";
 import { highlightDiv } from './getTopClips.js';
-import { elementInViewHorizontally, elementInViewVertically, scrollDownToThumbnail, scrollUpToThumbnail, slideCarousel } from './ensureThumbnailInView.js';
+import { elementInViewHorizontally, slideCarousel } from './ensureThumbnailInView.js';
 import { makeCarouselId } from './makeNewCarouselForCategory.js';
 import { carouselIsSliding } from './ensureThumbnailInView.js';
 
@@ -117,22 +117,11 @@ export function changeCarousel(arrow) {
 
         const activeElement = activeCarouselInstance.itemsInView[thumbnailIndexInView];
         console.log('LK;ASDJK;LFDASKL;J', activeElement);
-
+        
         // highlight the correct thumbnails
         const englishGameClipsData = window.clipsData[window.activeCarousel];
-        //const thumbnailWrapper = window.thumbnailWrappers[`${window.activeCarousel}-${index}`];
-        const thumbnailWrapper = activeElement.querySelector('.img-wrapper');
-        highlightDiv(thumbnailWrapper);
 
-        const thumbnailInViewVertically = elementInViewVertically(thumbnailWrapper);
-
-        if (thumbnailInViewVertically != 'visible') {
-            if (thumbnailInViewVertically === 'below') {
-                scrollDownToThumbnail();
-            } else if (thumbnailInViewVertically === 'above') {
-                scrollUpToThumbnail();
-            }
-        }
+        scrollThumbnailIntoView(activeElement);
 
         window.currentClipPosition = {'game': window.activeCarousel, 'index': thumbnailIndexInCarousel};
 
@@ -163,4 +152,23 @@ function updateCarouselLabels() {
   currentCarouselLabels.forEach(label => {
       label.textContent = window.activeCarousel;
   });
+}
+
+function scrollThumbnailIntoView(activeElement) {
+    const thumbnailWrapper = activeElement.querySelector('.img-wrapper');
+    highlightDiv(thumbnailWrapper);
+
+    const header = document.querySelector('.sticky-stuff');
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    const rect = thumbnailWrapper.getBoundingClientRect();
+    const absoluteElementTop = rect.top + window.scrollY;
+    
+    // extra 10px breathing room
+    const scrollTarget = absoluteElementTop - headerHeight - 10;
+
+    window.scrollTo({
+        top: scrollTarget,
+        behavior: 'smooth'
+    });
 }
