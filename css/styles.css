@@ -83,34 +83,6 @@ a:hover {
   user-select: none;
 }
 
-.pill-part {
-  background: none;
-  border: none;
-  padding: 8px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  color: #a970ff;
-  transition: background-color 0.3s, color 0.3s;
-  outline: none;
-  
-  /* prevent default button styles */
-  font-family: inherit;
-  font-size: 14px;
-}
-
-.pill-part:first-child {
-  border-right: 1px solid #a970ff; /* subtle dividing line */
-}
-
-.pill-part.active {
-  background-color: #a970ff;
-  color: white;
-}
-
-.pill-part:hover:not(.active) {
-  background-color: rgba(169, 112, 255, 0.1);
-}
-
 .playlist-row {
   padding: 8px;
 }
