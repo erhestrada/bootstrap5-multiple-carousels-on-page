@@ -139,5 +139,5 @@
 .boxart {
   margin-left: 30px;
   margin-right: 10px;
-  padding: 16px 0; /* Same padding as carousel-inner */
+  padding: 5px; /* Matches margin on carousels to maintain vertical alignment */
 }
