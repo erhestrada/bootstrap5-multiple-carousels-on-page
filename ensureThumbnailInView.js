@@ -85,3 +85,22 @@ function getHeightOfElement(selector) {
     const element = document.querySelector(selector);
     return element ? element.offsetHeight : 0;
 }
+
+function scrollThumbnailIntoView(activeElement) {
+    const thumbnailWrapper = activeElement.querySelector('.img-wrapper');
+    highlightDiv(thumbnailWrapper);
+
+    const header = document.querySelector('.sticky-stuff');
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    const rect = thumbnailWrapper.getBoundingClientRect();
+    const absoluteElementTop = rect.top + window.scrollY;
+    
+    // extra 10px breathing room
+    const scrollTarget = absoluteElementTop - headerHeight - 10;
+
+    window.scrollTo({
+        top: scrollTarget,
+        behavior: 'smooth'
+    });
+}
