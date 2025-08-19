@@ -38,7 +38,8 @@ async function getPostsFromLast24h(subreddit) {
   console.log(`Found ${posts.length} posts in the last 24h`);
   console.log(posts.map(p => ({
     title: p.title,
-    url: `https://reddit.com${p.permalink}`,
+    redditUrl: `https://reddit.com${p.permalink}`, // always Reddit comments page
+    linkUrl: p.url,                               // external link if it’s a link post
     created: new Date(p.created_utc * 1000)
   })));
 })();
