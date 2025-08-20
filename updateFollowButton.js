@@ -7,10 +7,10 @@ export function updateFollowButton(streamer, category) {
 }
 
 function displayHeart(buttonId, value, follows) {
-    const element = document.getElementById(buttonId);
-    if (!element) return;
+    const button = document.getElementById(buttonId);
+    if (!button) return;
     
-    const icon = element.querySelector('i');
+    const icon = button.querySelector('i');
     if (!icon) return;
 
     if (value in follows) {
