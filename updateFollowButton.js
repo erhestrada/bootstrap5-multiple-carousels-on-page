@@ -16,21 +16,21 @@ export function displayHeart(buttonId, name, follows) {
     if (name in follows) {
         icon.className = 'bi bi-heart-fill';
 
-        icon.onmouseenter = () => {
+        button.onmouseenter = () => {
             icon.className = 'bi bi-heart';
         };
 
-        icon.onmouseleave = () => {
+        button.onmouseleave = () => {
             icon.className = 'bi bi-heart-fill';
         };
     } else {
         icon.className = 'bi bi-heart';
 
-        icon.onmouseenter = () => {
+        button.onmouseenter = () => {
             icon.className = 'bi bi-heart-fill';
         };
 
-        icon.onmouseleave = () => {
+        button.onmouseleave = () => {
             icon.className = 'bi bi-heart';
         };
     }
