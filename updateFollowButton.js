@@ -6,8 +6,8 @@ export function updateFollowButton(streamer, category) {
     displayHeart('follow-category-button', category, followedCategories);
 }
 
-function displayHeart(elementId, value, object) {
-    const element = document.getElementById(elementId);
+function displayHeart(buttonId, value, object) {
+    const element = document.getElementById(buttonId);
     if (!element) return;
     
     const icon = element.querySelector('i');
