@@ -4,7 +4,7 @@ import { showClipPlayer } from "./toggleClipPlayer";
 import { SmartCarousel } from "./smartCarousel";
 import { makeCarouselId } from "./makeNewCarouselForCategory";
 import { getGameFromId } from "./getGameFromId";
-import { updateFollowButton } from "./updateFollowButton";
+import { initializeFollowButton } from "./updateFollowButton";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -106,7 +106,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   console.log('current streamer: ', streamers[index]);
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
-  updateFollowButton(streamers[index], window.activeCarousel); // Need to handle case of clicking into streamer bar carousel, same as change carousel container
+  initializeFollowButton(streamers[index], window.activeCarousel); // Need to handle case of clicking into streamer bar carousel, same as change carousel container
   window.currentStreamerId = streamerIds[index];
   
   const iframeContainer = document.getElementById('iframe-container');
