@@ -76,6 +76,7 @@ a:hover {
 
 /* ------------------------- */
 #compound-follow-button {
+  min-width: 150px;
   display: inline-flex;
   border-radius: 9999px;       /* big radius = pill shape */
   overflow: hidden;            /* clip button edges */
