@@ -18,6 +18,7 @@
   overflow: hidden;
   --img-height: 7em;
   --carousel-element-margin-right: 5px;
+  --img-wrapper-margin: 5px;
 }
 
 #streamer-bar-carousel-container .carousel-row {
@@ -43,13 +44,14 @@
     flex: 0 0 var(--img-height);
     height: var(--img-height);
     overflow: hidden;
-    margin: 5px;
+    margin: var(--img-wrapper-margin);
 }
 
 /* text under thumbnail */
 #streamer-bar-carousel-container .card-body {
     flex: 1 1 auto;
     overflow: hidden;
+    margin: 0 var(--img-wrapper-margin);
 }
 
 #streamer-bar-carousel-container .card-body p {
