@@ -1,3 +1,5 @@
+import { displayHeart } from "./updateFollowButton";
+
 export function followStreamer(streamer, streamerId) {
     console.log('in follow streamer');
     console.log('streamer', streamer);
@@ -6,10 +8,13 @@ export function followStreamer(streamer, streamerId) {
 
     if (!(streamer in followedStreamers)) {
         followedStreamers[streamer] = streamerId;
+    } else {
+        delete followedStreamers[streamer]; // <-- this makes it toggle
     }
+
     localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
+    displayHeart('follow-streamer-button', streamer, followedStreamers);
     
-    console.log(followedStreamers);
     return followedStreamers;
 }
 
@@ -21,9 +26,8 @@ export function unfollowStreamer(streamerName) {
     return followedStreamers
 }
 
-
 export function saveDataToLocalStorage(key, data) {
     const jsonData = JSON.stringify(data);
     localStorage.setItem(key, jsonData);
     return jsonData
-  }
+}
