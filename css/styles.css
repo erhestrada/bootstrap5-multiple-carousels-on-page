@@ -74,6 +74,15 @@ a:hover {
   font-size: 15px;
 }
 
+.follow-button i {
+  display: inline-block;           /* ⬅️ Required for transform to work properly */
+  transition: transform 0.2s ease;
+}
+
+.follow-button:hover i {
+  transform: scale(1.2);           /* 🔍 Adjust size as you like */
+}
+
 /* ------------------------- */
 #compound-follow-button {
   min-width: 150px;
