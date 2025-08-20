@@ -6,14 +6,14 @@ export function updateFollowButton(streamer, category) {
     displayHeart('follow-category-button', category, followedCategories);
 }
 
-function displayHeart(buttonId, value, follows) {
+function displayHeart(buttonId, name, follows) {
     const button = document.getElementById(buttonId);
     if (!button) return;
     
     const icon = button.querySelector('i');
     if (!icon) return;
 
-    if (value in follows) {
+    if (name in follows) {
         icon.className = 'bi bi-heart-fill';
     } else {
         icon.className = 'bi bi-heart';
