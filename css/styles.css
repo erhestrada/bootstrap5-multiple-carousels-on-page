@@ -75,12 +75,12 @@ a:hover {
 }
 
 .follow-button i {
-  display: inline-block;           /* ⬅️ Required for transform to work properly */
+  display: inline-block;
   transition: transform 0.2s ease;
 }
 
 .follow-button:hover i {
-  transform: scale(1.2);           /* 🔍 Adjust size as you like */
+  transform: scale(1.2);
 }
 
 /* ------------------------- */
