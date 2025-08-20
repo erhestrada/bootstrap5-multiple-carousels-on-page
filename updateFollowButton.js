@@ -6,7 +6,7 @@ export function initializeFollowButton(streamer, category) {
     displayHeart('follow-category-button', category, followedCategories);
 }
 
-function displayHeart(buttonId, name, follows) {
+export function displayHeart(buttonId, name, follows) {
     const button = document.getElementById(buttonId);
     if (!button) return;
     
