@@ -2,14 +2,15 @@ export function updateVotes(button, vote) {
   const totalVotesElement = document.getElementById('total-votes');
   let totalVotes = parseInt(totalVotesElement.textContent, 10) || 0;
 
-  const otherVote = vote === 'upvote' ? 'downvote' : 'upvote';
+  // If vote is upvote other vote is downvote and vice versa
+  const oppositeVote = vote === 'upvote' ? 'downvote' : 'upvote';
   const voteButtons = {
     upvote: document.getElementById('like-button'),
     downvote: document.getElementById('dislike-button')
   };
 
   const currentIcon = button.querySelector('.vote-icon');
-  const otherIcon = voteButtons[otherVote].querySelector('.vote-icon');
+  const otherIcon = voteButtons[oppositeVote].querySelector('.vote-icon');
 
   const currentVoted = currentIcon.classList.contains('voted');
   const otherVoted = otherIcon.classList.contains('voted');
