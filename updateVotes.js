@@ -9,21 +9,21 @@ export function updateVotes(button, vote) {
     downvote: document.getElementById('dislike-button')
   };
 
-  const currentIcon = button.querySelector('.vote-icon');
-  const otherIcon = voteButtons[oppositeVote].querySelector('.vote-icon');
+  const voteIcon = button.querySelector('.vote-icon');
+  const oppositeVoteIcon = voteButtons[oppositeVote].querySelector('.vote-icon');
 
-  const currentVoted = currentIcon.classList.contains('voted');
-  const otherVoted = otherIcon.classList.contains('voted');
+  const currentVoted = voteIcon.classList.contains('voted');
+  const otherVoted = oppositeVoteIcon.classList.contains('voted');
 
   if (currentVoted) {
-    currentIcon.classList.remove('voted');
+    voteIcon.classList.remove('voted');
     totalVotes += vote === 'upvote' ? -1 : 1;
   } else {
-    currentIcon.classList.add('voted');
+    voteIcon.classList.add('voted');
     totalVotes += vote === 'upvote' ? 1 : -1;
 
     if (otherVoted) {
-      otherIcon.classList.remove('voted');
+      oppositeVoteIcon.classList.remove('voted');
       totalVotes += vote === 'upvote' ? 1 : -1;
     }
   }
