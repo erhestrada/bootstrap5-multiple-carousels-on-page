@@ -50,13 +50,13 @@ const upvoteButton = document.getElementById('like-button');
 const downvoteButton = document.getElementById('dislike-button');
 
 upvoteButton.addEventListener('click', () => {
-  updateVotes('upvote');
-  saveClip('liked-clips');
+  updateVotes(upvoteButton, 'upvote');
+  //saveClip('liked-clips');
 });
 
 downvoteButton.addEventListener('click', () => {
-  updateVotes('downvote');
-  saveClip('disliked-clips');
+  updateVotes(downvoteButton, 'downvote');
+  //saveClip('disliked-clips');
 });
 
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
