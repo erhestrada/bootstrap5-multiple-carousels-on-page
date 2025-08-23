@@ -46,8 +46,8 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const upvoteButton = document.getElementById('like-button');
-const downvoteButton = document.getElementById('dislike-button');
+const upvoteButton = document.getElementById('upvote-button');
+const downvoteButton = document.getElementById('downvote-button');
 
 upvoteButton.addEventListener('click', () => {
   updateVotes(upvoteButton, 'upvote');

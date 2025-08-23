@@ -5,8 +5,8 @@ export function updateVotes(button, vote) {
   // If vote is upvote other vote is downvote and vice versa
   const oppositeVote = vote === 'upvote' ? 'downvote' : 'upvote';
   const voteButtons = {
-    upvote: document.getElementById('like-button'),
-    downvote: document.getElementById('dislike-button')
+    upvote: document.getElementById('upvote-button'),
+    downvote: document.getElementById('downvote-button')
   };
 
   const voteIcon = button.querySelector('.vote-icon');
