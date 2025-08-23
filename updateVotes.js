@@ -1,3 +1,4 @@
 export function updateVotes(button, vote) {
-    button.querySelector('.vote-icon').classList.add('voted');
+    const voteIcon = button.querySelector('.vote-icon');
+    voteIcon.classList.toggle('voted');
 }
