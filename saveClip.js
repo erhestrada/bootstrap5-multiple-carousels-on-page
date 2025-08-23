@@ -2,7 +2,7 @@
 export function saveClip(label) {
   let {game, index} = window.currentClipPosition;
 
-  const gameClipsData = window.clipsData[game].data;
+  const gameClipsData = window.clipsData[game];
   const clipData = gameClipsData[index];
 
   const jsonSavedClipsData = localStorage.getItem(label);
