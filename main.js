@@ -46,15 +46,15 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const likeButton = document.getElementById('like-button');
-const dislikeButton = document.getElementById('dislike-button');
+const upvoteButton = document.getElementById('like-button');
+const downvoteButton = document.getElementById('dislike-button');
 
-likeButton.addEventListener('click', () => {
+upvoteButton.addEventListener('click', () => {
   updateVotes('upvote');
   saveClip('liked-clips');
 });
 
-dislikeButton.addEventListener('click', () => {
+downvoteButton.addEventListener('click', () => {
   updateVotes('downvote');
   saveClip('disliked-clips');
 });
