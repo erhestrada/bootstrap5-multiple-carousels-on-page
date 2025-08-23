@@ -1,3 +1,3 @@
-function updateVotes() {
-    
+export function updateVotes(vote) {
+
 }

@@ -6,6 +6,7 @@ import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarouse
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
+import {updateVotes} from './updateVotes.js'
 
 window.clipsData = {};
 window.firstThumbnail = false;
@@ -45,8 +46,19 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-document.getElementById('like-button').addEventListener('click', () => saveClip("liked-clips"));
-document.getElementById('dislike-button').addEventListener('click', () => saveClip("disliked-clips"));
+const likeButton = document.getElementById('like-button');
+const dislikeButton = document.getElementById('dislike-button');
+
+likeButton.addEventListener('click', () => {
+  updateVotes('upvote');
+  saveClip('liked-clips');
+});
+
+dislikeButton.addEventListener('click', () => {
+  updateVotes('downvote');
+  saveClip('disliked-clips');
+});
+
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
 document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamer'), localStorage.getItem('currentClipStreamerId')));
 document.getElementById('follow-category-button').addEventListener('click', () => followCategory(window.currentClipPosition['game']));
