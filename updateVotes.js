@@ -1,23 +1,29 @@
 export function updateVotes(button, vote) {
-  const voteIcon = button.querySelector('.vote-icon');
-  voteIcon.classList.toggle('voted');
-
   const totalVotesElement = document.getElementById('total-votes');
   let totalVotes = parseInt(totalVotesElement.textContent, 10) || 0;
 
-  const voted = voteIcon.classList.contains('voted');
+  const otherVote = vote === 'upvote' ? 'downvote' : 'upvote';
+  const voteButtons = {
+    upvote: document.getElementById('like-button'),
+    downvote: document.getElementById('dislike-button')
+  };
 
-  if (vote === 'upvote') {
-    if (voted) {
-      totalVotes += 1;
-    } else {
-      totalVotes -= 1;
-    }
-  } else if (vote === 'downvote') {
-    if (voted) {
-      totalVotes -= 1;
-    } else {
-      totalVotes += 1;
+  const currentIcon = button.querySelector('.vote-icon');
+  const otherIcon = voteButtons[otherVote].querySelector('.vote-icon');
+
+  const currentVoted = currentIcon.classList.contains('voted');
+  const otherVoted = otherIcon.classList.contains('voted');
+
+  if (currentVoted) {
+    currentIcon.classList.remove('voted');
+    totalVotes += vote === 'upvote' ? -1 : 1;
+  } else {
+    currentIcon.classList.add('voted');
+    totalVotes += vote === 'upvote' ? 1 : -1;
+
+    if (otherVoted) {
+      otherIcon.classList.remove('voted');
+      totalVotes += vote === 'upvote' ? 1 : -1;
     }
   }
 
