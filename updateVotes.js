@@ -33,7 +33,6 @@ export function updateVotes(button, vote) {
     totalVotesElement.textContent = totalVotes;
 }
 
-
 function removeClip(label) {
   let { game, index } = window.currentClipPosition;
 
