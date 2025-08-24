@@ -51,12 +51,10 @@ const downvoteButton = document.getElementById('downvote-button');
 
 upvoteButton.addEventListener('click', () => {
   updateVotes(upvoteButton, 'upvote');
-  saveClip('liked-clips');
 });
 
 downvoteButton.addEventListener('click', () => {
   updateVotes(downvoteButton, 'downvote');
-  saveClip('disliked-clips');
 });
 
 document.getElementById('favorite-button').addEventListener('click', () => saveClip("favorited-clips"));
