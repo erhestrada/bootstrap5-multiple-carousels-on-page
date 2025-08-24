@@ -13,24 +13,28 @@ export function updateVotes(button, vote) {
 
     if (voteIconAlreadyClicked) {
         voteIcon.classList.remove('voted');
-        removeClip(vote);
+        removeClip(getVoteStorageKey(vote));
         // turning upvote off -> -1, turning downvote off -> +1
         totalVotes += vote === 'upvote' ? -1 : 1;
     } else {
         voteIcon.classList.add('voted');
-        saveClip(vote);
+        saveClip(getVoteStorageKey(vote));
         // +1 for upvote -1 for downvote
         totalVotes += vote === 'upvote' ? 1 : -1;
 
     if (oppositeVoteIconAlreadyClicked) {
         oppositeVoteIcon.classList.remove('voted');
-        removeClip(oppositeVote);
+        removeClip(getVoteStorageKey(oppositeVote));
         // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
         totalVotes += vote === 'upvote' ? 1 : -1;
     }
     }
 
     totalVotesElement.textContent = totalVotes;
+}
+
+function getVoteStorageKey(vote) {
+  return vote === 'upvote' ? 'upvotedClips' : 'downvotedClips';
 }
 
 function removeClip(label) {
