@@ -4,7 +4,8 @@ export function updateVotes(button, vote) {
 
     const voteIcon = button.querySelector('.vote-icon');
 
-    const oppositeButton = document.getElementById(vote === 'upvote' ? 'downvote-button' : 'upvote-button');
+    const oppositeVote = vote === 'upvote' ? 'downvote' : 'upvote';
+    const oppositeButton = document.getElementById(oppositeVote + '-button');
     const oppositeVoteIcon = oppositeButton.querySelector('.vote-icon');
 
     const voteIconAlreadyClicked = voteIcon.classList.contains('voted');
@@ -12,6 +13,7 @@ export function updateVotes(button, vote) {
 
     if (voteIconAlreadyClicked) {
         voteIcon.classList.remove('voted');
+        removeClip(vote);
         // turning upvote off -> -1, turning downvote off -> +1
         totalVotes += vote === 'upvote' ? -1 : 1;
     } else {
@@ -21,6 +23,7 @@ export function updateVotes(button, vote) {
 
     if (oppositeVoteIconAlreadyClicked) {
         oppositeVoteIcon.classList.remove('voted');
+        removeClip(oppositeVote);
         // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
         totalVotes += vote === 'upvote' ? 1 : -1;
     }
@@ -29,6 +32,40 @@ export function updateVotes(button, vote) {
     totalVotesElement.textContent = totalVotes;
 }
 
-function updateSavedClips() {
+// if voteIcon has 'voted' in class -> voteSavedClips should have clip
+// if oppositeVoteIcon has 'voted' in class -> oppositeVoteSavedClips should have clip
 
+function updateSavedClips(vote) {
+
+
+
+}
+
+
+function removeClip(label) {
+  let { game, index } = window.currentClipPosition;
+
+  const gameClipsData = window.clipsData[game];
+  const clipData = gameClipsData[index];
+
+  const jsonSavedClipsData = localStorage.getItem(label);
+  const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
+
+  const updatedClips = savedClipsData.filter(savedClip =>
+    JSON.stringify(savedClip) !== JSON.stringify(clipData)
+  );
+
+  localStorage.setItem(label, JSON.stringify(updatedClips));
+}
+
+export function saveClip(label) {
+  let {game, index} = window.currentClipPosition;
+
+  const gameClipsData = window.clipsData[game];
+  const clipData = gameClipsData[index];
+
+  const jsonSavedClipsData = localStorage.getItem(label);
+  const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
+  savedClipsData.push(clipData);
+  localStorage.setItem(label, JSON.stringify(savedClipsData));
 }
