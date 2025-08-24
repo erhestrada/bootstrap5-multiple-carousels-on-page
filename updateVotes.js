@@ -28,3 +28,7 @@ export function updateVotes(button, vote) {
 
     totalVotesElement.textContent = totalVotes;
 }
+
+function updateSavedClips() {
+    
+}
