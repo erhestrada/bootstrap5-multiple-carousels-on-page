@@ -37,7 +37,7 @@ function getVoteStorageKey(vote) {
   return vote === 'upvote' ? 'upvotedClips' : 'downvotedClips';
 }
 
-function removeClip(label) {
+export function removeClip(label) {
   let { game, index } = window.currentClipPosition;
 
   const gameClipsData = window.clipsData[game];
