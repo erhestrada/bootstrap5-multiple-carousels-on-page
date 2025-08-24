@@ -2,18 +2,16 @@ import { saveClip, removeClip } from "./updateVotes.js";
 
 export function updateFavorites(button) {
   const favoriteIcon = button.querySelector('.favorite-icon');
-  const isFavorited = favoriteIcon.classList.contains('favorited');
   const favoritesStorageKey = 'favoritedClips';
 
+  const isFavorited = favoriteIcon.classList.toggle('favorited'); // true if class added, false if class removed
+
+  favoriteIcon.classList.toggle('bi-star-fill', isFavorited); // filled if favorited
+  favoriteIcon.classList.toggle('bi-star', !isFavorited); // empty if not favorited
+
   if (isFavorited) {
-    favoriteIcon.classList.remove('favorited'); // Remove fill color
-    favoriteIcon.classList.remove('bi-star-fill');
-    favoriteIcon.classList.add('bi-star');
-    removeClip(favoritesStorageKey);
-  } else {
-    favoriteIcon.classList.add('favorited'); // Add fill color
-    favoriteIcon.classList.remove('bi-star');
-    favoriteIcon.classList.add('bi-star-fill');
     saveClip(favoritesStorageKey);
+  } else {
+    removeClip(favoritesStorageKey);
   }
 }
