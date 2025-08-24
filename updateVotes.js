@@ -11,13 +11,13 @@ export function updateVotes(button, vote) {
     const oppositeVoteIconAlreadyClicked = oppositeVoteIcon.classList.contains('voted');
 
     if (voteIconAlreadyClicked) {
-    voteIcon.classList.remove('voted');
-    // turning upvote off -> -1, turning downvote off -> +1
-    totalVotes += vote === 'upvote' ? -1 : 1;
+        voteIcon.classList.remove('voted');
+        // turning upvote off -> -1, turning downvote off -> +1
+        totalVotes += vote === 'upvote' ? -1 : 1;
     } else {
-    voteIcon.classList.add('voted');
-    // +1 for upvote -1 for downvote
-    totalVotes += vote === 'upvote' ? 1 : -1;
+        voteIcon.classList.add('voted');
+        // +1 for upvote -1 for downvote
+        totalVotes += vote === 'upvote' ? 1 : -1;
 
     if (oppositeVoteIconAlreadyClicked) {
         oppositeVoteIcon.classList.remove('voted');
@@ -30,5 +30,5 @@ export function updateVotes(button, vote) {
 }
 
 function updateSavedClips() {
-    
+
 }
