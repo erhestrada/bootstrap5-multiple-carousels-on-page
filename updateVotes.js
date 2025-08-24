@@ -33,15 +33,6 @@ export function updateVotes(button, vote) {
     totalVotesElement.textContent = totalVotes;
 }
 
-// if voteIcon has 'voted' in class -> voteSavedClips should have clip
-// if oppositeVoteIcon has 'voted' in class -> oppositeVoteSavedClips should have clip
-
-function updateSavedClips(vote) {
-
-
-
-}
-
 
 function removeClip(label) {
   let { game, index } = window.currentClipPosition;
