@@ -15,7 +15,7 @@ export function loadClipInteractions(clip) {
 }
 
 function highlightElement(clip, memory, button, category) {
-    if (memory.some(button => button.id === clip.id)) {
+    if (memory.some(element => element.id === clip.id)) {
         if (category === 'vote') {
             button.classList.add('voted');
         } else if (category === 'favorite') {
