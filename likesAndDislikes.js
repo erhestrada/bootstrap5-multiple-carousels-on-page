@@ -1,17 +1,16 @@
 import { closePopUp } from "./getTopClipsBrowse";
 
-//display likes
-const likedClipsUrls = JSON.parse(localStorage.getItem('upvotedClips')) || [];
-console.log('hey', likedClipsUrls);
-likedClipsUrls.forEach(url=> displayClip(url, 'likes-container'));
+const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
+console.log('hey', upvotedClips);
+upvotedClips.forEach(clip => displayClip(clip, 'likes-container'));
 
-const dislikedClipsUrls = JSON.parse(localStorage.getItem('downvotedClips')) || [];
-dislikedClipsUrls.forEach(url => displayClip(url, 'dislikes-container'));
+const downvotedClips = JSON.parse(localStorage.getItem('downvotedClips')) || [];
+downvotedClips.forEach(clip => displayClip(clip, 'dislikes-container'));
 
-const favoritedClipsUrls = JSON.parse(localStorage.getItem('favoritedClips')) || [];
-favoritedClipsUrls.forEach(url => displayClip(url, 'favorites-container'));
+const favoritedClips = JSON.parse(localStorage.getItem('favoritedClips')) || [];
+favoritedClips.forEach(clip => displayClip(clip, 'favorites-container'));
 
-
+/*
 function displayClip(url, containerId) {  
     const iframe = document.createElement('iframe');
   
@@ -25,9 +24,9 @@ function displayClip(url, containerId) {
     likesContainer.appendChild(iframe);
   
   }
+*/
 
 
-/*
 function displayClip(clipData, containerId) {
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
@@ -109,7 +108,7 @@ function displayClip(clipData, containerId) {
   imageWrapper.appendChild(viewCountElement);
   imageWrapper.appendChild(creationDate);
 }
-*/
+
 
 function openPopUpPlayer(embedUrl) {
   openPopUp();
