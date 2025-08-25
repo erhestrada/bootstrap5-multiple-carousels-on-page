@@ -24,8 +24,13 @@ function displayClip(clipData, containerId) {
   const gameId = clipData.game_id;
 
   const carouselItem = document.createElement('div');
-  //carouselItem.id = carouselName + index;
-  //carouselItem.className = "carousel-item"
+  carouselItem.className = "carousel-element";
+  carouselItem.style.cssText = `
+      width: fit-content !important;
+      display: inline-block !important;
+      vertical-align: top !important;
+      flex: none !important;
+  `;
 
   const card = document.createElement('div');
   card.className = "card";
