@@ -18,7 +18,7 @@
   transform: rotate(180deg);
 }
 
-.voted {
+.vote-button.voted {
   color: #a970ff;
 }
 
