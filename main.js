@@ -67,17 +67,13 @@ document.getElementById('donut-button-bottom').addEventListener('click', () => u
 // think ALL is the default if not start/end parameters
 document.getElementById('donut-button-left').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 5500));
 
-//document.getElementById('followed-categories-button').addEventListener('click', () => makeFollowedCategoriesCarousels());
-
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
 makeTopCategoriesNewCarousels(window.pageNumber);
 
-
 const toggle = document.getElementById('modeToggle');
 const labelLeft = document.getElementById('label-left');
 const labelRight = document.getElementById('label-right');
-
 
 const updateLabels = () => {
   if (toggle.checked) {
