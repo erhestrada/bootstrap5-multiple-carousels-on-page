@@ -10,23 +10,6 @@ downvotedClips.forEach(clip => displayClip(clip, 'dislikes-container'));
 const favoritedClips = JSON.parse(localStorage.getItem('favoritedClips')) || [];
 favoritedClips.forEach(clip => displayClip(clip, 'favorites-container'));
 
-/*
-function displayClip(url, containerId) {  
-    const iframe = document.createElement('iframe');
-  
-    iframe.src = url.replace("autoplay=true", "autplay=false");
-  
-    iframe.height = '360';
-    iframe.width = '640';
-    iframe.allowFullscreen = true;
-    
-    const likesContainer = document.getElementById(containerId);
-    likesContainer.appendChild(iframe);
-  
-  }
-*/
-
-
 function displayClip(clipData, containerId) {
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
