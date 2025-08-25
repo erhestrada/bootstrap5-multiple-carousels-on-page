@@ -17,7 +17,8 @@ export function loadClipInteractions(clip) {
 function highlightElement(clip, memory, button, category) {
     if (memory.some(element => element.id === clip.id)) {
         if (category === 'vote') {
-            button.classList.add('voted');
+            const voteIcon = button.querySelector('.vote-icon');
+            voteIcon.classList.add('voted');
         } else if (category === 'favorite') {
             const favoriteIcon = button.querySelector('.favorite-icon');
             favoriteIcon.classList.remove('bi-star');
