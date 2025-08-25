@@ -7,6 +7,7 @@ import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import {updateVotes} from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
+import { loadClipInteractions } from './loadClipInteractions.js';
 
 window.clipsData = {};
 window.firstThumbnail = false;
@@ -19,6 +20,8 @@ window.carouselInstances = {};
 window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
+
+loadClipInteractions();
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
