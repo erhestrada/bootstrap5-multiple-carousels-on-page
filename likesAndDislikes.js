@@ -1,16 +1,17 @@
 import { closePopUp } from "./getTopClipsBrowse";
 
 //display likes
-const likedClipsUrls = JSON.parse(localStorage.getItem('liked-clips')) || [];
+const likedClipsUrls = JSON.parse(localStorage.getItem('upvotedClips')) || [];
+console.log('hey', likedClipsUrls);
 likedClipsUrls.forEach(url=> displayClip(url, 'likes-container'));
 
-const dislikedClipsUrls = JSON.parse(localStorage.getItem('disliked-clips')) || [];
+const dislikedClipsUrls = JSON.parse(localStorage.getItem('downvotedClips')) || [];
 dislikedClipsUrls.forEach(url => displayClip(url, 'dislikes-container'));
 
-const favoritedClipsUrls = JSON.parse(localStorage.getItem('favorited-clips')) || [];
+const favoritedClipsUrls = JSON.parse(localStorage.getItem('favoritedClips')) || [];
 favoritedClipsUrls.forEach(url => displayClip(url, 'favorites-container'));
 
-/*
+
 function displayClip(url, containerId) {  
     const iframe = document.createElement('iframe');
   
@@ -24,8 +25,9 @@ function displayClip(url, containerId) {
     likesContainer.appendChild(iframe);
   
   }
-*/
 
+
+/*
 function displayClip(clipData, containerId) {
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
@@ -107,6 +109,7 @@ function displayClip(clipData, containerId) {
   imageWrapper.appendChild(viewCountElement);
   imageWrapper.appendChild(creationDate);
 }
+*/
 
 function openPopUpPlayer(embedUrl) {
   openPopUp();
