@@ -17,3 +17,11 @@
 .flipped {
   transform: rotate(180deg);
 }
+
+.voted {
+  color: #a970ff;
+}
+
+.favorited {
+  color: #a970ff;
+}

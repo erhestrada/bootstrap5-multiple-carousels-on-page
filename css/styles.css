@@ -114,11 +114,3 @@ a:hover {
 .playlist-row.current {
   background-color: #4b367c;
 }
-
-.voted {
-  color: #a970ff;
-}
-
-.favorited {
-  color: #a970ff;
-}
