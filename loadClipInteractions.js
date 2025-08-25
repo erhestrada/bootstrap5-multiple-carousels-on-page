@@ -19,9 +19,10 @@ function highlightElement(clip, memory, button, category) {
         if (category === 'vote') {
             button.classList.add('voted');
         } else if (category === 'favorite') {
-            button.classList.add('voted');
+            const favoriteIcon = button.querySelector('.favorite-icon');
+            favoriteIcon.classList.remove('bi-star');
+            favoriteIcon.classList.add('bi-star-fill');
+            favoriteIcon.classList.add('favorited');
         }
     }
 }
-
-
