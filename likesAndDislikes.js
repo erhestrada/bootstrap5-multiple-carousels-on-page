@@ -25,7 +25,7 @@ function displayClip(clipData, containerId) {
 
   const carouselItem = document.createElement('div');
   //carouselItem.id = carouselName + index;
-  carouselItem.className = "carousel-item"
+  //carouselItem.className = "carousel-item"
 
   const card = document.createElement('div');
   card.className = "card";
