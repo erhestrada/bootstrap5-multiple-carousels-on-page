@@ -7,6 +7,7 @@ export function saveClip(label) {
 
   const jsonSavedClipsData = localStorage.getItem(label);
   const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
-  savedClipsData.push(clipData);
+
+  if (!savedClipsData.some(element => element.id === clipData.id)) savedClipsData.push(clipData);
   localStorage.setItem(label, JSON.stringify(savedClipsData));
 }
