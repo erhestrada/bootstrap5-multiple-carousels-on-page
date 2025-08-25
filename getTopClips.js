@@ -104,10 +104,15 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
 
 export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
+  const { game } = window.currentClipPosition;
+  const currentClip = window.clipsData[game][index];
   console.log('current streamer: ', streamers[index]);
+  
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
   displayFollowButton(streamers[index], window.activeCarousel);
+  loadClipInteractions(currentClip);
+
   window.currentStreamerId = streamerIds[index];
   
   const iframeContainer = document.getElementById('iframe-container');
