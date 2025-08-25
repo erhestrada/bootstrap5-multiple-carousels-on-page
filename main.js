@@ -20,8 +20,6 @@ window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
 
-localStorage?.removeItem('highlightedDivId');
-
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
 document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
