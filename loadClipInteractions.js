@@ -1,3 +1,5 @@
+// also need to load total votes
+
 export function loadClipInteractions(clip) {
     const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips') || '[]');
     const downvotedClips = JSON.parse(localStorage.getItem('downvotedClips') || '[]');
@@ -11,14 +13,19 @@ export function loadClipInteractions(clip) {
     console.log(clip);
     console.log(upvotedClips.some(upvotedClip => upvotedClip.id === clip.id));
 
-    highlightElement(clip, upvotedClips, upvoteButton);
-    highlightElement(clip, downvotedClips, downvoteButton);
-    highlightElement(clip, favoritedClips, favoriteButton);
+    highlightElement(clip, upvotedClips, upvoteButton, 'vote');
+    highlightElement(clip, downvotedClips, downvoteButton, 'vote');
+    highlightElement(clip, favoritedClips, favoriteButton, 'favorite');
 }
 
-function highlightElement(clip, memory, element) {
+function highlightElement(clip, memory, element, category) {
     if (memory.some(element => element.id === clip.id)) {
-        console.log('heyo');
-        element.classList.add('voted');
+        if (category === 'vote') {
+            element.classList.add('voted');
+        } else if (category === 'favorite') {
+            element.classList.add('voted');
+        }
     }
 }
+
+
