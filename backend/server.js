@@ -1,6 +1,9 @@
-const express = require('express');
-const cors = require('cors');  // Add this
-const sqlite3 = require('sqlite3').verbose();
+import express from 'express';
+import cors from 'cors';
+import sqlite3Pkg from 'sqlite3'; // import with a different name
+
+const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
+
 const app = express();
 const port = 3000;  // Change to a different port
 
