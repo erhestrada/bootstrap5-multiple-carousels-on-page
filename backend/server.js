@@ -19,7 +19,7 @@ const db = new sqlite3.Database('./data.db');
 db.run('CREATE TABLE IF NOT EXISTS comments (row INTEGER PRIMARY KEY)');
 //---------------
 
-app.get('/dummy', (req, res) => {
+app.get('/:user/activity', (req, res) => {
   console.log('dummy endpoint hit')
   db.all('SELECT * FROM dummy', (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
