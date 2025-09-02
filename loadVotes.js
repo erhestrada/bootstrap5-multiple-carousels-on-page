@@ -1,11 +1,9 @@
-const uuid = 1;
-
 export function loadVotes() {
 
 }
 
 // upvotes downvotes favorites comments
-export async function loadUserActivity() {
+export async function loadUserActivity(uuid) {
     try {
         const response = await fetch(`https://192.168.86.195:3000/${uuid}/activity`);
 
