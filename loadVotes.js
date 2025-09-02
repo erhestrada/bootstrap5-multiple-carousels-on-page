@@ -11,8 +11,8 @@ export async function loadUserActivity(uuid) {
             throw new Error(`HTTP error; status: ${response.status}`);
         }
 
-        const responseData = await response.json();
-        return responseData;
+        const userActivity = await response.json();
+        return userActivity;
         
     } catch(error) {
         console.error("Error loading user activity", error);
