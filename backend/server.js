@@ -28,7 +28,7 @@ db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id IN
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
 
-function getUserData(tableName, userId, res) {
+function getUserDataFromTable(userId, tableName, res) {
   const query = `SELECT * FROM ${tableName} WHERE user_id = ?`;
 
   db.all(query, [userId], (err, rows) => {
@@ -45,7 +45,7 @@ app.get('/:userId/activity', (req, res) => {
 
 app.get('/:userId/comments', (req, res) => {
   const userId = req.params.userId;
-  getUserData('comments', userId, res);
+  getUserDataFromTable(userId, 'comments', res);
 });
 
 app.post('/comments', (req, res) => {
@@ -64,8 +64,7 @@ app.post('/comments', (req, res) => {
 // ---------------------------- Favorites ------------------------------
 app.get('/:userId/favorites', (req, res) => {
   const userId = req.params.userId;
-  const query = 'SELECT * FROM favorites WHERE user_id = ?';
-  getUserData('favorites', userId, res);
+  getUserDataFromTable(userId, 'favorites', res);
 });
 
 app.post('/favorites', (req, res) => {
