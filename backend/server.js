@@ -37,7 +37,9 @@ app.get('/:userId/activity', (req, res) => {
 });
 
 app.post('/comments', (req, res) => {
-  const { userId, comment } = req.body;
+  const { userId, clipId, comment } = req.body;
+
+  const query = '';
   res.send('Comments post request');
 });
 // ---------------------------- NC Counties Endpoints ------------------------------
