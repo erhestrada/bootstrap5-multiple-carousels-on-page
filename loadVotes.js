@@ -8,7 +8,7 @@ export function loadComments() {
 
 }
 
-// upvotes downvotes favorites comments
+// upvotes downvotes favorites comments follows
 export async function loadUserActivity(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/${userId}/activity`);
