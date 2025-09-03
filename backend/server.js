@@ -16,7 +16,7 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-db.run('CREATE TABLE IF NOT EXISTS comments (row INTEGER PRIMARY KEY)');
+db.run('CREATE TABLE IF NOT EXISTS activity (row INTEGER PRIMARY KEY)');
 //---------------
 
 app.get('/:userId/activity', (req, res) => {
