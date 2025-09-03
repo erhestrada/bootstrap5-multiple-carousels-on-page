@@ -84,6 +84,17 @@ app.post('/comments', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
+app.delete('/comments', (req, res) => {
+  const { userId, clipId, comment } = req.body;
+
+  //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
+  const tableName = 'favorites';
+  const columnNames = ['user_id', 'clip_id', comment];
+  const parameters = [userId, clipId, comment];
+
+  deleteRowFromTable(tableName, columnNames, parameters, res);
+});
+
 // ---------------------------- Favorites ------------------------------
 app.get('/:userId/favorites', (req, res) => {
   const userId = req.params.userId;
