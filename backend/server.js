@@ -16,14 +16,15 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-db.run('CREATE TABLE IF NOT EXISTS activity (row INTEGER PRIMARY KEY)');
+db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, post_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+
 //---------------
 
 app.get('/:userId/activity', (req, res) => {
   const userId = req.params.userId;
   console.log('user activity endpoint hit')
 
-  const query = 'SELECT * FROM activity WHERE user_id = ?';
+  const query = 'SELECT * FROM comments WHERE user_id = ?';
   db.all(query, [userId], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
