@@ -22,7 +22,9 @@ db.run('CREATE TABLE IF NOT EXISTS activity (row INTEGER PRIMARY KEY)');
 app.get('/:userId/activity', (req, res) => {
   const userId = req.params.userId;
   console.log('user activity endpoint hit')
-  db.all('SELECT * FROM activity WHERE user_id = ?', [userId], (err, rows) => {
+
+  const query = 'SELECT * FROM activity WHERE user_id = ?';
+  db.all(query, [userId], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
