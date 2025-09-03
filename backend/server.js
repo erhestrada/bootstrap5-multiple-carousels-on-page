@@ -18,6 +18,10 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
+
+
+//db.run('DROP TABLE comments');
+
 db.run('CREATE TABLE IF NOT EXISTS upvotes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS downvotes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
@@ -26,6 +30,10 @@ db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INT
 //---------------
 
 app.get('/:userId/activity', (req, res) => {
+  res.send('activity endpoint hit');
+});
+
+app.get('/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   console.log('user activity endpoint hit')
 
