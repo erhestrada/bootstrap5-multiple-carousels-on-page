@@ -48,6 +48,20 @@ function insertRowIntoTable(tableName, columnNames, parameters, res) {
   });
 }
 
+function deleteRowFromTable(tableName, columnNames, parameters, res) {
+    // e.g. user_id = ? AND clip_id = ?
+    const whereClause = columnNames.map(col => `${col} = ?`).join(' AND ');
+    const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
+
+    db.run(query, parameters, function (err) {
+        if (err) return res.status(500).json({ error: err.message });
+        if (this.changes === 0) {
+            return res.status(404).json({ message: `${tableName} not found` });
+        }
+        res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
+    });
+}
+
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
@@ -88,7 +102,7 @@ app.post('/favorites', (req, res) => {
 });
 
 app.delete('/favorites', (req, res) => {
-  const { userId, clipId } = req.body; // Assuming userId and clipId are passed in the body
+  const { userId, clipId } = req.body;
 
   const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
   const parameters = [userId, clipId];
