@@ -42,7 +42,7 @@ app.post('/comments', (req, res) => {
   const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const parameters = [userId, clipId, comment];
 
-  // Use a regular function instead of arrow function so this refers to context of db.run
+  // Use a regular function instead of arrow function so this refers to db
   db.run(query, parameters, function (err) {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: 'Comment added', id: this.lastID });
