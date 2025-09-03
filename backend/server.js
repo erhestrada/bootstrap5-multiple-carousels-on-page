@@ -79,14 +79,12 @@ app.get('/:userId/favorites', (req, res) => {
 app.post('/favorites', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
-  const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
+  // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
+  const tableName = 'favorites';
+  const columnNames = ['user_id', 'clip_id'];
   const parameters = [userId, clipId, comment];
 
-  // Use a regular function instead of arrow function so this refers to db
-  db.run(query, parameters, function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json({ message: 'Comment added', id: this.lastID });
-  });
+  insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
 
