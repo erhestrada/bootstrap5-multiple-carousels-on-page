@@ -37,6 +37,16 @@ function getUserDataFromTable(userId, tableName, res) {
   });
 }
 
+function insertRowIntoTable(tableName, columns, parameters, res) {
+  // e.g.'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)'; 1 ? per column
+  const query = `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${columns.map(() => '?').join(', ')})`;
+
+  db.run(query, parameters, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: `Row added to ${tableName}`, id: this.lastID });
+  });
+}
+
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
