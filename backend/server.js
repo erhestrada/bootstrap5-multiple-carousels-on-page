@@ -34,6 +34,9 @@ app.get('/:userId/activity', (req, res) => {
   });
 });
 
+app.post('/comments', (req, res) => {
+  res.send('Comments post request');
+});
 // ---------------------------- NC Counties Endpoints ------------------------------
 
 // Start server
