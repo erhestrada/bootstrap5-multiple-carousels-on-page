@@ -27,7 +27,7 @@ db.run('CREATE TABLE IF NOT EXISTS downvotes (id INTEGER PRIMARY KEY, user_id IN
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
-//---------------
+// ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
@@ -56,7 +56,30 @@ app.post('/comments', (req, res) => {
     res.status(201).json({ message: 'Comment added', id: this.lastID });
   });
 });
-// ---------------------------- NC Counties Endpoints ------------------------------
+// ---------------------------- Favorites ------------------------------
+app.get('/:userId/favorites', (req, res) => {
+  const userId = req.params.userId;
+
+  const query = 'SELECT * FROM favorites WHERE user_id = ?';
+  db.all(query, [userId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.post('/favorites', (req, res) => {
+  const { userId, clipId, comment } = req.body;
+
+  const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
+  const parameters = [userId, clipId, comment];
+
+  // Use a regular function instead of arrow function so this refers to db
+  db.run(query, parameters, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: 'Comment added', id: this.lastID });
+  });
+});
+
 
 // Start server
 app.listen(port, () => {
