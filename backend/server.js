@@ -40,7 +40,11 @@ app.post('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
   const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
-  res.send('Comments post request');
+  const parameters = [userId, clipId, comment];
+  db.run(query, parameters, (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: 'Comment added', id: this.lastID });
+  });
 });
 // ---------------------------- NC Counties Endpoints ------------------------------
 
