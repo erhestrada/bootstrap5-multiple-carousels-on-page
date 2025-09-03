@@ -11,7 +11,7 @@ export function loadComments() {
 // upvotes downvotes favorites comments
 export async function loadUserActivity(uuid) {
     try {
-        const response = await fetch(`https://192.168.86.195:3000/${uuid}/activity`);
+        const response = await fetch(`http://192.168.86.195:3000/${uuid}/activity`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -26,3 +26,41 @@ export async function loadUserActivity(uuid) {
     }
 }
 
+export async function postComment(uuid, comment) {
+    try {
+        const response = await fetch(`http://192.168.86.195:3000/comments`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uuid, comment })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error; status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error("Error posting comment to database", error);
+        throw new Error(`Error posting comment to database: ${error.message}`);
+    }
+
+}
+
+
+
+export async function updateBondRequest(receiverId, bondedIntentionsJson, updatedStatus) {
+    try {
+        const response = await fetch('http://192.168.86.195:3000/updateBondRequest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ receiverId, bondedIntentionsJson, updatedStatus })
+        });
+          const result = await response.json();
+          console.log('Data Stored:', result);
+    
+      } catch (error) {
+          console.error('Error storing data:', error);
+      }
+}
