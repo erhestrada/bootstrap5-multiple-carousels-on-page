@@ -35,7 +35,7 @@ app.get('/:userId/activity', (req, res) => {
 
 app.get('/:userId/comments', (req, res) => {
   const userId = req.params.userId;
-  console.log('user activity endpoint hit')
+  console.log('get user comments endpoint hit')
 
   const query = 'SELECT * FROM comments WHERE user_id = ?';
   db.all(query, [userId], (err, rows) => {
