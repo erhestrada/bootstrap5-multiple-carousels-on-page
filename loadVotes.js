@@ -26,12 +26,12 @@ export async function loadUserActivity(userId) {
     }
 }
 
-export async function postComment(userId, comment) {
+export async function postComment(userId, clipId, comment) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId, comment })
+            body: JSON.stringify({ userId, clipId, comment })
         });
 
         if (!response.ok) {
