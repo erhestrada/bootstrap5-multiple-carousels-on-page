@@ -37,10 +37,11 @@ function getUserDataFromTable(userId, tableName, res) {
   });
 }
 
-function insertRowIntoTable(tableName, columns, parameters, res) {
+function insertRowIntoTable(tableName, columnNames, parameters, res) {
   // e.g.'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)'; 1 ? per column
-  const query = `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${columns.map(() => '?').join(', ')})`;
+  const query = `INSERT INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
 
+  // Use a regular function instead of arrow function so this refers to db
   db.run(query, parameters, function (err) {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: `Row added to ${tableName}`, id: this.lastID });
@@ -61,14 +62,12 @@ app.get('/:userId/comments', (req, res) => {
 app.post('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
-  const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
+  // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
+  const tableName = 'comments';
+  const columnNames = ['user_id', 'clip_id', 'comment'];
   const parameters = [userId, clipId, comment];
 
-  // Use a regular function instead of arrow function so this refers to db
-  db.run(query, parameters, function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json({ message: 'Comment added', id: this.lastID });
-  });
+  insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
 // ---------------------------- Favorites ------------------------------
