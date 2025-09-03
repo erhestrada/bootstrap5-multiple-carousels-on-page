@@ -39,7 +39,7 @@ app.get('/:userId/activity', (req, res) => {
 app.post('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
-  const query = '';
+  const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   res.send('Comments post request');
 });
 // ---------------------------- NC Counties Endpoints ------------------------------
