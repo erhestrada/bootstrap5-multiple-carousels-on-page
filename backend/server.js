@@ -11,6 +11,8 @@ app.use(cors({
   origin: true,  // This allows all origins
   credentials: true
 }));
+
+// Enable Express middleware to parse incoming JSON request bodies
 app.use(express.json());
 
 // Setup SQLite database
