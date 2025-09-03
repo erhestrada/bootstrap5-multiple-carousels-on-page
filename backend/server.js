@@ -104,16 +104,12 @@ app.post('/favorites', (req, res) => {
 app.delete('/favorites', (req, res) => {
   const { userId, clipId } = req.body;
 
-  const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
+  //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
+  const tableName = 'favorites';
+  const columnNames = ['user_id', 'clip_id'];
   const parameters = [userId, clipId];
 
-  db.run(query, parameters, function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    if (this.changes === 0) {
-      return res.status(404).json({ message: 'Favorite not found' });
-    }
-    res.status(200).json({ message: 'Favorite removed', id: this.lastID });
-  });
+  deleteRowFromTable(tableName, columnNames, parameters, res);
 });
 
 // ---------------------------------------------------------------------
