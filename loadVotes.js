@@ -1,4 +1,10 @@
+// load votes per clip (only clips with votes)
 export function loadVotes() {
+
+}
+
+// load comments per clip (only clips with comments)
+export function loadComments() {
 
 }
 
