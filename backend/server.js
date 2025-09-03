@@ -27,6 +27,16 @@ db.run('CREATE TABLE IF NOT EXISTS downvotes (id INTEGER PRIMARY KEY, user_id IN
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
+
+function getUserData(tableName, userId, res) {
+  const query = `SELECT * FROM ${tableName} WHERE user_id = ?`;
+
+  db.all(query, [userId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+}
+
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
@@ -35,13 +45,7 @@ app.get('/:userId/activity', (req, res) => {
 
 app.get('/:userId/comments', (req, res) => {
   const userId = req.params.userId;
-  console.log('get user comments endpoint hit')
-
-  const query = 'SELECT * FROM comments WHERE user_id = ?';
-  db.all(query, [userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  getUserData('comments', userId, res);
 });
 
 app.post('/comments', (req, res) => {
@@ -56,15 +60,12 @@ app.post('/comments', (req, res) => {
     res.status(201).json({ message: 'Comment added', id: this.lastID });
   });
 });
+
 // ---------------------------- Favorites ------------------------------
 app.get('/:userId/favorites', (req, res) => {
   const userId = req.params.userId;
-
   const query = 'SELECT * FROM favorites WHERE user_id = ?';
-  db.all(query, [userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  getUserData('favorites', userId, res);
 });
 
 app.post('/favorites', (req, res) => {
