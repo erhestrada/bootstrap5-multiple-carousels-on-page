@@ -9,9 +9,9 @@ export function loadComments() {
 }
 
 // upvotes downvotes favorites comments
-export async function loadUserActivity(uuid) {
+export async function loadUserActivity(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/${uuid}/activity`);
+        const response = await fetch(`http://192.168.86.195:3000/${userId}/activity`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -26,12 +26,12 @@ export async function loadUserActivity(uuid) {
     }
 }
 
-export async function postComment(uuid, comment) {
+export async function postComment(userId, comment) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uuid, comment })
+            body: JSON.stringify({ userId, comment })
         });
 
         if (!response.ok) {
