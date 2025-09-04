@@ -37,7 +37,7 @@ function getUserDataFromTable(userId, tableName, res) {
   });
 }
 
-function getDataWithValueFromTable(tableName, columnName, filterValue, res) {
+function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
 
   db.all(query, [filterValue], (err, rows) => {
@@ -88,7 +88,7 @@ app.get('/clips/:clipId/comments'), (req, res) => {
   const clipId = req.params.clipId;
   const tableName = 'comments';
   const columnName = 'clip_id';
-  getDataWithValueFromTable(tableName, columnName, clipId, res);
+  getValueFilteredDataFromTable(tableName, columnName, clipId, res);
 }
 
 app.post('/comments', (req, res) => {
