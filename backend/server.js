@@ -83,6 +83,7 @@ app.get('/clips/:clipId/comments'), (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 }
 
+// post comment
 app.post('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
@@ -94,6 +95,7 @@ app.post('/comments', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
+// edit comment
 app.put('/comments/:commentId', (req, res) => {
   const commentId = req.params.commentId;
   const { updatedComment } = req.body;
@@ -114,6 +116,7 @@ app.put('/comments/:commentId', (req, res) => {
   });
 });
 
+// delete comment
 app.delete('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
