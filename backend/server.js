@@ -82,7 +82,8 @@ app.get('/users/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'comments';
   const columnName = 'user_id';
-  getValueFilteredDataFromTable(tableName, columnName, userId, res);
+  const filterValue = userId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
 // get all comments on clip
@@ -90,7 +91,8 @@ app.get('/clips/:clipId/comments'), (req, res) => {
   const clipId = req.params.clipId;
   const tableName = 'comments';
   const columnName = 'clip_id';
-  getValueFilteredDataFromTable(tableName, columnName, clipId, res);
+  const filterValue = clipId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 }
 
 app.post('/comments', (req, res) => {
