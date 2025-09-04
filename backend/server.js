@@ -37,6 +37,15 @@ function getUserDataFromTable(userId, tableName, res) {
   });
 }
 
+function getDataWithValueFromTable(tableName, columnName, filterValue, res) {
+  const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+}
+
 function insertRowIntoTable(tableName, columnNames, parameters, res) {
   // e.g.'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)'; 1 ? per column
   const query = `INSERT INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
@@ -68,10 +77,19 @@ app.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
 });
 
+// get all user comments
 app.get('/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   getUserDataFromTable(userId, 'comments', res);
 });
+
+// get all comments on clip
+app.get('/:clipId/comments'), (req, res) => {
+  const clipId = req.params.clipId;
+  const tableName = 'comments';
+  const columnName = 'clip_id';
+  getDataWithValueFromTable(tableName, columnName, clipId, res);
+}
 
 app.post('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
