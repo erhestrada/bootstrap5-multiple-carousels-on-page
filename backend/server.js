@@ -27,16 +27,6 @@ db.run('CREATE TABLE IF NOT EXISTS downvotes (id INTEGER PRIMARY KEY, user_id IN
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
-
-function getUserDataFromTable(userId, tableName, res) {
-  const query = `SELECT * FROM ${tableName} WHERE user_id = ?`;
-
-  db.all(query, [userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-}
-
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
 
