@@ -118,7 +118,10 @@ app.delete('/comments', (req, res) => {
 // ---------------------------- Favorites ------------------------------
 app.get('/:userId/favorites', (req, res) => {
   const userId = req.params.userId;
-  getUserDataFromTable(userId, 'favorites', res);
+  const tableName = 'favorites';
+  const columnName = 'user_id';
+  const filterValue = userId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
 app.post('/favorites', (req, res) => {
