@@ -20,9 +20,11 @@ const db = new sqlite3.Database('./data.db');
 
 //db.run('DROP TABLE upvotes');
 //db.run('DROP TABLE downvotes');
+db.run('DROP TABLE votes');
 
 // need a follows table as well
-db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, vote INTEGER)')
+// Each user gets one vote per clip
+db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, vote INTEGER, UNIQUE(user_id, clip_id))')
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
