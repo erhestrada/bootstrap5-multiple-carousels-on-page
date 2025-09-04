@@ -19,8 +19,6 @@ app.use(express.json());
 const db = new sqlite3.Database('./data.db');
 
 //db.run('DROP TABLE upvotes');
-//db.run('DROP TABLE downvotes');
-db.run('DROP TABLE votes');
 
 // need a follows table as well
 // Each user gets one vote per clip
