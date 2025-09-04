@@ -78,13 +78,13 @@ app.get('/:userId/activity', (req, res) => {
 });
 
 // get all user comments
-app.get('/:userId/comments', (req, res) => {
+app.get('/users/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   getUserDataFromTable(userId, 'comments', res);
 });
 
 // get all comments on clip
-app.get('/:clipId/comments'), (req, res) => {
+app.get('/clips/:clipId/comments'), (req, res) => {
   const clipId = req.params.clipId;
   const tableName = 'comments';
   const columnName = 'clip_id';
