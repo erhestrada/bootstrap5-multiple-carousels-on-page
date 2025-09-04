@@ -80,7 +80,9 @@ app.get('/:userId/activity', (req, res) => {
 // get all user comments
 app.get('/users/:userId/comments', (req, res) => {
   const userId = req.params.userId;
-  getUserDataFromTable(userId, 'comments', res);
+  const tableName = 'comments';
+  const columnName = 'user_id';
+  getValueFilteredDataFromTable(tableName, columnName, userId, res);
 });
 
 // get all comments on clip
