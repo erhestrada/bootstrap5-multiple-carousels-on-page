@@ -18,10 +18,11 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-//db.run('DROP TABLE comments');
+//db.run('DROP TABLE upvotes');
+//db.run('DROP TABLE downvotes');
 
-db.run('CREATE TABLE IF NOT EXISTS upvotes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
-db.run('CREATE TABLE IF NOT EXISTS downvotes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
+// need a follows table as well
+db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, vote INTEGER)')
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
@@ -158,6 +159,9 @@ app.delete('/favorites', (req, res) => {
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
+
+// ---------------------------- Votes ------------------------------
+
 
 // ---------------------------------------------------------------------
 
