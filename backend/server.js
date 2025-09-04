@@ -94,6 +94,26 @@ app.post('/comments', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
+app.put('/comments/:commentId', (req, res) => {
+  const commentId = req.params.commentId;
+  const { updatedComment } = req.body;
+
+  const query = `UPDATE comments SET comment = ? WHERE id = ?`;
+  const parameters = [updatedComment, commentId];
+
+  db.run(query, parameters, function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Comment not found' });
+    }
+
+    res.json({ message: 'Comment updated successfully' });
+  });
+});
+
 app.delete('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
