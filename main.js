@@ -8,8 +8,10 @@ import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
+import { getUserId } from './users/index.js';
 
 window.clientId = getClientId();
+window.userId = getUserId(window.clientId);
 window.clipsData = {};
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
