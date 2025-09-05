@@ -7,7 +7,9 @@ import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
+import { getClientId } from './get-client-id.js';
 
+window.clientId = getClientId();
 window.clipsData = {};
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
