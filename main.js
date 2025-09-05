@@ -10,6 +10,7 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 
 window.clientId = getClientId();
+window.userId = null;
 window.clipsData = {};
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
