@@ -1,3 +1,5 @@
+import { postVote } from './votes'
+
 export function updateVotes(button, vote) {
     const totalVotesElement = document.getElementById('total-votes');
     let totalVotes = parseInt(totalVotesElement.textContent, 10) || 0;
