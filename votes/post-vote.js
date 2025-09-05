@@ -1,9 +1,9 @@
-export default async function postVote(userId, clipId, vote) {
+export default async function postVote(userId, clientId, clipId, vote) {
     try {
         const response = await fetch('http://192.168.86.195:3000/votes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: { userId, clipId, vote }
+            body: { userId, clientId, clipId, vote }
         });
 
         if (!response.ok) {
