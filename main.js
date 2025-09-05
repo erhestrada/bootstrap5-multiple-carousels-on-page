@@ -5,7 +5,7 @@ import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarouse
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
-import {updateVotes} from './updateVotes.js'
+import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 
 window.clipsData = {};
