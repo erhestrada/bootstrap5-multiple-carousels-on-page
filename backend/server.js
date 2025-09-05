@@ -18,13 +18,13 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-//db.run('DROP TABLE upvotes');
+//db.run('DROP TABLE comments');
 
 // need a follows table as well
 // Each user gets one vote per clip
-db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, vote INTEGER, UNIQUE(user_id, clip_id))')
-db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER)');
-db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id INTEGER, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id))')
+db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT)');
+db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
@@ -52,7 +52,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
 
     db.run(query, parameters, function (err) {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) return res.status(500).  json({ error: err.message });
         if (this.changes === 0) {
             return res.status(404).json({ message: `${tableName} not found` });
         }
