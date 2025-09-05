@@ -161,6 +161,68 @@ app.delete('/favorites', (req, res) => {
 });
 
 // ---------------------------- Votes ------------------------------
+// Get all user votes
+app.get('/users/:userId/votes', (req, res) => {
+  const userId = req.params.userId;
+  const tableName = 'votes';
+  const columnName = 'user_id';
+  const filterValue = userId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+});
+
+// Get all votes on a clip
+app.get('/votes/:clipId/comments'), (req, res) => {
+  const clipId = req.params.clipId;
+  const tableName = 'votes';
+  const columnName = 'clip_id';
+  const filterValue = clipId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+}
+
+// Post comment
+app.post('/votes', (req, res) => {
+  const { userId, clipId, vote } = req.body;
+
+  // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
+  const tableName = 'votes';
+  const columnNames = ['user_id', 'clip_id', 'vote'];
+  const parameters = [userId, clipId, vote];
+
+  insertRowIntoTable(tableName, columnNames, parameters, res);
+});
+
+// Edit vote
+app.put('/votes/:voteId', (req, res) => {
+  const voteId = req.params.commentId;
+  const { updatedVote } = req.body;
+
+  const query = `UPDATE votes SET vote = ? WHERE id = ?`;
+  const parameters = [updatedVote, voteId];
+
+  db.run(query, parameters, function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Vote not found' });
+    }
+
+    res.json({ message: 'Vote updated successfully' });
+  });
+});
+
+// Delete vote
+app.delete('/votes', (req, res) => {
+  const { userId, clipId } = req.body;
+
+  //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
+  const tableName = 'favorites';
+  const columnNames = ['user_id', 'clip_id'];
+  const parameters = [userId, clipId];
+
+  deleteRowFromTable(tableName, columnNames, parameters, res);
+});
 
 
 // ---------------------------------------------------------------------
