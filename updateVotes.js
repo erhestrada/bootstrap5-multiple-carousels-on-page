@@ -13,7 +13,8 @@ export function updateVotes(button, vote) {
     const voteIconAlreadyClicked = voteIcon.classList.contains('voted');
     const oppositeVoteIconAlreadyClicked = oppositeVoteIcon.classList.contains('voted');
 
-    const userId = '';
+    const userId = window.userId;
+    const clientId = window.clientId;
     const clipId = getClipId();
 
     if (voteIconAlreadyClicked) {
