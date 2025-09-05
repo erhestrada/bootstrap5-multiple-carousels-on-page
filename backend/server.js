@@ -224,9 +224,42 @@ app.delete('/votes', (req, res) => {
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
 
+// ---------------------------- Follows ------------------------------
+// Get user follows
+app.get('/:userId/follows', (req, res) => {
+  const userId = req.params.userId;
+  const tableName = 'follows';
+  const columnName = 'user_id';
+  const filterValue = userId;
+  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+});
 
-// ---------------------------------------------------------------------
+/*
+// These two need to be tweaked
+app.post('/follows', (req, res) => {
+  const { userId, clipId, comment } = req.body;
 
+  // const query = 'INSERT INTO follows (user_id, clip_id) VALUES (?, ?)';
+  const tableName = 'follows';
+  const columnNames = ['user_id', 'clip_id'];
+  const parameters = [userId, clipId, comment];
+
+  insertRowIntoTable(tableName, columnNames, parameters, res);
+});
+
+app.delete('/follows', (req, res) => {
+  const { userId, clipId } = req.body;
+
+  //const query = 'DELETE FROM follows WHERE user_id = ? AND clip_id = ?';
+  const tableName = 'follows';
+  const columnNames = ['user_id', 'clip_id'];
+  const parameters = [userId, clipId];
+
+  deleteRowFromTable(tableName, columnNames, parameters, res);
+});
+*/
+
+// -------------------------------------------------------------------
 
 // Start server
 app.listen(port, () => {
