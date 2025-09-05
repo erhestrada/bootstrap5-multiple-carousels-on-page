@@ -13,6 +13,9 @@ export function updateVotes(button, vote) {
     const voteIconAlreadyClicked = voteIcon.classList.contains('voted');
     const oppositeVoteIconAlreadyClicked = oppositeVoteIcon.classList.contains('voted');
 
+    const userId = '';
+    const clipId = getClipId();
+
     if (voteIconAlreadyClicked) {
         voteIcon.classList.remove('voted');
         removeClip(getVoteStorageKey(vote));
@@ -21,7 +24,7 @@ export function updateVotes(button, vote) {
     } else {
         voteIcon.classList.add('voted');
         //saveClip(getVoteStorageKey(vote));
-        postVote();
+        //postVote(userId, clipId, vote);
         // +1 for upvote -1 for downvote
         totalVotes += vote === 'upvote' ? 1 : -1;
 
@@ -66,4 +69,12 @@ export function saveClip(label) {
   const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
   savedClipsData.push(clipData);
   localStorage.setItem(label, JSON.stringify(savedClipsData));
+}
+
+function getClipId() {
+  let {game, index} = window.currentClipPosition;
+  const gameClipsData = window.clipsData[game];
+  const clipData = gameClipsData[index];
+  const clipId = clipData.id;
+  return clipId;
 }
