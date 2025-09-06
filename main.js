@@ -8,10 +8,10 @@ import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
-import { getUserId } from './users/index.js'
+import { getSignedOutUserId } from './users/index.js'
 
 window.clientId = getClientId();
-window.userIdPromise = getUserId(window.clientId); // await later to avoid blocking DOM content
+window.userIdPromise = getSignedOutUserId(window.clientId); // await later to avoid blocking DOM content
 window.clipsData = {};
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted

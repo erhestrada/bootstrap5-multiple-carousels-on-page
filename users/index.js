@@ -1,1 +1,1 @@
-export { default as getUserId } from './get-user-id.js';
+export { default as getSignedOutUserId } from './get-user-id.js';
