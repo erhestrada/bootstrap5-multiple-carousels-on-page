@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3'; // import with a different name
+import getSignedOutUserId from '../users/get-signed-out-user-id';
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
 
@@ -59,6 +60,16 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
         }
         res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
     });
+}
+
+function handleSignedOutUser(userId, clientId) {
+  if (userId) return userId;
+  return getSignedOutUserId(clientId);
+}
+
+function getSignedOutUserId(clientId) {
+  // user with null information and the clientId
+
 }
 
 // ---------------------------- Comments ------------------------------
@@ -182,7 +193,9 @@ app.get('/votes/:clipId/comments'), (req, res) => {
 
 // Post comment
 app.post('/votes', (req, res) => {
-  const { userId, clipId, vote } = req.body;
+  let { userId, clientId, clipId, vote } = req.body;
+
+  userId = handleSignedOutUser(userId, clientId);
 
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
