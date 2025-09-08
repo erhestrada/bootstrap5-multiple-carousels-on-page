@@ -206,7 +206,8 @@ app.get('/votes/:clipId/comments'), (req, res) => {
 
 // Post comment
 app.post('/votes', async (req, res) => {
-  let { userId, clientId, clipId, vote } = req.body;
+  const { clientId, clipId, vote } = req.body;
+  let { userId } = req.body;
 
   userId = userId || await getSignedOutUserId(userId, clientId);
 
