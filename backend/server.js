@@ -61,11 +61,6 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     });
 }
 
-function handleSignedOutUser(userId, clientId) {
-  if (userId) return userId;
-  return getSignedOutUserId(clientId);
-}
-
 function getSignedOutUserId(clientId) {
   return new Promise((resolve, reject) => {
     const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
@@ -89,7 +84,6 @@ function getSignedOutUserId(clientId) {
     });
   });
 }
-
 
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
@@ -211,10 +205,10 @@ app.get('/votes/:clipId/comments'), (req, res) => {
 }
 
 // Post comment
-app.post('/votes', (req, res) => {
+app.post('/votes', async (req, res) => {
   let { userId, clientId, clipId, vote } = req.body;
 
-  userId = handleSignedOutUser(userId, clientId);
+  userId = userId || await getSignedOutUserId(userId, clientId);
 
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
