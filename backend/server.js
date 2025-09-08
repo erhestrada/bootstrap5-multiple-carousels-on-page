@@ -53,7 +53,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
 
     db.run(query, parameters, function (err) {
-      if (err) return res.status(500).  json({ error: err.message });
+      if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) {
           return res.status(404).json({ message: `${tableName} not found` });
       }
