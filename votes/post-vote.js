@@ -3,7 +3,7 @@ export default async function postVote(userId, clientId, clipId, vote) {
         const response = await fetch('http://192.168.86.195:3000/votes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: { userId, clientId, clipId, vote }
+            body: JSON.stringify({ userId, clientId, clipId, vote })
         });
 
         if (!response.ok) {
