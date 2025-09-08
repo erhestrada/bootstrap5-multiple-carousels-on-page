@@ -20,6 +20,7 @@ export function updateVotes(button, vote) {
     if (voteIconAlreadyClicked) {
         voteIcon.classList.remove('voted');
         removeClip(getVoteStorageKey(vote));
+        deleteVote(userId, clipId);
         // turning upvote off -> -1, turning downvote off -> +1
         totalVotes += vote === 'upvote' ? -1 : 1;
     } else {

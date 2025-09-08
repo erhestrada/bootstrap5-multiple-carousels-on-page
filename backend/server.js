@@ -18,7 +18,8 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-//db.run('DROP TABLE comments');
+//db.run('DROP TABLE users');
+//db.run('DROP TABLE votes');
 
 // need a follows table as well
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
