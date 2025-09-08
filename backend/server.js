@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3'; // import with a different name
-import getSignedOutUserId from '../users/get-signed-out-user-id';
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
 
