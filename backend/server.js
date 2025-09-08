@@ -204,7 +204,7 @@ app.get('/votes/:clipId/comments'), (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 }
 
-// Post comment
+// Post vote
 app.post('/votes', async (req, res) => {
   const { clientId, clipId, vote } = req.body;
   let { userId } = req.body;
