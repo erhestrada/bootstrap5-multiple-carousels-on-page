@@ -24,7 +24,7 @@ export function updateVotes(button, vote) {
         totalVotes += vote === 'upvote' ? -1 : 1;
     } else {
         voteIcon.classList.add('voted');
-        //saveClip(getVoteStorageKey(vote));
+        saveClip(getVoteStorageKey(vote));
         postVote(userId, clientId, clipId, vote);
         // +1 for upvote -1 for downvote
         totalVotes += vote === 'upvote' ? 1 : -1;
