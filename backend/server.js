@@ -208,7 +208,7 @@ app.post('/votes', async (req, res) => {
   const { clientId, clipId, vote } = req.body;
   let { userId } = req.body;
 
-  userId = userId || await getSignedOutUserId(userId, clientId);
+  userId = userId || await getSignedOutUserId(clientId);
 
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
