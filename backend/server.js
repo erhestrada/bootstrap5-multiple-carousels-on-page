@@ -22,9 +22,8 @@ const db = new sqlite3.Database('./data.db');
 //db.run('DROP TABLE comments');
 
 // need a follows table as well
-// Each user gets one vote per clip
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id))');
+db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id))'); // Each user gets one vote per clip
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 
@@ -68,9 +67,29 @@ function handleSignedOutUser(userId, clientId) {
 }
 
 function getSignedOutUserId(clientId) {
-  // user with null information and the clientId
+  return new Promise((resolve, reject) => {
+    const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
 
+    db.get(query, [clientId], (err, row) => {
+      if (err) return reject(err);
+
+      if (row) {
+        // Found existing user
+        return resolve(row.id);
+      }
+
+      // No user found, insert new
+      const insert = `INSERT INTO users (client_id, username, password) VALUES (?, NULL, NULL)`;
+      db.run(insert, [clientId], function (err) {
+        if (err) return reject(err);
+
+        // Insert done, resolve with new ID
+        resolve(this.lastID);
+      });
+    });
+  });
 }
+
 
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
