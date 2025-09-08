@@ -1,4 +1,4 @@
-import { postVote } from './votes'
+import { postVote, deleteVote } from './votes'
 
 export function updateVotes(button, vote) {
     const totalVotesElement = document.getElementById('total-votes');
