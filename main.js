@@ -26,6 +26,10 @@ window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
 
+const upvoteButton = document.getElementById('upvote-button');
+const downvoteButton = document.getElementById('downvote-button');
+const favoriteButton = document.getElementById('favorite-button');
+
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
 document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
@@ -50,18 +54,8 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const upvoteButton = document.getElementById('upvote-button');
-const downvoteButton = document.getElementById('downvote-button');
-const favoriteButton = document.getElementById('favorite-button');
-
-upvoteButton.addEventListener('click', () => {
-  updateVotes(upvoteButton, 'upvote');
-});
-
-downvoteButton.addEventListener('click', () => {
-  updateVotes(downvoteButton, 'downvote');
-});
-
+upvoteButton.addEventListener('click', () => updateVotes(upvoteButton, 'upvote'));
+downvoteButton.addEventListener('click', () => updateVotes(downvoteButton, 'downvote'));
 favoriteButton.addEventListener('click', () => updateFavorites(favoriteButton));
 
 document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamer'), localStorage.getItem('currentClipStreamerId')));
