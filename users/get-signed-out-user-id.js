@@ -7,7 +7,8 @@ export default async function getSignedOutUserId(clientId) {
             throw new Error(`HTTP error; status: ${response.status}`);
         }
 
-        const userId = await response.json();
+        const userIdData = await response.json();
+        const userId = userIdData.userId;
         return userId;
 
     } catch (error) {
