@@ -86,7 +86,7 @@ function getSignedOutUserId(clientId) {
 }
 
 // ---------------------------- Users ------------------------------
-app.get('/users', (req, res) => {
+app.get('/signed-out-user-id', (req, res) => {
   const { clientId } = req.query;
 
   if (!clientId) {
