@@ -18,24 +18,26 @@ export function updateVotes(button, vote) {
     const clipId = getClipId();
 
     if (voteIconAlreadyClicked) {
-        voteIcon.classList.remove('voted');
-        removeClip(getVoteStorageKey(vote));
-        deleteVote(userId, clipId);
-        // turning upvote off -> -1, turning downvote off -> +1
-        totalVotes += vote === 'upvote' ? -1 : 1;
+      voteIcon.classList.remove('voted');
+      removeClip(getVoteStorageKey(vote));
+      deleteVote(userId, clipId);
+      // turning upvote off -> -1, turning downvote off -> +1
+      totalVotes += vote === 'upvote' ? -1 : 1;
     } else {
-        voteIcon.classList.add('voted');
-        saveClip(getVoteStorageKey(vote));
-        postVote(userId, clientId, clipId, vote);
-        // +1 for upvote -1 for downvote
-        totalVotes += vote === 'upvote' ? 1 : -1;
+      // Remove opposite vote first because there should only be one vote for a user per clip in the database
+      if (oppositeVoteIconAlreadyClicked) {
+          oppositeVoteIcon.classList.remove('voted');
+          removeClip(getVoteStorageKey(oppositeVote));
+          deleteVote(userId, clipId);
+          // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
+          totalVotes += vote === 'upvote' ? 1 : -1;
+      }
 
-        if (oppositeVoteIconAlreadyClicked) {
-            oppositeVoteIcon.classList.remove('voted');
-            removeClip(getVoteStorageKey(oppositeVote));
-            // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
-            totalVotes += vote === 'upvote' ? 1 : -1;
-        }
+      voteIcon.classList.add('voted');
+      saveClip(getVoteStorageKey(vote));
+      postVote(userId, clientId, clipId, vote);
+      // +1 for upvote -1 for downvote
+      totalVotes += vote === 'upvote' ? 1 : -1;
     }
 
     totalVotesElement.textContent = totalVotes;
