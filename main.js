@@ -8,6 +8,7 @@ import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
+import { getSignedOutUserId } from './users'
 
 window.clientId = getClientId();
 window.userId = null;
