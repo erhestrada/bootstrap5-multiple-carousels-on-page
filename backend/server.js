@@ -180,7 +180,7 @@ app.get('/:userId/favorites', (req, res) => {
 });
 
 app.post('/favorites', (req, res) => {
-  const { userId, clipId, comment } = req.body;
+  const { userId, clipId } = req.body;
 
   // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
   const tableName = 'favorites';
