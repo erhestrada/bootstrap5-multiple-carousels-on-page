@@ -12,6 +12,8 @@ import { getSignedOutUserId } from './users'
 
 window.clientId = getClientId();
 window.userId = null;
+window.userIdPromise = getSignedOutUserId(window.clientId);
+
 window.clipsData = {};
 window.firstThumbnail = false;
 window.thumbnailWrappers = {}; // The divs that are highlighted
