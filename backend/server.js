@@ -93,14 +93,12 @@ app.get('/signed-out-user-id', (req, res) => {
     return res.status(400).json({ error: 'Missing clientId' });
   }
 
-  getSignedOutUserId(clientId)
-    .then((userId) => {
-      res.status(200).json({ userId });
-    })
-    .catch((err) => {
-      console.error('Failed to get signed out user:', err);
-      res.status(500).json({ error: 'Internal server error' });
-    });
+  getSignedOutUserId(clientId).then((userId) => {
+    res.status(200).json({ userId });
+  }).catch((err) => {
+    console.error('Failed to get signed out user:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  });
 });
 
 // ---------------------------- Comments ------------------------------
