@@ -85,6 +85,12 @@ function getSignedOutUserId(clientId) {
   });
 }
 
+// ---------------------------- Users ------------------------------
+app.get('/users', (req, res) => {
+    const { clientId, signedOut } = req.query;
+
+});
+
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
