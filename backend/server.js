@@ -206,11 +206,7 @@ app.get('/votes/:clipId/comments'), (req, res) => {
 
 // Post vote
 app.post('/votes', async (req, res) => {
-  let { userId } = req.body;
-  const { clientId, clipId, vote } = req.body;
-
-  userId = userId || await getSignedOutUserId(clientId);
-
+  const { userId, clientId, clipId, vote } = req.body;
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
   const columnNames = ['user_id', 'clip_id', 'vote'];
