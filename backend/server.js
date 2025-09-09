@@ -185,7 +185,7 @@ app.post('/favorites', (req, res) => {
   // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
   const tableName = 'favorites';
   const columnNames = ['user_id', 'clip_id'];
-  const parameters = [userId, clipId, comment];
+  const parameters = [userId, clipId];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
