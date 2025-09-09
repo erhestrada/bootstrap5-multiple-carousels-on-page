@@ -30,6 +30,14 @@ const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
 const favoriteButton = document.getElementById('favorite-button');
 
+const buttonsNeedingUser = [upvoteButton, downvoteButton, favoriteButton];
+buttonsNeedingUser.forEach(button => button.disabled = true);
+
+window.userIdPromise.then(userId => {
+  window.userId = userId;
+  buttonsNeedingUser.forEach(button => button.disabled = false);
+});
+
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
 document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
