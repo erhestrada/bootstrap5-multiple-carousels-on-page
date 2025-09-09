@@ -87,8 +87,20 @@ function getSignedOutUserId(clientId) {
 
 // ---------------------------- Users ------------------------------
 app.get('/users', (req, res) => {
-    const { clientId, signedOut } = req.query;
+  const { clientId } = req.query;
 
+  if (!clientId) {
+    return res.status(400).json({ error: 'Missing clientId' });
+  }
+
+  getSignedOutUserId(clientId)
+    .then((userId) => {
+      res.status(200).json({ userId });
+    })
+    .catch((err) => {
+      console.error('Failed to get signed out user:', err);
+      res.status(500).json({ error: 'Internal server error' });
+    });
 });
 
 // ---------------------------- Comments ------------------------------
