@@ -163,7 +163,7 @@ app.delete('/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
   //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
-  const tableName = 'favorites';
+  const tableName = 'comments';
   const columnNames = ['user_id', 'clip_id', comment];
   const parameters = [userId, clipId, comment];
 
