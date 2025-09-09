@@ -1,4 +1,5 @@
 import { postVote, deleteVote } from './votes'
+import { getClipId } from './getClipId';
 
 export function updateVotes(button, vote) {
     const totalVotesElement = document.getElementById('total-votes');
@@ -73,12 +74,4 @@ export function saveClip(label) {
   const savedClipsData = JSON.parse(jsonSavedClipsData || '[]');
   savedClipsData.push(clipData);
   localStorage.setItem(label, JSON.stringify(savedClipsData));
-}
-
-function getClipId() {
-  let {game, index} = window.currentClipPosition;
-  const gameClipsData = window.clipsData[game];
-  const clipData = gameClipsData[index];
-  const clipId = clipData.id;
-  return clipId;
 }
