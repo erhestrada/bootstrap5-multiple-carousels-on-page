@@ -30,12 +30,12 @@ export function updateVotes(button, vote) {
         // +1 for upvote -1 for downvote
         totalVotes += vote === 'upvote' ? 1 : -1;
 
-    if (oppositeVoteIconAlreadyClicked) {
-        oppositeVoteIcon.classList.remove('voted');
-        removeClip(getVoteStorageKey(oppositeVote));
-        // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
-        totalVotes += vote === 'upvote' ? 1 : -1;
-    }
+        if (oppositeVoteIconAlreadyClicked) {
+            oppositeVoteIcon.classList.remove('voted');
+            removeClip(getVoteStorageKey(oppositeVote));
+            // if vote is 'upvote' opposite vote is downvote and removing downvote -> +1; if vote is 'downvote' opposite vote is upvote and removing upvote -> -1
+            totalVotes += vote === 'upvote' ? 1 : -1;
+        }
     }
 
     totalVotesElement.textContent = totalVotes;
