@@ -2,7 +2,7 @@ import { postVote, deleteVote } from './votes'
 import { getClipId } from './getClipId';
 
 export function updateVotes(button, vote) {
-    const totalVotesElement = document.getElementById('total-votes');
+    const totalVotesElement = document.getElementById('net-votes');
     let totalVotes = parseInt(totalVotesElement.textContent, 10) || 0;
 
     const voteIcon = button.querySelector('.vote-icon');
