@@ -7,6 +7,7 @@ import { getGameFromId } from "./getGameFromId";
 import { displayFollowButton } from "./updateFollowButton";
 import { loadClipInteractions } from "./loadClipInteractions";
 import { displayNetVotes } from "./display-net-votes";
+import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -114,6 +115,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   displayFollowButton(streamers[index], window.activeCarousel);
   loadClipInteractions(currentClip);
   displayNetVotes(currentClip.id);
+  displayUserVoteOnClip(window.userId, currentClip.id);
 
   window.currentStreamerId = streamerIds[index];
   
