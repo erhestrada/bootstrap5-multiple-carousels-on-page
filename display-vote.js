@@ -1,6 +1,6 @@
 import { getVote } from './votes/get-vote.js'
 
-export async function displayVote(userId, clipId) {
+export async function displayUserVoteOnClip(userId, clipId) {
   try {
     const vote = await getVote(userId, clipId); // Assuming this fetches 'upvote' | 'downvote' | null
 
