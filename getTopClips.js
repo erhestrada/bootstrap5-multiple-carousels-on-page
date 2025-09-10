@@ -6,6 +6,7 @@ import { makeCarouselId } from "./makeNewCarouselForCategory";
 import { getGameFromId } from "./getGameFromId";
 import { displayFollowButton } from "./updateFollowButton";
 import { loadClipInteractions } from "./loadClipInteractions";
+import { displayNetVotes } from "./display-net-votes";
 
 const gameToIdConverter = {
     "IRL": "509672",
