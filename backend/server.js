@@ -211,13 +211,23 @@ app.get('/users/:userId/votes', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
-// Get all votes on a clip
+// Get upvotes, downvotes, and net votes on a clip
 app.get('/votes/:clipId', (req, res) => {
   const clipId = req.params.clipId;
-  const tableName = 'votes';
-  const columnName = 'clip_id';
-  const filterValue = clipId;
-  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+
+  const query = `SELECT vote FROM votes WHERE clip_id = ?`;
+
+  db.all(query, [clipId], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    const upvotes = rows.filter(row => row.vote === 'upvote').length;
+    const downvotes = rows.filter(row => row.vote === 'downvote').length;
+    const netVotes = upvotes - downvotes;
+
+    res.json({ upvotes, downvotes, netVotes });
+  });
 });
 
 // Post vote
