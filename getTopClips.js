@@ -103,7 +103,7 @@ function thumbnailClickListener(carouselName, indexInCarousel, embedUrls, stream
   }
 }
 
-export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
+export async function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   const embedUrl = embedUrls[index];
   const { game } = window.currentClipPosition;
   const currentClip = window.clipsData[game][index];
@@ -113,6 +113,7 @@ export function replaceCarouselItem(index, embedUrls, streamerIds, streamers) {
   updateCarouselLabels(index);
   displayFollowButton(streamers[index], window.activeCarousel);
   loadClipInteractions(currentClip);
+  displayNetVotes(currentClip.id);
 
   window.currentStreamerId = streamerIds[index];
   
