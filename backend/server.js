@@ -222,7 +222,7 @@ app.get('/votes/:userId/:clipId', (req, res) => {
     }
 
     if (!row) {
-      return res.status(404).json({ message: 'Vote not found' });
+      res.json({ userVoteOnClip: null });
     }
 
     res.json({ userVoteOnClip: row.vote });
