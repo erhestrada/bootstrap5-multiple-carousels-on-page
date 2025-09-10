@@ -1,4 +1,4 @@
-export async function getUserVoteOnClip(userId, clipId) {
+export default async function getUserVoteOnClip(userId, clipId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/votes/${userId}/${clipId}`);
 
