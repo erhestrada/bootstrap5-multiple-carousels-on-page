@@ -1,9 +1,9 @@
-import { getVote } from './votes/get-user-vote-on-clip.js'
+import { getUserVoteOnClip } from './votes'
 
 export async function displayUserVoteOnClip(userId, clipId) {
   try {
     // Upvote, downvote, or null if user hasn't voted on clip
-    const vote = await getVote(userId, clipId);
+    const vote = await getUserVoteOnClip(userId, clipId);
 
     const upvoteButton = document.getElementById('upvote-button');
     const downvoteButton = document.getElementById('downvote-button');
