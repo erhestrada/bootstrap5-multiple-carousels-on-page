@@ -7,7 +7,7 @@ export async function getNetVotes(clipId) {
         }
 
         const votes = await response.json();
-        const netVotes = votes.netVotes;
+        const netVotes = votes.netVotes || 0; // If no votes on a clip its default score is 0
         return netVotes;
 
     } catch (error) {
