@@ -222,7 +222,7 @@ app.get('/votes/:userId/:clipId', (req, res) => {
     }
 
     if (!row) {
-      res.json({ userVoteOnClip: null });
+      return res.json({ userVoteOnClip: null });
     }
 
     res.json({ userVoteOnClip: row.vote });
