@@ -1,4 +1,4 @@
-import { getVote } from './votes/get-vote.js'
+import { getVote } from './votes/get-user-vote-on-clip.js'
 
 export async function displayUserVoteOnClip(userId, clipId) {
   try {
