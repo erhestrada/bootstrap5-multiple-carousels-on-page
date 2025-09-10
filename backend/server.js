@@ -211,6 +211,24 @@ app.get('/users/:userId/votes', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
+app.get('/votes/:userId/:clipId', (req, res) => {
+  const { userId, clipId } = req.params;
+
+  const query = `SELECT vote FROM votes WHERE user_id = ? AND clip_id = ?`;
+
+  db.get(query, [userId, clipId], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (!row) {
+      return res.status(404).json({ message: 'Vote not found' });
+    }
+
+    res.json({ userVoteOnClip: row.vote });
+  });
+});
+
 // Get upvotes, downvotes, and net votes on a clip
 app.get('/votes/:clipId', (req, res) => {
   const clipId = req.params.clipId;
