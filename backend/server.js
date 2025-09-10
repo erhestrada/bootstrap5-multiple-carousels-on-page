@@ -212,7 +212,7 @@ app.get('/users/:userId/votes', (req, res) => {
 });
 
 // Get all votes on a clip
-app.get('/votes/:clipId/comments'), (req, res) => {
+app.get('/votes/:clipId'), (req, res) => {
   const clipId = req.params.clipId;
   const tableName = 'votes';
   const columnName = 'clip_id';
