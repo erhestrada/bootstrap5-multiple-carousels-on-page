@@ -1,4 +1,4 @@
-export async function getNetVotes(clipId) {
+export default async function getNetVotes(clipId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/votes/${clipId}`);
 
