@@ -25,6 +25,7 @@ window.carouselInstances = {};
 window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
+window.currentClip = {};
 
 const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
@@ -66,7 +67,7 @@ upvoteButton.addEventListener('click', () => updateVotes(upvoteButton, 'upvote')
 downvoteButton.addEventListener('click', () => updateVotes(downvoteButton, 'downvote'));
 favoriteButton.addEventListener('click', () => updateFavorites(favoriteButton));
 
-document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(localStorage.getItem('currentClipStreamer'), localStorage.getItem('currentClipStreamerId')));
+document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(window.currentClip.broadcaster_name, window.currentClip.broadcaster_id));
 document.getElementById('follow-category-button').addEventListener('click', () => followCategory(window.currentClipPosition['game']));
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 1));
