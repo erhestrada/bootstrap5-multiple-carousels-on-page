@@ -4,7 +4,7 @@ import { showClipPlayer } from "./toggleClipPlayer";
 import { SmartCarousel } from "./smartCarousel";
 import { makeCarouselId } from "./makeNewCarouselForCategory";
 import { getGameFromId } from "./getGameFromId";
-import { displayFollowButton } from "./updateFollowButton";
+import { displayFollowStatus } from "./display-follow-status";
 import { loadClipInteractions } from "./loadClipInteractions";
 import { displayNetVotes } from "./display-net-votes";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
@@ -113,7 +113,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
-  displayFollowButton(streamers[index], window.activeCarousel);
+  displayFollowStatus(streamers[index], window.activeCarousel);
   loadClipInteractions(currentClip);
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);

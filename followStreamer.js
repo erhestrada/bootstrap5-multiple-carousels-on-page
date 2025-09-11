@@ -1,4 +1,4 @@
-import { displayHeart } from "./updateFollowButton";
+import { displayHeart } from "./display-follow-status.js";
 
 export function followStreamer(streamer, streamerId) {
     console.log('in follow streamer');

@@ -1,4 +1,4 @@
-export function displayFollowButton(streamer, category) {
+export function displayFollowStatus(streamer, category) {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers') || '{}');
     const followedCategories = JSON.parse(localStorage.getItem('followedCategories') || '{}');
 

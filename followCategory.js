@@ -1,4 +1,4 @@
-import { displayHeart } from "./updateFollowButton";
+import { displayHeart } from "./display-follow-status.js";
 
 export async function followCategory(category) {    
     let followedCategories = JSON.parse(localStorage.getItem('followedCategories')) || {};
