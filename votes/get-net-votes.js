@@ -12,6 +12,6 @@ export default async function getNetVotes(clipId) {
 
     } catch (error) {
         console.error('Error getting net votes for clip', error);
-        return null;
+        return 0; // Return default score of 0 if can't get net votes
     }
 }
