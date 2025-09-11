@@ -1,9 +1,9 @@
-import { getUserFavoriteOnClip } from './favorites'
+import { getFavoriteStatusOfClip } from './favorites'
 
 export async function displayUserFavoriteOnClip(userId, clipId) {
   try {
     // true or false
-    const favorited = await getUserFavoriteOnClip(userId, clipId);
+    const favorited = await getFavoriteStatusOfClip(userId, clipId);
 
     const favoriteButton = document.getElementById('favorite-button');
     const favoriteIcon = favoriteButton.querySelector('.favorite-icon');
