@@ -179,6 +179,25 @@ app.get('/:userId/favorites', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
+// Get favorite status of clip
+app.get('/favorites/:userId/:clipId', (req, res) => {
+  const { userId, clipId } = req.params;
+
+  const query = `SELECT * FROM favorites WHERE user_id = ? AND clip_id = ?`;
+
+  db.get(query, [userId, clipId], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (!row) {
+      return res.json({ favorited: false });
+    }
+
+    res.json({ favorited: true });
+  });
+});
+
 app.post('/favorites', (req, res) => {
   const { userId, clipId } = req.body;
 
