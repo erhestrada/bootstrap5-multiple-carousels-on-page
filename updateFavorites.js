@@ -15,10 +15,10 @@ export function updateFavorites(button) {
   const clipId = getClipId();
 
   if (isFavorited) {
-    saveClip(favoritesStorageKey);
+    //saveClip(favoritesStorageKey);
     postFavorite(userId, clipId);
   } else {
-    removeClip(favoritesStorageKey);
+    //removeClip(favoritesStorageKey);
     deleteFavorite(userId, clipId);
   }
 }
