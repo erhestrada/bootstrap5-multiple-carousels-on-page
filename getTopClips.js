@@ -109,7 +109,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   const embedUrl = embedUrls[index];
   const { game } = window.currentClipPosition;
   const currentClip = window.clipsData[game][index];
-  console.log('current streamer: ', streamers[index]);
+  window.currentClip = currentClip;
   
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
@@ -118,6 +118,8 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);
   displayFavoriteStatusOfClip(window.userId, currentClip.id);
+
+  console.log('this work?', currentClip.broadcaster_name);
 
   window.currentStreamerId = streamerIds[index];
   
