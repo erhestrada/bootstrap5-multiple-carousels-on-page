@@ -1,4 +1,4 @@
-import { getUserFavoriteOnClip } from './votes'
+import { getUserFavoriteOnClip } from './favorites'
 
 export async function displayUserFavoriteOnClip(userId, clipId) {
   try {
