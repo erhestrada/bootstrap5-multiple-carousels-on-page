@@ -12,6 +12,6 @@ export default async function getFavoriteStatusOfClip(userId, clipId) {
 
     } catch (error) {
         console.error('Error getting user favorite on clip', error);
-        return null;
+        return false; // Assume default value of false if error getting favorited status
     }
 }
