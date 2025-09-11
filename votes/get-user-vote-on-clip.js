@@ -7,7 +7,7 @@ export default async function getUserVoteOnClip(userId, clipId) {
         }
 
         const voteData = await response.json();
-        const vote = voteData.vote ?? null; // If user hasn't voted on the clip vote is null
+        const vote = voteData.userVoteOnClip ?? null; // If user hasn't voted on the clip vote is null
         return vote;
 
     } catch (error) {
