@@ -1,6 +1,6 @@
 import { getFavoriteStatusOfClip } from './favorites'
 
-export async function displayUserFavoriteOnClip(userId, clipId) {
+export async function displayFavoriteStatusOfClip(userId, clipId) {
   try {
     // true or false
     const favorited = await getFavoriteStatusOfClip(userId, clipId);
