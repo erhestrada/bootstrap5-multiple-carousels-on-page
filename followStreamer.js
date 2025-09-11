@@ -1,9 +1,6 @@
 import { displayHeart } from "./display-follow-status.js";
 
-export function followStreamer(streamer, streamerId) {
-    console.log('in follow streamer');
-    console.log('streamer', streamer);
-    
+export function followStreamer(streamer, streamerId) {    
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
 
     if (!(streamer in followedStreamers)) {
