@@ -113,7 +113,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
-  displayFollowStatus(streamers[index], window.activeCarousel);
+  displayFollowStatus(window.userId, streamers[index], window.activeCarousel);
   loadClipInteractions(currentClip);
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);
