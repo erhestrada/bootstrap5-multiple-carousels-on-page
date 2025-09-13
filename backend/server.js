@@ -318,7 +318,22 @@ app.get('/users/:id/following', (req, res) => {
   const tableName = 'follows';
   const columnName = 'user_id';
   const filterValue = userId;
-  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+
+  const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (!rows) {
+      return res.json({'streamers': [], 'categories': []});
+    }
+
+    const streamerFollows = rows.filter(row => row.kind === 'streamer');
+    const categoryFollows = rows.filter(row => row.kind === 'category');
+    const follows = {'streamers': streamerFollows, 'categories': categoryFollows};
+
+    res.json(follows);
+  });
 });
 
 /*
