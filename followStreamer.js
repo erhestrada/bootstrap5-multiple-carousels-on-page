@@ -1,4 +1,5 @@
-import { displayHeart } from "./display-follow-status.js";
+import { displayHeart } from "./display-follow-status";
+import { postFollow, deleteFollow } from './follows';
 
 export function followStreamer(streamer, streamerId) {    
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
