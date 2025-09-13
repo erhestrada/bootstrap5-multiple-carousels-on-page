@@ -4,8 +4,8 @@ export async function displayFollowStatus(userId, streamer, category) {
     const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers') || '{}');
     const followedCategories = JSON.parse(localStorage.getItem('followedCategories') || '{}');
 
-    const backendFollowedStreamers = getFollowStatus(userId, streamer, 'streamer');
-    const backendFollowedCategories = getFollowStatus(userId, category, 'category');
+    const backendFollowedStreamers = await getFollowStatus(userId, streamer, 'streamer');
+    const backendFollowedCategories = await getFollowStatus(userId, category, 'category');
 
     console.log('Backend followed streamers: ', backendFollowedStreamers);
     console.log('Backend followed categories: ', backendFollowedCategories);
