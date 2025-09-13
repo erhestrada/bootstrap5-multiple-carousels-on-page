@@ -21,11 +21,11 @@ const db = new sqlite3.Database('./data.db');
 db.run('DROP TABLE IF EXISTS users');
 db.run('DROP TABLE IF EXISTS votes');
 
-// need a follows table as well
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id))'); // Each user gets one vote per clip
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+db.run('CREATE TABLE IF NOT EXISTS follows (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, kind TEXT)');
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
@@ -319,6 +319,12 @@ app.get('/:userId/follows', (req, res) => {
   const columnName = 'user_id';
   const filterValue = userId;
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+});
+
+//  const url = `http://192.168.86.195:3000/users/${userId}/following/${label}/${name}`;
+app.get('/users/:userId/following/:kind/:name', (req, res) => {
+  const { userId, kind, name } = req.params;
+
 });
 
 /*
