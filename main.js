@@ -30,8 +30,10 @@ window.currentClip = {};
 const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
 const favoriteButton = document.getElementById('favorite-button');
+const followStreamerButton = document.getElementById('follow-streamer-button');
+const followCategoryButton = document.getElementById('follow-category-button');
 
-const buttonsNeedingUser = [upvoteButton, downvoteButton, favoriteButton];
+const buttonsNeedingUser = [upvoteButton, downvoteButton, favoriteButton, followStreamerButton, followCategoryButton];
 buttonsNeedingUser.forEach(button => button.disabled = true);
 
 window.userIdPromise.then(userId => {
@@ -66,9 +68,8 @@ document.addEventListener('keydown', (event) => {
 upvoteButton.addEventListener('click', () => updateVotes(upvoteButton, 'upvote'));
 downvoteButton.addEventListener('click', () => updateVotes(downvoteButton, 'downvote'));
 favoriteButton.addEventListener('click', () => updateFavorites(favoriteButton));
-
-document.getElementById('follow-streamer-button').addEventListener('click', () => followStreamer(window.currentClip.broadcaster_name, window.currentClip.broadcaster_id));
-document.getElementById('follow-category-button').addEventListener('click', () => followCategory(window.currentClipPosition['game']));
+followStreamerButton.addEventListener('click', () => followStreamer(window.currentClip.broadcaster_name, window.currentClip.broadcaster_id));
+followCategoryButton.addEventListener('click', () => followCategory(window.currentClipPosition['game']));
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 7));
