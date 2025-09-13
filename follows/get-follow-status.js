@@ -5,7 +5,7 @@ export default async function getFollowStatus(userId, name, kind) {
             throw new Error('Invalid kind');
         }
 
-        const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}/${name}`;
+        const url = `http://192.168.86.195:3000/users/${userId}/following`;
         const response = await fetch(url);
 
         if (!response.ok) {
