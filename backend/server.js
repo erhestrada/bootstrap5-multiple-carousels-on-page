@@ -22,10 +22,10 @@ db.run('DROP TABLE IF EXISTS users');
 db.run('DROP TABLE IF EXISTS votes');
 
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id))'); // Each user gets one vote per clip
-db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT)');
-db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
-db.run('CREATE TABLE IF NOT EXISTS follows (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, kind TEXT)');
+db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id), FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)'); // Each user gets one vote per clip
+db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+db.run('CREATE TABLE IF NOT EXISTS follows (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, kind TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
@@ -313,18 +313,12 @@ app.delete('/votes', (req, res) => {
 
 // ---------------------------- Follows ------------------------------
 // Get user follows
-app.get('/:userId/follows', (req, res) => {
+app.get('/users/:id/following', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'follows';
   const columnName = 'user_id';
   const filterValue = userId;
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
-});
-
-//  const url = `http://192.168.86.195:3000/users/${userId}/following/${label}/${name}`;
-app.get('/users/:userId/following/:kind/:name', (req, res) => {
-  const { userId, kind, name } = req.params;
-
 });
 
 /*
