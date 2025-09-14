@@ -336,9 +336,8 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-/*
-// These two need to be tweaked
-app.post('/follows', (req, res) => {
+
+app.post('/users/:id/following/:name', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
   // const query = 'INSERT INTO follows (user_id, clip_id) VALUES (?, ?)';
@@ -349,7 +348,7 @@ app.post('/follows', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/follows', (req, res) => {
+app.delete('/users/:id/following/:name', (req, res) => {
   const { userId, clipId } = req.body;
 
   //const query = 'DELETE FROM follows WHERE user_id = ? AND clip_id = ?';
@@ -359,7 +358,6 @@ app.delete('/follows', (req, res) => {
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
-*/
 
 // -------------------------------------------------------------------
 
