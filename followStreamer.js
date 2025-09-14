@@ -1,11 +1,12 @@
 import { displayHeart } from "./display-follow-status";
 import { postFollow, deleteFollow } from './follows';
 
-export function followStreamer(streamer, streamerId) {    
+export function followStreamer(userId, streamer, streamerId) {    
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
 
     if (!(streamer in followedStreamers)) {
         followedStreamers[streamer] = streamerId;
+        postFollow(userId, streamer, streamerId);
     } else {
         delete followedStreamers[streamer]; // <-- this makes it toggle
     }
