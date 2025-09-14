@@ -1,11 +1,11 @@
 // label e.g. streamer, category
-export default async function getFollowStatus(userId, name, kind) {
+export default async function getFollows(userId, kind) {
     try {
         if (!['streamer', 'category'].includes(kind)) {
             throw new Error('Invalid kind');
         }
 
-        const url = `http://192.168.86.195:3000/users/${userId}/following`;
+        const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}`;
         const response = await fetch(url);
 
         if (!response.ok) {
