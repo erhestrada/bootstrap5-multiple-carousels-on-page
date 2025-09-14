@@ -1,6 +1,7 @@
 import { displayHeart } from "./display-follow-status";
 import { postFollow, deleteFollow } from './follows';
 
+// This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {    
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
 
@@ -18,6 +19,7 @@ export function followStreamer(userId, streamer, streamerId) {
     return followedStreamers;
 }
 
+// This is in the follows page, not the main page
 export function unfollowStreamer(streamerName) {
     let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
     delete followedStreamers[streamerName];
