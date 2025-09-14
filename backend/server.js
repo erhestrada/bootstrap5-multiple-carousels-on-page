@@ -323,8 +323,8 @@ app.delete('/votes', (req, res) => {
 
 // ---------------------------- Follows ------------------------------
 // Get user follows
-app.get('/users/:id/following/:kind}', (req, res) => {
-  const { userId, kind } = req.params;
+app.get('/users/:id/following/:kind', (req, res) => {
+  const { id: userId, kind } = req.params;
   
   let tableName;
   if (kind === 'streamers') {
