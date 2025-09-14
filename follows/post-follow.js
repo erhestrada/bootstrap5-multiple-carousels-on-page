@@ -18,7 +18,7 @@ export default async function postFollow(userId, streamer, twitchId) {
         return following;
 
     } catch (error) {
-        console.error('Error getting follow status:', error);
+        console.error('Error following streamer:', error);
         return false;
     }
 }
