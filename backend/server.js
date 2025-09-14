@@ -339,7 +339,7 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-app.post('/users/:id/following/streamers/:name', (req, res) => {
+app.post('/users/:userId/following/streamers/:name/:streamerId', (req, res) => {
   const { id: userId, name } = req.params;
 
   const tableName = 'followed_streamers';
@@ -349,7 +349,7 @@ app.post('/users/:id/following/streamers/:name', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/users/:id/following/streamers/:name', (req, res) => {
+app.delete('/users/:userId/following/streamers/:name/:streamerId', (req, res) => {
   const { id: userId, name } = req.params;
 
   const tableName = 'followed_streamers';
