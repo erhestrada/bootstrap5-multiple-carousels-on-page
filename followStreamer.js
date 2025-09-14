@@ -8,7 +8,8 @@ export function followStreamer(userId, streamer, streamerId) {
         followedStreamers[streamer] = streamerId;
         postFollow(userId, streamer, streamerId);
     } else {
-        delete followedStreamers[streamer]; // <-- this makes it toggle
+        delete followedStreamers[streamer];
+        deleteFollow(userId, streamer, streamerId);
     }
 
     localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
