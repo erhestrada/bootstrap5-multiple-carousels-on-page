@@ -330,7 +330,7 @@ app.get('/users/:id/following/:kind', (req, res) => {
   if (kind === 'streamers') {
     tableName = 'followed_streamers';
   } else if (kind === 'categories') {
-    tableName = 'followedCategories';
+    tableName = 'followed_categories';
   } else {
     return res.status(400).json({ error: 'Invalid kind' });
   }
