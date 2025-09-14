@@ -339,8 +339,8 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-app.post('/users/:userId/following/streamers/:streamer/:streamerId', (req, res) => {
-  const { userId, streamer, streamerId: twitchId } = req.params;
+  app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
+  const { userId, streamer, twitchId } = req.params;
 
   const tableName = 'followed_streamers';
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
@@ -349,8 +349,8 @@ app.post('/users/:userId/following/streamers/:streamer/:streamerId', (req, res) 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/users/:userId/following/streamers/:streamer/:streamerId', (req, res) => {
-  const { userId, streamer, streamerId: twitchId } = req.params;
+app.delete('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
+  const { userId, streamer, twitchId } = req.params;
 
   const tableName = 'followed_streamers';
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
