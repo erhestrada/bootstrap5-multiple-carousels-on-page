@@ -339,7 +339,7 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-  app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
+app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
   const { userId, streamer, twitchId } = req.params;
 
   const tableName = 'followed_streamers';
