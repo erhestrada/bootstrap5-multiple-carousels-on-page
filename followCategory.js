@@ -1,14 +1,16 @@
 import { displayHeart } from "./display-follow-status.js";
 import { postCategoryFollow, deleteCategoryFollow } from './follows';
 
-export async function followCategory(category) {    
+export async function followCategory(userId, category) {    
     let followedCategories = JSON.parse(localStorage.getItem('followedCategories')) || {};
 
     if (!(category in followedCategories)) {
         const boxArtUrlAndId = getBoxArtUrlAndIdForCategory(category);
         followedCategories[category] = {'boxArtUrl': boxArtUrlAndId[0], 'categoryId': boxArtUrlAndId[1]};
+        postCategoryFollow();
     } else {
-        delete followedCategories[category]; // <-- this makes it toggle
+        delete followedCategories[category];
+        deleteCategoryFollow();
     }
     
     localStorage.setItem('followedCategories', JSON.stringify(followedCategories));
