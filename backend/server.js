@@ -339,22 +339,22 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-app.post('/users/:userId/following/streamers/:name/:streamerId', (req, res) => {
-  const { id: userId, name } = req.params;
+app.post('/users/:userId/following/streamers/:streamer/:streamerId', (req, res) => {
+  const { userId, streamer, streamerId: twitchId } = req.params;
 
   const tableName = 'followed_streamers';
-  const columnNames = ['user_id', 'name'];
-  const parameters = [userId, name];
+  const columnNames = ['user_id', 'streamer', 'twitch_id'];
+  const parameters = [userId, streamer, twitchId];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/users/:userId/following/streamers/:name/:streamerId', (req, res) => {
-  const { id: userId, name } = req.params;
+app.delete('/users/:userId/following/streamers/:streamer/:streamerId', (req, res) => {
+  const { userId, streamer, streamerId: twitchId } = req.params;
 
   const tableName = 'followed_streamers';
-  const columnNames = ['user_id', 'name'];
-  const parameters = [userId, name];
+  const columnNames = ['user_id', 'streamer', 'twitch_id'];
+  const parameters = [userId, streamer, twitchId];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
