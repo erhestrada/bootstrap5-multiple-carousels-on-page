@@ -68,7 +68,7 @@ document.addEventListener('keydown', (event) => {
 upvoteButton.addEventListener('click', () => updateVotes(upvoteButton, 'upvote'));
 downvoteButton.addEventListener('click', () => updateVotes(downvoteButton, 'downvote'));
 favoriteButton.addEventListener('click', () => updateFavorites(favoriteButton));
-followStreamerButton.addEventListener('click', () => followStreamer(window.currentClip.broadcaster_name, window.currentClip.broadcaster_id));
+followStreamerButton.addEventListener('click', () => followStreamer(window.userId, window.currentClip.broadcaster_name, window.currentClip.broadcaster_id));
 followCategoryButton.addEventListener('click', () => followCategory(window.currentClipPosition['game']));
 
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 1));
