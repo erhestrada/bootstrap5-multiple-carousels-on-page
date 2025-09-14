@@ -40,12 +40,15 @@ function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) 
 }
 
 function insertRowIntoTable(tableName, columnNames, parameters, res) {
-  // e.g.'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)'; 1 ? per column
   const query = `INSERT INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
 
-  // Use a regular function instead of arrow function so this refers to db
   db.run(query, parameters, function (err) {
-    if (err) return res.status(500).json({ error: err.message });
+    if (err) {
+      console.error(`❌ Error inserting into ${tableName}:`, err);  // <- this line is key
+      return res.status(500).json({ error: err.message });
+    }
+
+    console.log(`✅ Inserted row into ${tableName} with ID:`, this.lastID);
     res.status(201).json({ message: `Row added to ${tableName}`, id: this.lastID });
   });
 }
