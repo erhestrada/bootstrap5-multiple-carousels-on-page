@@ -336,25 +336,22 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
+app.post('/users/:id/following/:kind/:name', (req, res) => {
+  const { id: userId, name, kind } = req.params;
 
-app.post('/users/:id/following/:name', (req, res) => {
-  const { userId, clipId, comment } = req.body;
-
-  // const query = 'INSERT INTO follows (user_id, clip_id) VALUES (?, ?)';
   const tableName = 'follows';
-  const columnNames = ['user_id', 'clip_id'];
-  const parameters = [userId, clipId, comment];
+  const columnNames = ['user_id', 'name', 'kind'];
+  const parameters = [userId, name, kind];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/users/:id/following/:name', (req, res) => {
-  const { userId, clipId } = req.body;
+app.delete('/users/:id/following/:kind/:name', (req, res) => {
+  const { id: userId, name, kind } = req.params;
 
-  //const query = 'DELETE FROM follows WHERE user_id = ? AND clip_id = ?';
   const tableName = 'follows';
-  const columnNames = ['user_id', 'clip_id'];
-  const parameters = [userId, clipId];
+  const columnNames = ['user_id', 'name', 'kind'];
+  const parameters = [userId, name, kind];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
