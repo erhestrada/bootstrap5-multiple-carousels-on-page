@@ -325,19 +325,31 @@ app.delete('/votes', (req, res) => {
 // Get user follows
 app.get('/users/:id/following/:kind', (req, res) => {
   const { id: userId, kind } = req.params;
-  
-  let tableName;
+
+  let tableName, title;
   if (kind === 'streamers') {
     tableName = 'followed_streamers';
+    title = 'streamer';
   } else if (kind === 'categories') {
     tableName = 'followed_categories';
+    title = 'category';
   } else {
     return res.status(400).json({ error: 'Invalid kind' });
   }
 
   const columnName = 'user_id';
   const filterValue = userId;
-  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+
+  const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    const follows = rows.map(row => row[title]);
+    res.json({ [kind]: follows });
+  });
 });
 
 // Post streamer to follow
