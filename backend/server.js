@@ -20,12 +20,14 @@ const db = new sqlite3.Database('./data.db');
 
 db.run('DROP TABLE IF EXISTS users');
 db.run('DROP TABLE IF EXISTS votes');
+db.run('DROP TABLE IF EXISTS follows');
 
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id), FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)'); // Each user gets one vote per clip
 db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-db.run('CREATE TABLE IF NOT EXISTS follows (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, kind TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, name TEXT, kind TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
@@ -336,22 +338,22 @@ app.get('/users/:id/following', (req, res) => {
   });
 });
 
-app.post('/users/:id/following/:kind/:name', (req, res) => {
-  const { id: userId, name, kind } = req.params;
+app.post('/users/:id/following/streamers/:name', (req, res) => {
+  const { id: userId, name } = req.params;
 
-  const tableName = 'follows';
-  const columnNames = ['user_id', 'name', 'kind'];
-  const parameters = [userId, name, kind];
+  const tableName = 'followed_streamers';
+  const columnNames = ['user_id', 'name'];
+  const parameters = [userId, name];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-app.delete('/users/:id/following/:kind/:name', (req, res) => {
-  const { id: userId, name, kind } = req.params;
+app.delete('/users/:id/following/streamers/:name', (req, res) => {
+  const { id: userId, name } = req.params;
 
-  const tableName = 'follows';
-  const columnNames = ['user_id', 'name', 'kind'];
-  const parameters = [userId, name, kind];
+  const tableName = 'followed_streamers';
+  const columnNames = ['user_id', 'name'];
+  const parameters = [userId, name];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
