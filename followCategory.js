@@ -1,5 +1,5 @@
 import { displayHeart } from "./display-follow-status.js";
-import { postFollow, deleteFollow } from './follows';
+import { postCategoryFollow, deleteCategoryFollow } from './follows';
 
 export async function followCategory(category) {    
     let followedCategories = JSON.parse(localStorage.getItem('followedCategories')) || {};
