@@ -13,11 +13,11 @@ export default async function getFollows(userId, kind) {
         }
 
         const followingData = await response.json();
-        const following = followingData.following ?? false;
-        return following;
+        const follows = followingData[kind];
+        return follows;
 
     } catch (error) {
         console.error('Error getting follow status:', error);
-        return false;
+        return [];
     }
 }
