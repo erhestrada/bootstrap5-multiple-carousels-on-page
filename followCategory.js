@@ -3,14 +3,14 @@ import { postCategoryFollow, deleteCategoryFollow } from './follows';
 
 export async function followCategory(userId, category) {    
     let followedCategories = JSON.parse(localStorage.getItem('followedCategories')) || {};
+    const [boxArtUrl, categoryId] = getBoxArtUrlAndIdForCategory(category);
 
     if (!(category in followedCategories)) {
-        const boxArtUrlAndId = getBoxArtUrlAndIdForCategory(category);
         followedCategories[category] = {'boxArtUrl': boxArtUrlAndId[0], 'categoryId': boxArtUrlAndId[1]};
-        postCategoryFollow();
+        postCategoryFollow(userId, category, categoryId);
     } else {
         delete followedCategories[category];
-        deleteCategoryFollow();
+        deleteCategoryFollow(userId, category, categoryId);
     }
     
     localStorage.setItem('followedCategories', JSON.stringify(followedCategories));
