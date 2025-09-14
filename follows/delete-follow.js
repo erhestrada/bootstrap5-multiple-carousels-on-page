@@ -1,10 +1,8 @@
-export default async function deleteFollow(userId, name, kind) {
+// modifying this first to work for just streamerFollow
+export default async function deleteFollow(userId, streamer, twitchId) {
     try {
-        if (!['streamer', 'category'].includes(kind)) {
-            throw new Error('Invalid kind');
-        }
-
-        const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}/${name}`;
+        // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
+        const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}/${twitchId}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
@@ -20,7 +18,7 @@ export default async function deleteFollow(userId, name, kind) {
         return following;
 
     } catch (error) {
-        console.error('Error getting follow status:', error);
+        console.error('Error unfollowing streamer:', error);
         return false;
     }
 }
