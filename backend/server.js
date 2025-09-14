@@ -21,7 +21,7 @@ const db = new sqlite3.Database('./data.db');
 db.run('DROP TABLE IF EXISTS users');
 db.run('DROP TABLE IF EXISTS votes');
 db.run('DROP TABLE IF EXISTS follows');
-db.run('DROP TABLE IF EXISTS streamers');
+db.run('DROP TABLE IF EXISTS followed_streamers');
 
 db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id), FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)'); // Each user gets one vote per clip
@@ -44,11 +44,11 @@ function insertRowIntoTable(tableName, columnNames, parameters, res) {
 
   db.run(query, parameters, function (err) {
     if (err) {
-      console.error(`❌ Error inserting into ${tableName}:`, err);  // <- this line is key
+      console.error(`Error inserting into ${tableName}:`, err);  // <- this line is key
       return res.status(500).json({ error: err.message });
     }
 
-    console.log(`✅ Inserted row into ${tableName} with ID:`, this.lastID);
+    console.log(`Inserted row into ${tableName} with ID:`, this.lastID);
     res.status(201).json({ message: `Row added to ${tableName}`, id: this.lastID });
   });
 }
