@@ -1,8 +1,8 @@
 // label e.g. streamer, category
 export default async function getFollows(userId, kind) {
     try {
-        if (!['streamer', 'category'].includes(kind)) {
-            throw new Error('Invalid kind');
+        if (!['streamers', 'categories'].includes(kind)) {
+            throw new Error('Kind must be streamers or categories');
         }
 
         const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}`;
