@@ -1,11 +1,11 @@
 // label e.g. streamer, category
-export default async function postFollow(userId, name, label) {
+export default async function postFollow(userId, name, kind) {
     try {
-        if (!['streamer', 'category'].includes(label)) {
-            throw new Error('Invalid label');
+        if (!['streamer', 'category'].includes(kind)) {
+            throw new Error('Invalid kind');
         }
 
-        const url = `http://192.168.86.195:3000/users/${userId}/following/${label}/${name}`;
+        const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}/${name}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
