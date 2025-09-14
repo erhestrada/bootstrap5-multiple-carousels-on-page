@@ -1,5 +1,5 @@
 // modifying this first to work for just streamerFollow
-export default async function deleteFollow(userId, streamer, twitchId) {
+export default async function deleteStreamerFollow(userId, streamer, twitchId) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}/${twitchId}`;

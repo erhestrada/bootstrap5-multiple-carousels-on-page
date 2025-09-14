@@ -1,5 +1,5 @@
 import { displayHeart } from "./display-follow-status";
-import { postStreamerFollow, deleteFollow } from './follows';
+import { postStreamerFollow, deleteStreamerFollow } from './follows';
 
 // This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {    
@@ -7,10 +7,10 @@ export function followStreamer(userId, streamer, streamerId) {
 
     if (!(streamer in followedStreamers)) {
         followedStreamers[streamer] = streamerId;
-        postFollow(userId, streamer, streamerId);
+        postStreamerFollow(userId, streamer, streamerId);
     } else {
         delete followedStreamers[streamer];
-        deleteFollow(userId, streamer, streamerId);
+        deleteStreamerFollow(userId, streamer, streamerId);
     }
 
     localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
