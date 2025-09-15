@@ -1,5 +1,5 @@
 // modifying this first to work for just categoryFollow
-export default async function deleteCategoryFollow(userId, category, twitchId) {
+export default async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
