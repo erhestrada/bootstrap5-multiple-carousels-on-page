@@ -13,7 +13,7 @@ export function followStreamer(userId, streamer, streamerId) {
         deleteStreamerFollow(userId, streamer, streamerId);
     }
 
-    displayHeart('follow-streamer-button', streamer, window.follows.streamers);
+    displayHeart('follow-streamer-button', streamer, followedStreamers);
     
     return window.follows.streamers;
 }
