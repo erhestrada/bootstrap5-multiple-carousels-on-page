@@ -10,7 +10,7 @@ export function displayHeart(buttonId, name, follows) {
     const icon = button.querySelector('i');
     if (!icon) return;
 
-    if (name in follows) {
+    if (follows.includes(name)) {
         icon.className = 'bi bi-heart-fill';
 
         button.onmouseenter = () => {
