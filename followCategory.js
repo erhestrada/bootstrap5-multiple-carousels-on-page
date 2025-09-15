@@ -2,10 +2,9 @@ import { displayHeart } from "./display-follow-status.js";
 import { postCategoryFollow, deleteCategoryFollow } from './follows';
 
 export async function followCategory(userId, category) {    
-    const followedCategories = window.follows.categories.map(({ category }) => category);
     const [boxArtUrl, categoryId] = getBoxArtUrlAndIdForCategory(category);
 
-    if (!followedCategories.includes(category)) {
+    if (!window.follows.categories.some(followedCategory => followedCategory.category === category)) {
         window.follows.categories.push({ category, categoryId, boxArtUrl });
         postCategoryFollow(userId, category, categoryId, boxArtUrl);
     } else {
@@ -13,6 +12,7 @@ export async function followCategory(userId, category) {
         deleteCategoryFollow(userId, category, categoryId, boxArtUrl);
     }
     
+    const followedCategories = window.follows.categories.map(({ category }) => category);    
     displayHeart('follow-category-button', category, followedCategories);
 
     return followedCategories;
