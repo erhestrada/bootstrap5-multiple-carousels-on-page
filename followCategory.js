@@ -13,7 +13,6 @@ export async function followCategory(userId, category) {
         deleteCategoryFollow(userId, category, categoryId, boxArtUrl);
     }
     
-    localStorage.setItem('followedCategories', JSON.stringify(followedCategories));
     displayHeart('follow-category-button', category, followedCategories);
 
     return followedCategories;
