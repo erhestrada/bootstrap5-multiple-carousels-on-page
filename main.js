@@ -45,7 +45,7 @@ window.userIdPromise.then(userId => {
   window.userId = userId;
   buttonsNeedingUser.forEach(button => button.disabled = false);
 
-  const followsPromise = getFollows();
+  const followsPromise = getFollows(userId);
   followsPromise.then(follows => {
     window.follows = follows;
     followButtons.forEach(button => button.disabled = false);
