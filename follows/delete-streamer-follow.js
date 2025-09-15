@@ -2,11 +2,11 @@
 export default async function deleteStreamerFollow(userId, streamer, twitchId) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}/${twitchId}`;
+        const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({}),
+            body: JSON.stringify({ twitchId }),
         });
 
         if (!response.ok) {
