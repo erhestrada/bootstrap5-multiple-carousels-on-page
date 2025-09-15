@@ -6,7 +6,7 @@ export default async function postCategoryFollow(userId, category, twitchId, box
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({ category, twitchId, boxArtUrl }),
+            body: JSON.stringify({ twitchId, boxArtUrl }),
         });
 
         if (!response.ok) {
