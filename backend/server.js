@@ -322,7 +322,32 @@ app.delete('/votes', (req, res) => {
 });
 
 // ---------------------------- Follows ------------------------------
-// Get user follows
+// Get all user follows - followed streamers and followed categories
+app.get('/users/:id/following', (req, res) => {
+  const { id: userId } = req.params;
+
+  const streamersQuery = `SELECT streamer FROM followed_streamers WHERE user_id = ?`;
+  const categoriesQuery = `SELECT category FROM followed_categories WHERE user_id = ?`;
+
+  db.all(streamersQuery, [userId], (err, streamerRows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    db.all(categoriesQuery, [userId], (err, categoryRows) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      const streamers = streamerRows.map(row => row.streamer);
+      const categories = categoryRows.map(row => row.category);
+
+      res.json({ streamers, categories });
+    });
+  });
+});
+
+// Get user follows of a specific kind e.g. followed streamers or followed categories
 app.get('/users/:id/following/:kind', (req, res) => {
   const { id: userId, kind } = req.params;
 
