@@ -2,11 +2,11 @@
 export default async function deleteCategoryFollow(userId, category, twitchId) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}/${twitchId}`;
+        const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({}),
+            body: JSON.stringify({ category, twitchId, boxArtUrl }),
         });
 
         if (!response.ok) {
