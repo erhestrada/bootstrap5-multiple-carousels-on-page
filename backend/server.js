@@ -30,7 +30,7 @@ db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS comments (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, comment TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-  db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+  db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, box_art_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
 });
 
