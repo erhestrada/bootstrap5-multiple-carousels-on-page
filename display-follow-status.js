@@ -1,20 +1,6 @@
-import { getFollows } from "./follows";
-
-export async function displayFollowStatus(userId, streamer, category) {
-    const followedStreamers = JSON.parse(localStorage.getItem('followedStreamers') || '{}');
-    const followedCategories = JSON.parse(localStorage.getItem('followedCategories') || '{}');
-
-    //const backendFollowedStreamers = await getFollowStatus(userId, streamer, 'streamer');
-    //const backendFollowedCategories = await getFollowStatus(userId, category, 'category');
-
-    const backendFollowedStreamers = await getFollows(userId, 'streamers');
-    const backendFollowedCategories = await getFollows(userId, 'categories');
-
-    console.log('Backend followed streamers: ', backendFollowedStreamers);
-    console.log('Backend followed categories: ', backendFollowedCategories);
-
-    displayHeart('follow-streamer-button', streamer, followedStreamers);
-    displayHeart('follow-category-button', category, followedCategories);
+export async function displayFollowStatus(streamer, category, follows) {
+    displayHeart('follow-streamer-button', streamer, follows.streamers);
+    displayHeart('follow-category-button', category, follows.categories);
 }
 
 export function displayHeart(buttonId, name, follows) {
