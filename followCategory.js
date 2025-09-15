@@ -9,7 +9,7 @@ export async function followCategory(userId, category) {
         window.follows.categories.push({ category, categoryId, boxArtUrl });
         postCategoryFollow(userId, category, categoryId, boxArtUrl);
     } else {
-        delete followedCategories[category];
+        window.follows.categories = window.follows.categories.filter(followedCategory => followedCategory.category !== category);
         deleteCategoryFollow(userId, category, categoryId, boxArtUrl);
     }
     
