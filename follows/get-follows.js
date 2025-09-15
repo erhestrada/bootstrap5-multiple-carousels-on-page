@@ -9,6 +9,7 @@ export default async function getFollows(userId) {
         }
 
         const follows = await response.json();
+        console.log('follows: ', follows);
         return follows;
 
     } catch (error) {
