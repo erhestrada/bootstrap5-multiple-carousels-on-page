@@ -2,8 +2,10 @@ import { displayHeart } from "./display-follow-status";
 import { postStreamerFollow, deleteStreamerFollow } from './follows';
 
 // This is for the main page heart buttons
-export function followStreamer(userId, streamer, streamerId) {    
-    if (!window.follows.streamers.includes(streamer)) {
+export function followStreamer(userId, streamer, streamerId) {  
+    const followedStreamers = window.follows.streamers.map(({ streamer }) => streamer);
+
+    if (!followedStreamers.includes(streamer)) {
         window.follows.streamers.push({ streamer, streamerId });
         postStreamerFollow(userId, streamer, streamerId);
     } else {
