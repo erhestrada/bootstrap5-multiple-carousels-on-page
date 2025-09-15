@@ -339,10 +339,18 @@ app.get('/users/:id/following', (req, res) => {
         return res.status(500).json({ error: err.message });
       }
 
-      const streamers = streamerRows.map(row => row.streamer);
-      const categories = categoryRows.map(row => row.category);
+      const streamers = streamerRows.map(row => ({
+        streamer: row.streamer,
+        twitchId: row.twitch_id
+      }));
 
-      res.json({ streamers, categories });
+      const categories = categoryRows.map(row => ({
+        category: row.category,
+        twitchId: row.twitch_id,
+        boxArtUrl: row.box_art_url
+      }));
+
+      res.json({ streamers: streamers, categories: categories });
     });
   });
 });
@@ -393,7 +401,7 @@ app.post('/users/:userId/following/streamers/:streamer', (req, res) => {
 app.delete('/users/:userId/following/streamers/:streamer', (req, res) => {
   const { userId, streamer } = req.params;
   const { twitchId } = req.body
-  
+
   const tableName = 'followed_streamers';
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
   const parameters = [userId, streamer, twitchId];
