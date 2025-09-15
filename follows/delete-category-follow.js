@@ -6,7 +6,7 @@ export default async function deleteCategoryFollow(userId, category, twitchId) {
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({ category, twitchId, boxArtUrl }),
+            body: JSON.stringify({ twitchId, boxArtUrl }),
         });
 
         if (!response.ok) {
