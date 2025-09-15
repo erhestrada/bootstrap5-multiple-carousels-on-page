@@ -7,10 +7,10 @@ export async function followCategory(userId, category) {
 
     if (!(category in followedCategories)) {
         followedCategories[category] = {'boxArtUrl': boxArtUrl, 'categoryId': categoryId};
-        postCategoryFollow(userId, category, categoryId);
+        postCategoryFollow(userId, category, categoryId, boxArtUrl);
     } else {
         delete followedCategories[category];
-        deleteCategoryFollow(userId, category, categoryId);
+        deleteCategoryFollow(userId, category, categoryId, boxArtUrl);
     }
     
     localStorage.setItem('followedCategories', JSON.stringify(followedCategories));
