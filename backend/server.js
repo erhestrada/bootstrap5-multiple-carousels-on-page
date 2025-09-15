@@ -378,8 +378,9 @@ app.get('/users/:id/following/:kind', (req, res) => {
 });
 
 // Post streamer to follow
-app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
-  const { userId, streamer, twitchId } = req.params;
+app.post('/users/:userId/following/streamers/:streamer', (req, res) => {
+  const { userId, streamer } = req.params;
+  const { twitchId } = req.body
 
   const tableName = 'followed_streamers';
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
@@ -389,9 +390,10 @@ app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) =>
 });
 
 // Delete followed streamer
-app.delete('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
-  const { userId, streamer, twitchId } = req.params;
-
+app.delete('/users/:userId/following/streamers/:streamer', (req, res) => {
+  const { userId, streamer } = req.params;
+  const { twitchId } = req.body
+  
   const tableName = 'followed_streamers';
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
   const parameters = [userId, streamer, twitchId];
