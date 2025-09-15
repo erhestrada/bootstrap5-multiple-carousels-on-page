@@ -326,8 +326,10 @@ app.delete('/votes', (req, res) => {
 app.get('/users/:id/following', (req, res) => {
   const { id: userId } = req.params;
 
-  const streamersQuery = `SELECT streamer FROM followed_streamers WHERE user_id = ?`;
-  const categoriesQuery = `SELECT category FROM followed_categories WHERE user_id = ?`;
+  console.log(userId);
+
+  const streamersQuery = `SELECT streamer, twitch_id FROM followed_streamers WHERE user_id = ?`;
+  const categoriesQuery = `SELECT category, twitch_id, box_art_url FROM followed_categories WHERE user_id = ?`;
 
   db.all(streamersQuery, [userId], (err, streamerRows) => {
     if (err) {
@@ -339,18 +341,7 @@ app.get('/users/:id/following', (req, res) => {
         return res.status(500).json({ error: err.message });
       }
 
-      const streamers = streamerRows.map(row => ({
-        streamer: row.streamer,
-        twitchId: row.twitch_id
-      }));
-
-      const categories = categoryRows.map(row => ({
-        category: row.category,
-        twitchId: row.twitch_id,
-        boxArtUrl: row.box_art_url
-      }));
-
-      res.json({ streamers: streamers, categories: categories });
+      res.json({ streamers: streamerRows, categories: categoryRows });
     });
   });
 });
