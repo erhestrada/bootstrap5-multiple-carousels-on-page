@@ -3,20 +3,17 @@ import { postStreamerFollow, deleteStreamerFollow } from './follows';
 
 // This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {    
-    let followedStreamers = JSON.parse(localStorage.getItem('followedStreamers')) || {};
-
-    if (!(streamer in followedStreamers)) {
-        followedStreamers[streamer] = streamerId;
+    if (!window.follows.streamers.includes(streamer)) {
+        window.follows.streamers.push(streamer);
         postStreamerFollow(userId, streamer, streamerId);
     } else {
-        delete followedStreamers[streamer];
+        window.follows.streamers = window.follows.streamers.filter(followedStreamer => followedStreamer !== streamer);
         deleteStreamerFollow(userId, streamer, streamerId);
     }
 
-    localStorage.setItem('followedStreamers', JSON.stringify(followedStreamers));
-    displayHeart('follow-streamer-button', streamer, followedStreamers);
+    displayHeart('follow-streamer-button', streamer, window.follows.streamers);
     
-    return followedStreamers;
+    return window.follows.streamers;
 }
 
 // This is in the follows page, not the main page
