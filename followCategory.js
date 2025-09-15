@@ -6,7 +6,7 @@ export async function followCategory(userId, category) {
     const [boxArtUrl, categoryId] = getBoxArtUrlAndIdForCategory(category);
 
     if (!followedCategories.includes(category)) {
-        followedCategories[category] = {'boxArtUrl': boxArtUrl, 'categoryId': categoryId};
+        window.follows.categories.push({ category, categoryId, boxArtUrl });
         postCategoryFollow(userId, category, categoryId, boxArtUrl);
     } else {
         delete followedCategories[category];
