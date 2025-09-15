@@ -400,23 +400,25 @@ app.delete('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) 
 });
 
 // Post category to follow
-app.post('/users/:userId/following/categories/:category/:twitchId', (req, res) => {
-  const { userId, category, twitchId } = req.params;
+app.post('/users/:userId/following/categories/:category', (req, res) => {
+  const { userId, category } = req.params
+  const { twitchId, boxArtUrl } = req.body;
 
   const tableName = 'followed_categories';
-  const columnNames = ['user_id', 'category', 'twitch_id'];
-  const parameters = [userId, category, twitchId];
+  const columnNames = ['user_id', 'category', 'twitch_id', 'box_art_url'];
+  const parameters = [userId, category, twitchId, boxArtUrl];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
 // Delete followed category
-app.delete('/users/:userId/following/categories/:category/:twitchId', (req, res) => {
-  const { userId, category, twitchId } = req.params;
+app.delete('/users/:userId/following/categories/:category', (req, res) => {
+  const { userId, category } = req.params
+  const { twitchId, boxArtUrl } = req.body;
 
   const tableName = 'followed_categories';
-  const columnNames = ['user_id', 'category', 'twitch_id'];
-  const parameters = [userId, category, twitchId];
+  const columnNames = ['user_id', 'category', 'twitch_id', 'box_art_url'];
+  const parameters = [userId, category, twitchId, boxArtUrl];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
