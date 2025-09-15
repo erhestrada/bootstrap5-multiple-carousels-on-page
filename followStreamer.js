@@ -4,10 +4,10 @@ import { postStreamerFollow, deleteStreamerFollow } from './follows';
 // This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {    
     if (!window.follows.streamers.includes(streamer)) {
-        window.follows.streamers.push(streamer);
+        window.follows.streamers.push({ streamer, streamerId });
         postStreamerFollow(userId, streamer, streamerId);
     } else {
-        window.follows.streamers = window.follows.streamers.filter(followedStreamer => followedStreamer !== streamer);
+        window.follows.streamers = window.follows.streamers.filter(followedStreamer => followedStreamer.streamer !== streamer);
         deleteStreamerFollow(userId, streamer, streamerId);
     }
 
