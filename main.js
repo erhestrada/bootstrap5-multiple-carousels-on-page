@@ -9,10 +9,12 @@ import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
+import { getFollows } from './follows';
 
 window.clientId = getClientId();
 window.userId = null;
 window.userIdPromise = getSignedOutUserId(window.clientId);
+window.follows = null;
 
 window.clipsData = {};
 window.firstThumbnail = false;
@@ -33,12 +35,21 @@ const favoriteButton = document.getElementById('favorite-button');
 const followStreamerButton = document.getElementById('follow-streamer-button');
 const followCategoryButton = document.getElementById('follow-category-button');
 
-const buttonsNeedingUser = [upvoteButton, downvoteButton, favoriteButton, followStreamerButton, followCategoryButton];
+const buttonsNeedingUser = [upvoteButton, downvoteButton, favoriteButton];
 buttonsNeedingUser.forEach(button => button.disabled = true);
+
+const followButtons = [followStreamerButton, followCategoryButton];
+followButtons.forEach(button => button.disabled = true);
 
 window.userIdPromise.then(userId => {
   window.userId = userId;
   buttonsNeedingUser.forEach(button => button.disabled = false);
+
+  const followsPromise = getFollows();
+  followsPromise.then(follows => {
+    window.follows = follows;
+    followButtons.forEach(button => button.disabled = false);
+  });
 });
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
