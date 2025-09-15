@@ -3,9 +3,7 @@ import { postStreamerFollow, deleteStreamerFollow } from './follows';
 
 // This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {  
-    const followedStreamers = window.follows.streamers.map(({ streamer }) => streamer);
-
-    if (!followedStreamers.includes(streamer)) {
+    if (!window.follows.streamers.some(followedStreamer => followedStreamer.streamer === streamer)) {
         window.follows.streamers.push({ streamer, streamerId });
         postStreamerFollow(userId, streamer, streamerId);
     } else {
@@ -13,6 +11,7 @@ export function followStreamer(userId, streamer, streamerId) {
         deleteStreamerFollow(userId, streamer, streamerId);
     }
 
+    const followedStreamers = window.follows.streamers.map(({ streamer }) => streamer);
     displayHeart('follow-streamer-button', streamer, followedStreamers);
     
     return window.follows.streamers;
