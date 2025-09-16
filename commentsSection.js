@@ -315,7 +315,7 @@ function addEmoji(emoji) {
     textarea.focus();
 }
 
-function postComment() {
+export function postComment() {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
     
@@ -352,13 +352,13 @@ function showDeleteModal() {
     modal.classList.add('show');
 }
 
-function hideDeleteModal() {
+export function hideDeleteModal() {
     const modal = document.getElementById('delete-modal');
     modal.classList.remove('show');
     pendingDeleteElement = null;
 }
 
-function confirmDelete() {
+export function confirmDelete() {
     if (pendingDeleteElement) {
         const commentElement = pendingDeleteElement.closest('.comment');
         const replyElement = pendingDeleteElement.closest('.reply');
