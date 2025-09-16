@@ -1,4 +1,4 @@
-const comments = [
+export const comments = [
     {
         id: 1,
         avatar: "M",
