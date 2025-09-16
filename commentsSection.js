@@ -382,7 +382,6 @@ export function confirmDelete() {
     hideDeleteModal();
 }
 
-
 function attachEventListeners() {
     const likeBtns = document.querySelectorAll('.like-btn');
     likeBtns.forEach(btn => {
