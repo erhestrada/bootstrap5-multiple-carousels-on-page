@@ -10,6 +10,7 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
+import { renderComments } from './commentsSection.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -111,3 +112,4 @@ const updateLabels = () => {
 };
 
 toggle.addEventListener('change', updateLabels);
+renderComments();

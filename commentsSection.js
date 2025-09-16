@@ -121,7 +121,7 @@ const comments = [
     }
 ];
 
-function renderComments() {
+export function renderComments() {
     const commentsList = document.getElementById('comments-list');
     commentsList.innerHTML = '';
 
@@ -408,8 +408,7 @@ document.getElementById('new-comment').addEventListener('keydown', function(e) {
     }
 });
 
-// Initial render
-renderComments();
+
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
     postBtn.addEventListener('click', postComment);
