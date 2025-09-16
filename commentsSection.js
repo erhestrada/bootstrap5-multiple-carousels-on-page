@@ -309,12 +309,6 @@ function toggleLike(button) {
     likeCount.textContent = count;
 }
 
-function addEmoji(emoji) {
-    const textarea = document.getElementById('new-comment');
-    textarea.value += emoji;
-    textarea.focus();
-}
-
 export function postComment() {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
