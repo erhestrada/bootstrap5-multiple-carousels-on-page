@@ -121,62 +121,6 @@ const comments = [
     }
 ];
 
-export function renderComments() {
-    const commentsList = document.getElementById('comments-list');
-    commentsList.innerHTML = '';
-
-    comments.forEach(comment => {
-        const commentElement = document.createElement('div');
-        commentElement.className = 'comment';
-
-        const repliesHTML = comment.replies.map(reply => `
-            <div class="reply">
-                <div class="comment-main">
-                    <div class="avatar">${reply.avatar}</div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="username">${reply.username}</span>
-                            <span class="timestamp">${reply.time}</span>
-                        </div>
-                        <div class="comment-text">${reply.text}</div>
-                        <div class="comment-actions-row">
-                            <button class="action-btn like-btn">
-                                ❤️ <span>${reply.likes}</span>
-                            </button>
-                            <button class="action-btn show-reply-btn">💬 Reply</button>
-                            ${reply.username === 'You' ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-
-        commentElement.innerHTML = `
-            <div class="comment-main">
-                <div class="avatar">${comment.avatar}</div>
-                <div class="comment-content">
-                    <div class="comment-header">
-                        <span class="username">${comment.username}</span>
-                        <span class="timestamp">${comment.time}</span>
-                    </div>
-                    <div class="comment-text">${comment.text}</div>
-                    <div class="comment-actions-row">
-                        <button class="action-btn like-btn">
-                            ❤️ <span>${Math.abs(comment.likes)}</span>
-                        </button>
-                        <button class="action-btn show-reply-btn">💬 Reply</button>
-                        ${comment.username === 'You' ? '<button class="action-btn delete-btn"">🗑️ Delete</button>' : ''}
-                    </div>
-                    ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
-                </div>
-            </div>
-        `;
-
-        commentsList.appendChild(commentElement);
-    });
-    attachEventListeners();
-}
-
 function showReplyBox(button) {
     document.querySelectorAll('.reply-box').forEach(box => {
         box.style.display = 'none';
@@ -309,30 +253,7 @@ function toggleLike(button) {
     likeCount.textContent = count;
 }
 
-export function postComment() {
-    const textarea = document.getElementById('new-comment');
-    const commentText = textarea.value.trim();
-    
-    if (commentText) {
-        const newComment = {
-            id: comments.length + 1,
-            avatar: "Y",
-            username: "You",
-            time: "now",
-            text: commentText,
-            likes: 0,
-            replies: []
-        };
-        
-        comments.unshift(newComment);
-        textarea.value = '';
-        renderComments();
-        
-        // Update comment count
-        const countElement = document.getElementById('comment-count');
-        countElement.textContent = parseInt(countElement.textContent) + 1;
-    }
-}
+
 
 let pendingDeleteElement = null;
 
@@ -374,21 +295,4 @@ export function confirmDelete() {
         }
     }
     hideDeleteModal();
-}
-
-function attachEventListeners() {
-    const likeBtns = document.querySelectorAll('.like-btn');
-    likeBtns.forEach(btn => {
-        btn.addEventListener('click', () => toggleLike(btn));
-    });
-
-    const replyBtns = document.querySelectorAll('.show-reply-btn');
-    replyBtns.forEach(btn => {
-        btn.addEventListener('click', () => showReplyBox(btn));
-    });
-
-    const deleteBtns = document.querySelectorAll('.delete-btn');
-    deleteBtns.forEach(btn => {
-        btn.addEventListener('click', () => deleteComment(btn));
-    });
 }

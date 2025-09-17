@@ -10,7 +10,8 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
-import { renderComments, postComment, hideDeleteModal, confirmDelete } from './commentsSection.js';
+import { renderComments, postComment } from './comment-handlers/comment-handler.js';
+import { hideDeleteModal, confirmDelete } from './commentsSection.js';
 
 window.clientId = getClientId();
 window.userId = null;
