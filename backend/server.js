@@ -147,12 +147,12 @@ app.get('/clips/:clipId/comments'), (req, res) => {
 
 // Post comment
 app.post('/clips/:clipId/comments', (req, res) => {
-  const { userId, clipId, comment } = req.body;
+  const { clipId } = req.params;
+  const { userId, parentId, comment } = req.body;
 
-  // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'comments';
-  const columnNames = ['user_id', 'clip_id', 'comment'];
-  const parameters = [userId, clipId, comment];
+  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
+  const parameters = [clipId, userId, parentId, comment];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
