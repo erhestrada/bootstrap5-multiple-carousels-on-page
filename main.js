@@ -128,7 +128,7 @@ document.getElementById('new-comment').addEventListener('keydown', function(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
-    postBtn.addEventListener('click', postComment);
+    postBtn.addEventListener('click', () => postComment(window.clipComments));
 
     const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
     deleteCancelButton.addEventListener('click', hideDeleteModal);
