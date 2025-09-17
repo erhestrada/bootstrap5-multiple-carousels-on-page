@@ -77,6 +77,8 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
       if (this.changes === 0) {
           return res.status(404).json({ message: `${tableName} not found` });
       }
+      
+      console.log(`Deleted ${this.changes} row(s) from ${tableName} with params:`, parameters);
       res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
     });
 }
