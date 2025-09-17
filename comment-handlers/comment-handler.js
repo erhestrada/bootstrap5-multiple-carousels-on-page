@@ -124,13 +124,13 @@ export const comments = [
     }
 ];
 
-export function postComment(comments) {
+export function postComment() {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
     
     if (commentText) {
         const newComment = {
-            id: comments.length + 1,
+            id: window.clipComments.length + 1,
             avatar: "Y",
             username: "You",
             time: "now",
@@ -139,9 +139,9 @@ export function postComment(comments) {
             replies: []
         };
         
-        comments.unshift(newComment);
+        window.clipComments.unshift(newComment);
         textarea.value = '';
-        renderComments(comments);
+        renderComments(window.clipComments);
         
         // Update comment count
         const countElement = document.getElementById('comment-count');
@@ -149,11 +149,11 @@ export function postComment(comments) {
     }
 }
 
-export function renderComments(comments) {
+export function renderComments() {
     const commentsList = document.getElementById('comments-list');
     commentsList.innerHTML = '';
 
-    comments.forEach(comment => {
+    window.clipComments.forEach(comment => {
         const commentElement = document.createElement('div');
         commentElement.className = 'comment';
 

@@ -134,7 +134,7 @@ export function hideDeleteModal() {
     pendingDeleteElement = null;
 }
 
-export function confirmDelete(comments) {
+export function confirmDelete() {
     if (pendingDeleteElement) {
         const commentElement = pendingDeleteElement.closest('.comment');
         const replyElement = pendingDeleteElement.closest('.reply');
@@ -145,9 +145,9 @@ export function confirmDelete(comments) {
         } else if (commentElement) {
             // Deleting a main comment
             const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
-            const commentIndex = comments.findIndex(c => c.id === commentId);
+            const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
             if (commentIndex !== -1) {
-                comments.splice(commentIndex, 1);
+                window.clipComments.splice(commentIndex, 1);
                 // Update comment count
                 const countElement = document.getElementById('comment-count');
                 countElement.textContent = parseInt(countElement.textContent) - 1;

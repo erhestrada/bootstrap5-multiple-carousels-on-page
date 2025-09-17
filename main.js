@@ -121,19 +121,18 @@ renderComments(window.clipComments);
 // Allow Enter to post comment
 document.getElementById('new-comment').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.ctrlKey) {
-        postComment(window.clipComments);
+        postComment();
     }
 });
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
-    postBtn.addEventListener('click', () => postComment(window.clipComments));
+    postBtn.addEventListener('click', () => postComment());
 
     const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
     deleteCancelButton.addEventListener('click', hideDeleteModal);
 
     const deleteConfirmButton = document.querySelector('.delete-modal-btn.delete-confirm');
-    deleteConfirmButton.addEventListener('click', () => confirmDelete(window.clipComments));
+    deleteConfirmButton.addEventListener('click', () => confirmDelete());
 });
-
