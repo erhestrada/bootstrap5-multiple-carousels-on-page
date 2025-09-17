@@ -7,6 +7,6 @@ export default async function deleteComment(userId, clipId, parentId, comment) {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, parentId, comment }),
         };
-    const comments = makeApiRequest(url, options);
-    return comments
+    const response = await makeApiRequest(url, options);
+    return response;
 }
