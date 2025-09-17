@@ -123,6 +123,7 @@ const comments = [
         ]
     }
 ];
+window.clipComments = comments;
 
 export function postComment() {
     const textarea = document.getElementById('new-comment');
