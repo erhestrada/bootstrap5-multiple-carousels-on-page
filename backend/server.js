@@ -71,7 +71,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     // e.g. user_id = ? AND clip_id = ?
     const whereClause = columnNames.map(col => `${col} = ?`).join(' AND ');
     const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
-
+    console.log('function running');
     db.run(query, parameters, function (err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) {
@@ -165,8 +165,8 @@ app.delete('/clips/:clipId/comments', (req, res) => {
   const { userId, parentId, comment } = req.body;
 
   const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
-  const parameters = [clipId, userId, parentId, comment];
+  const columnNames = ['clip_id', 'user_id', 'comment'];
+  const parameters = [clipId, userId, comment];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
