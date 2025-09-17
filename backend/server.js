@@ -146,7 +146,7 @@ app.get('/clips/:clipId/comments'), (req, res) => {
 }
 
 // Post comment
-app.post('/comments', (req, res) => {
+app.post('/clips/:clipId/comments', (req, res) => {
   const { userId, clipId, comment } = req.body;
 
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
