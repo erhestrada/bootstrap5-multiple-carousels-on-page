@@ -1,3 +1,5 @@
+import { toggleLike } from "./like-handler";
+
 const comments = [
     {
         id: 1,
