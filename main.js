@@ -30,6 +30,7 @@ window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
 window.currentClip = {};
+window.clipComments = [];
 
 const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
@@ -133,6 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteCancelButton.addEventListener('click', hideDeleteModal);
 
     const deleteConfirmButton = document.querySelector('.delete-modal-btn.delete-confirm');
-    deleteConfirmButton.addEventListener('click', confirmDelete);
+    deleteConfirmButton.addEventListener('click', () => confirmDelete(window.clipComments));
 });
 
