@@ -1,5 +1,6 @@
 import { toggleLike } from "./like-handler";
 import { showReplyBox, deleteComment } from "../commentsSection";
+import { postComment } from '../comments/post-comment';
 
 export const comments = [
     {
