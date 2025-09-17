@@ -142,7 +142,7 @@ export function postComment(comments) {
         
         comments.unshift(newComment);
         textarea.value = '';
-        renderComments();
+        renderComments(comments);
         
         // Update comment count
         const countElement = document.getElementById('comment-count');
@@ -150,7 +150,7 @@ export function postComment(comments) {
     }
 }
 
-export function renderComments() {
+export function renderComments(comments) {
     const commentsList = document.getElementById('comments-list');
     commentsList.innerHTML = '';
 
