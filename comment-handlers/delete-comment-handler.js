@@ -34,6 +34,7 @@ export function confirmDelete() {
         } else if (commentElement) {
             // Deleting a main comment
             const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
+            console.log('comment id: ', commentId);
             const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
@@ -46,4 +47,5 @@ export function confirmDelete() {
         }
     }
     hideDeleteModal();
+    console.log(window.clipComments);
 }

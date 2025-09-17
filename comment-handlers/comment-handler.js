@@ -163,7 +163,6 @@ export function renderComments() {
         commentElement.className = 'comment';
         commentElement.setAttribute('data-comment-id', comment.id); // Set comment id
 
-
         const repliesHTML = comment.replies.map(reply => `
             <div class="reply">
                 <div class="comment-main">
