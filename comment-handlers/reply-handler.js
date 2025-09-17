@@ -1,5 +1,5 @@
 import { toggleLike } from "./like-handler";
-import { deleteComment } from "./delete-comment-handler";
+import { handleDeleteComment } from "./delete-comment-handler";
 
 export function showReplyBox(button) {
     document.querySelectorAll('.reply-box').forEach(box => {
@@ -89,7 +89,7 @@ function postReply(button) {
                             ❤️ <span>0</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
-                        <button class="action-btn delete-btn" onclick="deleteComment(this)">🗑️ Delete</button>
+                        <button class="action-btn delete-btn" onclick="handleDeleteComment(this)">🗑️ Delete</button>
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@ function postReply(button) {
 
         const deleteBtn = newReply.querySelector('.delete-btn');
         if (deleteBtn) {
-            deleteBtn.addEventListener('click', () => deleteComment(replyBtn));
+            deleteBtn.addEventListener('click', () => handleDeleteComment(replyBtn));
         }
 
         textarea.value = '';

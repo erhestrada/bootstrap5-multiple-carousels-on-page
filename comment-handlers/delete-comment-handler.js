@@ -2,7 +2,7 @@ import { deleteComment } from "../comments";
 
 let pendingDeleteElement = null;
 
-export function deleteComment(button) {
+export function handleDeleteComment(button) {
     pendingDeleteElement = button;
     showDeleteModal();
 }
