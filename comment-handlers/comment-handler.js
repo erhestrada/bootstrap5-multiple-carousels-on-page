@@ -139,6 +139,9 @@ export function submitComment() {
             likes: 0,
             replies: []
         };
+
+        // null because no parentId, this function submits non-reply comment
+        postComment(window.userId, window.currentClip.id, null, commentText);
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
