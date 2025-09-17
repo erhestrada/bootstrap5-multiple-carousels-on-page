@@ -11,7 +11,7 @@ import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
 import { comments, renderComments, submitComment } from './comment-handlers/comment-handler.js';
-import { hideDeleteModal, confirmDelete } from './commentsSection.js';
+import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 
 window.clientId = getClientId();
 window.userId = null;
