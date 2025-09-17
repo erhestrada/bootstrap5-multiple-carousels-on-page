@@ -161,6 +161,8 @@ export function renderComments() {
     window.clipComments.forEach(comment => {
         const commentElement = document.createElement('div');
         commentElement.className = 'comment';
+        commentElement.setAttribute('data-comment-id', comment.id); // Set comment id
+
 
         const repliesHTML = comment.replies.map(reply => `
             <div class="reply">
