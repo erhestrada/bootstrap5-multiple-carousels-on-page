@@ -134,7 +134,7 @@ export function hideDeleteModal() {
     pendingDeleteElement = null;
 }
 
-export function confirmDelete() {
+export function confirmDelete(comments) {
     if (pendingDeleteElement) {
         const commentElement = pendingDeleteElement.closest('.comment');
         const replyElement = pendingDeleteElement.closest('.reply');
