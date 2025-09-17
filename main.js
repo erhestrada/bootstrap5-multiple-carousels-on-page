@@ -10,7 +10,7 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
-import { comments, renderComments, postComment } from './comment-handlers/comment-handler.js';
+import { comments, renderComments, submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './commentsSection.js';
 
 window.clientId = getClientId();
@@ -121,14 +121,14 @@ renderComments(window.clipComments);
 // Allow Enter to post comment
 document.getElementById('new-comment').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.ctrlKey) {
-        postComment();
+        submitComment();
     }
 });
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const postBtn = document.querySelector('.comment-btn');
-    postBtn.addEventListener('click', () => postComment());
+    postBtn.addEventListener('click', () => submitComment());
 
     const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
     deleteCancelButton.addEventListener('click', hideDeleteModal);

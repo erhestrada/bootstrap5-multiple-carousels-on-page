@@ -124,7 +124,7 @@ export const comments = [
     }
 ];
 
-export function postComment() {
+export function submitComment() {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
     
