@@ -1,7 +1,7 @@
 import { toggleLike } from "./like-handler";
 import { showReplyBox } from './reply-handler';
 import { postComment } from '../comments';
-import { deleteComment } from "./delete-comment-handler";
+import { handleDeleteComment } from "./delete-comment-handler";
 
 export const comments = [
     {
@@ -223,6 +223,6 @@ function attachEventListeners() {
 
     const deleteBtns = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach(btn => {
-        btn.addEventListener('click', () => deleteComment(btn));
+        btn.addEventListener('click', () => handleDeleteComment(btn));
     });
 }
