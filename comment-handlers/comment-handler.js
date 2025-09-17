@@ -1,7 +1,7 @@
 import { toggleLike } from "./like-handler";
 import { showReplyBox, deleteComment } from "../commentsSection";
 
-const comments = [
+export const comments = [
     {
         id: 1,
         avatar: "M",
@@ -123,7 +123,6 @@ const comments = [
         ]
     }
 ];
-window.clipComments = comments;
 
 export function postComment(comments) {
     const textarea = document.getElementById('new-comment');
