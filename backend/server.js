@@ -157,6 +157,18 @@ app.post('/clips/:clipId/comments', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
+// Delete comment
+app.delete('/clips/:clipId/comments', (req, res) => {
+  const { clipId } = req.params;
+  const { userId, parentId, comment } = req.body;
+
+  const tableName = 'comments';
+  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
+  const parameters = [clipId, userId, parentId, comment];
+
+  deleteRowFromTable(tableName, columnNames, parameters, res);
+});
+
 // Edit comment
 app.put('/comments/:commentId', (req, res) => {
   const commentId = req.params.commentId;
@@ -176,18 +188,6 @@ app.put('/comments/:commentId', (req, res) => {
 
     res.json({ message: 'Comment updated successfully' });
   });
-});
-
-// Delete comment
-app.delete('/comments', (req, res) => {
-  const { userId, clipId, comment } = req.body;
-
-  //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
-  const tableName = 'comments';
-  const columnNames = ['user_id', 'clip_id', comment];
-  const parameters = [userId, clipId, comment];
-
-  deleteRowFromTable(tableName, columnNames, parameters, res);
 });
 
 // ---------------------------- Favorites ------------------------------
