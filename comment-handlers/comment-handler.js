@@ -1,5 +1,5 @@
 import { toggleLike } from "./like-handler";
-import { showReplyBox } from "../commentsSection";
+import { showReplyBox } from './reply-handler';
 import { postComment } from '../comments';
 import { deleteComment } from "./delete-comment-handler";
 
