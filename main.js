@@ -121,7 +121,7 @@ renderComments(window.clipComments);
 // Allow Enter to post comment
 document.getElementById('new-comment').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.ctrlKey) {
-        postComment();
+        postComment(window.clipComments);
     }
 });
 
