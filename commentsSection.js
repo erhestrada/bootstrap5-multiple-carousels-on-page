@@ -1,6 +1,6 @@
 
 
-function showReplyBox(button) {
+export function showReplyBox(button) {
     document.querySelectorAll('.reply-box').forEach(box => {
         box.style.display = 'none';
     });
@@ -118,7 +118,7 @@ function postReply(button) {
 
 let pendingDeleteElement = null;
 
-function deleteComment(button) {
+export function deleteComment(button) {
     pendingDeleteElement = button;
     showDeleteModal();
 }
