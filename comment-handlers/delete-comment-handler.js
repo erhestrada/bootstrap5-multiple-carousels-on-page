@@ -29,7 +29,7 @@ export function confirmDelete() {
         if (replyElement && !commentElement) {
             // Deleting a reply (make sure it's not also inside a main comment)
             replyElement.remove();
-            deleteComment(window.userId, window.currentClip.id, null, commentText);
+            deleteComment(window.userId, window.currentClip.id, null, commentText); // TODO: get parentId here
             
         } else if (commentElement) {
             // Deleting a main comment
