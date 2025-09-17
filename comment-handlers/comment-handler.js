@@ -125,7 +125,7 @@ const comments = [
 ];
 window.clipComments = comments;
 
-export function postComment() {
+export function postComment(comments) {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
     
