@@ -338,8 +338,6 @@ app.delete('/votes', (req, res) => {
 app.get('/users/:id/following', (req, res) => {
   const { id: userId } = req.params;
 
-  console.log(userId);
-
   const streamersQuery = `SELECT streamer, twitch_id FROM followed_streamers WHERE user_id = ?`;
   const categoriesQuery = `SELECT category, twitch_id, box_art_url FROM followed_categories WHERE user_id = ?`;
 
