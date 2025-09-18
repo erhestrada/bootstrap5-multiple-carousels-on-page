@@ -139,13 +139,13 @@ app.get('/users/:userId/comments', (req, res) => {
 });
 
 // Get all comments on clip
-app.get('/clips/:clipId/comments'), (req, res) => {
+app.get('/clips/:clipId/comments', (req, res) => {
   const clipId = req.params.clipId;
   const tableName = 'comments';
   const columnName = 'clip_id';
   const filterValue = clipId;
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
-}
+});
 
 // Post comment
 app.post('/clips/:clipId/comments', (req, res) => {
