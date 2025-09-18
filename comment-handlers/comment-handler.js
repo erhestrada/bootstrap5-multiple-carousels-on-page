@@ -171,7 +171,7 @@ export function renderComments() {
                     <div class="comment-content">
                         <div class="comment-header">
                             <span class="username">${reply.username}</span>
-                            <span class="timestamp">${reply.time}</span>
+                            <span class="timestamp">${reply.timestamp}</span>
                         </div>
                         <div class="comment-text">${reply.text}</div>
                         <div class="comment-actions-row">
@@ -192,7 +192,7 @@ export function renderComments() {
                 <div class="comment-content">
                     <div class="comment-header">
                         <span class="username">${comment.username}</span>
-                        <span class="timestamp">${comment.time}</span>
+                        <span class="timestamp">${comment.timestamp}</span>
                     </div>
                     <div class="comment-text">${comment.comment}</div>
                     <div class="comment-actions-row">
