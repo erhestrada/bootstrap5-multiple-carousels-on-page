@@ -10,7 +10,7 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
-import { comments, renderComments, submitComment } from './comment-handlers/comment-handler.js';
+import { comments, submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 
 window.clientId = getClientId();
@@ -117,7 +117,6 @@ toggle.addEventListener('change', updateLabels);
 
 // -------------------------------- Comments ------------------------------
 
-renderComments(window.clipComments);
 // Allow Enter to post comment
 document.getElementById('new-comment').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && e.ctrlKey) {
