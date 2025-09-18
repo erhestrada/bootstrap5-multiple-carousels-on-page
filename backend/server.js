@@ -22,7 +22,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS users');
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
-  db.run('DROP TABLE IF EXISTS comments');
+  //db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
 
@@ -107,6 +107,31 @@ function getSignedOutUserId(clientId) {
   });
 }
 
+function nestComments(flatComments) {
+    const commentsById = {};
+    const nestedComments = [];
+
+    // Give each comment a replies property and store comments in commentsById
+    flatComments.forEach(comment => {
+        comment.replies = [];
+        commentsById[comment.id] = comment;
+    });
+
+    // Populate nestedComments; all comments are either a parent (no parent_id) or a reply (has a parent_id)
+    flatComments.forEach(comment => {
+        if (comment.parent_id) {
+            const parent = commentsById[comment.parent_id];
+            if (parent) {
+                parent.replies.push(comment);
+            }
+        } else {
+            nestedComments.push(comment);
+        }
+    });
+
+    return nestedComments;
+}
+
 // ---------------------------- Users ------------------------------
 app.get('/signed-out-user-id', (req, res) => {
   const { clientId } = req.query;
@@ -140,11 +165,16 @@ app.get('/users/:userId/comments', (req, res) => {
 
 // Get all comments on clip
 app.get('/clips/:clipId/comments', (req, res) => {
-  const clipId = req.params.clipId;
-  const tableName = 'comments';
-  const columnName = 'clip_id';
-  const filterValue = clipId;
-  getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
+    const clipId = req.params.clipId;
+
+    const query = `SELECT * FROM comments WHERE clip_id = ? ORDER BY timestamp ASC`;
+
+    db.all(query, [clipId], (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        const nestedComments = nestComments(rows);
+        res.json(nestedComments);
+    });
 });
 
 // Post comment
