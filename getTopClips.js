@@ -9,6 +9,7 @@ import { loadClipInteractions } from "./loadClipInteractions";
 import { displayNetVotes } from "./display-net-votes";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
+import { displayComments } from "./display-comments";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -118,6 +119,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);
   displayFavoriteStatusOfClip(window.userId, currentClip.id);
+  displayComments(currentClip.id);
 
   console.log('this work?', currentClip.broadcaster_name);
 
