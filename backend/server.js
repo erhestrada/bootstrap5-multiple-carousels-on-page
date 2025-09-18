@@ -22,7 +22,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS users');
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
-  //db.run('DROP TABLE IF EXISTS comments');
+  db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
 
@@ -35,6 +35,7 @@ db.serialize(() => {
     user_id INTEGER,
     parent_id INTEGER,
     comment TEXT,
+    likes INT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY(parent_id) REFERENCES comments(id))
