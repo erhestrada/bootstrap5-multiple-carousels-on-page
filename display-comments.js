@@ -6,7 +6,8 @@ export async function displayComments(clipId) {
     const comments = await getComments(clipId);
     console.log('comments: ', comments);
     displayNumberOfComments(comments);
-    renderComments(comments);
+    window.clipComments = comments;
+    renderComments();
     return comments;
 }
 
