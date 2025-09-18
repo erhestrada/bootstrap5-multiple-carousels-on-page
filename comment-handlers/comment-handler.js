@@ -194,7 +194,7 @@ export function renderComments() {
                         <span class="username">${comment.username}</span>
                         <span class="timestamp">${comment.time}</span>
                     </div>
-                    <div class="comment-text">${comment.text}</div>
+                    <div class="comment-text">${comment.comment}</div>
                     <div class="comment-actions-row">
                         <button class="action-btn like-btn">
                             ❤️ <span>${Math.abs(comment.likes)}</span>
