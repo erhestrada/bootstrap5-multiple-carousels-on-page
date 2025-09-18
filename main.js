@@ -10,7 +10,7 @@ import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
 import { getSignedOutUserId } from './users'
 import { getFollows } from './follows';
-import { comments, submitComment } from './comment-handlers/comment-handler.js';
+import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 
 window.clientId = getClientId();
@@ -30,7 +30,7 @@ window.boxArtUrls = {};
 window.watchHistory = [];
 window.currentStreamerId = '';
 window.currentClip = {};
-window.clipComments = comments;
+window.clipComments = [];
 
 const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
