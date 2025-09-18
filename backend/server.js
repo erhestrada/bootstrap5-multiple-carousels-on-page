@@ -181,11 +181,11 @@ app.get('/clips/:clipId/comments', (req, res) => {
 // Post comment
 app.post('/clips/:clipId/comments', (req, res) => {
   const { clipId } = req.params;
-  const { userId, parentId, comment } = req.body;
+  const { userId, parentId, comment, likes } = req.body;
 
   const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
-  const parameters = [clipId, userId, parentId, comment];
+  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment', 'likes'];
+  const parameters = [clipId, userId, parentId, comment, likes];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
