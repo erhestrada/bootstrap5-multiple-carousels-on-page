@@ -167,7 +167,7 @@ export function renderComments() {
         const repliesHTML = comment.replies.map(reply => `
             <div class="reply">
                 <div class="comment-main">
-                    <div class="avatar">${reply.avatar}</div>
+                    <div class="avatar"></div>
                     <div class="comment-content">
                         <div class="comment-header">
                             <span class="username">${reply.username}</span>
@@ -188,7 +188,7 @@ export function renderComments() {
 
         commentElement.innerHTML = `
             <div class="comment-main">
-                <div class="avatar">${comment.avatar}</div>
+                <div class="avatar"></div>
                 <div class="comment-content">
                     <div class="comment-header">
                         <span class="username">${comment.username}</span>
