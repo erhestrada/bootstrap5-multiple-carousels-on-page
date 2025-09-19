@@ -9,23 +9,23 @@ export const comments = [
         avatar: "M",
         username: "MemeLord2024",
         verified: true,
-        time: "2 hours ago",
-        text: "This is absolutely INSANE! How is this even possible?? 🤯",
+        timestamp: "2 hours ago",
+        comment: "This is absolutely INSANE! How is this even possible?? 🤯",
         likes: 2847,
         replies: [
             {
                 avatar: "J",
                 username: "JustVibing",
-                time: "1 hour ago",
-                text: "Fr this broke my brain",
+                timestamp: "1 hour ago",
+                comment: "Fr this broke my brain",
                 likes: 156
             },
             {
                 avatar: "T",
                 username: "TechExplainer",
                 verified: true,
-                time: "45 min ago",
-                text: "Actually, the physics behind this is pretty straightforward if you understand quantum mechanics...",
+                timestamp: "45 min ago",
+                comment: "Actually, the physics behind this is pretty straightforward if you understand quantum mechanics...",
                 likes: 89
             }
         ],
@@ -35,8 +35,8 @@ export const comments = [
         id: 2,
         avatar: "S",
         username: "SkepticalSarah",
-        time: "4 hours ago",
-        text: "Okay but can we talk about how this is literally changing everything? Like, the implications are wild",
+        timestamp: "4 hours ago",
+        comment: "Okay but can we talk about how this is literally changing everything? Like, the implications are wild",
         likes: 1205,
         replies: []
     },
@@ -44,15 +44,15 @@ export const comments = [
         id: 3,
         avatar: "F",
         username: "FirstTimeWatcher",
-        time: "6 hours ago",
-        text: "WAIT WHAT?! I had to watch this 10 times 😱😱😱",
+        timestamp: "6 hours ago",
+        comment: "WAIT WHAT?! I had to watch this 10 times 😱😱😱",
         likes: 892,
         replies: [
             {
                 avatar: "R",
                 username: "ReactionKing",
-                time: "5 hours ago",
-                text: "Same! My jaw is still on the floor",
+                timestamp: "5 hours ago",
+                comment: "Same! My jaw is still on the floor",
                 likes: 45
             }
         ]
@@ -61,22 +61,22 @@ export const comments = [
         id: 4,
         avatar: "H",
         username: "Hater123",
-        time: "8 hours ago",
-        text: "This is fake af. You can literally see the editing at 0:23. Stop falling for this stuff people 🙄",
+        timestamp: "8 hours ago",
+        comment: "This is fake af. You can literally see the editing at 0:23. Stop falling for this stuff people 🙄",
         likes: -23,
         replies: [
             {
                 avatar: "D",
                 username: "DebunkThis",
-                time: "7 hours ago",
-                text: "@Hater123 Actually I analyzed the footage frame by frame and it's legit",
+                timestamp: "7 hours ago",
+                comment: "@Hater123 Actually I analyzed the footage frame by frame and it's legit",
                 likes: 234
             },
             {
                 avatar: "N",
                 username: "NeverSatisfied",
-                time: "6 hours ago",
-                text: "Some people just can't appreciate art when they see it smh",
+                timestamp: "6 hours ago",
+                comment: "Some people just can't appreciate art when they see it smh",
                 likes: 67
             }
         ]
@@ -85,15 +85,15 @@ export const comments = [
         id: 5,
         avatar: "G",
         username: "GrandmaWatching",
-        time: "12 hours ago",
-        text: "My grandson showed me this and I don't understand it but you kids are so creative these days! ❤️👵",
+        timestamp: "12 hours ago",
+        comment: "My grandson showed me this and I don't understand it but you kids are so creative these days! ❤️👵",
         likes: 5692,
         replies: [
             {
                 avatar: "W",
                 username: "WholesomeVibes",
-                time: "11 hours ago",
-                text: "Grandma you're the real MVP 🥺❤️",
+                timestamp: "11 hours ago",
+                comment: "Grandma you're the real MVP 🥺❤️",
                 likes: 892
             }
         ]
@@ -102,8 +102,8 @@ export const comments = [
         id: 6,
         avatar: "C",
         username: "CringeCritic",
-        time: "1 day ago",
-        text: "why is everyone freaking out about this? it's literally not that deep...",
+        timestamp: "1 day ago",
+        comment: "why is everyone freaking out about this? it's literally not that deep...",
         likes: 12,
         replies: []
     },
@@ -111,15 +111,15 @@ export const comments = [
         id: 7,
         avatar: "P",
         username: "PhilosophyBro",
-        time: "1 day ago",
-        text: "This makes me question the very nature of reality. Are we all just living in a simulation? What is real anymore?",
+        timestamp: "1 day ago",
+        comment: "This makes me question the very nature of reality. Are we all just living in a simulation? What is real anymore?",
         likes: 445,
         replies: [
             {
                 avatar: "R",
                 username: "RealityCheck",
-                time: "23 hours ago",
-                text: "Bro it's just a video, chill 😅",
+                timestamp: "23 hours ago",
+                comment: "Bro it's just a video, chill 😅",
                 likes: 178
             }
         ]
@@ -135,8 +135,8 @@ export function submitComment() {
             id: window.clipComments.length + 1,
             avatar: "Y",
             username: "You",
-            time: "now",
-            text: commentText,
+            timestamp: "now",
+            comment: commentText,
             likes: 0,
             replies: []
         };
