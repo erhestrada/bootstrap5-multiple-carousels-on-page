@@ -22,7 +22,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS users');
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
-  db.run('DROP TABLE IF EXISTS comments');
+  //db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
 
@@ -168,12 +168,21 @@ app.get('/users/:userId/comments', (req, res) => {
 app.get('/clips/:clipId/comments', (req, res) => {
     const clipId = req.params.clipId;
 
-    const query = `SELECT * FROM comments WHERE clip_id = ? ORDER BY timestamp ASC`;
+    const query = `
+      SELECT 
+        comments.*, 
+        users.username 
+      FROM comments 
+      JOIN users ON comments.user_id = users.id 
+      WHERE comments.clip_id = ? 
+      ORDER BY comments.timestamp ASC
+    `;
 
     db.all(query, [clipId], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
 
         const nestedComments = nestComments(rows);
+        console.log('Nested comments: ', nestedComments);
         res.json(nestedComments);
     });
 });
