@@ -280,23 +280,22 @@ app.put('/comments/:commentId', (req, res) => {
 
 // Post like
 app.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
-  const { userId, clipId, commentId } = req.params;
+  const { userId, commentId } = req.params;
 
-  const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment', 'likes'];
-  const parameters = [clipId, userId, parentId, comment, likes];
+  const tableName = 'comment_likes';
+  const columnNames = ['user_id', 'comment_id'];
+  const parameters = [userId, commentId];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
 // Delete like
 app.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
-  const { clipId } = req.params;
-  const { userId, parentId, comment } = req.body;
+  const { userId, commentId } = req.params;
 
-  const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'comment'];
-  const parameters = [clipId, userId, comment];
+  const tableName = 'comment_likes';
+  const columnNames = ['user_id', 'comment_id'];
+  const parameters = [userId, commentId];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
