@@ -40,6 +40,14 @@ db.serialize(() => {
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY(parent_id) REFERENCES comments(id))
     `);
+  db.run(`CREATE TABLE IF NOT EXISTS comment_likes (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    comment_id INTEGER,
+    UNIQUE(user_id, comment_id),
+    FOREIGN KEY(user_id) REFRENCES users(id),
+    FOREIGN KEY(comment_id) REFERENCES comments(id)
+    `);
   db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, box_art_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
@@ -268,6 +276,29 @@ app.put('/comments/:commentId', (req, res) => {
 
     res.json({ message: 'Comment updated successfully' });
   });
+});
+
+// Post like
+app.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
+  const { userId, clipId, commentId } = req.params;
+
+  const tableName = 'comments';
+  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment', 'likes'];
+  const parameters = [clipId, userId, parentId, comment, likes];
+
+  insertRowIntoTable(tableName, columnNames, parameters, res);
+});
+
+// Delete like
+app.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
+  const { clipId } = req.params;
+  const { userId, parentId, comment } = req.body;
+
+  const tableName = 'comments';
+  const columnNames = ['clip_id', 'user_id', 'comment'];
+  const parameters = [clipId, userId, comment];
+
+  deleteRowFromTable(tableName, columnNames, parameters, res);
 });
 
 // ---------------------------- Favorites ------------------------------
