@@ -1,7 +1,7 @@
 import { makeApiRequest } from "../make-api-request";
 
 export default async function postLike(userId, clipId, commentId) {
-    const url = `/${userId}/clips/${clipId}/${commentId}/likes`;
+    const url = `http://192.168.86.195:3000/${userId}/clips/${clipId}/${commentId}/likes`;
     const options = {};
     const data = makeApiRequest(url, options);
     return data;
