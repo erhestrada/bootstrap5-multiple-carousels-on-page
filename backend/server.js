@@ -109,7 +109,23 @@ function getSignedOutUserId(clientId) {
   });
 }
 
-function generateNewRandomUsername() {
+async function generateNewRandomUsername() {
+  const usernames = await getUsernames();
+
+  let username;
+  do {
+    username = `anon_${Math.floor(Math.random() * 1000000)}`;
+  } while (usernames.has(username));
+
+  return username;
+}
+
+async function getUsernames() {
+  const usernamesQuery = 'SELECT username FROM users';
+  const parameters = [];
+  const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
+  const usernames = usernameRows.map(row => row.username);
+  return usernames;
 
 }
 
