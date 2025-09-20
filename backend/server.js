@@ -107,14 +107,14 @@ async function getSignedOutUserId(clientId) {
   const row = await dbGetAsync(query, [clientId]);
 
   if (row) {
-    return row.id;
+    return { userId: row.id, username: null };
   }
 
   const username = await generateNewRandomUsername();
   const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
   const newUserId = await dbRunAsync(insert, [clientId, username]);
 
-  return newUserId;
+  return { userId: newUserId, username} ;
 }
 
 async function generateNewRandomUsername() {
@@ -172,21 +172,21 @@ function nestComments(flatComments) {
 }
 
 // ---------------------------- Users ------------------------------
-app.get('/signed-out-user-id', (req, res) => {
+app.get('/signed-out-user-id', async (req, res) => {
   const { clientId } = req.query;
 
   if (!clientId) {
     return res.status(400).json({ error: 'Missing clientId' });
   }
 
-  getSignedOutUserId(clientId).then((userId) => {
-    res.status(200).json({ userId });
-  }).catch((err) => {
+  try {
+    const { userId, username } = await getSignedOutUserId(clientId);
+    res.status(200).json({ userId, username });
+  } catch (err) {
     console.error('Failed to get signed out user:', err);
     res.status(500).json({ error: 'Internal server error' });
-  });
+  }
 });
-
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
