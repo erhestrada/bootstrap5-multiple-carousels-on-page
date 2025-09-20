@@ -172,7 +172,7 @@ function nestComments(flatComments) {
 }
 
 // ---------------------------- Users ------------------------------
-app.get('/signed-out-user-id', async (req, res) => {
+app.get('/signed-out-user', async (req, res) => {
   const { clientId } = req.query;
 
   if (!clientId) {

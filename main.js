@@ -8,14 +8,14 @@ import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
 import { updateVotes } from './updateVotes.js'
 import { updateFavorites } from './updateFavorites.js';
 import { getClientId } from './get-client-id.js';
-import { getSignedOutUserId } from './users'
+import { getSignedOutUser } from './users'
 import { getFollows } from './follows';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 
 window.clientId = getClientId();
 window.userId = null;
-window.userIdPromise = getSignedOutUserId(window.clientId);
+window.userIdPromise = getSignedOutUser(window.clientId);
 window.username = null;
 window.follows = null;
 
