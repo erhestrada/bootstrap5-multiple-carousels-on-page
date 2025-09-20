@@ -213,7 +213,7 @@ app.get('/clips/:clipId/comments', (req, res) => {
       FROM comments 
       JOIN users ON comments.user_id = users.id 
       WHERE comments.clip_id = ? 
-      ORDER BY comments.timestamp ASC
+      ORDER BY comments.timestamp DESC
     `;
 
     db.all(query, [clipId], (err, rows) => {
