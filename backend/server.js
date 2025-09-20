@@ -84,33 +84,6 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     });
 }
 
-/*
-function getSignedOutUserId(clientId) {
-  return new Promise((resolve, reject) => {
-    const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
-
-    db.get(query, [clientId], (err, row) => {
-      if (err) return reject(err);
-
-      if (row) {
-        // Found existing user
-        return resolve(row.id);
-      }
-
-      // No user found, insert new
-      const username = generateNewRandomUsername();
-      const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
-      db.run(insert, [clientId, username], function (err) {
-        if (err) return reject(err);
-
-        // Insert done, resolve with new ID
-        resolve(this.lastID);
-      });
-    });
-  });
-}
-*/
-
 function dbGetAsync(query, params) {
   return new Promise((resolve, reject) => {
     db.get(query, params, (err, row) => {
