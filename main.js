@@ -16,6 +16,7 @@ import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-commen
 window.clientId = getClientId();
 window.userId = null;
 window.userIdPromise = getSignedOutUserId(window.clientId);
+window.username = null;
 window.follows = null;
 
 window.clipsData = {};
@@ -44,8 +45,9 @@ buttonsNeedingUser.forEach(button => button.disabled = true);
 const followButtons = [followStreamerButton, followCategoryButton];
 followButtons.forEach(button => button.disabled = true);
 
-window.userIdPromise.then(userId => {
+window.userIdPromise.then(({ userId, username }) => {
   window.userId = userId;
+  window.username = username;
   buttonsNeedingUser.forEach(button => button.disabled = false);
 
   const followsPromise = getFollows(userId);
