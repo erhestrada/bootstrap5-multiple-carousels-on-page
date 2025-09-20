@@ -97,13 +97,27 @@ function getSignedOutUserId(clientId) {
       }
 
       // No user found, insert new
-      const insert = `INSERT INTO users (client_id, username, password) VALUES (?, NULL, NULL)`;
-      db.run(insert, [clientId], function (err) {
+      const username = generateNewRandomUsername();
+      const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
+      db.run(insert, [clientId, username], function (err) {
         if (err) return reject(err);
 
         // Insert done, resolve with new ID
         resolve(this.lastID);
       });
+    });
+  });
+}
+
+function generateNewRandomUsername() {
+
+}
+
+function runAsyncQuery(query, parameters) {
+  return new Promise((resolve, reject) => {
+    db.all(query, parameters, (err, rows) => {
+      if (err) return reject(err);
+      resolve(rows);
     });
   });
 }
