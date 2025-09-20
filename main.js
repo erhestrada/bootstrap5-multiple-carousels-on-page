@@ -32,6 +32,7 @@ window.watchHistory = [];
 window.currentStreamerId = '';
 window.currentClip = {};
 window.clipComments = [];
+window.likes = {};
 
 const upvoteButton = document.getElementById('upvote-button');
 const downvoteButton = document.getElementById('downvote-button');
