@@ -22,7 +22,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS users');
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
-  //db.run('DROP TABLE IF EXISTS comments');
+  db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
 
@@ -84,6 +84,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     });
 }
 
+/*
 function getSignedOutUserId(clientId) {
   return new Promise((resolve, reject) => {
     const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
@@ -108,6 +109,40 @@ function getSignedOutUserId(clientId) {
     });
   });
 }
+*/
+
+function dbGetAsync(query, params) {
+  return new Promise((resolve, reject) => {
+    db.get(query, params, (err, row) => {
+      if (err) return reject(err);
+      resolve(row);
+    });
+  });
+}
+
+function dbRunAsync(query, params) {
+  return new Promise((resolve, reject) => {
+    db.run(query, params, function (err) {
+      if (err) return reject(err);
+      resolve(this.lastID); // Note: `this` refers to the statement object
+    });
+  });
+}
+
+async function getSignedOutUserId(clientId) {
+  const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
+  const row = await dbGetAsync(query, [clientId]);
+
+  if (row) {
+    return row.id;
+  }
+
+  const username = await generateNewRandomUsername();
+  const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
+  const newUserId = await dbRunAsync(insert, [clientId, username]);
+
+  return newUserId;
+}
 
 async function generateNewRandomUsername() {
   const usernames = await getUsernames();
@@ -115,7 +150,7 @@ async function generateNewRandomUsername() {
   let username;
   do {
     username = `anon_${Math.floor(Math.random() * 1000000)}`;
-  } while (usernames.has(username));
+  } while (usernames.includes(username));
 
   return username;
 }
