@@ -142,7 +142,7 @@ export function submitComment() {
         };
 
         // null because no parentId, this function submits non-reply comment
-        // placeholder likes of 0 TODO: get likes on comment element
+        // Initialize comment with 0 likes
         postComment(window.userId, window.currentClip.id, null, commentText, 0);
         
         window.clipComments.unshift(newComment);
