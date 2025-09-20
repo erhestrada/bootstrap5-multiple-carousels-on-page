@@ -175,11 +175,11 @@ export function renderComments() {
                         </div>
                         <div class="comment-text">${reply.text}</div>
                         <div class="comment-actions-row">
-                            <button class="action-btn like-btn">
+                            <button class="action-btn like-btn" data-comment-id="${comment.id}">
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn show-reply-btn">💬 Reply</button>
-                            ${reply.username === window.username ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
+                            ${reply.username === window.username ? '<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>' : ''}
                         </div>
                     </div>
                 </div>
@@ -196,11 +196,11 @@ export function renderComments() {
                     </div>
                     <div class="comment-text">${comment.comment}</div>
                     <div class="comment-actions-row">
-                        <button class="action-btn like-btn">
+                        <button class="action-btn like-btn" data-comment-id="${comment.id}">
                             ❤️ <span>${Math.abs(comment.likes)}</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
-                        ${comment.username === window.username ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
+                        ${comment.username === window.username ? '<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>' : ''}
                     </div>
                     ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
                 </div>
