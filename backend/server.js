@@ -124,7 +124,7 @@ function dbRunAsync(query, params) {
   return new Promise((resolve, reject) => {
     db.run(query, params, function (err) {
       if (err) return reject(err);
-      resolve(this.lastID); // Note: `this` refers to the statement object
+      resolve(this.lastID);
     });
   });
 }
@@ -150,7 +150,7 @@ async function generateNewRandomUsername() {
   let username;
   do {
     username = `anon_${Math.floor(Math.random() * 1000000)}`;
-  } while (usernames.includes(username));
+  } while (usernames.has(username));
 
   return username;
 }
@@ -159,9 +159,9 @@ async function getUsernames() {
   const usernamesQuery = 'SELECT username FROM users';
   const parameters = [];
   const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
-  const usernames = usernameRows.map(row => row.username);
-  return usernames;
 
+  const usernames = new Set(usernameRows.map(row => row.username));
+  return usernames;
 }
 
 function runAsyncQuery(query, parameters) {
