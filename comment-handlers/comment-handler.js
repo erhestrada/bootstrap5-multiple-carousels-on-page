@@ -197,7 +197,7 @@ export function renderComments() {
                     <div class="comment-text">${comment.comment}</div>
                     <div class="comment-actions-row">
                         <button class="action-btn like-btn" data-comment-id="${comment.id}">
-                            ❤️ <span>${comment.likes}</span>
+                            ❤️ <span>${window.likes[comment.id]}</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
                         ${comment.username === window.username ? '<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>' : ''}
