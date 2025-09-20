@@ -134,7 +134,7 @@ export function submitComment() {
         const newComment = {
             id: window.clipComments.length + 1,
             avatar: "Y",
-            username: "You",
+            username: window.username,
             timestamp: "now",
             comment: commentText,
             likes: 0,
@@ -179,7 +179,7 @@ export function renderComments() {
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn show-reply-btn">💬 Reply</button>
-                            ${reply.username === 'You' ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
+                            ${reply.username === window.username ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
                         </div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@ export function renderComments() {
                             ❤️ <span>${Math.abs(comment.likes)}</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
-                        ${comment.username === 'You' ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
+                        ${comment.username === window.username ? '<button class="action-btn delete-btn">🗑️ Delete</button>' : ''}
                     </div>
                     ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
                 </div>

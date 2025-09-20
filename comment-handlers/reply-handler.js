@@ -80,7 +80,7 @@ function postReply(button) {
                 <div class="avatar">Y</div>
                 <div class="comment-content">
                     <div class="comment-header">
-                        <span class="username">You</span>
+                        <span class="username">${window.username}</span>
                         <span class="timestamp">now</span>
                     </div>
                     <div class="comment-text">${replyText}</div>
