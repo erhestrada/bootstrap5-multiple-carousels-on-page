@@ -35,7 +35,6 @@ db.serialize(() => {
     user_id INTEGER,
     parent_id INTEGER,
     comment TEXT,
-    likes INT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY(parent_id) REFERENCES comments(id))
@@ -242,8 +241,8 @@ app.post('/clips/:clipId/comments', (req, res) => {
   const { userId, parentId, comment, likes } = req.body;
 
   const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment', 'likes'];
-  const parameters = [clipId, userId, parentId, comment, likes];
+  const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
+  const parameters = [clipId, userId, parentId, comment];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
