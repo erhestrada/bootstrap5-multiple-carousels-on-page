@@ -23,6 +23,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
   db.run('DROP TABLE IF EXISTS comments');
+  db.run('DROP TABLE IF EXISTS comment_likes');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
 
