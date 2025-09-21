@@ -45,7 +45,7 @@ db.serialize(() => {
     user_id INTEGER,
     comment_id INTEGER,
     UNIQUE(user_id, comment_id),
-    FOREIGN KEY(user_id) REFRENCES users(id),
+    FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(comment_id) REFERENCES comments(id)
     `);
   db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
