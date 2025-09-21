@@ -4,6 +4,7 @@ import { renderComments } from "./comment-handlers/comment-handler";
 export async function displayComments(clipId) {
     const comments = await getComments(clipId);
     console.log('comments: ', comments);
+    window.clipComments = comments;
     displayNumberOfComments(comments);
     renderComments();
     return comments;
