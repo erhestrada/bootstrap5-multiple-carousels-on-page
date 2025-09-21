@@ -217,10 +217,13 @@ app.get('/clips/:clipId/comments', (req, res) => {
     const query = `
       SELECT 
         comments.*, 
-        users.username 
-      FROM comments 
-      JOIN users ON comments.user_id = users.id 
-      WHERE comments.clip_id = ? 
+        users.username,
+        COUNT(comment_likes.id) AS likes
+      FROM comments
+      JOIN users ON comments.user_id = users.id
+      LEFT JOIN comment_likes ON comment_likes.comment_id = comments.id
+      WHERE comments.clip_id = ?
+      GROUP BY comments.id
       ORDER BY comments.timestamp DESC
     `;
 
