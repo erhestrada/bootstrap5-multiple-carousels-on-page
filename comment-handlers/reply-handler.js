@@ -17,7 +17,7 @@ export function showReplyBox(button) {
         replyBox.className = 'reply-box';
         replyBox.innerHTML = `
             <div class="reply-input">
-                <div class="avatar" style="width: 32px; height: 32px; font-size: 14px;">Y</div>
+                <div class="avatar" style="width: 32px; height: 32px; font-size: 14px;"></div>
                 <textarea class="reply-textarea" placeholder="Write a reply..."></textarea>
             </div>
             <div class="reply-buttons">
@@ -77,7 +77,7 @@ function postReply(button) {
         newReply.className = 'reply';
         newReply.innerHTML = `
             <div class="comment-main">
-                <div class="avatar">Y</div>
+                <div class="avatar"></div>
                 <div class="comment-content">
                     <div class="comment-header">
                         <span class="username">${window.username}</span>
