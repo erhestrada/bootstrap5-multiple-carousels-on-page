@@ -28,7 +28,7 @@ export function showReplyBox(button) {
         commentContent.appendChild(replyBox);
 
         const replyBtn = replyBox.querySelector('.actual-reply-btn');
-        replyBtn.addEventListener('click', () => postReply(replyBtn));
+        replyBtn.addEventListener('click', () => handleReply(replyBtn));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
@@ -56,7 +56,7 @@ function hideReplyBox(button) {
     replyBox.style.display = 'none';
 }
 
-function postReply(button) {
+function handleReply(button) {
     const replyBox = button.closest('.reply-box');
     const textarea = replyBox.querySelector('.reply-textarea');
     const replyText = textarea.value.trim();
