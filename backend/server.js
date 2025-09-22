@@ -111,18 +111,18 @@ function dbRunAsync(query, params) {
 }
 
 async function getSignedOutUserId(clientId) {
-  const query = `SELECT id FROM users WHERE client_id = ? AND username IS NULL LIMIT 1`;
+  const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
   const row = await dbGetAsync(query, [clientId]);
 
   if (row) {
-    return { userId: row.id, username: null };
+    return { userId: row.id, username: row.username };
   }
 
   const username = await generateNewRandomUsername();
   const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
   const newUserId = await dbRunAsync(insert, [clientId, username]);
 
-  return { userId: newUserId, username} ;
+  return { userId: newUserId, username: username} ;
 }
 
 async function generateNewRandomUsername() {
@@ -214,6 +214,9 @@ app.get('/users/:userId/comments', (req, res) => {
 app.get('/clips/:clipId/comments', (req, res) => {
   const clipId = req.params.clipId;
   const userId = req.query.userId;
+
+  console.log(clipId);
+  console.log(userId); //  userId is changing on each refresh!!!
 
   const query = `
     SELECT 
