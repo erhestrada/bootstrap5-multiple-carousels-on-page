@@ -41,6 +41,8 @@ export function renderComments() {
         commentElement.className = 'comment';
         commentElement.setAttribute('data-comment-id', comment.id); // Set comment id
 
+        console.log('test: ', comment.hasLiked);
+
         const repliesHTML = comment.replies.map(reply => `
             <div class="reply">
                 <div class="comment-main">
@@ -52,7 +54,7 @@ export function renderComments() {
                         </div>
                         <div class="comment-text">${reply.text}</div>
                         <div class="comment-actions-row">
-                            <button class="action-btn like-btn" data-comment-id="${comment.id}">
+                            <button class="action-btn like-btn ${comment.hasLiked ? 'liked' : ''}" data-comment-id="${comment.id}">
                                 ❤️ <span>${reply.likes}</span>
                             </button>
                             <button class="action-btn show-reply-btn">💬 Reply</button>
@@ -73,7 +75,7 @@ export function renderComments() {
                     </div>
                     <div class="comment-text">${comment.comment}</div>
                     <div class="comment-actions-row">
-                        <button class="action-btn like-btn" data-comment-id="${comment.id}">
+                        <button class="action-btn like-btn ${comment.hasLiked ? 'liked' : ''}" data-comment-id="${comment.id}">
                             ❤️ <span>${comment.likes}</span>
                         </button>
                         <button class="action-btn show-reply-btn">💬 Reply</button>
