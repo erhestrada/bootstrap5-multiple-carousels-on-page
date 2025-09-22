@@ -1,8 +1,8 @@
 import { getComments } from "./comments";
 import { renderComments } from "./comment-handlers/comment-handler";
 
-export async function displayComments(clipId) {
-    const comments = await getComments(clipId);
+export async function displayComments(clipId, userId) {
+    const comments = await getComments(clipId, userId);
     console.log('comments: ', comments);
     window.clipComments = comments;
     displayNumberOfComments(comments);
