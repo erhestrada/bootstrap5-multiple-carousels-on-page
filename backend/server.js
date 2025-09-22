@@ -215,9 +215,6 @@ app.get('/clips/:clipId/comments', (req, res) => {
   const clipId = req.params.clipId;
   const userId = req.query.userId;
 
-  console.log(clipId);
-  console.log(userId); //  userId is changing on each refresh!!!
-
   const query = `
     SELECT 
       comments.*, 
