@@ -212,29 +212,36 @@ app.get('/users/:userId/comments', (req, res) => {
 
 // Get all comments on clip
 app.get('/clips/:clipId/comments', (req, res) => {
-    const clipId = req.params.clipId;
+  const clipId = req.params.clipId;
+  const userId = req.query.userId;
 
-    const query = `
-      SELECT 
-        comments.*, 
-        users.username,
-        COUNT(comment_likes.id) AS likes
-      FROM comments
-      JOIN users ON comments.user_id = users.id
-      LEFT JOIN comment_likes ON comment_likes.comment_id = comments.id
-      WHERE comments.clip_id = ?
-      GROUP BY comments.id
-      ORDER BY comments.timestamp DESC
-    `;
+  const query = `
+    SELECT 
+      comments.*, 
+      users.username,
+      COUNT(comment_likes.id) AS likes,
+      EXISTS (
+        SELECT 1 FROM comment_likes cl
+        WHERE cl.comment_id = comments.id AND cl.user_id = ?
+      ) AS hasLiked
+    FROM comments
+    JOIN users ON comments.user_id = users.id
+    LEFT JOIN comment_likes ON comment_likes.comment_id = comments.id
+    WHERE comments.clip_id = ?
+    GROUP BY comments.id
+    ORDER BY comments.timestamp DESC
+  `;
 
-    db.all(query, [clipId], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
+  db.all(query, [userId, clipId], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
 
-        const nestedComments = nestComments(rows);
-        console.log('Nested comments: ', nestedComments);
-        res.json(nestedComments);
-    });
+    const nestedComments = nestComments(rows);
+    res.json(nestedComments);
+  });
 });
+
 
 // Post comment
 app.post('/clips/:clipId/comments', (req, res) => {
