@@ -119,7 +119,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);
   displayFavoriteStatusOfClip(window.userId, currentClip.id);
-  displayComments(currentClip.id);
+  displayComments(currentClip.id, window.userId);
 
   console.log('this work?', currentClip.broadcaster_name);
 
