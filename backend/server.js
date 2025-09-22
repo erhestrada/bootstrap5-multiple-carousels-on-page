@@ -223,7 +223,7 @@ app.get('/clips/:clipId/comments', (req, res) => {
       EXISTS (
         SELECT 1 FROM comment_likes cl
         WHERE cl.comment_id = comments.id AND cl.user_id = ?
-      ) AS hasLiked
+      ) AS liked
     FROM comments
     JOIN users ON comments.user_id = users.id
     LEFT JOIN comment_likes ON comment_likes.comment_id = comments.id
