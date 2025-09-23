@@ -7,6 +7,8 @@ export function showReplyBox(button) {
         box.style.display = 'none';
     });
 
+    const parentId = button.dataset.commentId;
+
     const commentContent = button.closest('.comment-content');
     let replyBox = commentContent.querySelector('.reply-box');
 
@@ -29,7 +31,7 @@ export function showReplyBox(button) {
         commentContent.appendChild(replyBox);
 
         const replyBtn = replyBox.querySelector('.actual-reply-btn');
-        replyBtn.addEventListener('click', () => handleReply(replyBtn));
+        replyBtn.addEventListener('click', () => handleReply(replyBtn, parentId));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
@@ -57,7 +59,7 @@ function hideReplyBox(button) {
     replyBox.style.display = 'none';
 }
 
-function handleReply(button) {
+function handleReply(button, parentId) {
     const replyBox = button.closest('.reply-box');
     const textarea = replyBox.querySelector('.reply-textarea');
     const replyText = textarea.value.trim();
@@ -72,7 +74,6 @@ function handleReply(button) {
             replies: []
         };
 
-        const parentId = button.dataset.commentId;
         postComment(window.userId, window.currentClip.id, parentId, replyText, newComment.likes);
         window.clipComments.unshift(newComment); // I don't think this is the right nested format
 
