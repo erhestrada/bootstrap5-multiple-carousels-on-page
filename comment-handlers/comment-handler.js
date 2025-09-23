@@ -14,6 +14,7 @@ export function submitComment() {
             timestamp: new Date().toISOString(),
             comment: commentText,
             likes: 0,
+            liked: 0,
             replies: []
         };
 
