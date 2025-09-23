@@ -18,9 +18,8 @@ export function submitComment() {
             replies: []
         };
 
-        // null because no parentId, this function submits non-reply comment
-        // Initialize comment with 0 likes
-        postComment(window.userId, window.currentClip.id, null, commentText);
+        const parentId = null; // Top level comments have no parent
+        postComment(window.userId, window.currentClip.id, parentId, commentText);
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
