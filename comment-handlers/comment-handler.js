@@ -37,33 +37,11 @@ export function renderComments() {
     commentsList.innerHTML = '';
 
     window.clipComments.forEach(comment => {
+        const repliesHTML = renderReplies(comment.replies);
+
         const commentElement = document.createElement('div');
         commentElement.className = 'comment';
-        commentElement.setAttribute('data-comment-id', comment.id); // Set comment id
-
-        console.log('test: ', comment.liked);
-
-        const repliesHTML = comment.replies.map(reply => `
-            <div class="reply">
-                <div class="comment-main">
-                    <div class="avatar"></div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="username">${reply.username}</span>
-                            <span class="timestamp">${reply.timestamp}</span>
-                        </div>
-                        <div class="comment-text">${reply.comment}</div>
-                        <div class="comment-actions-row">
-                            <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
-                                ❤️ <span>${reply.likes}</span>
-                            </button>
-                            <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
-                            ${reply.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>` : ''}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        commentElement.setAttribute('data-comment-id', comment.id);
 
         commentElement.innerHTML = `
             <div class="comment-main">
@@ -81,14 +59,53 @@ export function renderComments() {
                         <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
                         ${comment.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>` : ''}
                     </div>
-                    ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
+                    ${repliesHTML ? `<div class="replies">${repliesHTML}</div>` : ''}
                 </div>
             </div>
         `;
 
         commentsList.appendChild(commentElement);
     });
+
     attachEventListeners();
+}
+
+function renderReplies(replies) {
+    // Flatten nested replies into a single array
+    let allReplies = [];
+
+    function collectReplies(replyList) {
+        replyList.forEach(r => {
+            allReplies.push(r);
+            if (r.replies && r.replies.length > 0) {
+                collectReplies(r.replies); // recursion but only to collect
+            }
+        });
+    }
+
+    collectReplies(replies);
+
+    return allReplies.map(reply => `
+        <div class="reply">
+            <div class="comment-main">
+                <div class="avatar"></div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="username">${reply.username}</span>
+                        <span class="timestamp">${reply.timestamp}</span>
+                    </div>
+                    <div class="comment-text">${reply.comment}</div>
+                    <div class="comment-actions-row">
+                        <button class="action-btn like-btn ${reply.liked ? 'liked' : ''}" data-comment-id="${reply.id}">
+                            ❤️ <span>${reply.likes}</span>
+                        </button>
+                        <button class="action-btn show-reply-btn" data-comment-id="${reply.id}">💬 Reply</button>
+                        ${reply.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${reply.id}">🗑️ Delete</button>` : ''}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
 
 function attachEventListeners() {
