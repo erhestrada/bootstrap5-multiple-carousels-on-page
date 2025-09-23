@@ -65,15 +65,6 @@ function handleReply(button, parentId) {
     const replyText = textarea.value.trim();
     
     if (replyText) {
-        const newComment = {
-            id: window.clipComments.length + 1,
-            username: window.username,
-            timestamp: new Date().toISOString(),
-            comment: replyText,
-            likes: 0,
-            replies: []
-        };
-
         const commentId = postComment(window.userId, window.currentClip.id, parentId, replyText);
 
         // Update comment count
