@@ -7,6 +7,7 @@ export default async function postComment(userId, clipId, parentId, comment) {
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, parentId, comment}),
         };
-    const commentId = await makeApiRequest(url, options);
+    const commentIdData = await makeApiRequest(url, options);
+    const commentId = commentIdData.id;
     return commentId;
 }
