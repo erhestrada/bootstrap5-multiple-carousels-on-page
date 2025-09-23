@@ -23,7 +23,7 @@ export function submitComment() {
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
-        renderComments(window.clipComments);
+        renderComments();
         
         // Update comment count
         const countElement = document.getElementById('comment-count');
