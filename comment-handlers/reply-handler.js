@@ -75,7 +75,7 @@ function handleReply(button, parentId) {
         };
 
         postComment(window.userId, window.currentClip.id, parentId, replyText, newComment.likes);
-        window.clipComments.unshift(newComment); // I don't think this is the right nested format
+        //window.clipComments.unshift(newComment); // I don't think this is the right nested format - check
 
         // Update comment count
         const countElement = document.getElementById('comment-count');
