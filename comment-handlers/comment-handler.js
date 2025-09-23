@@ -20,7 +20,7 @@ export function submitComment() {
 
         // null because no parentId, this function submits non-reply comment
         // Initialize comment with 0 likes
-        postComment(window.userId, window.currentClip.id, null, commentText, 0);
+        postComment(window.userId, window.currentClip.id, null, commentText);
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
