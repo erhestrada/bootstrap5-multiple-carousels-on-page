@@ -52,7 +52,7 @@ export function renderComments() {
                             <span class="username">${reply.username}</span>
                             <span class="timestamp">${reply.timestamp}</span>
                         </div>
-                        <div class="comment-text">${reply.text}</div>
+                        <div class="comment-text">${reply.comment}</div>
                         <div class="comment-actions-row">
                             <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
                                 ❤️ <span>${reply.likes}</span>
