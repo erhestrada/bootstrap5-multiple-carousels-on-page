@@ -62,6 +62,23 @@ function handleReply(button) {
     const replyText = textarea.value.trim();
     
     if (replyText) {
+        const newComment = {
+            id: window.clipComments.length + 1,
+            username: window.username,
+            timestamp: new Date().toISOString(),
+            comment: replyText,
+            likes: 0,
+            replies: []
+        };
+
+        const parentId = button.dataset.commentId;
+        postComment(window.userId, window.currentClip.id, parentId, commentText, newComment.likes);
+        window.clipComments.unshift(newComment); // I don't think this is the right nested format
+
+        // Update comment count
+        const countElement = document.getElementById('comment-count');
+        countElement.textContent = parseInt(countElement.textContent) + 1;
+
         const commentContent = replyBox.closest('.comment-content');
 
         let parentComment = button.closest('.comment');
@@ -94,10 +111,6 @@ function handleReply(button) {
                 </div>
             </div>
         `;
-
-        // Update comment count
-        const countElement = document.getElementById('comment-count');
-        countElement.textContent = parseInt(countElement.textContent) + 1;
         
         // Update DOM
         repliesContainer.appendChild(newReply);
