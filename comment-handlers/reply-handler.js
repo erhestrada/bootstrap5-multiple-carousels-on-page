@@ -74,8 +74,7 @@ function handleReply(button, parentId) {
             replies: []
         };
 
-        postComment(window.userId, window.currentClip.id, parentId, replyText);
-        //window.clipComments.unshift(newComment); // I don't think this is the right nested format - check
+        const commentId = postComment(window.userId, window.currentClip.id, parentId, replyText);
 
         // Update comment count
         const countElement = document.getElementById('comment-count');
