@@ -56,7 +56,7 @@ export function renderComments() {
                             <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
                                 ❤️ <span>${reply.likes}</span>
                             </button>
-                            <button class="action-btn show-reply-btn">💬 Reply</button>
+                            <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
                             ${reply.username === window.username ? '<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>' : ''}
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export function renderComments() {
                         <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
                             ❤️ <span>${comment.likes}</span>
                         </button>
-                        <button class="action-btn show-reply-btn">💬 Reply</button>
+                        <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
                         ${comment.username === window.username ? '<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>' : ''}
                     </div>
                     ${comment.replies.length > 0 ? `<div class="replies">${repliesHTML}</div>` : ''}
