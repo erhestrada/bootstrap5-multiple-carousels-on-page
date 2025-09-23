@@ -73,7 +73,7 @@ function handleReply(button) {
         };
 
         const parentId = button.dataset.commentId;
-        postComment(window.userId, window.currentClip.id, parentId, commentText, newComment.likes);
+        postComment(window.userId, window.currentClip.id, parentId, replyText, newComment.likes);
         window.clipComments.unshift(newComment); // I don't think this is the right nested format
 
         // Update comment count
