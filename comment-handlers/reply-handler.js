@@ -99,7 +99,7 @@ function handleReply(button, parentId) {
                 <div class="comment-content">
                     <div class="comment-header">
                         <span class="username">${window.username}</span>
-                        <span class="timestamp">now</span>
+                        <span class="timestamp">${new Date().toISOString()}</span>
                     </div>
                     <div class="comment-text">${replyText}</div>
                     <div class="comment-actions-row">
