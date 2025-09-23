@@ -25,12 +25,12 @@ export function showReplyBox(button) {
             </div>
             <div class="reply-buttons">
                 <button class="reply-btn cancel-btn">Cancel</button>
-                <button class="reply-btn actual-reply-btn">Reply</button>
+                <button class="reply-btn submit-reply-btn">Reply</button>
             </div>
         `;
         commentContent.appendChild(replyBox);
 
-        const replyBtn = replyBox.querySelector('.actual-reply-btn');
+        const replyBtn = replyBox.querySelector('.submit-reply-btn');
         replyBtn.addEventListener('click', () => handleReply(replyBtn, parentId));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
