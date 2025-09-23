@@ -31,7 +31,7 @@ export function showReplyBox(button) {
         commentContent.appendChild(replyBox);
 
         const replyBtn = replyBox.querySelector('.submit-reply-btn');
-        replyBtn.addEventListener('click', () => handleReply(replyBtn, parentId));
+        replyBtn.addEventListener('click', async () => await handleReply(replyBtn, parentId));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
         cancelBtn.addEventListener('click', () => hideReplyBox(cancelBtn));
@@ -59,13 +59,14 @@ function hideReplyBox(button) {
     replyBox.style.display = 'none';
 }
 
-function handleReply(button, parentId) {
+async function handleReply(button, parentId) {
     const replyBox = button.closest('.reply-box');
     const textarea = replyBox.querySelector('.reply-textarea');
     const replyText = textarea.value.trim();
     
     if (replyText) {
-        const commentId = postComment(window.userId, window.currentClip.id, parentId, replyText);
+        console.log('Parent id? ', parentId);
+        const commentId = await postComment(window.userId, window.currentClip.id, parentId, replyText);
 
         // Update comment count
         const countElement = document.getElementById('comment-count');
@@ -97,7 +98,7 @@ function handleReply(button, parentId) {
                         <button class="action-btn like-btn">
                             ❤️ <span>0</span>
                         </button>
-                        <button class="action-btn show-reply-btn">💬 Reply</button>
+                        <button class="action-btn show-reply-btn" data-comment-id="${commentId}">💬 Reply</button>
                         <button class="action-btn delete-btn" onclick="handleDeleteComment(this)">🗑️ Delete</button>
                     </div>
                 </div>
