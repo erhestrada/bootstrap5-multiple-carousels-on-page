@@ -94,6 +94,10 @@ function handleReply(button) {
                 </div>
             </div>
         `;
+
+        // Update comment count
+        const countElement = document.getElementById('comment-count');
+        countElement.textContent = parseInt(countElement.textContent) + 1;
         
         repliesContainer.appendChild(newReply);
 
