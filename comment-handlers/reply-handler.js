@@ -1,5 +1,6 @@
 import { toggleLike } from "./like-handler";
 import { handleDeleteComment } from "./delete-comment-handler";
+import { postComment } from "../comments";
 
 export function showReplyBox(button) {
     document.querySelectorAll('.reply-box').forEach(box => {
