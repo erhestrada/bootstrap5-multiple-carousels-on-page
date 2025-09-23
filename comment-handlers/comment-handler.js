@@ -10,9 +10,8 @@ export function submitComment() {
     if (commentText) {
         const newComment = {
             id: window.clipComments.length + 1,
-            avatar: "Y",
             username: window.username,
-            timestamp: "now",
+            timestamp: new Date().toISOString(),
             comment: commentText,
             likes: 0,
             replies: []
