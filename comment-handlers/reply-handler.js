@@ -99,6 +99,7 @@ function handleReply(button) {
         const countElement = document.getElementById('comment-count');
         countElement.textContent = parseInt(countElement.textContent) + 1;
         
+        // Update DOM
         repliesContainer.appendChild(newReply);
 
         const likeBtn = newReply.querySelector('.like-btn');
