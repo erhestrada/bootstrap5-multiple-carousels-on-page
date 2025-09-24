@@ -26,10 +26,12 @@ export function confirmDelete() {
         const element = replyElement || commentElement;
         const commentText = element.querySelector('.comment-text')?.textContent.trim() || '';
         
-        if (replyElement && !commentElement) {
+        if (replyElement && commentElement) {
             // Deleting a reply (make sure it's not also inside a main comment)
             replyElement.remove();
-            deleteComment(window.userId, window.currentClip.id, null, commentText); // TODO: get parentId here
+            const commentId = replyElement.dataset.commentId;
+            deleteComment(window.userId, window.currentClip.id, commentId);
+            console.log('Deleting here - good');
             
         } else if (commentElement) {
             // Deleting a main comment
@@ -43,7 +45,8 @@ export function confirmDelete() {
                 countElement.textContent = parseInt(countElement.textContent) - 1;
             }
             commentElement.remove();
-            deleteComment(window.userId, window.currentClip.id, null, commentText);
+            console.log('Deleting here - bad');
+            deleteComment(window.userId, window.currentClip.id, commentId);
         }
     }
     hideDeleteModal();
