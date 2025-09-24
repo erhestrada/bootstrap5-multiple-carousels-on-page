@@ -128,8 +128,8 @@ function attachEventListeners() {
     if (textarea) {
         textarea.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault(); // prevent newline
-                submitComment();    // trigger comment submission
+                e.preventDefault();
+                submitComment();
             }
         });
     }
