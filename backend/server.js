@@ -262,7 +262,7 @@ app.delete('/clips/:clipId/comments/:commentId', (req, res) => {
 
   const tableName = 'comments';
   const columnNames = ['id', 'user_id'];
-  const parameters = [userId, commentId];
+  const parameters = [commentId, userId];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
