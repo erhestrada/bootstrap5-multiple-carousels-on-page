@@ -31,7 +31,6 @@ export function confirmDelete() {
             replyElement.remove();
             const commentId = replyElement.dataset.commentId;
             deleteComment(window.userId, window.currentClip.id, commentId);
-            console.log('Deleting here - good');
             
         } else if (commentElement) {
             // Deleting a main comment
@@ -45,7 +44,6 @@ export function confirmDelete() {
                 countElement.textContent = parseInt(countElement.textContent) - 1;
             }
             commentElement.remove();
-            console.log('Deleting here - bad');
             deleteComment(window.userId, window.currentClip.id, commentId);
         }
     }
