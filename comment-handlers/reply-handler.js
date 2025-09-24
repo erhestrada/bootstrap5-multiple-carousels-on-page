@@ -107,23 +107,26 @@ async function handleReply(button, parentId) {
         
         // Update DOM
         repliesContainer.appendChild(newReply);
-
-        const likeBtn = newReply.querySelector('.like-btn');
-        if (likeBtn) {
-            likeBtn.addEventListener('click', () => toggleLike(likeBtn));
-        }
-        
-        const replyBtn = newReply.querySelector('.show-reply-btn');
-        if (replyBtn) {
-            replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
-        }
-
-        const deleteBtn = newReply.querySelector('.delete-btn');
-        if (deleteBtn) {
-            deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
-        }
+        attachCommentEventListeners(newReply);
 
         textarea.value = '';
         replyBox.style.display = 'none';
+    }
+}
+
+function attachCommentEventListeners(comment) {
+    const likeBtn = comment.querySelector('.like-btn');
+    if (likeBtn) {
+        likeBtn.addEventListener('click', () => toggleLike(likeBtn));
+    }
+    
+    const replyBtn = comment.querySelector('.show-reply-btn');
+    if (replyBtn) {
+        replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
+    }
+
+    const deleteBtn = comment.querySelector('.delete-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
     }
 }
