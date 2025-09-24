@@ -107,14 +107,14 @@ async function handleReply(button, parentId) {
         
         // Update DOM
         repliesContainer.appendChild(newReply);
-        attachCommentEventListeners(newReply);
+        attachCommentEventListeners(newReply, textarea);
 
         textarea.value = '';
         replyBox.style.display = 'none';
     }
 }
 
-function attachCommentEventListeners(comment) {
+function attachCommentEventListeners(comment, textarea) {
     const likeBtn = comment.querySelector('.like-btn');
     if (likeBtn) {
         likeBtn.addEventListener('click', () => toggleLike(likeBtn));
@@ -129,4 +129,15 @@ function attachCommentEventListeners(comment) {
     if (deleteBtn) {
         deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
     }
+
+    // Submit comment when enter pressed
+    if (textarea) {
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitComment();
+            }
+        });
+    }
+
 }
