@@ -24,12 +24,43 @@ export async function submitComment() {
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
-        renderComments();
+        renderComment(newComment);
         
         // Update comment count
         const countElement = document.getElementById('comment-count');
         countElement.textContent = parseInt(countElement.textContent) + 1;
     }
+}
+
+function renderComment(comment) {
+    const commentsList = document.getElementById('comments-list');
+
+    const commentElement = document.createElement('div');
+    commentElement.className = 'comment';
+    commentElement.setAttribute('data-comment-id', comment.id);
+
+    commentElement.innerHTML = `
+        <div class="comment-main">
+            <div class="avatar"></div>
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="username">${comment.username}</span>
+                    <span class="timestamp">${comment.timestamp}</span>
+                </div>
+                <div class="comment-text">${comment.comment}</div>
+                <div class="comment-actions-row">
+                    <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
+                        ❤️ <span>${comment.likes}</span>
+                    </button>
+                    <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
+                    ${comment.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+
+    commentsList.prepend(commentElement);
+    attachEventListeners();
 }
 
 export function renderComments() {
