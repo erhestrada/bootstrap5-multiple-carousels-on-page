@@ -15,6 +15,7 @@ export function showReplyBox(button) {
     const usernameEl = commentContent.querySelector('.username');
     const username = usernameEl ? usernameEl.textContent.trim() : '';
 
+    let replyBtn;
     if (!replyBox) {
         replyBox = document.createElement('div');
         replyBox.className = 'reply-box';
@@ -30,7 +31,7 @@ export function showReplyBox(button) {
         `;
         commentContent.appendChild(replyBox);
 
-        const replyBtn = replyBox.querySelector('.submit-reply-btn');
+        replyBtn = replyBox.querySelector('.submit-reply-btn');
         replyBtn.addEventListener('click', async () => await handleReply(replyBtn, parentId));
 
         const cancelBtn = replyBox.querySelector('.cancel-btn');
@@ -50,6 +51,14 @@ export function showReplyBox(button) {
     }
 
     textarea.focus();
+
+    // Submit comment when enter pressed
+    textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleReply(replyBtn, parentId);
+        }
+    });
 }
 
 function hideReplyBox(button) {
@@ -129,15 +138,4 @@ function attachCommentEventListeners(comment, textarea) {
     if (deleteBtn) {
         deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
     }
-
-    // Submit comment when enter pressed
-    if (textarea) {
-        textarea.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                submitComment();
-            }
-        });
-    }
-
 }
