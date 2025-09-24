@@ -84,7 +84,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     db.run(query, parameters, function (err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) {
-          return res.status(404).json({ message: `${tableName} not found` });
+          return res.status(404).json({ message: 'No row matched query conditions' });
       }
       
       console.log(`Deleted ${this.changes} row(s) from ${tableName} with params:`, parameters);
