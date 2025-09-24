@@ -120,7 +120,7 @@ async function handleReply(button, parentId) {
 
         const deleteBtn = newReply.querySelector('.delete-btn');
         if (deleteBtn) {
-            deleteBtn.addEventListener('click', () => handleDeleteComment(replyBtn));
+            deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
         }
 
         textarea.value = '';
