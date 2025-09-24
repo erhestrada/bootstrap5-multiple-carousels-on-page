@@ -108,7 +108,7 @@ async function handleReply(button, parentId) {
                             ❤️ <span>0</span>
                         </button>
                         <button class="action-btn show-reply-btn" data-comment-id="${commentId}">💬 Reply</button>
-                        <button class="action-btn delete-btn" onclick="handleDeleteComment(this)">🗑️ Delete</button>
+                        <button class="action-btn delete-btn">🗑️ Delete</button>
                     </div>
                 </div>
             </div>
