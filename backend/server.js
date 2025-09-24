@@ -256,13 +256,13 @@ app.post('/clips/:clipId/comments', (req, res) => {
 });
 
 // Delete comment
-app.delete('/clips/:clipId/comments', (req, res) => {
-  const { clipId } = req.params;
-  const { userId, parentId, comment } = req.body;
+app.delete('/clips/:clipId/comments/:commentId', (req, res) => {
+  const { commentId } = req.params;
+  const { userId } = req.body;
 
   const tableName = 'comments';
-  const columnNames = ['clip_id', 'user_id', 'comment'];
-  const parameters = [clipId, userId, comment];
+  const columnNames = ['id', 'user_id'];
+  const parameters = [userId, commentId];
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
