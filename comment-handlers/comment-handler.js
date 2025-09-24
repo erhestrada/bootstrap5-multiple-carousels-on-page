@@ -3,13 +3,13 @@ import { showReplyBox } from './reply-handler';
 import { postComment } from '../comments';
 import { handleDeleteComment } from "./delete-comment-handler";
 
-export function submitComment() {
+export async function submitComment() {
     const textarea = document.getElementById('new-comment');
     const commentText = textarea.value.trim();
     
     if (commentText) {
         const newComment = {
-            id: window.clipComments.length + 1,
+            id: null,
             username: window.username,
             timestamp: new Date().toISOString(),
             comment: commentText,
@@ -19,7 +19,8 @@ export function submitComment() {
         };
 
         const parentId = null; // Top level comments have no parent
-        postComment(window.userId, window.currentClip.id, parentId, commentText);
+        const commentId = await postComment(window.userId, window.currentClip.id, parentId, commentText);
+        newComment.id = commentId;
         
         window.clipComments.unshift(newComment);
         textarea.value = '';
