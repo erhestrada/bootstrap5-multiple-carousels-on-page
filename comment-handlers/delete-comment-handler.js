@@ -46,6 +46,10 @@ export function confirmDelete() {
             commentElement.remove();
             deleteComment(window.userId, window.currentClip.id, commentId);
         }
+
+        // Update comment count
+        const countElement = document.getElementById('comment-count');
+        countElement.textContent = parseInt(countElement.textContent) - 1;
     }
     hideDeleteModal();
     console.log(window.clipComments);
