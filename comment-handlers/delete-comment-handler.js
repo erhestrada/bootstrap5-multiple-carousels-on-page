@@ -40,8 +40,13 @@ export function confirmDelete() {
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
             }
-            commentElement.remove();
-            deleteComment(window.userId, window.currentClip.id, commentId);
+            if (!commentElement.querySelector('.reply')) {
+                commentElement.remove();
+            } else {
+                let commentText = commentElement.querySelector('.comment-text');
+                commentText.innerText = '[deleted]';
+                deleteComment(window.userId, window.currentClip.id, commentId);
+            }
         }
 
         // Update comment count
