@@ -1,4 +1,4 @@
-import { deleteComment } from "../comments";
+import { deleteComment, softDeleteComment } from "../comments";
 
 let pendingDeleteElement = null;
 
@@ -43,7 +43,7 @@ export function confirmDelete() {
             } else {
                 let commentText = commentElement.querySelector('.comment-text');
                 commentText.innerText = '[deleted]';
-                deleteComment(window.userId, window.currentClip.id, commentId);
+                softDeleteComment(window.currentClip.id, commentId);
             }
         }
 
