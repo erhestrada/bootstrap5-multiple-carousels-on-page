@@ -6,7 +6,7 @@ export default async function softDeleteComment(clipId, commentId) {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            user_id: null,
+            userId: null,
             comment: '[deleted]',
             timestamp: null
         })
