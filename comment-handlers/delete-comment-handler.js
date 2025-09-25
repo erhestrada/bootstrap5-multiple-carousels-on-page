@@ -27,7 +27,6 @@ export function confirmDelete() {
         const commentText = element.querySelector('.comment-text')?.textContent.trim() || '';
         
         if (replyElement && commentElement) {
-            // Deleting a reply (make sure it's not also inside a main comment)
             replyElement.remove();
             const commentId = replyElement.dataset.commentId;
             deleteComment(window.userId, window.currentClip.id, commentId);
