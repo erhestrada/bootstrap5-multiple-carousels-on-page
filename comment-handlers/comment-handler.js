@@ -60,7 +60,7 @@ function renderComment(comment) {
     `;
 
     commentsList.prepend(commentElement);
-    attachEventListeners();
+    attachCommentEventListeners(commentElement);
 }
 
 export function renderComments() {
@@ -164,5 +164,22 @@ function attachEventListeners() {
                 submitComment();
             }
         });
+    }
+}
+
+function attachCommentEventListeners(comment) {
+    const likeBtn = comment.querySelector('.like-btn');
+    if (likeBtn) {
+        likeBtn.addEventListener('click', () => toggleLike(likeBtn));
+    }
+    
+    const replyBtn = comment.querySelector('.show-reply-btn');
+    if (replyBtn) {
+        replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
+    }
+
+    const deleteBtn = comment.querySelector('.delete-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
     }
 }
