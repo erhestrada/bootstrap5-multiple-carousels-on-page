@@ -22,9 +22,6 @@ export function confirmDelete() {
     if (pendingDeleteElement) {
         const commentElement = pendingDeleteElement.closest('.comment');
         const replyElement = pendingDeleteElement.closest('.reply');
-
-        const element = replyElement || commentElement;
-        const commentText = element.querySelector('.comment-text')?.textContent.trim() || '';
         
         if (replyElement && commentElement) {
             replyElement.remove();
