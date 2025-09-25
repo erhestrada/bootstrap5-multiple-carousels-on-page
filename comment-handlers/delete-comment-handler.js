@@ -36,6 +36,8 @@ export function confirmDelete() {
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
             }
+
+            // If comment has no replies, remove the whole element otherwise replace with [deleted]
             if (!commentElement.querySelector('.reply')) {
                 commentElement.remove();
             } else {
