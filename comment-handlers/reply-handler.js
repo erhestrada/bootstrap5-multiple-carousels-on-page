@@ -1,6 +1,5 @@
-import { toggleLike } from "./like-handler";
-import { handleDeleteComment } from "./delete-comment-handler";
 import { postComment } from "../comments";
+import { attachCommentEventListeners } from "./comment-handler";
 
 export function showReplyBox(button) {
     document.querySelectorAll('.reply-box').forEach(box => {
@@ -121,22 +120,5 @@ async function handleReply(button, parentId) {
 
         textarea.value = '';
         replyBox.style.display = 'none';
-    }
-}
-
-function attachCommentEventListeners(comment, textarea) {
-    const likeBtn = comment.querySelector('.like-btn');
-    if (likeBtn) {
-        likeBtn.addEventListener('click', () => toggleLike(likeBtn));
-    }
-    
-    const replyBtn = comment.querySelector('.show-reply-btn');
-    if (replyBtn) {
-        replyBtn.addEventListener('click', () => showReplyBox(replyBtn));
-    }
-
-    const deleteBtn = comment.querySelector('.delete-btn');
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', () => handleDeleteComment(deleteBtn));
     }
 }
