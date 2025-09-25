@@ -267,15 +267,19 @@ app.delete('/clips/:clipId/comments/:commentId', (req, res) => {
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
 
-// Edit comment
-app.put('/comments/:commentId', (req, res) => {
-  const commentId = req.params.commentId;
-  const { updatedComment } = req.body;
+// Soft delete comment
+app.patch('/clips/:clipId/comments/:commentId', (req, res) => {
+  const { commentId } = req.params;
+  const { userId, comment, timestamp } = req.body;
 
-  const query = `UPDATE comments SET comment = ? WHERE id = ?`;
-  const parameters = [updatedComment, commentId];
+  const updateQuery = `
+    UPDATE comments
+    SET user_id = ?, comment = ?, timestamp = ?
+    WHERE id = ?
+  `;
+  const parameters = [userId, comment, timestamp, commentId];
 
-  db.run(query, parameters, function(err) {
+  db.run(updateQuery, parameters, function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
