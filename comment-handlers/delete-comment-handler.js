@@ -39,9 +39,6 @@ export function confirmDelete() {
             const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
-                // Update comment count
-                const countElement = document.getElementById('comment-count');
-                countElement.textContent = parseInt(countElement.textContent) - 1;
             }
             commentElement.remove();
             deleteComment(window.userId, window.currentClip.id, commentId);
