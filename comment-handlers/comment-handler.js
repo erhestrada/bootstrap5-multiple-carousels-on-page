@@ -167,7 +167,7 @@ function attachEventListeners() {
     }
 }
 
-function attachCommentEventListeners(comment) {
+export function attachCommentEventListeners(comment) {
     const likeBtn = comment.querySelector('.like-btn');
     if (likeBtn) {
         likeBtn.addEventListener('click', () => toggleLike(likeBtn));
