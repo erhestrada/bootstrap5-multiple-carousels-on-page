@@ -23,7 +23,7 @@ export function confirmDelete() {
         const commentElement = pendingDeleteElement.closest('.comment');
         const replyElement = pendingDeleteElement.closest('.reply');
         
-        if (replyElement && commentElement) {
+        if (replyElement) {
             replyElement.remove();
             const commentId = replyElement.dataset.commentId;
             deleteComment(window.userId, window.currentClip.id, commentId);
