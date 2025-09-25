@@ -225,7 +225,7 @@ app.get('/clips/:clipId/comments', (req, res) => {
         WHERE cl.comment_id = comments.id AND cl.user_id = ?
       ) AS liked
     FROM comments
-    JOIN users ON comments.user_id = users.id
+    LEFT JOIN users ON comments.user_id = users.id
     LEFT JOIN comment_likes ON comment_likes.comment_id = comments.id
     WHERE comments.clip_id = ?
     GROUP BY comments.id
