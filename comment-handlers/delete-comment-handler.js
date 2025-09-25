@@ -29,7 +29,7 @@ export function confirmDelete() {
             deleteComment(window.userId, window.currentClip.id, commentId);
             
         } else if (commentElement) {
-            // Deleting a main comment
+            // Deleting a top level comment
             const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
             console.log('comment id: ', commentId);
             const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
