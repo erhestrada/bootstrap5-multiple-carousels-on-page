@@ -24,9 +24,21 @@ export function confirmDelete() {
         const replyElement = pendingDeleteElement.closest('.reply');
         
         if (replyElement) {
-            replyElement.remove();
             const commentId = replyElement.dataset.commentId;
-            deleteComment(window.userId, window.currentClip.id, commentId);
+
+            const replyElements = Array.from(document.querySelectorAll('.reply'));
+            const childOfReplyElement = replyElements.find(replyElement => replyElement.dataset.parentId === commentId);
+
+            // If replyElement has no children, remove it
+            if (!childOfReplyElement) {
+                replyElement.remove();
+                deleteComment(window.userId, window.currentClip.id, commentId);
+            // If replyElement has a child, replace with [deleted]
+            } else {
+                let commentText = replyElement.querySelector('.comment-text');
+                commentText.innerText = '[deleted]';
+                softDeleteComment(window.currentClip.id, commentId);
+            }
             
         } else if (commentElement) {
             // Deleting a top level comment
