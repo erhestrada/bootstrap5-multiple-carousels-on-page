@@ -31,7 +31,7 @@ export function confirmDelete() {
         } else if (commentElement) {
             // Deleting a top level comment
             const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
-            console.log('comment id: ', commentId);
+            deleteComment(window.userId, window.currentClip.id, commentId);
             const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
