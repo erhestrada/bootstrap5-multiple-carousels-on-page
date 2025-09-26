@@ -94,6 +94,7 @@ async function handleReply(button, parentId) {
         const newReply = document.createElement('div');
         newReply.className = 'reply';
         newReply.dataset.commentId = commentId;
+        newReply.dataset.parentId = parentId;
         newReply.innerHTML = `
             <div class="comment-main">
                 <div class="avatar"></div>
