@@ -55,6 +55,16 @@ export function confirmDelete() {
             } else {
                 let commentText = commentElement.querySelector('.comment-text');
                 commentText.innerText = '[deleted]';
+
+                let commentAvatar = commentElement.querySelector('.avatar');
+                commentAvatar.remove();
+
+                let header = commentElement.querySelector('.comment-header');
+                header.remove();
+
+                let actionsRow = commentElement.querySelector('.comment-actions-row');
+                actionsRow.remove();
+
                 softDeleteComment(window.currentClip.id, commentId);
             }
         }
