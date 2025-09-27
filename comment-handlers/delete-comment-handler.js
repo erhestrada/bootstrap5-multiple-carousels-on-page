@@ -35,18 +35,7 @@ export function confirmDelete() {
                 deleteComment(window.userId, window.currentClip.id, commentId);
             // If replyElement has a child, replace with [deleted]
             } else {
-                let commentText = replyElement.querySelector('.comment-text');
-                commentText.innerText = '[deleted]';
-
-                let commentAvatar = replyElement.querySelector('.avatar');
-                commentAvatar.remove();
-
-                let header = replyElement.querySelector('.comment-header');
-                header.remove();
-
-                let actionsRow = replyElement.querySelector('.comment-actions-row');
-                actionsRow.remove();
-
+                displayDeletedSign(replyElement);
                 softDeleteComment(window.currentClip.id, commentId);
             }
             
@@ -63,18 +52,7 @@ export function confirmDelete() {
             if (!commentElement.querySelector('.reply')) {
                 commentElement.remove();
             } else {
-                let commentText = commentElement.querySelector('.comment-text');
-                commentText.innerText = '[deleted]';
-
-                let commentAvatar = commentElement.querySelector('.avatar');
-                commentAvatar.remove();
-
-                let header = commentElement.querySelector('.comment-header');
-                header.remove();
-
-                let actionsRow = commentElement.querySelector('.comment-actions-row');
-                actionsRow.remove();
-
+                displayDeletedSign(commentElement);
                 softDeleteComment(window.currentClip.id, commentId);
             }
         }
@@ -85,4 +63,18 @@ export function confirmDelete() {
     }
     hideDeleteModal();
     console.log(window.clipComments);
+}
+
+function displayDeletedSign(commentElement) {
+    let commentText = commentElement.querySelector('.comment-text');
+    commentText.innerText = '[deleted]';
+
+    let commentAvatar = commentElement.querySelector('.avatar');
+    commentAvatar.remove();
+
+    let header = commentElement.querySelector('.comment-header');
+    header.remove();
+
+    let actionsRow = commentElement.querySelector('.comment-actions-row');
+    actionsRow.remove();
 }
