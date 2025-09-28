@@ -42,7 +42,6 @@ export function confirmDelete() {
         } else if (commentElement) {
             // Deleting a top level comment
             const commentId = parseInt(commentElement.getAttribute('data-comment-id'));
-            deleteComment(window.userId, window.currentClip.id, commentId);
             const commentIndex = window.clipComments.findIndex(c => c.id === commentId);
             if (commentIndex !== -1) {
                 window.clipComments.splice(commentIndex, 1);
@@ -51,6 +50,7 @@ export function confirmDelete() {
             // If comment has no replies, remove the whole element otherwise replace with [deleted]
             if (!commentElement.querySelector('.reply')) {
                 commentElement.remove();
+                deleteComment(window.userId, window.currentClip.id, commentId);
             } else {
                 displayDeletedSign(commentElement);
                 softDeleteComment(window.currentClip.id, commentId);
