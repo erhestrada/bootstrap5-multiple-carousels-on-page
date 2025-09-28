@@ -35,7 +35,7 @@ export function confirmDelete() {
                 deleteComment(window.userId, window.currentClip.id, commentId);
             // If replyElement has a child, replace with [deleted]
             } else {
-                displayDeletedSign(replyElement);
+                displayDeletedCommentPlaceholder(replyElement);
                 softDeleteComment(window.currentClip.id, commentId);
             }
             
@@ -52,7 +52,7 @@ export function confirmDelete() {
                 commentElement.remove();
                 deleteComment(window.userId, window.currentClip.id, commentId);
             } else {
-                displayDeletedSign(commentElement);
+                displayDeletedCommentPlaceholder(commentElement);
                 softDeleteComment(window.currentClip.id, commentId);
             }
         }
@@ -65,7 +65,7 @@ export function confirmDelete() {
     console.log(window.clipComments);
 }
 
-function displayDeletedSign(commentElement) {
+function displayDeletedCommentPlaceholder(commentElement) {
     let commentText = commentElement.querySelector('.comment-text');
     commentText.innerText = '[deleted]';
 
