@@ -115,7 +115,7 @@ export function renderComments(deletedCommentPlaceholder = "[deleted]") {
     attachEventListeners();
 }
 
-function renderReplies(replies) {
+function renderReplies(replies, deletedCommentPlaceholder = "[deleted]") {
     // Flatten nested replies into a single array
     let allReplies = [];
 
@@ -130,7 +130,9 @@ function renderReplies(replies) {
 
     collectReplies(replies);
 
-    return allReplies.map(reply => `
+    const nonDeletedReplies = allReplies.filter(reply => reply.comment !== deletedCommentPlaceholder);
+
+    return nonDeletedReplies.map(reply => `
         <div class="reply">
             <div class="comment-main">
                 <div class="avatar"></div>
