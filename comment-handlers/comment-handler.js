@@ -74,37 +74,40 @@ export function renderComments(deletedCommentPlaceholder = "[deleted]") {
         commentElement.className = 'comment';
         commentElement.setAttribute('data-comment-id', comment.id);
 
-        if (comment.comment === deletedCommentPlaceholder) {
-            commentElement.innerHTML = `
-                <div class="comment-main">
-                    <div class="comment-content">
-                        <div class="comment-text">${comment.comment}</div>
-                        ${repliesHTML ? `<div class="replies">${repliesHTML}</div>` : ''}
-                    </div>
+        let avatarHTML = '';
+        let headerHTML = '';
+        let actionsHTML = '';
+
+        if (comment.comment !== deletedCommentPlaceholder) {
+            avatarHTML = `<div class="avatar"></div>`;
+            headerHTML = `
+                <div class="comment-header">
+                    <span class="username">${comment.username}</span>
+                    <span class="timestamp">${comment.timestamp}</span>
                 </div>
             `;
-        } else {
-            commentElement.innerHTML = `
-                <div class="comment-main">
-                    <div class="avatar"></div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="username">${comment.username}</span>
-                            <span class="timestamp">${comment.timestamp}</span>
-                        </div>
-                        <div class="comment-text">${comment.comment}</div>
-                        <div class="comment-actions-row">
-                            <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
-                                ❤️ <span>${comment.likes}</span>
-                            </button>
-                            <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
-                            ${comment.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>` : ''}
-                        </div>
-                        ${repliesHTML ? `<div class="replies">${repliesHTML}</div>` : ''}
-                    </div>
+            actionsHTML = `
+                <div class="comment-actions-row">
+                    <button class="action-btn like-btn ${comment.liked ? 'liked' : ''}" data-comment-id="${comment.id}">
+                        ❤️ <span>${comment.likes}</span>
+                    </button>
+                    <button class="action-btn show-reply-btn" data-comment-id="${comment.id}">💬 Reply</button>
+                    ${comment.username === window.username ? `<button class="action-btn delete-btn" data-comment-id="${comment.id}">🗑️ Delete</button>` : ''}
                 </div>
             `;
         }
+
+        commentElement.innerHTML = `
+            <div class="comment-main">
+                ${avatarHTML}
+                <div class="comment-content">
+                    ${headerHTML}
+                    <div class="comment-text">${comment.comment}</div>
+                    ${actionsHTML}
+                    ${repliesHTML ? `<div class="replies">${repliesHTML}</div>` : ''}
+                </div>
+            </div>
+        `;
 
         commentsList.appendChild(commentElement);
     });
