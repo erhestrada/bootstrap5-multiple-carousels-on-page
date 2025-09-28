@@ -10,12 +10,14 @@ export async function displayComments(clipId, userId) {
     return comments;
 }
 
-function displayNumberOfComments() {
+function displayNumberOfComments(deletedCommentPlaceholder = '[deleted]') {
     const commentCountElement = document.getElementById('comment-count');
     
-    const comments = document.querySelectorAll('.comment');
+    const comments = Array.from(document.querySelectorAll('.comment'));
+    const nonDeletedComments = comments.filter(comment => comment.querySelector('.comment-text').textContent !== deletedCommentPlaceholder);
+    
     const replies = document.querySelectorAll('.reply');
 
-    const commentCount = comments.length + replies.length;
+    const commentCount = nonDeletedComments.length + replies.length;
     commentCountElement.innerText = commentCount;    
 }
