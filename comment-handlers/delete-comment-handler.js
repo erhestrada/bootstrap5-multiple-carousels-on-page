@@ -33,9 +33,9 @@ export function confirmDelete() {
             if (!childOfReplyElement) {
                 replyElement.remove();
                 deleteComment(window.userId, window.currentClip.id, commentId);
-            // If replyElement has a child, replace with [deleted]
             } else {
-                displayDeletedCommentPlaceholder(replyElement);
+                //displayDeletedCommentPlaceholder(replyElement);             // If replyElement has a child, replace with [deleted]
+                replyElement.remove();  // Because replies are not nested but all on the same level parent replies can be removed without affecting child replies
                 softDeleteComment(window.currentClip.id, commentId);
             }
             
