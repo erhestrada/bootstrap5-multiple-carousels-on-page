@@ -3,6 +3,11 @@ import {getPastDateTime} from './getTopClips'
 import { makeClipsCarouselFromClipsData } from "./getTopClips";
 
 export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
+    const streamerClips = await getStreamerClips(streamerId, daysBack);
+    makeClipsCarouselFromClipsData(streamerClips, "streamer-bar-carousel");
+}
+
+export async function getStreamerClips(streamerId, daysBack = 1) {
     try {
         const currentDateTime = getCurrentDateTime();
         const pastDateTime = getPastDateTime(daysBack);
@@ -16,7 +21,7 @@ export async function updateStreamerBarCarousel(streamerId, daysBack = 1) {
         });
 
         const clipsData = await response.json();
-        makeClipsCarouselFromClipsData(clipsData, "streamer-bar-carousel");
+        return clipsData;
 
     } catch (error) {
         console.error(error);
