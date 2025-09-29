@@ -126,6 +126,17 @@ tabButtons.forEach(button => {
     button.classList.add('active');
     document.getElementById(targetId).classList.add('active');
 
+    // It makes more sense to just do display = none that way you don't have to reload
+    if (targetId === "top-categories") {
+      const categoriesCarousels = document.getElementById('categories-carousels');
+      categoriesCarousels.innerHTML = '';
+      makeTopCategoriesNewCarousels(window.pageNumber); // I don't even have window.pageNumber anymore <=== TODO
+    } else if (targetId === "followed-categories") {
+      makeFollowedCategoriesCarousels();
+    } else if (targetId === "followed-streamers") {
+
+    }
+
     // Move the tab indicator
     moveIndicator(button);
   });
