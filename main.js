@@ -97,25 +97,46 @@ document.getElementById('disclosure-button').addEventListener('click', toggleCli
 
 makeTopCategoriesNewCarousels(window.pageNumber);
 
-const toggle = document.getElementById('modeToggle');
-const labelLeft = document.getElementById('label-left');
-const labelRight = document.getElementById('label-right');
+// ---------------
 
-const updateLabels = () => {
-  if (toggle.checked) {
-    labelLeft.style.opacity = '0.4';
-    labelRight.style.opacity = '1';
-    makeFollowedCategoriesCarousels();
-  } else {
-    labelLeft.style.opacity = '1';
-    labelRight.style.opacity = '0.4';
-    const categoriesCarousels = document.getElementById('categories-carousels');
-    categoriesCarousels.innerHTML = '';
-    makeTopCategoriesNewCarousels(window.pageNumber); // This doesn't work
-  }
-};
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+const tabIndicator = document.querySelector('.tab-indicator');
 
-toggle.addEventListener('change', updateLabels);
+function moveIndicator(el) {
+  const buttonRect = el.getBoundingClientRect();
+  const containerRect = el.parentElement.getBoundingClientRect();
+
+  const offsetLeft = buttonRect.left - containerRect.left;
+  const width = buttonRect.width;
+
+  tabIndicator.style.transform = `translateX(${offsetLeft}px)`;
+  tabIndicator.style.width = `${width}px`;
+}
+
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.dataset.tab;
+
+    // Deactivate all buttons and tabs
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(tab => tab.classList.remove('active'));
+
+    // Activate clicked tab and its content
+    button.classList.add('active');
+    document.getElementById(targetId).classList.add('active');
+
+    // Move the tab indicator
+    moveIndicator(button);
+  });
+});
+
+// Move the indicator to the default active tab on load
+window.addEventListener('DOMContentLoaded', () => {
+  const activeBtn = document.querySelector('.tab-btn.active');
+  if (activeBtn) moveIndicator(activeBtn);
+});
+
 
 // -------------------------------- Comments ------------------------------
 
