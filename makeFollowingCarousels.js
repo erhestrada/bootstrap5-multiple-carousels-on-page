@@ -1,7 +1,7 @@
 import { makeNewCarouselForCategory } from './makeNewCarouselForCategory.js';
 import { makeNewCarouselForStreamer } from './makeNewCarouselForStreamer.js';
 
-export async function makeFollowingCarousels(categories = false, streamers = false) {
+export async function makeFollowingCarousels({ categories = false, streamers = false } = {}) {
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.innerHTML = '';
 
