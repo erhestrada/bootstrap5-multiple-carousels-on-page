@@ -1,6 +1,6 @@
 import { makeNewCarouselForCategory } from './makeNewCarouselForCategory.js';
 
-export async function makeFollowedCategoriesCarousels() {
+export async function makeFollowingCarousels() {
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.innerHTML = '';
 

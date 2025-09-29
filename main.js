@@ -1,7 +1,7 @@
 import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
-import { makeFollowedCategoriesCarousels } from './makeFollowedCategoriesCarousels.js';
+import { makeFollowingCarousels } from './makeFollowedCategoriesCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
@@ -132,7 +132,7 @@ tabButtons.forEach(button => {
       categoriesCarousels.innerHTML = '';
       makeTopCategoriesNewCarousels(window.pageNumber); // I don't even have window.pageNumber anymore <=== TODO
     } else if (targetId === "followed-categories") {
-      makeFollowedCategoriesCarousels();
+      makeFollowingCarousels();
     } else if (targetId === "followed-streamers") {
 
     }
