@@ -1,7 +1,7 @@
 import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
-import { makeFollowingCarousels } from './makeFollowedCategoriesCarousels.js';
+import { makeFollowingCarousels } from './makeFollowingCarousels.js';
 import { toggleClipPlayer } from './toggleClipPlayer.js';
 import { playAdjacentClip, changeCarousel } from './clipNavigation.js';
 import { updateStreamerBarCarousel } from './updateStreamerBarCarousel.js'
