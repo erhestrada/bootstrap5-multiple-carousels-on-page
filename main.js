@@ -132,9 +132,9 @@ tabButtons.forEach(button => {
       categoriesCarousels.innerHTML = '';
       makeTopCategoriesNewCarousels(window.pageNumber); // I don't even have window.pageNumber anymore <=== TODO
     } else if (targetId === "followed-categories") {
-      makeFollowingCarousels();
+      makeFollowingCarousels({ categories: true });
     } else if (targetId === "followed-streamers") {
-
+      makeFollowingCarousels({ streamers: true });
     }
 
     // Move the tab indicator
