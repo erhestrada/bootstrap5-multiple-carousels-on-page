@@ -1,20 +1,12 @@
-import {makeNewCarouselForCategory} from './makeNewCarouselForCategory.js'
+import { makeNewCarouselForCategory } from './makeNewCarouselForCategory.js';
 
 export async function makeFollowedCategoriesCarousels() {
     const categoriesCarousels = document.getElementById('categories-carousels');
     categoriesCarousels.innerHTML = '';
 
-    const followedCategoriesData = JSON.parse(localStorage.getItem('followedCategories')) || {};
-    let followedCategories = [];
-    let boxArtUrls = [];
-    let gameIds = [];
+    const followedCategoriesData = window.follows.categories || [];
 
-    for (const [followedCategory, categoryData] of Object.entries(followedCategoriesData)) {
-        const {boxArtUrl, categoryId} = categoryData;
-        followedCategories.push(followedCategory);
-        boxArtUrls.push(boxArtUrl);
-        gameIds.push(categoryId);
-    }
-
-    followedCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
+    followedCategoriesData.forEach(({ category, twitch_id, box_art_url }) => {
+        makeNewCarouselForCategory(category, twitch_id, box_art_url);
+    });
 }
