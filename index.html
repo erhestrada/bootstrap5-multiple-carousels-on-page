@@ -185,13 +185,21 @@
           <i class="bi bi-arrow-bar-up"></i>
         </button>
       </div>
-      <div class="toggle-wrapper">
-        <span id="label-left" class="label-option">Top</span>
-        <label class="switch">
-          <input type="checkbox" id="modeToggle">
-          <span class="slider"></span>
-        </label>
-        <span id="label-right" class="label-option"><i class="bi bi-heart-fill"></i> Categories</span>
+      
+      <div class="tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="home">Top Categories</button>
+          <button class="tab-btn" data-tab="videos">❤️ Categories</button>
+          <button class="tab-btn" data-tab="shorts">❤️ Streamers</button>
+          <div class="tab-indicator"></div>
+        </div>
+
+        <div class="tab-content active" id="home">
+        </div>
+        <div class="tab-content" id="videos">
+        </div>
+        <div class="tab-content" id="shorts">
+        </div>
       </div>
     </div>
     <div id="categories-carousels"></div>
