@@ -10,7 +10,9 @@ export async function updateDonutPfp(streamerId) {
         });
 
         const userData = await response.json();
-        document.querySelector('.pfp-image').src = userData.data[0].profile_image_url;
+        const profilePictureUrl = userData.data[0].profile_image_url;
+        document.querySelector('.pfp-image').src = profilePictureUrl;
+        window.profilePictureUrl = profilePictureUrl;
 
     } catch (error) {
         console.error(error);
