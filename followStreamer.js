@@ -5,7 +5,7 @@ import { postStreamerFollow, deleteStreamerFollow } from './follows';
 export function followStreamer(userId, streamer, streamerId) {  
     if (!window.follows.streamers.some(followedStreamer => followedStreamer.streamer === streamer)) {
         window.follows.streamers.push({ streamer, streamerId });
-        postStreamerFollow(userId, streamer, streamerId);
+        postStreamerFollow(userId, streamer, streamerId, window.profilePictureUrl);
     } else {
         window.follows.streamers = window.follows.streamers.filter(followedStreamer => followedStreamer.streamer !== streamer);
         deleteStreamerFollow(userId, streamer, streamerId);

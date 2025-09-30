@@ -48,7 +48,7 @@ db.serialize(() => {
     FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(comment_id) REFERENCES comments(id))
     `);
-  db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+  db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, profile_picture_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, box_art_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
 });
@@ -511,11 +511,11 @@ app.get('/users/:id/following/:kind', (req, res) => {
 // Post streamer to follow
 app.post('/users/:userId/following/streamers/:streamer', (req, res) => {
   const { userId, streamer } = req.params;
-  const { twitchId } = req.body
+  const { twitchId, profilePictureUrl } = req.body
 
   const tableName = 'followed_streamers';
-  const columnNames = ['user_id', 'streamer', 'twitch_id'];
-  const parameters = [userId, streamer, twitchId];
+  const columnNames = ['user_id', 'streamer', 'twitch_id', 'profile_picture_url'];
+  const parameters = [userId, streamer, twitchId, profilePictureUrl];
 
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });

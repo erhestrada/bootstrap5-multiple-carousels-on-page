@@ -1,12 +1,12 @@
 // modifying this first to work for just streamerFollow
-export default async function postStreamerFollow(userId, streamer, twitchId) {
+export default async function postStreamerFollow(userId, streamer, twitchId, profilePictureUrl) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({ twitchId }),
+            body: JSON.stringify({ twitchId, profilePictureUrl }),
         });
 
         if (!response.ok) {
