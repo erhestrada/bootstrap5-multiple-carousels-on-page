@@ -27,6 +27,10 @@ export async function searchStreamers() {
         const streamerNames = searchResults.data.map(searchResult => searchResult.display_name);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
         const pfpUrls = searchResults.data.map(searchResult => searchResult.thumbnail_url);
+
+        const categoryNames = categorySearchResults.data.map(searchResult => searchResult.name);;
+        const categoryIds = categorySearchResults.data.map(searchResult => searchResult.id);;
+        const boxArtUrls = categorySearchResults.data.map(searchResult => searchResult.box_art_url);;
     
         // Wait for all profile pictures to be fetched
         //const pfpUrls = await Promise.all(streamerIds.map(streamerId => getPfp(streamerId)));
@@ -36,41 +40,46 @@ export async function searchStreamers() {
         if (resultsContainer) {
             resultsContainer.innerHTML = '';  // Clear the container before appending new content
         }
-    
-        streamerNames.forEach((streamerName, index) => {
-            const pfpUrl = pfpUrls[index];
-            const streamerId = streamerIds[index];
-    
-            // Create a new div for each streamer entry
-            const streamerEntryElement = document.createElement('div');
-            streamerEntryElement.classList.add('streamer-entry');  // Add a class for styling
-    
-            // Create and set the image element
-            const pfpElement = document.createElement('img');
-            pfpElement.src = pfpUrl;
-            pfpElement.classList.add('streamer-pfp');  // Add a class for styling
-    
-            // Create and set the name element
-            const streamerNameElement = document.createElement('p');
-            streamerNameElement.innerText = streamerName;
-            streamerNameElement.classList.add('streamer-name');  // Add a class for styling
 
-            const followButton = document.createElement('button');
-            followButton.innerText = 'Follow';
-            followButton.addEventListener('click', () => followStreamer(streamerName, streamerId));
-
-    
-            // Append the image and name to the entry element
-            streamerEntryElement.appendChild(pfpElement);
-            streamerEntryElement.appendChild(streamerNameElement);
-            streamerEntryElement.appendChild(followButton);
-    
-            // Finally, append the entry to the results container
-            resultsContainer.appendChild(streamerEntryElement);
-        });
+        displayResults(streamerNames, streamerIds, pfpUrls, resultsContainer);
+        //displayResults(categoryNames, categoryIds, boxArtUrls, resultsContainer);
     
     }, 200);
 
+}
+
+function displayResults(names, ids, pfpUrls, resultsContainer) {
+    names.forEach((name, index) => {
+        const pfpUrl = pfpUrls[index];
+        const streamerId = ids[index];
+
+        // Create a new div for each streamer entry
+        const streamerEntryElement = document.createElement('div');
+        streamerEntryElement.classList.add('streamer-entry');  // Add a class for styling
+
+        // Create and set the image element
+        const pfpElement = document.createElement('img');
+        pfpElement.src = pfpUrl;
+        pfpElement.classList.add('streamer-pfp');  // Add a class for styling
+
+        // Create and set the name element
+        const streamerNameElement = document.createElement('p');
+        streamerNameElement.innerText = name;
+        streamerNameElement.classList.add('streamer-name');  // Add a class for styling
+
+        const followButton = document.createElement('button');
+        followButton.innerText = 'Follow';
+        followButton.addEventListener('click', () => followStreamer(name, streamerId));
+
+
+        // Append the image and name to the entry element
+        streamerEntryElement.appendChild(pfpElement);
+        streamerEntryElement.appendChild(streamerNameElement);
+        streamerEntryElement.appendChild(followButton);
+
+        // Finally, append the entry to the results container
+        resultsContainer.appendChild(streamerEntryElement);
+    });
 }
 
 export async function getStreamers(searchInput) {
