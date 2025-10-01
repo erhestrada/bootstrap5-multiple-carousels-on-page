@@ -12,6 +12,7 @@ import { getSignedOutUser } from './users'
 import { getFollows } from './follows';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
+import { searchStreamers } from './search.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -98,7 +99,7 @@ document.getElementById('disclosure-button').addEventListener('click', toggleCli
 
 makeTopCategoriesNewCarousels(window.pageNumber);
 
-// ---------------
+// -------Clip Tabs--------
 
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -148,7 +149,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const activeBtn = document.querySelector('.tab-btn.active');
   if (activeBtn) moveIndicator(activeBtn);
 });
-
+// -------------------Search Box------------------------------------------
+const searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('keyup', searchStreamers);
 
 // -------------------------------- Comments ------------------------------
 
