@@ -1,5 +1,8 @@
 import { closePopUp } from "./getTopClipsBrowse";
 
+const usernameContainer = document.getElementById('profile-username-container');
+usernameContainer.querySelector('h1').textContent = sessionStorage.getItem('username');
+
 const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
 console.log('hey', upvotedClips);
 upvotedClips.forEach(clip => displayClip(clip, 'likes-container'));
