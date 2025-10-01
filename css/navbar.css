@@ -24,3 +24,11 @@
 .nav-bar-button {
   cursor: pointer;
 }
+
+#searchBox {
+  background-color: rgb(31, 31, 31);
+  border: 1px solid white;
+  border-radius: 0px;
+  color: white;
+  padding: 1px 12px;
+}
