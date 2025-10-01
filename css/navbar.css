@@ -81,6 +81,10 @@
   margin-bottom: 10px;      /* Space between entries */
 }
 
+#search-results .streamer-entry:first-child {
+  padding-top: 5px;
+}
+
 /* Style for the image (profile picture) */
 .streamer-pfp {
   width: 40px;              /* Set a fixed size for the profile picture */
