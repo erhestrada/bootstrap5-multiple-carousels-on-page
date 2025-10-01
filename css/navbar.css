@@ -45,6 +45,7 @@
 
 #search-bar {
   position: relative; /* makes this the positioning context for #results */
+  width: 250px;
 }
 
 #searchBox {
@@ -53,6 +54,7 @@
   border-radius: 0px;
   color: white;
   padding: 1px 12px;
+  width: 100%;
 }
 
 #results {
