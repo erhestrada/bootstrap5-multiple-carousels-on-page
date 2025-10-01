@@ -11,10 +11,9 @@ export async function searchStreamers() {
     // If the query is empty, clear the results and exit
     if (query === '') {
         const resultsContainer = document.getElementById('results');
-        resultsContainer.innerHTML = '';  // Clear the results container
-        return;  // Exit the function early
+        resultsContainer.innerHTML = '';
+        return;
     }
-
 
     clearTimeout(debounceTimeout);
 
@@ -30,6 +29,7 @@ export async function searchStreamers() {
         
         const combinedSearchResults = [...scoredStreamers, ...scoredCategories];
 
+        // If result of compare function is < 0 a comes before b, > 0 a comes after b, else no change
         combinedSearchResults.sort((a, b) => b.score - a.score);
     
         const resultsContainer = document.getElementById('results');
@@ -53,7 +53,7 @@ function addSimilarityScores(results, query) {
 
     const searchResults = fuse.search(query);
 
-    // Map back to your result format and add inverted score (1 = best)
+    // Format search results
     return searchResults.map(({ item, score }) => ({
         ...item,
         score: 1 - score // Invert because Fuse gives lower score for better matches
