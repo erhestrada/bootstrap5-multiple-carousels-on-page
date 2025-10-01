@@ -19,11 +19,17 @@ export async function searchStreamers() {
 
     debounceTimeout = setTimeout(async () => {    
         const searchResults = await getStreamers(query);
+
+        const categorySearchResults = await getCategories(query);
+        console.log("streamer search results: ", searchResults);
+        console.log("category search results: ", categorySearchResults);
+
         const streamerNames = searchResults.data.map(searchResult => searchResult.display_name);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
+        const pfpUrls = searchResults.data.map(searchResult => searchResult.thumbnail_url);
     
         // Wait for all profile pictures to be fetched
-        const pfpUrls = await Promise.all(streamerIds.map(streamerId => getPfp(streamerId)));
+        //const pfpUrls = await Promise.all(streamerIds.map(streamerId => getPfp(streamerId)));
     
         const resultsContainer = document.getElementById('results');
         
@@ -101,6 +107,24 @@ export async function getPfp(streamerId) {
         const pfpUrl = userData.data[0].profile_image_url;
         return pfpUrl
 
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function getCategories(searchInput) {
+    try {
+        const url = "https://api.twitch.tv/helix/search/categories?query=" + encodeURIComponent(searchInput);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Client-Id': clientId,
+                'Authorization': 'Bearer ' + authToken
+            }
+        });
+
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error(error);
     }
