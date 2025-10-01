@@ -1,5 +1,6 @@
 // on click open clip player
 
+import Fuse from 'fuse.js';
 import { followStreamer } from './followStreamer.js';
 
 let debounceTimeout;
@@ -21,48 +22,61 @@ export async function searchStreamers() {
         const searchResults = await getStreamers(query);
 
         const categorySearchResults = await getCategories(query);
-        console.log("streamer search results: ", searchResults);
-        console.log("category search results: ", categorySearchResults);
 
         const streamerNames = searchResults.data.map(searchResult => searchResult.display_name);
         const streamerIds = searchResults.data.map(searchResult => searchResult.id);
         const pfpUrls = searchResults.data.map(searchResult => searchResult.thumbnail_url);
 
-        const categoryNames = categorySearchResults.data.map(searchResult => searchResult.name);;
-        const categoryIds = categorySearchResults.data.map(searchResult => searchResult.id);;
-        const boxArtUrls = categorySearchResults.data.map(searchResult => searchResult.box_art_url);;
-    
-        // Wait for all profile pictures to be fetched
-        //const pfpUrls = await Promise.all(streamerIds.map(streamerId => getPfp(streamerId)));
+        const formattedStreamerSearchResults = searchResults.data.map(searchResult => ({ name: searchResult.display_name, id: searchResult.id, thumbnailUrl: searchResult.thumbnail_url }));
+        const formattedCategorySearchResults = categorySearchResults.data.map(searchResult => ({ name: searchResult.name, id: searchResult.id, thumbnailUrl: searchResult.box_art_url }));
+
+        const scoredStreamers = addSimilarityScores(formattedStreamerSearchResults, query);
+        const scoredCategories = addSimilarityScores(formattedCategorySearchResults, query);
+        
+        const combinedSearchResults = [...scoredStreamers, ...scoredCategories];
+
+        combinedSearchResults.sort((a, b) => b.score - a.score);
     
         const resultsContainer = document.getElementById('results');
         
         if (resultsContainer) {
-            resultsContainer.innerHTML = '';  // Clear the container before appending new content
+            resultsContainer.innerHTML = '';
         }
 
-        displayResults(streamerNames, streamerIds, pfpUrls, resultsContainer);
-        //displayResults(categoryNames, categoryIds, boxArtUrls, resultsContainer);
+        displayResults(combinedSearchResults, resultsContainer);
     
     }, 200);
 
 }
 
-function displayResults(names, ids, pfpUrls, resultsContainer) {
-    names.forEach((name, index) => {
-        const pfpUrl = pfpUrls[index];
-        const streamerId = ids[index];
+function addSimilarityScores(results, query) {
+    const fuse = new Fuse(results, {
+        keys: ['name'],
+        includeScore: true,
+        threshold: 0.4 // Adjust for strictness: lower = stricter
+    });
 
-        // Create a new div for each streamer entry
+    const searchResults = fuse.search(query);
+
+    // Map back to your result format and add inverted score (1 = best)
+    return searchResults.map(({ item, score }) => ({
+        ...item,
+        score: 1 - score // Invert because Fuse gives lower score for better matches
+    }));
+}
+
+function displayResults(searchResults, resultsContainer) {
+    searchResults.forEach(({ name, id, thumbnailUrl }) => {
+        const pfpUrl = thumbnailUrl;
+        const streamerId = id;
+
         const streamerEntryElement = document.createElement('div');
         streamerEntryElement.classList.add('streamer-entry');  // Add a class for styling
 
-        // Create and set the image element
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
         pfpElement.classList.add('streamer-pfp');  // Add a class for styling
 
-        // Create and set the name element
         const streamerNameElement = document.createElement('p');
         streamerNameElement.innerText = name;
         streamerNameElement.classList.add('streamer-name');  // Add a class for styling
@@ -71,13 +85,10 @@ function displayResults(names, ids, pfpUrls, resultsContainer) {
         followButton.innerText = 'Follow';
         followButton.addEventListener('click', () => followStreamer(name, streamerId));
 
-
-        // Append the image and name to the entry element
         streamerEntryElement.appendChild(pfpElement);
         streamerEntryElement.appendChild(streamerNameElement);
         streamerEntryElement.appendChild(followButton);
 
-        // Finally, append the entry to the results container
         resultsContainer.appendChild(streamerEntryElement);
     });
 }
