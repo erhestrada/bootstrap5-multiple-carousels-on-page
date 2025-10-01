@@ -67,3 +67,9 @@
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+.category-search-result-boxart {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}

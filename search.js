@@ -21,8 +21,8 @@ export async function searchStreamers() {
         const searchResults = await getStreamers(query);
         const categorySearchResults = await getCategories(query);
 
-        const formattedStreamerSearchResults = searchResults.data.map(searchResult => ({ name: searchResult.display_name, id: searchResult.id, thumbnailUrl: searchResult.thumbnail_url }));
-        const formattedCategorySearchResults = categorySearchResults.data.map(searchResult => ({ name: searchResult.name, id: searchResult.id, thumbnailUrl: searchResult.box_art_url }));
+        const formattedStreamerSearchResults = searchResults.data.map(searchResult => ({ name: searchResult.display_name, id: searchResult.id, thumbnailUrl: searchResult.thumbnail_url, type: "streamer" }));
+        const formattedCategorySearchResults = categorySearchResults.data.map(searchResult => ({ name: searchResult.name, id: searchResult.id, thumbnailUrl: searchResult.box_art_url, type: "category" }));
 
         const scoredStreamers = addSimilarityScores(formattedStreamerSearchResults, query);
         const scoredCategories = addSimilarityScores(formattedCategorySearchResults, query);
@@ -61,7 +61,7 @@ function addSimilarityScores(results, query) {
 }
 
 function displayResults(searchResults, resultsContainer) {
-    searchResults.forEach(({ name, id, thumbnailUrl }) => {
+    searchResults.forEach(({ name, id, thumbnailUrl, type }) => {
         const pfpUrl = thumbnailUrl;
         const streamerId = id;
 
@@ -70,7 +70,12 @@ function displayResults(searchResults, resultsContainer) {
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
-        pfpElement.classList.add('streamer-pfp');  // Add a class for styling
+
+        if (type === "streamer") {
+            pfpElement.classList.add('streamer-pfp');  // Add a class for styling
+        } else {
+            pfpElement.classList.add('category-search-result-boxart');
+        }
 
         const streamerNameElement = document.createElement('p');
         streamerNameElement.innerText = name;
