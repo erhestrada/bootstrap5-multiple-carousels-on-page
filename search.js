@@ -4,7 +4,7 @@ import { followStreamer } from './followStreamer.js';
 
 let debounceTimeout;
 
-async function searchStreamers() {
+export async function searchStreamers() {
     const query = document.getElementById('searchBox').value.toLowerCase();  // Get the search input
 
     // If the query is empty, clear the results and exit
@@ -105,8 +105,6 @@ export async function getPfp(streamerId) {
         console.error(error);
     }
 }
-
-
 
 const searchBox = document.getElementById('searchBox');
 searchBox.addEventListener('keyup', searchStreamers);
