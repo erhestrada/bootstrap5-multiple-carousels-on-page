@@ -44,7 +44,7 @@
 }
 
 #search-bar {
-  position: relative; /* makes this the positioning context for #results */
+  position: relative; /* makes this the positioning context for #search-results */
   width: 250px;
 }
 
@@ -57,7 +57,7 @@
   width: 100%;
 }
 
-#results {
+#search-results {
   position: absolute;
   top: 100%;
   left: 0;

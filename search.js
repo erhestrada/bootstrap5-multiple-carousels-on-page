@@ -10,7 +10,7 @@ export async function searchStreamers() {
 
     // If the query is empty, clear the results and exit
     if (query === '') {
-        const resultsContainer = document.getElementById('results');
+        const resultsContainer = document.getElementById('search-results');
         resultsContainer.innerHTML = '';
         return;
     }
@@ -32,7 +32,7 @@ export async function searchStreamers() {
         // If result of compare function is < 0 a comes before b, > 0 a comes after b, else no change
         combinedSearchResults.sort((a, b) => b.score - a.score);
     
-        const resultsContainer = document.getElementById('results');
+        const resultsContainer = document.getElementById('search-results');
         
         if (resultsContainer) {
             resultsContainer.innerHTML = '';
