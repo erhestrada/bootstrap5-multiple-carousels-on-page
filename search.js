@@ -66,7 +66,7 @@ function displayResults(searchResults, resultsContainer) {
         const streamerId = id;
 
         const streamerEntryElement = document.createElement('div');
-        streamerEntryElement.classList.add('streamer-entry');  // Add a class for styling
+        streamerEntryElement.classList.add('search-result');
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;

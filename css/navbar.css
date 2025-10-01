@@ -74,14 +74,13 @@
   margin-right: 10px;
 }
 
-/* Style for the container of each streamer entry */
-.streamer-entry {
+.search-result {
   display: flex;            /* Use flexbox for horizontal layout */
   align-items: center;      /* Vertically center the content */
   margin-bottom: 10px;      /* Space between entries */
 }
 
-#search-results .streamer-entry:first-child {
+#search-results .search-result:first-child {
   padding-top: 5px;
 }
 
