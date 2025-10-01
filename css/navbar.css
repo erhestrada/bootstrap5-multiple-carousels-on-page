@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  padding: 0 1rem;
 }
 
 #nav-bar-sticky-container{
