@@ -20,12 +20,7 @@ export async function searchStreamers() {
 
     debounceTimeout = setTimeout(async () => {    
         const searchResults = await getStreamers(query);
-
         const categorySearchResults = await getCategories(query);
-
-        const streamerNames = searchResults.data.map(searchResult => searchResult.display_name);
-        const streamerIds = searchResults.data.map(searchResult => searchResult.id);
-        const pfpUrls = searchResults.data.map(searchResult => searchResult.thumbnail_url);
 
         const formattedStreamerSearchResults = searchResults.data.map(searchResult => ({ name: searchResult.display_name, id: searchResult.id, thumbnailUrl: searchResult.thumbnail_url }));
         const formattedCategorySearchResults = categorySearchResults.data.map(searchResult => ({ name: searchResult.name, id: searchResult.id, thumbnailUrl: searchResult.box_art_url }));
