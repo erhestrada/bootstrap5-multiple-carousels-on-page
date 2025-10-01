@@ -87,7 +87,7 @@ function displayResults(searchResults, resultsContainer) {
 
         streamerEntryElement.appendChild(pfpElement);
         streamerEntryElement.appendChild(streamerNameElement);
-        streamerEntryElement.appendChild(followButton);
+        //streamerEntryElement.appendChild(followButton);
 
         resultsContainer.appendChild(streamerEntryElement);
     });
