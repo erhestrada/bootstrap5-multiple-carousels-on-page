@@ -31,6 +31,7 @@ export async function searchStreamers() {
 
         // If result of compare function is < 0 a comes before b, > 0 a comes after b, else no change
         combinedSearchResults.sort((a, b) => b.score - a.score);
+        const truncatedResults = combinedSearchResults.slice(0, 10);
     
         const resultsContainer = document.getElementById('search-results');
         
@@ -38,7 +39,7 @@ export async function searchStreamers() {
             resultsContainer.innerHTML = '';
         }
 
-        displayResults(combinedSearchResults, resultsContainer);
+        displayResults(truncatedResults, resultsContainer);
     
     }, 200);
 
