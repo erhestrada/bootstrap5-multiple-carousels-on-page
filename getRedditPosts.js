@@ -2,13 +2,13 @@ async function getRedditPosts(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
   const timeWindow = now - hoursBack * 60 * 60;
 
-  let after = null;
+  let nextPageToken = null;
   let allPosts = [];
 
   while (true) {
     const url = new URL(`https://www.reddit.com/r/${subreddit}/new.json`);
     url.searchParams.set("limit", "100");
-    if (after) url.searchParams.set("after", after);
+    if (nextPageToken) url.searchParams.set("after", nextPageToken);
 
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -25,8 +25,8 @@ async function getRedditPosts(subreddit, hoursBack) {
       break;
     }
 
-    after = data.data.after;
-    if (!after) break;
+    nextPageToken = data.data.after;
+    if (!nextPageToken) break;
   }
 
   const formattedPosts = allPosts.map(p => ({
