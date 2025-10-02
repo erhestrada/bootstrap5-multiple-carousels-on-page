@@ -79,6 +79,10 @@
   margin-bottom: 10px;      /* Space between entries */
 }
 
+.search-result:hover {
+  background-color: rgba(128, 128, 128, 0.356);
+}
+
 #search-results .search-result:first-child {
   padding-top: 5px;
 }
