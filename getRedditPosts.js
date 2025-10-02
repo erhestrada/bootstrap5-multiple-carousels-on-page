@@ -1,4 +1,4 @@
-async function getRedditPosts(subreddit, hoursBack) {
+export async function getRedditPosts(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
   const timeWindow = now - hoursBack * 60 * 60;
 
@@ -39,9 +39,10 @@ async function getRedditPosts(subreddit, hoursBack) {
   return formattedPosts;
 }
 
-
+/*
 (async () => {
   const posts = await getRedditPosts("LivestreamFail", 24);
   console.log(`Found ${posts.length} posts in the last 24h`);
   console.log(posts);
 })();
+*/
