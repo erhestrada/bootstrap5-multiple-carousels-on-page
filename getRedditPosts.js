@@ -1,6 +1,6 @@
 async function getRedditPosts(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
-  const oneDayAgo = now - hoursBack * 60 * 60;
+  const timeWindow = now - hoursBack * 60 * 60;
 
   let after = null;
   let allPosts = [];
@@ -17,11 +17,11 @@ async function getRedditPosts(subreddit, hoursBack) {
     const posts = data.data.children.map(c => c.data);
 
     // filter down to 24h window
-    const fresh = posts.filter(p => p.created_utc >= oneDayAgo);
+    const fresh = posts.filter(p => p.created_utc >= timeWindow);
     allPosts.push(...fresh);
 
     // stop if we've reached posts older than 24h or no more pages
-    if (posts.length === 0 || posts[posts.length - 1].created_utc < oneDayAgo) {
+    if (posts.length === 0 || posts[posts.length - 1].created_utc < timeWindow) {
       break;
     }
 
