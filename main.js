@@ -13,12 +13,16 @@ import { getFollows } from './follows';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 import { searchStreamers } from './search.js';
+import { getRedditPosts } from './getRedditPosts.js';
 
 window.clientId = getClientId();
 window.userId = null;
 window.userIdPromise = getSignedOutUser(window.clientId);
 window.username = null;
 window.follows = null;
+
+const redditPostsPromise = getRedditPosts("LivestreamFail", 24);
+window.redditPosts = null;
 
 window.clipsData = {};
 window.firstThumbnail = false;
@@ -58,6 +62,10 @@ window.userIdPromise.then(({ userId, username }) => {
     window.follows = follows;
     followButtons.forEach(button => button.disabled = false);
   });
+});
+
+redditPostsPromise.then(redditPosts => {
+  window.redditPosts = redditPosts;
 });
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
