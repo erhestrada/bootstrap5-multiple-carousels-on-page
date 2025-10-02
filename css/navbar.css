@@ -89,6 +89,7 @@
   height: 40px;             /* Make sure the height matches the width */
   border-radius: 50%;       /* Make the image circular */
   margin-right: 10px;       /* Add some space between the image and the name */
+  /* TODO: add margin, modify pfp size so that height of streamer pfp result is the same as category boxart i.e. 50px */
 }
 
 /* Style for the name of the streamer */
