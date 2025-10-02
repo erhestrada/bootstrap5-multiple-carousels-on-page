@@ -1,8 +1,4 @@
-export function getRedditPosts(subreddit, hoursBack) {
-
-}
-
-async function getPostsFromLast24h(subreddit, hoursBack) {
+async function getRedditPosts(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
   const oneDayAgo = now - hoursBack * 60 * 60;
 
@@ -33,17 +29,19 @@ async function getPostsFromLast24h(subreddit, hoursBack) {
     if (!after) break;
   }
 
-  return allPosts;
-}
-
-
-(async () => {
-  const posts = await getPostsFromLast24h("LivestreamFail", 24);
-  console.log(`Found ${posts.length} posts in the last 24h`);
-  console.log(posts.map(p => ({
+  const formattedPosts = allPosts.map(p => ({
     title: p.title,
     redditUrl: `https://reddit.com${p.permalink}`, // always Reddit comments page
     linkUrl: p.url,                               // external link if it’s a link post
     created: new Date(p.created_utc * 1000)
-  })));
+  }));
+
+  return formattedPosts;
+}
+
+
+(async () => {
+  const posts = await getRedditPosts("LivestreamFail", 24);
+  console.log(`Found ${posts.length} posts in the last 24h`);
+  console.log(posts);
 })();
