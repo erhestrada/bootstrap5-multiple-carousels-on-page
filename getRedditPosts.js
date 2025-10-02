@@ -1,6 +1,10 @@
-async function getPostsFromLast24h(subreddit) {
+export function getRedditPosts(subreddit, hoursBack) {
+
+}
+
+async function getPostsFromLast24h(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
-  const oneDayAgo = now - 24 * 60 * 60;
+  const oneDayAgo = now - hoursBack * 60 * 60;
 
   let after = null;
   let allPosts = [];
@@ -32,9 +36,9 @@ async function getPostsFromLast24h(subreddit) {
   return allPosts;
 }
 
-// Example usage
+
 (async () => {
-  const posts = await getPostsFromLast24h("LivestreamFail");
+  const posts = await getPostsFromLast24h("LivestreamFail", 24);
   console.log(`Found ${posts.length} posts in the last 24h`);
   console.log(posts.map(p => ({
     title: p.title,
