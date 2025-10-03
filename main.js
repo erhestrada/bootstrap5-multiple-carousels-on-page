@@ -14,6 +14,7 @@ import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 import { searchStreamers } from './search.js';
 import { getRedditPosts } from './get-reddit-posts.js';
+import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -144,7 +145,9 @@ tabButtons.forEach(button => {
       categoriesCarousels.innerHTML = '';
       makeTopCategoriesNewCarousels();
     } else if (targetId === "top-streamers") {
-
+      const categoriesCarousels = document.getElementById('categories-carousels');
+      categoriesCarousels.innerHTML = '';
+      makeTopStreamersNewCarousels();
     } else if (targetId === "followed-categories") {
       makeFollowingCarousels({ categories: true });
     } else if (targetId === "followed-streamers") {
