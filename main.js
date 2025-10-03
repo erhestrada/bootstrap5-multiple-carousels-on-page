@@ -106,7 +106,7 @@ document.getElementById('disclosure-button').addEventListener('click', toggleCli
 // TODO: refactor to window.carouselItems loop through and add reddit icon after so not holding up carousels
 redditPostsPromise.then(redditPosts => {
   window.redditPosts = redditPosts;
-  makeTopCategoriesNewCarousels(window.pageNumber);
+  makeTopCategoriesNewCarousels();
 });
 
 // -------Clip Tabs--------
@@ -142,7 +142,9 @@ tabButtons.forEach(button => {
     if (targetId === "top-categories") {
       const categoriesCarousels = document.getElementById('categories-carousels');
       categoriesCarousels.innerHTML = '';
-      makeTopCategoriesNewCarousels(window.pageNumber); // I don't even have window.pageNumber anymore <=== TODO
+      makeTopCategoriesNewCarousels();
+    } else if (targetId === "top-streamers") {
+
     } else if (targetId === "followed-categories") {
       makeFollowingCarousels({ categories: true });
     } else if (targetId === "followed-streamers") {
