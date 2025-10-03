@@ -331,6 +331,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
       const redditPost = checkRedditPosts(embedUrls[index], window.redditPosts);
       if (redditPost) {
         titleWrapper.appendChild(redditIcon);
+        redditIcon.addEventListener('click', () => window.open(redditPost.redditUrl, '_blank')) // Open reddit page in new tab
       }
   }
 
