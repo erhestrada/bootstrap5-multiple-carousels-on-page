@@ -13,6 +13,7 @@ import { getFollows } from './follows';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 import { searchStreamers } from './search.js';
+import { getRedditPosts } from './get-reddit-posts.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -20,20 +21,7 @@ window.userIdPromise = getSignedOutUser(window.clientId);
 window.username = null;
 window.follows = null;
 
-const redditPostsPromise = fetch('http://192.168.86.195:3000/reddit-posts')
-  .then(res => {
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return res.json();
-  })
-  .then(data => {
-    console.log("Reddit posts:", data);
-    // Store or use the data however you need
-    return data; // so redditPostsPromise resolves with the posts
-  })
-  .catch(err => {
-    console.error("Failed to fetch Reddit posts:", err);
-    return []; // or null / fallback value
-  });
+const redditPostsPromise = getRedditPosts();
 window.redditPosts = null;
 
 window.clipsData = {};
@@ -76,9 +64,6 @@ window.userIdPromise.then(({ userId, username }) => {
   });
 });
 
-redditPostsPromise.then(redditPosts => {
-  window.redditPosts = redditPosts;
-});
 
 document.querySelector('#carouselExampleControls .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
 document.querySelector('#carouselExampleControls .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
@@ -118,7 +103,11 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
-makeTopCategoriesNewCarousels(window.pageNumber);
+// TODO: refactor to window.carouselItems loop through and add reddit icon after so not holding up carousels
+redditPostsPromise.then(redditPosts => {
+  window.redditPosts = redditPosts;
+  makeTopCategoriesNewCarousels(window.pageNumber);
+});
 
 // -------Clip Tabs--------
 
