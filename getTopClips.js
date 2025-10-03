@@ -10,7 +10,7 @@ import { displayNetVotes } from "./display-net-votes";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
-import { displayRedditIcon } from "./displayRedditIcon";
+import { checkRedditPosts } from "./displayRedditIcon";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -271,6 +271,11 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
 
+  // Hold clipTitle and optionally redditIcon
+  const titleWrapper = document.createElement('div');
+  titleWrapper.style.display = 'flex';
+  titleWrapper.style.gap = '6px';
+
   const clipTitle = document.createElement('p');
   clipTitle.className = 'clip-title';
   clipTitle.innerText = titles[index];
@@ -305,20 +310,28 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   duration.style.top = '0';
   duration.style.left = '0';
 
-  displayRedditIcon(embedUrls[index], window.redditPosts);
-
   carouselItem.appendChild(imageWrapper);
   imageWrapper.appendChild(image);
 
   carouselItem.appendChild(cardBody);
-  cardBody.appendChild(clipTitle);
+  //cardBody.appendChild(clipTitle);
+  titleWrapper.appendChild(clipTitle);
+  cardBody.appendChild(titleWrapper);
 
   if (carouselName !== 'streamer-bar-carousel') {
-
     cardBody.appendChild(streamer);
     imageWrapper.appendChild(duration);
     imageWrapper.appendChild(viewCount);
-    imageWrapper.appendChild(creationDate);    
+    imageWrapper.appendChild(creationDate);   
+
+      const redditIcon = document.createElement('img');
+      redditIcon.src = 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png';
+      redditIcon.style.width = '16px';
+      redditIcon.style.height = '16px';
+      const redditPost = checkRedditPosts(embedUrls[index], window.redditPosts);
+      if (redditPost) {
+        titleWrapper.appendChild(redditIcon);
+      }
   }
 
   return { carouselItem, imageWrapper };
