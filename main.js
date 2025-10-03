@@ -13,7 +13,6 @@ import { getFollows } from './follows';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 import { searchStreamers } from './search.js';
-import { getRedditPosts } from './getRedditPosts.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -21,7 +20,20 @@ window.userIdPromise = getSignedOutUser(window.clientId);
 window.username = null;
 window.follows = null;
 
-const redditPostsPromise = getRedditPosts("LivestreamFail", 24);
+const redditPostsPromise = fetch('http://192.168.86.195:3000/reddit-posts')
+  .then(res => {
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  })
+  .then(data => {
+    console.log("Reddit posts:", data);
+    // Store or use the data however you need
+    return data; // so redditPostsPromise resolves with the posts
+  })
+  .catch(err => {
+    console.error("Failed to fetch Reddit posts:", err);
+    return []; // or null / fallback value
+  });
 window.redditPosts = null;
 
 window.clipsData = {};
