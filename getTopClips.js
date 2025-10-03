@@ -327,6 +327,7 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
       const redditIcon = document.createElement('img');
       redditIcon.src = 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png';
       redditIcon.style.cursor = "pointer";
+      redditIcon.title = "View reddit post";
       redditIcon.style.width = '16px';
       redditIcon.style.height = '16px';
       const redditPost = checkRedditPosts(embedUrls[index], window.redditPosts);
