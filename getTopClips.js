@@ -10,6 +10,7 @@ import { displayNetVotes } from "./display-net-votes";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
+import { displayRedditIcon } from "./displayRedditIcon";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -303,6 +304,8 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
   duration.style.position = 'absolute';
   duration.style.top = '0';
   duration.style.left = '0';
+
+  displayRedditIcon(embedUrls[index], window.redditPosts);
 
   carouselItem.appendChild(imageWrapper);
   imageWrapper.appendChild(image);
