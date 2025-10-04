@@ -68,6 +68,7 @@ function displayResults(searchResults, resultsContainer) {
 
         const streamerEntryElement = document.createElement('div');
         streamerEntryElement.classList.add('search-result');
+        streamerEntryElement.style.cursor = "pointer";
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
