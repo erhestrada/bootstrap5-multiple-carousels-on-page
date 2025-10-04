@@ -66,9 +66,10 @@ function displayResults(searchResults, resultsContainer) {
         const pfpUrl = thumbnailUrl;
         const streamerId = id;
 
-        const streamerEntryElement = document.createElement('div');
-        streamerEntryElement.classList.add('search-result');
-        streamerEntryElement.style.cursor = "pointer";
+        const searchResultElement = document.createElement('div');
+        searchResultElement.classList.add('search-result');
+        searchResultElement.style.cursor = "pointer";
+        //searchResultElement.addEventListener('click', displaySearchCarousel);
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
@@ -87,11 +88,11 @@ function displayResults(searchResults, resultsContainer) {
         followButton.innerText = 'Follow';
         followButton.addEventListener('click', () => followStreamer(name, streamerId));
 
-        streamerEntryElement.appendChild(pfpElement);
-        streamerEntryElement.appendChild(streamerNameElement);
-        //streamerEntryElement.appendChild(followButton);
+        searchResultElement.appendChild(pfpElement);
+        searchResultElement.appendChild(streamerNameElement);
+        //searchResultElement.appendChild(followButton);
 
-        resultsContainer.appendChild(streamerEntryElement);
+        resultsContainer.appendChild(searchResultElement);
     });
 }
 
