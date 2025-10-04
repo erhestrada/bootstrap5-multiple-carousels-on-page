@@ -1,7 +1,6 @@
-// on click open clip player
-
 import Fuse from 'fuse.js';
 import { followStreamer } from './followStreamer.js';
+import { makeSearchCarousel } from './makeSearchCarousel.js';
 
 let debounceTimeout;
 
@@ -69,7 +68,7 @@ function displayResults(searchResults, resultsContainer) {
         const searchResultElement = document.createElement('div');
         searchResultElement.classList.add('search-result');
         searchResultElement.style.cursor = "pointer";
-        //searchResultElement.addEventListener('click', displaySearchCarousel);
+        searchResultElement.addEventListener('click', makeSearchCarousel);
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
