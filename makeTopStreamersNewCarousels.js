@@ -43,3 +43,29 @@ async function getTopStreams() {
         return null;
     }
 }
+
+/*
+Example stream object
+{
+    "id": "315318555736",
+    "user_id": "552120296",
+    "user_login": "zackrawrr",
+    "user_name": "zackrawrr",
+    "game_id": "509658",
+    "game_name": "Just Chatting",
+    "type": "live",
+    "title": "[DROPS ON] BIG DAY HUGE DRAMA MEGABONK TOMORROW BIG NEWS AND GAMES MULTISTREAMING+REACTS | Follow My 24/7 channel @asmongold247",
+    "viewer_count": 40566,
+    "started_at": "2025-10-03T17:54:01Z",
+    "language": "en",
+    "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_zackrawrr-{width}x{height}.jpg",
+    "tag_ids": [],
+    "tags": [
+        "English",
+        "politics",
+        "bald",
+        "DropsEnabled"
+    ],
+    "is_mature": false
+}
+*/
