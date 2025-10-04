@@ -2,9 +2,7 @@ import { makeNewCarouselForStreamer } from "./makeNewCarouselForStreamer";
 
 export async function makeTopStreamersNewCarousels() {
     try {
-        //const topEnglishStreamsData = getTopStreamersInLanguage("en");
-        const topStreams = await getTopStreams();
-        const topEnglishStreamsData = topStreams.data.filter(stream => stream.language === "en");
+        const topEnglishStreamsData = await getTopStreamsInLanguage("en");
         for (const stream of topEnglishStreamsData) {
             const streamer = stream.user_name;
             const twitchId = stream.user_id;
@@ -16,7 +14,7 @@ export async function makeTopStreamersNewCarousels() {
     }
 }
 
-async function getTopStreamersInLanguage(language = "en") {
+async function getTopStreamsInLanguage(language = "en") {
     const topStreams = await getTopStreams(); // {data: Array(100), pagination: {…}}
     const topEnglishStreams = topStreams.data.filter(stream => stream.language === "en");
     return topEnglishStreams;
