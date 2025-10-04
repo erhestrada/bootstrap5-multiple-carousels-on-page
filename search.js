@@ -68,7 +68,7 @@ function displayResults(searchResults, resultsContainer) {
         const searchResultElement = document.createElement('div');
         searchResultElement.classList.add('search-result');
         searchResultElement.style.cursor = "pointer";
-        searchResultElement.addEventListener('click', makeSearchCarousel);
+        searchResultElement.addEventListener('click', makeSearchCarousel(name, id, thumbnailUrl, type));
 
         const pfpElement = document.createElement('img');
         pfpElement.src = pfpUrl;
