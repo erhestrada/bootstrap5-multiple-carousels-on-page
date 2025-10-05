@@ -408,7 +408,7 @@ app.delete('/favorites', (req, res) => {
 
 // ---------------------------- Votes ------------------------------
 // Get all user votes
-app.get('/users/:userId/votes', (req, res) => {
+app.get('/votes/:userId', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'votes';
   const columnName = 'user_id';
