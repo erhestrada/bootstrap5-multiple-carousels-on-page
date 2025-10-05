@@ -137,3 +137,7 @@ window.onclick = function(event) {
       closePopUp();
   }
 }
+
+async function displayUpvotedClips() {
+
+}
