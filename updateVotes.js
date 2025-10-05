@@ -1,5 +1,6 @@
 import { postVote, deleteVote } from './votes'
 import { getClipId } from './getClipId';
+import { postClip } from './postClip';
 
 export function updateVotes(button, vote) {
     const totalVotesElement = document.getElementById('net-votes');
@@ -37,6 +38,7 @@ export function updateVotes(button, vote) {
       voteIcon.classList.add('voted');
       //saveClip(getVoteStorageKey(vote));
       postVote(userId, clientId, clipId, vote);
+      postClip(window.currentClip);
       // +1 for upvote -1 for downvote
       totalVotes += vote === 'upvote' ? 1 : -1;
     }
