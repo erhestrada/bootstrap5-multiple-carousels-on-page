@@ -1,7 +1,11 @@
+import { getUserVotes } from "./votes";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = sessionStorage.getItem('username');
+
+const userId = sessionStorage.getItem("userId");
+displayUpvotedClips(userId);
 
 const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
 console.log('hey', upvotedClips);
@@ -138,6 +142,6 @@ window.onclick = function(event) {
   }
 }
 
-async function displayUpvotedClips() {
-
+async function displayUpvotedClips(userId) {
+    getUserVotes(userId);
 }
