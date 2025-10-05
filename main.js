@@ -55,8 +55,9 @@ followButtons.forEach(button => button.disabled = true);
 window.userIdPromise.then(({ userId, username }) => {
   window.userId = userId;
   window.username = username;
-  sessionStorage.setItem('userId', userId);
-  sessionStorage.setItem('username', username);
+  console.log('userId', userId);
+  localStorage.setItem('userId', userId);
+  localStorage.setItem('username', username);
   buttonsNeedingUser.forEach(button => button.disabled = false);
 
   const followsPromise = getFollows(userId);
