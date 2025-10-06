@@ -1,1 +1,1 @@
-export { default as getUserClips } from './getUserClips';
+export { default as getVotedOnClips } from './getVotedOnClips';
