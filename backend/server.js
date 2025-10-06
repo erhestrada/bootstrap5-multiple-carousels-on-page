@@ -240,14 +240,12 @@ app.get('/signed-out-user', async (req, res) => {
   }
 });
 // ---------------------------- Clips ------------------------------
-app.get('/clips/:userId', (req, res) => {
+app.get('/clips/:userId/votes', (req, res) => {
   const userId = req.params.userId;
 
   // user votes, favorites, comments
   // join clips table
   // select clip data adding to each row
-  const tableName = 'votes';
-  const columnName = 'user_id';
   const filterValue = userId;
 
   const query = `
@@ -277,6 +275,86 @@ app.get('/clips/:userId', (req, res) => {
     FROM votes v
     JOIN clips c ON c.twitchId = v.clip_id
     WHERE v.user_id = ?
+  `;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.get('/clips/:userId/favorites', (req, res) => {
+  const userId = req.params.userId;
+
+  const filterValue = userId;
+  const query = `
+    SELECT
+      f.id AS favorite_id,
+      f.user_id,
+      f.clip_id AS favorite_clip_id,
+
+      c.id AS clip_id,
+      c.twitchId,
+      c.url,
+      c.embed_url,
+      c.broadcaster_id,
+      c.broadcaster_name,
+      c.creator_id,
+      c.creator_name,
+      c.video_id,
+      c.game_id,
+      c.language,
+      c.title,
+      c.view_count,
+      c.created_at,
+      c.thumbnail_url,
+      c.duration
+
+    FROM favorites f
+    JOIN clips c ON c.twitchId = f.clip_id
+    WHERE f.user_id = ?
+  `;
+
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.get('/clips/:userId/comments', (req, res) => {
+  const userId = req.params.userId;
+
+  const filterValue = userId;
+  const query = `
+    SELECT
+      cm.id AS comment_id,
+      cm.clip_id AS comment_clip_id,
+      cm.user_id,
+      cm.parent_id,
+      cm.comment,
+      cm.timestamp,
+
+      c.id AS clip_id,
+      c.twitchId,
+      c.url,
+      c.embed_url,
+      c.broadcaster_id,
+      c.broadcaster_name,
+      c.creator_id,
+      c.creator_name,
+      c.video_id,
+      c.game_id,
+      c.language,
+      c.title,
+      c.view_count,
+      c.created_at,
+      c.thumbnail_url,
+      c.duration
+
+    FROM comments cm
+    JOIN clips c ON c.twitchId = cm.clip_id
+    WHERE cm.user_id = ?
   `;
 
   db.all(query, [filterValue], (err, rows) => {
