@@ -10,7 +10,7 @@ export default async function getVotedOnClips(userId) {
         return votesData;
 
     } catch (error) {
-        console.error('Error getting user clips', error);
+        console.error('Error getting voted on clips', error);
         return null;
     }
 }
