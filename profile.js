@@ -1,4 +1,4 @@
-import { getUserClips } from "./clips";
+import { getVotedOnClips } from "./clips";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
@@ -143,7 +143,7 @@ window.onclick = function(event) {
 }
 
 async function displayUpvotedClips(userId) {
-  const userClips = await getUserClips(userId);
+  const userClips = await getVotedOnClips(userId);
   const upvotedClips = userClips.filter(clip => clip.vote === "upvote");
   console.log('user clips', userClips);
   const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
@@ -153,7 +153,7 @@ async function displayUpvotedClips(userId) {
 }
 
 async function displayDownvotedClips(userId) {
-  const userClips = await getUserClips(userId);
+  const userClips = await getVotedOnClips(userId);
   const downvotedClips = userClips.filter(clip => clip.vote === "downvote");
   const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
   for (const userClip of downvotedClips) {
