@@ -1,5 +1,4 @@
 import { getUserClips } from "./clips";
-import { getUserVotes } from "./votes";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
@@ -7,10 +6,6 @@ usernameContainer.querySelector('h1').textContent = localStorage.getItem('userna
 
 const userId = localStorage.getItem("userId");
 console.log("userId", userId);
-const userClips = getUserClips(userId);
-userClips.then(clipsData => {
-  console.log(clipsData);
-})
 displayUpvotedClips(userId);
 
 const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
@@ -23,7 +18,7 @@ downvotedClips.forEach(clip => displayClip(clip, 'dislikes-container'));
 const favoritedClips = JSON.parse(localStorage.getItem('favoritedClips')) || [];
 favoritedClips.forEach(clip => displayClip(clip, 'favorites-container'));
 
-function displayClip(clipData, containerId) {
+function displayClip(clipData, parentContainer) {
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
   const thumbnailUrl = clipData.thumbnail_url;
@@ -95,7 +90,6 @@ function displayClip(clipData, containerId) {
   durationElement.style.top = '0';
   durationElement.style.left = '0';
 
-  const parentContainer = document.getElementById(containerId);
   parentContainer.appendChild(carouselItem);
   carouselItem.appendChild(card);
   
@@ -149,6 +143,11 @@ window.onclick = function(event) {
 }
 
 async function displayUpvotedClips(userId) {
-    const votes = await getUserVotes(userId);
-    console.log("votes", votes);
+  const userClips = await getUserClips(userId);
+  console.log('user clips', userClips);
+  const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+  for (const userClip of userClips) {
+    displayClip(userClip, upvotedClipsContainer);
+  }
+
 }
