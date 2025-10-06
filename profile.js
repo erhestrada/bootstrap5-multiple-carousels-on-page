@@ -161,6 +161,22 @@ async function displayDownvotedClips(userId) {
   }
 }
 
+async function displayFavoritedClips(userId) {
+  const favoritedClips = await getFavoritedClips(userId);
+  const favoritedClipsContainer = document.getElementById('favorited-clips-container');
+  for (const clip of favoritedClips) {
+    displayClip(clip, favoritedClipsContainer);
+  }
+}
+
+async function displayCommentedClips(userId) {
+  const commentedClips = await getCommentedClips(userId);
+  const commentedClipsContainer = document.getElementById('commented-clips-container');
+  for (const clip of commentedClips) {
+    displayClip(clip, commentedClipsContainer);
+  }
+}
+
 
 // -------------------------
 const tabButtons = document.querySelectorAll('.tab-btn');
@@ -195,10 +211,10 @@ tabButtons.forEach(button => {
       displayUpvotedClips(userId);
     } else if (targetId === "downvoted-clips-container") {
       displayDownvotedClips(userId);
-    } else if (targetId === "followed-categories") {
-      makeFollowingCarousels({ categories: true });
-    } else if (targetId === "followed-streamers") {
-      makeFollowingCarousels({ streamers: true });
+    } else if (targetId === "favorited-clips-container") {
+      displayFavoritedClips(userId);
+    } else if (targetId === "commented-clips-container") {
+      displayCommentedClips(userId);
     }
 
     // Move the tab indicator
