@@ -8,16 +8,6 @@ const userId = localStorage.getItem("userId");
 console.log("userId", userId);
 displayUpvotedClips(userId);
 
-const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
-console.log('hey', upvotedClips);
-upvotedClips.forEach(clip => displayClip(clip, 'likes-container'));
-
-const downvotedClips = JSON.parse(localStorage.getItem('downvotedClips')) || [];
-downvotedClips.forEach(clip => displayClip(clip, 'dislikes-container'));
-
-const favoritedClips = JSON.parse(localStorage.getItem('favoritedClips')) || [];
-favoritedClips.forEach(clip => displayClip(clip, 'favorites-container'));
-
 function displayClip(clipData, parentContainer) {
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
