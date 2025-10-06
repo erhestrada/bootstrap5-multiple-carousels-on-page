@@ -10,7 +10,7 @@ import { displayNetVotes } from "./display-net-votes";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
-import { checkRedditPosts } from "./displayRedditIcon";
+import { checkRedditPosts } from "./checkRedditPosts";
 
 const gameToIdConverter = {
     "IRL": "509672",
