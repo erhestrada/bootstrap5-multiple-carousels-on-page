@@ -1,4 +1,4 @@
-import { getVotedOnClips } from "./clips";
+import { getVotedOnClips, getFavoritedClips } from "./clips";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
