@@ -1,6 +1,7 @@
 import { saveClip, removeClip } from "./updateVotes.js";
 import { postFavorite, deleteFavorite } from "./favorites/index.js";
 import { getClipId } from "./getClipId.js";
+import { postClip } from "./postClip.js";
 
 export function updateFavorites(button) {
   const favoriteIcon = button.querySelector('.favorite-icon');
@@ -17,6 +18,7 @@ export function updateFavorites(button) {
   if (isFavorited) {
     //saveClip(favoritesStorageKey);
     postFavorite(userId, clipId);
+    postClip(window.currentClip);
   } else {
     //removeClip(favoritesStorageKey);
     deleteFavorite(userId, clipId);
