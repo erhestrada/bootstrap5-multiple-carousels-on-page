@@ -239,6 +239,51 @@ app.get('/signed-out-user', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+// ---------------------------- Clips ------------------------------
+app.get('/clips/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  // user votes, favorites, comments
+  // join clips table
+  // select clip data adding to each row
+  const tableName = 'votes';
+  const columnName = 'user_id';
+  const filterValue = userId;
+
+  const query = `
+    SELECT
+      v.id AS vote_id,
+      v.user_id,
+      v.clip_id AS vote_clip_id,
+      v.vote,
+
+      c.id AS clip_id,
+      c.twitchId,
+      c.url,
+      c.embed_url,
+      c.broadcaster_id,
+      c.broadcaster_name,
+      c.creator_id,
+      c.creator_name,
+      c.video_id,
+      c.game_id,
+      c.language,
+      c.title,
+      c.view_count,
+      c.created_at,
+      c.thumbnail_url,
+      c.duration
+
+    FROM votes v
+    JOIN clips c ON c.twitchId = v.clip_id
+    WHERE v.user_id = ?
+  `;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
