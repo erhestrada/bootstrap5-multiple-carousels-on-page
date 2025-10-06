@@ -144,10 +144,64 @@ window.onclick = function(event) {
 
 async function displayUpvotedClips(userId) {
   const userClips = await getUserClips(userId);
+  const upvotedClips = userClips.filter(clip => clip.vote === "upvote");
   console.log('user clips', userClips);
   const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-  for (const userClip of userClips) {
+  for (const userClip of upvotedClips) {
     displayClip(userClip, upvotedClipsContainer);
   }
-
 }
+
+async function displayDownvotedClips(userId) {
+  const userClips = await getUserClips(userId);
+  const downvotedClips = userClips.filter(clip => clip.vote === "downvote");
+  const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
+  for (const userClip of downvotedClips) {
+    displayClip(userClip, downvotedClipsContainer);
+  }
+}
+
+
+// -------------------------
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+const tabIndicator = document.querySelector('.tab-indicator');
+
+function moveIndicator(el) {
+  const buttonRect = el.getBoundingClientRect();
+  const containerRect = el.parentElement.getBoundingClientRect();
+
+  const offsetLeft = buttonRect.left - containerRect.left;
+  const width = buttonRect.width;
+
+  tabIndicator.style.transform = `translateX(${offsetLeft}px)`;
+  tabIndicator.style.width = `${width}px`;
+}
+
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.dataset.tab;
+
+    // Deactivate all buttons and tabs
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(tab => tab.classList.remove('active'));
+
+    // Activate clicked tab and its content
+    button.classList.add('active');
+    document.getElementById(targetId).classList.add('active');
+
+    // It makes more sense to just do display = none that way you don't have to reload
+    if (targetId === "upvoted-clips-container") {
+      displayUpvotedClips(userId);
+    } else if (targetId === "downvoted-clips-container") {
+      displayDownvotedClips(userId);
+    } else if (targetId === "followed-categories") {
+      makeFollowingCarousels({ categories: true });
+    } else if (targetId === "followed-streamers") {
+      makeFollowingCarousels({ streamers: true });
+    }
+
+    // Move the tab indicator
+    moveIndicator(button);
+  });
+});
