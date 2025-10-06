@@ -1,3 +1,4 @@
+import { getUserClips } from "./clips";
 import { getUserVotes } from "./votes";
 import { closePopUp } from "./getTopClipsBrowse";
 
@@ -6,6 +7,10 @@ usernameContainer.querySelector('h1').textContent = localStorage.getItem('userna
 
 const userId = localStorage.getItem("userId");
 console.log("userId", userId);
+const userClips = getUserClips(userId);
+userClips.then(clipsData => {
+  console.log(clipsData);
+})
 displayUpvotedClips(userId);
 
 const upvotedClips = JSON.parse(localStorage.getItem('upvotedClips')) || [];
