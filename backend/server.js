@@ -67,7 +67,11 @@ export async function getRedditPosts(subreddit, hoursBack) {
     url.searchParams.set("limit", "100");
     if (nextPageToken) url.searchParams.set("after", nextPageToken);
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "get-LSF-posts-script/1.0"
+      }
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
