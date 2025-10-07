@@ -10,7 +10,11 @@ export async function getRedditPosts(subreddit, hoursBack) {
     url.searchParams.set("limit", "100");
     if (nextPageToken) url.searchParams.set("after", nextPageToken);
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "get-LSF-posts-script/1.0"
+      }
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
@@ -39,10 +43,10 @@ export async function getRedditPosts(subreddit, hoursBack) {
   return formattedPosts;
 }
 
-/*
+
 (async () => {
   const posts = await getRedditPosts("LivestreamFail", 24);
   console.log(`Found ${posts.length} posts in the last 24h`);
   console.log(posts);
 })();
-*/
+
