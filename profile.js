@@ -164,7 +164,7 @@ async function displayCommentedClips(userId) {
 async function displayClips(clips, container) {
   container.innerHTML = '';
   for (const clip of clips) {
-    displayClip(clip, commentedClipsContainer);
+    displayClip(clip, container);
   }
 }
 
