@@ -2,6 +2,7 @@ import { toggleLike } from "./like-handler";
 import { showReplyBox } from './reply-handler';
 import { postComment } from '../comments';
 import { handleDeleteComment } from "./delete-comment-handler";
+import { postClip } from "../postClip";
 
 export async function submitComment() {
     const textarea = document.getElementById('new-comment');
@@ -20,6 +21,7 @@ export async function submitComment() {
 
         const parentId = null; // Top level comments have no parent
         const commentId = await postComment(window.userId, window.currentClip.id, parentId, commentText);
+        postClip(window.currentClip);
         newComment.id = commentId;
         
         window.clipComments.unshift(newComment);
