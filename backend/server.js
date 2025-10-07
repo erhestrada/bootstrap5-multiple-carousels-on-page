@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3'; // import with a different name
+import { getRedditPosts } from './getRedditPosts.js';
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
 
@@ -54,52 +55,6 @@ db.serialize(() => {
 
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
-
-export async function getRedditPosts(subreddit, hoursBack) {
-  const now = Math.floor(Date.now() / 1000);
-  const timeWindow = now - hoursBack * 60 * 60;
-
-  let nextPageToken = null;
-  let allPosts = [];
-
-  while (true) {
-    const url = new URL(`https://www.reddit.com/r/${subreddit}/new.json`);
-    url.searchParams.set("limit", "100");
-    if (nextPageToken) url.searchParams.set("after", nextPageToken);
-
-    const res = await fetch(url, {
-      headers: {
-        "User-Agent": "get-LSF-posts-script/1.0"
-      }
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-
-    const posts = data.data.children.map(c => c.data);
-
-    // filter down to 24h window
-    const fresh = posts.filter(p => p.created_utc >= timeWindow);
-    allPosts.push(...fresh);
-
-    // stop if we've reached posts older than 24h or no more pages
-    if (posts.length === 0 || posts[posts.length - 1].created_utc < timeWindow) {
-      break;
-    }
-
-    nextPageToken = data.data.after;
-    if (!nextPageToken) break;
-  }
-
-  const formattedPosts = allPosts.map(p => ({
-    title: p.title,
-    redditUrl: `https://reddit.com${p.permalink}`, // always Reddit comments page
-    linkUrl: p.url,                               // external link if it’s a link post
-    created: new Date(p.created_utc * 1000)
-  }));
-
-  return formattedPosts;
-}
-
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
