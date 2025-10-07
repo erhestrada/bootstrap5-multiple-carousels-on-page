@@ -1,4 +1,4 @@
-import { getVotedOnClips, getFavoritedClips } from "./clips";
+import { getVotedOnClips, getFavoritedClips, getCommentedOnClips } from "./clips";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
@@ -9,11 +9,11 @@ console.log("userId", userId);
 
 async function getUserClips() {
     //const commentedClips = await getCommentedClips(userId);
-    const [ votedOnClips, favoritedClips ] = await Promise.all([getVotedOnClips(userId), getFavoritedClips(userId)]);
+    const [ votedOnClips, favoritedClips, commentedOnClips ] = await Promise.all([getVotedOnClips(userId), getFavoritedClips(userId), getCommentedOnClips(userId)]);
     const upvotedClips = votedOnClips.filter(clip => clip.vote === "upvote");
     const downvotedClips = votedOnClips.filter(clip => clip.vote === "downvote");
 
-    return [upvotedClips, downvotedClips, favoritedClips];
+    return [upvotedClips, downvotedClips, favoritedClips, commentedOnClips];
 }
 
 function displayClip(clipData, parentContainer) {  
@@ -163,7 +163,8 @@ function moveIndicator(el) {
   tabIndicator.style.width = `${width}px`;
 }
 
-const [upvotedClips, downvotedClips, favoritedClips] = await getUserClips();
+const [upvotedClips, downvotedClips, favoritedClips, commentedOnClips] = await getUserClips();
+console.log('commented on clips: ', commentedOnClips);
 
 // Display first tab when page opened
 const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
@@ -192,6 +193,7 @@ tabButtons.forEach(button => {
       const favoritedClipsContainer = document.getElementById('favorited-clips-container');
       displayClips(favoritedClips, favoritedClipsContainer);
     } else if (targetId === "commented-clips-container") {
+      const commentedOnClipsContainer = document.getElementById('commented-clips-container');
       displayClips(commentedOnClips, commentedOnClipsContainer);
     }
 
