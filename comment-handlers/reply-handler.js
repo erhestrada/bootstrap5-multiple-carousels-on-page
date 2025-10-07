@@ -1,4 +1,5 @@
 import { postComment } from "../comments";
+import { postClip } from "../postClip";
 import { attachCommentEventListeners } from "./comment-handler";
 
 export function showReplyBox(button) {
@@ -75,6 +76,7 @@ async function handleReply(button, parentId) {
     if (replyText) {
         console.log('Parent id? ', parentId);
         const commentId = await postComment(window.userId, window.currentClip.id, parentId, replyText);
+        postClip(window.currentClip);
 
         // Update comment count
         const countElement = document.getElementById('comment-count');
