@@ -6,7 +6,15 @@ usernameContainer.querySelector('h1').textContent = localStorage.getItem('userna
 
 const userId = localStorage.getItem("userId");
 console.log("userId", userId);
-displayUpvotedClips(userId);
+
+async function getUserClips() {
+    //const commentedClips = await getCommentedClips(userId);
+    const [ votedOnClips, favoritedClips ] = await Promise.all([getVotedOnClips(userId), getFavoritedClips(userId)]);
+    const upvotedClips = votedOnClips.filter(clip => clip.vote === "upvote");
+    const downvotedClips = votedOnClips.filter(clip => clip.vote === "downvote");
+
+    return [upvotedClips, downvotedClips, favoritedClips];
+}
 
 function displayClip(clipData, parentContainer) {  
   const embedUrl = clipData.embed_url;
@@ -132,35 +140,6 @@ window.onclick = function(event) {
   }
 }
 
-
-
-async function displayUpvotedClips(userId) {
-  const userClips = await getVotedOnClips(userId);
-  const upvotedClips = userClips.filter(clip => clip.vote === "upvote");
-  console.log('user clips', userClips);
-  const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-  displayClips(upvotedClips, upvotedClipsContainer);
-}
-
-async function displayDownvotedClips(userId) {
-  const userClips = await getVotedOnClips(userId);
-  const downvotedClips = userClips.filter(clip => clip.vote === "downvote");
-  const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
-  displayClips(downvotedClips, downvotedClipsContainer);
-}
-
-async function displayFavoritedClips(userId) {
-  const favoritedClips = await getFavoritedClips(userId);
-  const favoritedClipsContainer = document.getElementById('favorited-clips-container');
-  displayClips(favoritedClips, favoritedClipsContainer);
-}
-
-async function displayCommentedClips(userId) {
-  const commentedClips = await getCommentedClips(userId);
-  const commentedClipsContainer = document.getElementById('commented-clips-container');
-  displayClips(commentedClips, commentedClipsContainer);
-}
-
 async function displayClips(clips, container) {
   container.innerHTML = '';
   for (const clip of clips) {
@@ -184,6 +163,12 @@ function moveIndicator(el) {
   tabIndicator.style.width = `${width}px`;
 }
 
+const [upvotedClips, downvotedClips, favoritedClips] = await getUserClips();
+
+// Display first tab when page opened
+const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+displayClips(upvotedClips, upvotedClipsContainer);
+
 tabButtons.forEach(button => {
   button.addEventListener('click', () => {
     const targetId = button.dataset.tab;
@@ -198,13 +183,16 @@ tabButtons.forEach(button => {
 
     // It makes more sense to just do display = none that way you don't have to reload
     if (targetId === "upvoted-clips-container") {
-      displayUpvotedClips(userId);
+      const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+      displayClips(upvotedClips, upvotedClipsContainer);
     } else if (targetId === "downvoted-clips-container") {
-      displayDownvotedClips(userId);
+      const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
+      displayClips(downvotedClips, downvotedClipsContainer);
     } else if (targetId === "favorited-clips-container") {
-      displayFavoritedClips(userId);
+      const favoritedClipsContainer = document.getElementById('favorited-clips-container');
+      displayClips(favoritedClips, favoritedClipsContainer);
     } else if (targetId === "commented-clips-container") {
-      displayCommentedClips(userId);
+      displayClips(commentedOnClips, commentedOnClipsContainer);
     }
 
     // Move the tab indicator
