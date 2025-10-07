@@ -8,7 +8,7 @@ const userId = localStorage.getItem("userId");
 console.log("userId", userId);
 displayUpvotedClips(userId);
 
-function displayClip(clipData, parentContainer) {
+function displayClip(clipData, parentContainer) {  
   const embedUrl = clipData.embed_url;
   console.log(embedUrl);
   const thumbnailUrl = clipData.thumbnail_url;
@@ -137,6 +137,7 @@ async function displayUpvotedClips(userId) {
   const upvotedClips = userClips.filter(clip => clip.vote === "upvote");
   console.log('user clips', userClips);
   const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+  upvotedClipsContainer.innerHTML = '';
   for (const userClip of upvotedClips) {
     displayClip(userClip, upvotedClipsContainer);
   }
@@ -146,6 +147,7 @@ async function displayDownvotedClips(userId) {
   const userClips = await getVotedOnClips(userId);
   const downvotedClips = userClips.filter(clip => clip.vote === "downvote");
   const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
+  downvotedClipsContainer.innerHTML = '';
   for (const userClip of downvotedClips) {
     displayClip(userClip, downvotedClipsContainer);
   }
@@ -154,6 +156,7 @@ async function displayDownvotedClips(userId) {
 async function displayFavoritedClips(userId) {
   const favoritedClips = await getFavoritedClips(userId);
   const favoritedClipsContainer = document.getElementById('favorited-clips-container');
+  favoritedClipsContainer.innerHTML = '';
   for (const clip of favoritedClips) {
     displayClip(clip, favoritedClipsContainer);
   }
@@ -162,6 +165,7 @@ async function displayFavoritedClips(userId) {
 async function displayCommentedClips(userId) {
   const commentedClips = await getCommentedClips(userId);
   const commentedClipsContainer = document.getElementById('commented-clips-container');
+  commentedClipsContainer.innerHTML = '';
   for (const clip of commentedClips) {
     displayClip(clip, commentedClipsContainer);
   }
