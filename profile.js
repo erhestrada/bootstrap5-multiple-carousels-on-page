@@ -1,4 +1,4 @@
-import { getVotedOnClips, getFavoritedClips, getCommentedOnClips } from "./clips";
+import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./clips";
 import { closePopUp } from "./getTopClipsBrowse";
 
 const usernameContainer = document.getElementById('profile-username-container');
@@ -9,11 +9,11 @@ console.log("userId", userId);
 
 async function getUserClips() {
     //const commentedClips = await getCommentedClips(userId);
-    const [ votedOnClips, favoritedClips, commentedOnClips ] = await Promise.all([getVotedOnClips(userId), getFavoritedClips(userId), getCommentedOnClips(userId)]);
+    const [ votedOnClips, favoritedClips, commentedOnClips, historyClips ] = await Promise.all([getVotedOnClips(userId), getFavoritedClips(userId), getCommentedOnClips(userId), getHistoryClips(userId)]);
     const upvotedClips = votedOnClips.filter(clip => clip.vote === "upvote");
     const downvotedClips = votedOnClips.filter(clip => clip.vote === "downvote");
 
-    return [upvotedClips, downvotedClips, favoritedClips, commentedOnClips];
+    return [upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips];
 }
 
 function displayClip(clipData, parentContainer) {  
@@ -163,8 +163,8 @@ function moveIndicator(el) {
   tabIndicator.style.width = `${width}px`;
 }
 
-const [upvotedClips, downvotedClips, favoritedClips, commentedOnClips] = await getUserClips();
-console.log('commented on clips: ', commentedOnClips);
+const [upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips] = await getUserClips();
+console.log('history clips: ', historyClips);
 
 // Display first tab when page opened
 const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
@@ -195,6 +195,9 @@ tabButtons.forEach(button => {
     } else if (targetId === "commented-clips-container") {
       const commentedOnClipsContainer = document.getElementById('commented-clips-container');
       displayClips(commentedOnClips, commentedOnClipsContainer);
+    } else if (targetId === "history-clips-container") {
+      const historyClipsContainer = document.getElementById('history-clips-container');
+      displayClips(historyClips, historyClipsContainer);
     }
 
     // Move the tab indicator
