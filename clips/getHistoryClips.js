@@ -6,8 +6,9 @@ export default async function getHistoryClips(userId) {
             throw new Error(`HTTP error; status: ${response.status}`);
         }
 
-        const votesData = await response.json();
-        return votesData;
+        const historyClips = await response.json();
+        console.log("history clips: ", historyClips);
+        return historyClips;
 
     } catch (error) {
         console.error('Error getting history clips', error);
