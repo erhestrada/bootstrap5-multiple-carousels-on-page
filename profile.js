@@ -197,15 +197,78 @@ tabButtons.forEach(button => {
     } else if (targetId === "favorited-clips-container") {
       const favoritedClipsContainer = document.getElementById('favorited-clips-container');
       displayClips(favoritedClips, favoritedClipsContainer);
-    } else if (targetId === "commented-clips-container") {
+    } else if (targetId === "commented-clips-container") {s
       const commentedOnClipsContainer = document.getElementById('commented-clips-container');
       displayClips(commentedOnClips, commentedOnClipsContainer);
     } else if (targetId === "history-clips-container") {
       const historyClipsContainer = document.getElementById('history-clips-container');
       displayClips(historyClips, historyClipsContainer);
+    } else if (targetId === "following-container") {
+      const followingContainer = document.getElementById('following-container');
+      displayFollows(follows, followingContainer);
     }
 
     // Move the tab indicator
     moveIndicator(button);
   });
 });
+
+function displayFollows(follows, followsContainer) {
+  const streamerFollows = follows.streamers;
+  const categoryFollows = follows.categories;
+  streamerFollows.forEach(({ streamer: name, twitch_id: id, profile_picture_url: thumbnailUrl}) => {
+      const pfpUrl = thumbnailUrl;
+      const streamerId = id;
+
+      const searchResultElement = document.createElement('div');
+      searchResultElement.classList.add('search-result');
+      searchResultElement.style.cursor = "pointer";
+
+      const pfpElement = document.createElement('img');
+      pfpElement.src = pfpUrl;
+
+      pfpElement.classList.add('streamer-pfp');
+      //pfpElement.classList.add('category-search-result-boxart');
+
+      const streamerNameElement = document.createElement('p');
+      streamerNameElement.innerText = name;
+      streamerNameElement.classList.add('streamer-name');  // Add a class for styling
+
+      const followButton = document.createElement('button');
+      followButton.innerText = 'Follow';
+      followButton.addEventListener('click', () => followStreamer(name, streamerId));
+
+      searchResultElement.appendChild(pfpElement);
+      searchResultElement.appendChild(streamerNameElement);
+
+      followsContainer.appendChild(searchResultElement);
+  });
+
+  categoryFollows.forEach(({ category: name, twitch_id: id, box_art_url: thumbnailUrl}) => {
+      const pfpUrl = thumbnailUrl;
+      const streamerId = id;
+
+      const searchResultElement = document.createElement('div');
+      searchResultElement.classList.add('search-result');
+      searchResultElement.style.cursor = "pointer";
+
+      const pfpElement = document.createElement('img');
+      pfpElement.src = pfpUrl;
+
+      //pfpElement.classList.add('streamer-pfp');
+      pfpElement.classList.add('category-search-result-boxart');
+
+      const streamerNameElement = document.createElement('p');
+      streamerNameElement.innerText = name;
+      streamerNameElement.classList.add('streamer-name');  // Add a class for styling
+
+      const followButton = document.createElement('button');
+      followButton.innerText = 'Follow';
+      followButton.addEventListener('click', () => followStreamer(name, streamerId));
+
+      searchResultElement.appendChild(pfpElement);
+      searchResultElement.appendChild(streamerNameElement);
+
+      followsContainer.appendChild(searchResultElement);
+  });
+}
