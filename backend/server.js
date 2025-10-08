@@ -75,7 +75,7 @@ function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) 
 }
 
 function insertRowIntoTable(tableName, columnNames, parameters, res) {
-  const query = `INSERT INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
+  const query = `INSERT OR IGNORE INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
 
   db.run(query, parameters, function (err) {
     if (err) {
