@@ -330,6 +330,45 @@ app.get('/clips/:userId/comments', (req, res) => {
     res.json(rows);
   });
 });
+
+app.get('/clips/:userId/history', (req, res) => {
+  const userId = req.params.userId;
+
+  const query = `
+    SELECT
+      h.id AS history_id,
+      h.user_id,
+      h.twitch_id AS history_clip_id,
+      h.timestamp,
+
+      c.id AS clip_id,
+      c.twitchId,
+      c.url,
+      c.embed_url,
+      c.broadcaster_id,
+      c.broadcaster_name,
+      c.creator_id,
+      c.creator_name,
+      c.video_id,
+      c.game_id,
+      c.language,
+      c.title,
+      c.view_count,
+      c.created_at,
+      c.thumbnail_url,
+      c.duration
+
+    FROM history h
+    JOIN clips c ON c.twitchId = h.twitch_id
+    WHERE h.user_id = ?
+    ORDER BY h.timestamp DESC
+  `;
+
+  db.all(query, [userId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
 // ----------------------------History------------------------------
 app.post('/history', (req, res) => {
   const { userId, clipTwitchId: twitchId } = req.body;
