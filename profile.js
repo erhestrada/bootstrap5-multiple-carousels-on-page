@@ -187,26 +187,23 @@ tabButtons.forEach(button => {
     button.classList.add('active');
     document.getElementById(targetId).classList.add('active');
 
-    // It makes more sense to just do display = none that way you don't have to reload
-    if (targetId === "upvoted-clips-container") {
-      const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-      displayClips(upvotedClips, upvotedClipsContainer);
-    } else if (targetId === "downvoted-clips-container") {
-      const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
-      displayClips(downvotedClips, downvotedClipsContainer);
-    } else if (targetId === "favorited-clips-container") {
-      const favoritedClipsContainer = document.getElementById('favorited-clips-container');
-      displayClips(favoritedClips, favoritedClipsContainer);
-    } else if (targetId === "commented-clips-container") {s
-      const commentedOnClipsContainer = document.getElementById('commented-clips-container');
-      displayClips(commentedOnClips, commentedOnClipsContainer);
-    } else if (targetId === "history-clips-container") {
-      const historyClipsContainer = document.getElementById('history-clips-container');
-      displayClips(historyClips, historyClipsContainer);
-    } else if (targetId === "following-container") {
-      const followingContainer = document.getElementById('following-container');
-      displayFollows(follows, followingContainer);
-    }
+    const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+    displayClips(upvotedClips, upvotedClipsContainer);
+  
+    const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
+    displayClips(downvotedClips, downvotedClipsContainer);
+  
+    const favoritedClipsContainer = document.getElementById('favorited-clips-container');
+    displayClips(favoritedClips, favoritedClipsContainer);
+  
+    const commentedOnClipsContainer = document.getElementById('commented-clips-container');
+    displayClips(commentedOnClips, commentedOnClipsContainer);
+  
+    const historyClipsContainer = document.getElementById('history-clips-container');
+    displayClips(historyClips, historyClipsContainer);
+    
+    const followingContainer = document.getElementById('following-container');
+    displayFollows(follows, followingContainer);
 
     // Move the tab indicator
     moveIndicator(button);
