@@ -12,6 +12,7 @@ import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { checkRedditPosts } from "./checkRedditPosts";
 import { postClipToHistory } from "./history";
+import { postClip } from "./postClip";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -361,6 +362,7 @@ function updateHistory() {
   // for watchHistory = [], lastClip and lastClip?.id will be undefined
   if (clip.id !== lastClip?.id)
   {
+    postClip(window.currentClip);
     postClipToHistory(window.userId, window.currentClip.id);
     window.watchHistory.push(clip);
 
