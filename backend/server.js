@@ -62,7 +62,7 @@ db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, profile_picture_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, box_art_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
-  db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
+  db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
