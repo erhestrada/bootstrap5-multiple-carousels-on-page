@@ -11,6 +11,7 @@ import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { checkRedditPosts } from "./checkRedditPosts";
+import { postClipToHistory } from "./history";
 
 const gameToIdConverter = {
     "IRL": "509672",
@@ -360,6 +361,7 @@ function updateHistory() {
   // for watchHistory = [], lastClip and lastClip?.id will be undefined
   if (clip.id !== lastClip?.id)
   {
+    postClipToHistory(window.userId, window.currentClip.id);
     window.watchHistory.push(clip);
 
     const carouselName = 'history-' + game;
