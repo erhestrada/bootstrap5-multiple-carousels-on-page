@@ -25,6 +25,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS follows');
   db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS comment_likes');
+  db.run('DROP TABLE IF EXISTS history');
   db.run('DROP TABLE IF EXISTS followed_streamers');
   db.run('DROP TABLE IF EXISTS followed_categories');
   db.run('DROP TABLE IF EXISTS clips');
@@ -50,6 +51,14 @@ db.serialize(() => {
     FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(comment_id) REFERENCES comments(id))
     `);
+  db.run(`CREATE TABLE IF NOT EXISTS history (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER,
+  clip_id TEXT,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)
+    `);
+
   db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id INTEGER, profile_picture_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
   db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id INTEGER, box_art_url TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
