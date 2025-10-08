@@ -54,7 +54,7 @@ db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS history (
   id INTEGER PRIMARY KEY,
   user_id INTEGER,
-  clip_id TEXT,
+  twitch_id TEXT,
   timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)
     `);
