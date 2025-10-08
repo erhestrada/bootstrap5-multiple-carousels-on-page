@@ -214,6 +214,7 @@ tabButtons.forEach(button => {
 });
 
 function displayFollows(follows, followsContainer) {
+  followsContainer.innerHTML = '';
   const streamerFollows = follows.streamers;
   const categoryFollows = follows.categories;
   streamerFollows.forEach(({ streamer: name, twitch_id: id, profile_picture_url: thumbnailUrl}) => {
