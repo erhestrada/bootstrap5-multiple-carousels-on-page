@@ -332,7 +332,7 @@ app.get('/clips/:userId/comments', (req, res) => {
 });
 // ----------------------------History------------------------------
 app.post('/history', (req, res) => {
-  const { userId, clipId: twitchId } = req.body;
+  const { userId, clipTwitchId: twitchId } = req.body;
 
   // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
   const tableName = 'history';
