@@ -245,7 +245,7 @@ function displayFollows(follows, followsContainer) {
   });
 
   categoryFollows.forEach(({ category: name, twitch_id: id, box_art_url: thumbnailUrl}) => {
-      const pfpUrl = thumbnailUrl;
+      const pfpUrl = thumbnailUrl.replace('{width}', '200').replace('{height}', '300');
       const streamerId = id;
 
       const searchResultElement = document.createElement('div');
