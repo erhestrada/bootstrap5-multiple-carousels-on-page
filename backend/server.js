@@ -670,7 +670,13 @@ app.get('/users/:id/following', (req, res) => {
         return res.status(500).json({ error: err.message });
       }
 
-      res.json({ streamers: streamerRows, categories: categoryRows });
+      const formattedCategoryRows = categoryRows.map(row => ({
+        category: row.category,
+        categoryId: row.twitch_id.toString(),
+        boxArtUrl: row.box_art_url
+      }));
+
+      res.json({ streamers: streamerRows, categories: formattedCategoryRows });
     });
   });
 });
