@@ -6,9 +6,12 @@ export async function makeSearchCarousel(name, twitchId, thumbnailUrl, type) {
     const categoriesCarousels = document.getElementById('categories-carousels'); // TODO: handle case where streamer has no clips, right now pfp shows then disappears
     categoriesCarousels.innerHTML = '';
 
+    const searchTab = document.getElementById('search-tab');
+    searchTab.innerHTML = '';
+
     const daysBack = 1;
     if (type === "category") {
-        makeNewCarouselForCategory(name, twitchId, thumbnailUrl);
+        makeNewCarouselForCategory(name, twitchId, thumbnailUrl, searchTab);
     } else if (type === "streamer") {
         makeNewCarouselForStreamer(name, twitchId, thumbnailUrl, daysBack);
     }
