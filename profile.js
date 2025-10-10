@@ -18,6 +18,8 @@ async function getUserClips() {
     const upvotedClips = votedOnClips.filter(clip => clip.vote === "upvote");
     const downvotedClips = votedOnClips.filter(clip => clip.vote === "downvote");
 
+    console.log(follows);
+
     return [upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows];
 }
 
@@ -245,7 +247,7 @@ function displayFollows(follows, followsContainer) {
       followsContainer.appendChild(searchResultElement);
   });
 
-  categoryFollows.forEach(({ category: name, twitch_id: id, box_art_url: thumbnailUrl}) => {
+  categoryFollows.forEach(({ category: name, categoryId: id, boxArtUrl: thumbnailUrl}) => {
       const pfpUrl = thumbnailUrl.replace('{width}', '200').replace('{height}', '300');
       const streamerId = id;
 
