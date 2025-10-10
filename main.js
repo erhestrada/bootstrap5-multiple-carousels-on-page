@@ -142,13 +142,7 @@ tabButtons.forEach(button => {
     button.classList.add('active');
     document.getElementById(targetId).classList.add('active');
 
-    // It makes more sense to just do display = none that way you don't have to reload
-    if (targetId === "top-categories") {
-      //const categoriesCarousels = document.getElementById('categories-carousels');
-      //categoriesCarousels.innerHTML = '';
-      const topCategoriesCarouselsContainer = document.getElementById('top-categories');
-      makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
-    } else if (targetId === "top-streamers") {
+    if (targetId === "top-streamers") {
       const categoriesCarousels = document.getElementById('categories-carousels');
       categoriesCarousels.innerHTML = '';
       makeTopStreamersNewCarousels();
