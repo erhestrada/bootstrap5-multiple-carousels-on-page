@@ -2,7 +2,7 @@ import {makeNewCarouselForCategory} from './makeNewCarouselForCategory.js'
 
 // pageNumber x 20
 
-export async function makeTopCategoriesNewCarousels() {
+export async function makeTopCategoriesNewCarousels(carouselsContainer) {
     try {
         const url = "https://api.twitch.tv/helix/games/top?first=100";
         const response = await fetch(url, {
@@ -25,7 +25,7 @@ export async function makeTopCategoriesNewCarousels() {
         }, {});
 
         const gameIds = clipsData.data.map((pojo) => pojo.id);
-        topCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index]));
+        topCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index], carouselsContainer));
 
     } catch (error) {
         console.error(error);
