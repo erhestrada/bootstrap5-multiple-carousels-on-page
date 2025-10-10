@@ -41,6 +41,8 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, ca
         window.orderedCarousels = window.orderedCarousels.filter(name => name != category);
     }
 
+    return clipsData;
+
 }
 
 export function makeCarouselId(category) {
