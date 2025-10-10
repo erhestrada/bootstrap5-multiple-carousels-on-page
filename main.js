@@ -109,7 +109,8 @@ document.getElementById('disclosure-button').addEventListener('click', toggleCli
 // TODO: refactor to window.carouselItems loop through and add reddit icon after so not holding up carousels
 redditPostsPromise.then(redditPosts => {
   window.redditPosts = redditPosts;
-  makeTopCategoriesNewCarousels();
+  const topCategoriesCarouselsContainer = document.getElementById('top-categories');
+  makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
 });
 
 // -------Clip Tabs--------
@@ -143,9 +144,10 @@ tabButtons.forEach(button => {
 
     // It makes more sense to just do display = none that way you don't have to reload
     if (targetId === "top-categories") {
-      const categoriesCarousels = document.getElementById('categories-carousels');
-      categoriesCarousels.innerHTML = '';
-      makeTopCategoriesNewCarousels();
+      //const categoriesCarousels = document.getElementById('categories-carousels');
+      //categoriesCarousels.innerHTML = '';
+      const topCategoriesCarouselsContainer = document.getElementById('top-categories');
+      makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
     } else if (targetId === "top-streamers") {
       const categoriesCarousels = document.getElementById('categories-carousels');
       categoriesCarousels.innerHTML = '';
