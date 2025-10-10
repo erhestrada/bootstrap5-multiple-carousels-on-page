@@ -111,7 +111,7 @@ async function makeCarousels() {
   makeFollowingCarousels({ categories: true, container: followedCategoriesCarouselsContainer });
 
   const topCategoriesCarouselsContainer = document.getElementById('top-categories');
-  //makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
+  makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
 }
 
 // TODO: refactor to window.carouselItems loop through and add reddit icon after so not holding up carousels
