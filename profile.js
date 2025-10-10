@@ -152,6 +152,26 @@ async function displayClips(clips, container) {
   }
 }
 
+async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows) {
+  const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
+  displayClips(upvotedClips, upvotedClipsContainer);
+
+  const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
+  displayClips(downvotedClips, downvotedClipsContainer);
+
+  const favoritedClipsContainer = document.getElementById('favorited-clips-container');
+  displayClips(favoritedClips, favoritedClipsContainer);
+
+  const commentedOnClipsContainer = document.getElementById('commented-clips-container');
+  displayClips(commentedOnClips, commentedOnClipsContainer);
+
+  const historyClipsContainer = document.getElementById('history-clips-container');
+  displayClips(historyClips, historyClipsContainer);
+  
+  const followingContainer = document.getElementById('following-container');
+  displayFollows(follows, followingContainer);
+}
+
 // -------------------------
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -169,6 +189,7 @@ function moveIndicator(el) {
 }
 
 const [upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows] = await getUserClips();
+renderAllClips(upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows)
 console.log('follows: ', follows);
 
 // Display first tab when page opened
@@ -186,24 +207,6 @@ tabButtons.forEach(button => {
     // Activate clicked tab and its content
     button.classList.add('active');
     document.getElementById(targetId).classList.add('active');
-
-    const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-    displayClips(upvotedClips, upvotedClipsContainer);
-  
-    const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
-    displayClips(downvotedClips, downvotedClipsContainer);
-  
-    const favoritedClipsContainer = document.getElementById('favorited-clips-container');
-    displayClips(favoritedClips, favoritedClipsContainer);
-  
-    const commentedOnClipsContainer = document.getElementById('commented-clips-container');
-    displayClips(commentedOnClips, commentedOnClipsContainer);
-  
-    const historyClipsContainer = document.getElementById('history-clips-container');
-    displayClips(historyClips, historyClipsContainer);
-    
-    const followingContainer = document.getElementById('following-container');
-    displayFollows(follows, followingContainer);
 
     // Move the tab indicator
     moveIndicator(button);
