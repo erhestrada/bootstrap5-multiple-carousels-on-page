@@ -106,11 +106,18 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
+async function makeCarousels() {
+  const followedCategoriesCarouselsContainer = document.getElementById('followed-categories');
+  makeFollowingCarousels({ categories: true, container: followedCategoriesCarouselsContainer });
+
+  const topCategoriesCarouselsContainer = document.getElementById('top-categories');
+  makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
+}
+
 // TODO: refactor to window.carouselItems loop through and add reddit icon after so not holding up carousels
 redditPostsPromise.then(redditPosts => {
   window.redditPosts = redditPosts;
-  const topCategoriesCarouselsContainer = document.getElementById('top-categories');
-  makeTopCategoriesNewCarousels(topCategoriesCarouselsContainer);
+  makeCarousels();
 });
 
 // -------Clip Tabs--------
@@ -146,8 +153,6 @@ tabButtons.forEach(button => {
       const categoriesCarousels = document.getElementById('categories-carousels');
       categoriesCarousels.innerHTML = '';
       makeTopStreamersNewCarousels();
-    } else if (targetId === "followed-categories") {
-      makeFollowingCarousels({ categories: true });
     } else if (targetId === "followed-streamers") {
       makeFollowingCarousels({ streamers: true });
     }
