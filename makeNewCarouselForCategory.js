@@ -8,9 +8,19 @@ const boxArtWidth = 200;
 const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
-export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer) {
+// start with type as optional argument to go from working state to working state then refactor into required argument
+export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer, type = "null") {
     const carouselId = makeCarouselId(category);
-    const carouselRowId = `${carouselId}-row`;
+    let carouselRowId;
+    if (type === "search") {
+        carouselRowId = `${carouselId}-category-search-row`;
+    } else if (type === "top") {
+        carouselRowId = `${carouselId}-top-categories-row`;
+    } else if (type === "following") {
+        carouselRowId = `${carouselId}-category-following-row`;
+    } else {
+        carouselRowId = `${carouselId}-row`; // Remove this eventually
+    }
 
     const carouselDiv = `
     <div class="carousel-row category-carousel-row" id=${carouselRowId}>
