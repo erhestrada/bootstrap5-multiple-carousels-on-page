@@ -33,7 +33,7 @@ export async function makeNewCarouselForStreamer(streamer, twitchId, profilePict
     categoriesCarousels.insertAdjacentHTML('beforeend', carouselDiv);
 
     const clipsData = await getStreamerClips(twitchId, daysBack);
-    makeClipsCarouselFromClipsData(clipsData, streamer); // Must match carouselName from:   const carouselRowId = `${makeCarouselId(carouselName)}-row`;
+    makeClipsCarouselFromClipsData(clipsData, streamer); // Must match carouselName from makeClipsCarouselFromClipsData in getTopClips.js: const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
     const carouselRow = document.getElementById(`${carouselId}-row`);
     const carouselElement = carouselRow.querySelector('.carousel');
