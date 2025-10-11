@@ -5,7 +5,7 @@ export async function makeFollowingCarousels({ categories = false, streamers = f
     if (categories) {
         const followedCategoriesData = window.follows.categories || [];
         followedCategoriesData.forEach(({ category, categoryId, boxArtUrl }) => {
-            makeNewCarouselForCategory(category, categoryId, boxArtUrl, container);
+            makeNewCarouselForCategory(category, categoryId, boxArtUrl, container, "following");
         });
     } else if (streamers) {
         const followedStreamersData = window.follows.streamers || [];
