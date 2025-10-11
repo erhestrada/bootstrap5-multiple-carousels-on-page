@@ -106,6 +106,7 @@ document.getElementById('donut-button-left').addEventListener('click', () => upd
 
 document.getElementById('disclosure-button').addEventListener('click', toggleClipPlayer);
 
+// TODO: Following carousels need update on follow button click
 async function makeCarousels() {
   const followedCategoriesCarouselsContainer = document.getElementById('followed-categories');
   makeFollowingCarousels({ categories: true, container: followedCategoriesCarouselsContainer });
