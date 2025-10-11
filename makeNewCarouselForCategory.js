@@ -9,11 +9,7 @@ const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
 export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer) {
-    const idFormattedCategory = 'id-' + category
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    const carouselId = `${idFormattedCategory}-carousel`;
+    const carouselId = makeCarouselId(category);
 
     const carouselDiv = `
     <div class="carousel-row category-carousel-row" id=${carouselId}-row>
