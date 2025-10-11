@@ -9,7 +9,7 @@ const boxArtHeight = 200;
 
 // thumbnailclicklistener in getTopClips is wrong for this
 // start with type as optional argument to go from working state to working state then refactor into required argument
-export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer, type = "null") {
+export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer, type) {
     const carouselId = makeCarouselId(category);
     let carouselRowId;
     if (type === "search") {
@@ -18,8 +18,6 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, ca
         carouselRowId = `${carouselId}-top-categories-row`;
     } else if (type === "following") {
         carouselRowId = `${carouselId}-category-following-row`;
-    } else {
-        carouselRowId = `${carouselId}-row`; // Remove this eventually
     }
 
     const carouselDiv = `
