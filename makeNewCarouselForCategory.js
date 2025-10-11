@@ -7,8 +7,6 @@ import { getTopClips } from "./getTopClips";
 const boxArtWidth = 200;
 const boxArtHeight = 200;
 
-// thumbnailclicklistener in getTopClips is wrong for this
-// start with type as optional argument to go from working state to working state then refactor into required argument
 export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer, type) {
     const carouselId = makeCarouselId(category);
     let carouselRowId;
