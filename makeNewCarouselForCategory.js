@@ -28,7 +28,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, ca
 
     carouselsContainer.insertAdjacentHTML('beforeend', carouselDiv);
 
-    const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
+    const clipsData = await getTopClips(clientId, authToken, category, category, 1, carouselRowId, undefined, gameId);
 
     const carouselRow = document.getElementById(carouselRowId);
     const carouselElement = carouselRow.querySelector('.carousel');

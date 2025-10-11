@@ -163,7 +163,7 @@ export function highlightDiv(div) {
   window.highlightedDivId = div.id;
 }
 
-export async function getTopClips(clientId, authToken, carouselName, game, daysBack, broadcasterName = false, gameId = false) {
+export async function getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName = false, gameId = false) {
     try {
       const response = await fetch(makeGetUrl(game, daysBack, broadcasterName, gameId), {
         method: 'GET',
@@ -195,7 +195,7 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
       }
 
       // This goes before next block in order to set window.clipsData[carouselName], which is used in updateHistory
-      makeClipsCarouselFromClipsData(clipsData, carouselName);
+      makeClipsCarouselFromClipsData(clipsData, carouselName, carouselRowId);
       
       return clipsData;
     } catch (error) {
@@ -203,8 +203,10 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
     }
   }
 
-export function makeClipsCarouselFromClipsData(clipsData, carouselName, itemsPerView = 4) {
-  const carouselRowId = `${makeCarouselId(carouselName)}-row`;
+export function makeClipsCarouselFromClipsData(clipsData, carouselName, carouselRowId = null, itemsPerView = 4) {
+  if (!carouselRowId) {
+    carouselRowId = `${makeCarouselId(carouselName)}-row`;
+  }
 
   let carousel;
   const carouselItems = makeCarouselItems(carouselName, clipsData);
