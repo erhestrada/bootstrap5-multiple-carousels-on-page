@@ -25,7 +25,7 @@ export async function makeTopCategoriesNewCarousels(carouselsContainer) {
         }, {});
 
         const gameIds = clipsData.data.map((pojo) => pojo.id);
-        topCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index], carouselsContainer));
+        topCategories.forEach((category, index) => makeNewCarouselForCategory(category, gameIds[index], boxArtUrls[index], carouselsContainer, "top"));
 
     } catch (error) {
         console.error(error);
