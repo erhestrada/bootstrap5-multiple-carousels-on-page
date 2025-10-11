@@ -10,9 +10,10 @@ const boxArtHeight = 200;
 export async function makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, daysBack = 7) {
     //profilePictureUrl = 'https://static-cdn.jtvnw.net/ttv-boxart/509658-{width}x{height}.jpg'; // TODO: pass in actual profile picture url
     const carouselId = makeCarouselId(streamer);
-    
+    const carouselRowId = `${carouselId}-row`;
+
     const carouselDiv = `
-    <div class="carousel-row category-carousel-row" id=${carouselId}-row>
+    <div class="carousel-row category-carousel-row" id=${carouselRowId}>
         <img src=${profilePictureUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${streamer}" class="boxart"/>
         <button class="carousel-btn prevBtn"><i class="bi bi-chevron-left"></i></button>
         
@@ -31,7 +32,7 @@ export async function makeNewCarouselForStreamer(streamer, twitchId, profilePict
     const clipsData = await getStreamerClips(twitchId, daysBack);
     makeClipsCarouselFromClipsData(clipsData, streamer); // Must match carouselName from makeClipsCarouselFromClipsData in getTopClips.js: const carouselRowId = `${makeCarouselId(carouselName)}-row`;
 
-    const carouselRow = document.getElementById(`${carouselId}-row`);
+    const carouselRow = document.getElementById(carouselRowId);
     const carouselElement = carouselRow.querySelector('.carousel');
 
     if (carouselElement.children.length === 0) {
