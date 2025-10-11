@@ -9,12 +9,8 @@ const boxArtHeight = 200;
 
 export async function makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, daysBack = 7) {
     //profilePictureUrl = 'https://static-cdn.jtvnw.net/ttv-boxart/509658-{width}x{height}.jpg'; // TODO: pass in actual profile picture url
-    const idFormattedCategory = 'id-' + streamer
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    const carouselId = `${idFormattedCategory}-carousel`;
-
+    const carouselId = makeCarouselId(streamer);
+    
     const carouselDiv = `
     <div class="carousel-row category-carousel-row" id=${carouselId}-row>
         <img src=${profilePictureUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${streamer}" class="boxart"/>
