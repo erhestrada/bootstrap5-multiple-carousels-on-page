@@ -12,7 +12,7 @@ export async function makeSearchCarousel(name, twitchId, thumbnailUrl, type) {
 
     const daysBack = 1;
     if (type === "category") {
-        const clipsData = await makeNewCarouselForCategory(name, twitchId, thumbnailUrl, searchTab);
+        const clipsData = await makeNewCarouselForCategory(name, twitchId, thumbnailUrl, searchTab, "search");
         window.topCategoriesClipsData = clipsData.data; // Weird naming but doing this for compatibility with followCategory
     } else if (type === "streamer") {
         makeNewCarouselForStreamer(name, twitchId, thumbnailUrl, daysBack);
