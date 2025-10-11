@@ -10,9 +10,10 @@ const boxArtHeight = 200;
 // thumbnailclicklistener in getTopClips is wrong for this
 export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, carouselsContainer) {
     const carouselId = makeCarouselId(category);
+    const carouselRowId = `${carouselId}-row`;
 
     const carouselDiv = `
-    <div class="carousel-row category-carousel-row" id=${carouselId}-row>
+    <div class="carousel-row category-carousel-row" id=${carouselRowId}>
         <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}" class="boxart"/>
         <button class="carousel-btn prevBtn"><i class="bi bi-chevron-left"></i></button>
         
@@ -29,7 +30,7 @@ export async function makeNewCarouselForCategory(category, gameId, boxArtUrl, ca
 
     const clipsData = await getTopClips(clientId, authToken, category, category, 1, undefined, gameId);
 
-    const carouselRow = document.getElementById(`${carouselId}-row`);
+    const carouselRow = document.getElementById(carouselRowId);
     const carouselElement = carouselRow.querySelector('.carousel');
 
     if (carouselElement.children.length === 0) {
