@@ -151,8 +151,6 @@ tabButtons.forEach(button => {
     document.getElementById(targetId).classList.add('active');
 
     if (targetId === "top-streamers") {
-      const categoriesCarousels = document.getElementById('categories-carousels');
-      categoriesCarousels.innerHTML = '';
       makeTopStreamersNewCarousels();
     } else if (targetId === "followed-streamers") {
       const followedStreamersCarouselsContainer = document.getElementById('followed-streamers');
