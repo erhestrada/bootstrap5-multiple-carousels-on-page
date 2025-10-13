@@ -10,6 +10,12 @@
   padding: 0;
 }
 
+.front-page-tab-buttons {
+  position: sticky;
+  top: 607.67px; /* height of sticky stuff */
+  z-index: 1;
+}
+
 .tab-indicator {
   position: absolute;
   bottom: 0;
