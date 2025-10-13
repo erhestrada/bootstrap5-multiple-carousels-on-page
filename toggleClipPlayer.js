@@ -1,11 +1,16 @@
 export function toggleClipPlayer() {
     const clipPlayer = document.getElementById('clip-player-complex');
     const disclosureButton = document.getElementById('disclosure-button');
+    const carouselTabButtons = document.querySelector('.carousel-tab-buttons');
 
     const clipPlayerIsVisible = clipPlayer.style.display !== 'none';
 
     if (clipPlayerIsVisible) {
         hideClipPlayer(clipPlayer, disclosureButton);
+
+        const stickyStuff = document.querySelector('.sticky-stuff');
+        const stickyStuffHeight = stickyStuff.getBoundingClientRect().height;
+        carouselTabButtons.style.top = `${stickyStuffHeight}px`;
     } else {
         showClipPlayer(clipPlayer, disclosureButton);
     }
@@ -21,4 +26,9 @@ export function showClipPlayer(clipPlayer, disclosureButton) {
     clipPlayer.style.display = 'block';
     disclosureButton.classList.remove('caret-down');
     disclosureButton.classList.add('caret-up');
+
+    const carouselTabButtons = document.querySelector('.carousel-tab-buttons');
+    const stickyStuff = document.querySelector('.sticky-stuff');
+    const stickyStuffHeight = stickyStuff.getBoundingClientRect().height;
+    carouselTabButtons.style.top = `${stickyStuffHeight}px`;
 }
