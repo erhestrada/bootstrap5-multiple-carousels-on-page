@@ -20,7 +20,8 @@
 }
 
 .tab-btn {
-  padding: 10px 16px;
+  padding: 0px 16px;
+  padding-bottom: 10px;
   background: none;
   border: none;
   font-weight: 500;
@@ -31,7 +32,6 @@
   transition: color 0.3s;
   flex: 0 0 auto;
 }
-
 .tab-btn:hover {
   color: #6a4da1;
 }
