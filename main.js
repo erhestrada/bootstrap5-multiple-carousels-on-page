@@ -155,7 +155,8 @@ tabButtons.forEach(button => {
       categoriesCarousels.innerHTML = '';
       makeTopStreamersNewCarousels();
     } else if (targetId === "followed-streamers") {
-      makeFollowingCarousels({ streamers: true });
+      const followedStreamersCarouselsContainer = document.getElementById('followed-streamers');
+      makeFollowingCarousels({ streamers: true, container: followedStreamersCarouselsContainer });
     }
 
     // Move the tab indicator
