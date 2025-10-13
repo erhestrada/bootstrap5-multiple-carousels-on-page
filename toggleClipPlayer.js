@@ -11,6 +11,9 @@ export function toggleClipPlayer() {
         const stickyStuff = document.querySelector('.sticky-stuff');
         const stickyStuffHeight = stickyStuff.getBoundingClientRect().height;
         carouselTabButtons.style.top = `${stickyStuffHeight}px`;
+
+        const compoundFollowButton = document.getElementById('compound-follow-button');
+        compoundFollowButton.style.display = 'none';
     } else {
         showClipPlayer(clipPlayer, disclosureButton);
     }
@@ -31,4 +34,7 @@ export function showClipPlayer(clipPlayer, disclosureButton) {
     const stickyStuff = document.querySelector('.sticky-stuff');
     const stickyStuffHeight = stickyStuff.getBoundingClientRect().height;
     carouselTabButtons.style.top = `${stickyStuffHeight}px`;
+
+    const compoundFollowButton = document.getElementById('compound-follow-button');
+    compoundFollowButton.style.display = 'inline-flex';
 }
