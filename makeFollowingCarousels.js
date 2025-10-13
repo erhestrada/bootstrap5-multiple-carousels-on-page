@@ -10,7 +10,7 @@ export async function makeFollowingCarousels({ categories = false, streamers = f
     } else if (streamers) {
         const followedStreamersData = window.follows.streamers || [];
         followedStreamersData.forEach(({ streamer, twitch_id, profile_picture_url }) => {
-            makeNewCarouselForStreamer(streamer, twitch_id, profile_picture_url);
+            makeNewCarouselForStreamer(streamer, twitch_id, profile_picture_url, container);
         });
     }
 }
