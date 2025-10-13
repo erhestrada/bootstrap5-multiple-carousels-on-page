@@ -15,6 +15,7 @@ import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-commen
 import { searchStreamers } from './search.js';
 import { getRedditPosts } from './get-reddit-posts.js';
 import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js';
+import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 
 window.clientId = getClientId();
 window.userId = null;
@@ -191,3 +192,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteConfirmButton = document.querySelector('.delete-modal-btn.delete-confirm');
     deleteConfirmButton.addEventListener('click', () => confirmDelete());
 });
+
+positionCarouselTabButtons();
