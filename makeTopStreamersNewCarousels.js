@@ -9,7 +9,7 @@ export async function makeTopStreamersNewCarousels() {
             const twitchId = stream.user_id;
             const profilePictureUrl = stream.thumbnail_url;
             const daysBack = 1;
-            makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, topStreamersCarouselsContainer, daysBack);
+            makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, topStreamersCarouselsContainer, "top", daysBack);
         }
     } catch (error) {
         console.error("Error in making top streamers carousels:", error);
