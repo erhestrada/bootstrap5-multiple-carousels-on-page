@@ -10,9 +10,8 @@
   padding: 0;
 }
 
-.front-page-tab-buttons {
+.carousel-tab-buttons {
   position: sticky;
-  top: 607.67px; /* height of sticky stuff */
   z-index: 1;
 }
 
