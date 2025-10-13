@@ -2,13 +2,14 @@ import { makeNewCarouselForStreamer } from "./makeNewCarouselForStreamer";
 
 export async function makeTopStreamersNewCarousels() {
     try {
+        const topStreamersCarouselsContainer = document.getElementById('top-streamers');
         const topEnglishStreamsData = await getTopStreamsInLanguage("en");
         for (const stream of topEnglishStreamsData) {
             const streamer = stream.user_name;
             const twitchId = stream.user_id;
             const profilePictureUrl = stream.thumbnail_url;
             const daysBack = 1;
-            makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, daysBack);
+            makeNewCarouselForStreamer(streamer, twitchId, profilePictureUrl, topStreamersCarouselsContainer, daysBack);
         }
     } catch (error) {
         console.error("Error in making top streamers carousels:", error);
