@@ -131,9 +131,9 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
   iframe.allowFullscreen = true;
-  iframe.allow = "autoplay; fullscreen"; // autoaudio only working on first clip; removing this will make audio mute
+  iframe.allow = "autoplay; fullscreen";
 
-  iframeContainer.appendChild(iframe);
+  iframeContainer.appendChild(iframe); // Makes first clip play with sound for some reason
 
   // Disable prevBtn/nextBtn if no clip to left (prevBtn disable condition) or right (nextBtn disable condition)
   const clipPlayerPreviousButton = document.getElementById('clip-player-prev-btn');
