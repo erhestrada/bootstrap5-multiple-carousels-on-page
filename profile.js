@@ -112,29 +112,22 @@ function displayClip(clipData, parentContainer) {
 
 function openPopUpPlayer(embedUrl) {
   openPopUp();
-  embedIframe(embedUrl + "&parent=localhost&autoplay=true");
+  embedIframe(embedUrl);
 }
 
 function openPopUp() {
   document.getElementById('popup').style.display = 'block';
 }
 
-function embedIframe(url) {
-  localStorage.setItem('currentClipUrl', url);
+function embedIframe(embedUrl) {
   const iframeContainer = document.getElementById('iframe-container');
-  iframeContainer.innerHTML = ''; // Clear previous content
+  const iframe = iframeContainer.querySelector('iframe');
 
-  const iframe = document.createElement('iframe');
-  iframe.src = url; // Set the iframe source
-  iframe.style.width = 640; // Set width
-  iframe.style.height = 360; // Set height
-  iframe.frameBorder = 0;
+  iframe.src = embedUrl + "&parent=localhost&autoplay=true";
   iframe.allowFullscreen = true;
+  iframe.allow = "autoplay; fullscreen";
 
-  iframe.style.width = '100%'; // Full width of the container
-  iframe.style.height = '100%'; // Full height of the container
-
-  iframeContainer.appendChild(iframe); // Append the iframe to the container
+  iframeContainer.appendChild(iframe); // Makes first clip play with sound for some reason
 }
 
 document.querySelector('.close').addEventListener('click', closePopUp);
