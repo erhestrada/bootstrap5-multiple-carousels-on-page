@@ -124,8 +124,6 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   displayFavoriteStatusOfClip(window.userId, currentClip.id);
   displayComments(currentClip.id, window.userId);
 
-  console.log('this work?', currentClip.broadcaster_name);
-
   window.currentStreamerId = streamerIds[index];
   
   const iframeContainer = document.getElementById('iframe-container');
