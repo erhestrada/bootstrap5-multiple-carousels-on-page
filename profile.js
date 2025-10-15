@@ -2,6 +2,7 @@ import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClip
 import { getFollows } from './follows';
 import { closePopUp } from "./getTopClipsBrowse";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
+import { displayNetVotes } from "./display-net-votes";
 
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = localStorage.getItem('username');
@@ -118,6 +119,7 @@ function openPopUpPlayer(clipData) {
   openPopUp();
   embedIframe(embedUrl);
   displayUserVoteOnClip(userId, window.currentClip.twitchId);
+  displayNetVotes(window.currentClip.twitchId);
 }
 
 function openPopUp() {
