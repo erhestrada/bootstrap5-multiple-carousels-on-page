@@ -3,6 +3,7 @@ import { getFollows } from './follows';
 import { closePopUp } from "./getTopClipsBrowse";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayNetVotes } from "./display-net-votes";
+import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = localStorage.getItem('username');
@@ -120,6 +121,7 @@ function openPopUpPlayer(clipData) {
   embedIframe(embedUrl);
   displayUserVoteOnClip(userId, window.currentClip.twitchId);
   displayNetVotes(window.currentClip.twitchId);
+  displayFavoriteStatusOfClip(userId, window.currentClip.twitchId);
 }
 
 function openPopUp() {
