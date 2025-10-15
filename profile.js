@@ -1,6 +1,7 @@
 import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./clips";
 import { getFollows } from './follows';
 import { closePopUp } from "./getTopClipsBrowse";
+import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = localStorage.getItem('username');
@@ -116,6 +117,7 @@ function openPopUpPlayer(clipData) {
 
   openPopUp();
   embedIframe(embedUrl);
+  displayUserVoteOnClip(userId, window.currentClip.twitchId);
 }
 
 function openPopUp() {
