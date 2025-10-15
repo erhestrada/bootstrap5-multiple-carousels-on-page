@@ -590,7 +590,7 @@ app.get('/votes/:userId/:clipId', (req, res) => {
 });
 
 // Get upvotes, downvotes, and net votes on a clip
-app.get('/votes/:clipId', (req, res) => {
+app.get('/abc/:clipId/votes', (req, res) => {
   const clipId = req.params.clipId;
 
   const query = `SELECT vote FROM votes WHERE clip_id = ?`;
