@@ -59,7 +59,7 @@ function displayClip(clipData, parentContainer) {
   image.src = thumbnailUrl + "?parent=localhost";
   image.classList.add('thumbnail');
   //image.addEventListener('click', () => {highlightDiv(imageWrapper)});
-  image.addEventListener('click', () => {openPopUpPlayer(embedUrl)})
+  image.addEventListener('click', () => {openPopUpPlayer(clipData)})
 
 
   const cardBody = document.createElement('div');
@@ -110,7 +110,10 @@ function displayClip(clipData, parentContainer) {
 }
 
 
-function openPopUpPlayer(embedUrl) {
+function openPopUpPlayer(clipData) {
+  window.currentClip = clipData;
+  const embedUrl = clipData.embed_url;
+
   openPopUp();
   embedIframe(embedUrl);
 }
