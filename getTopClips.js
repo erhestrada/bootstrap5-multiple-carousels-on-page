@@ -118,7 +118,7 @@ export async function replaceCarouselItem(index, embedUrls, streamerIds, streame
   updateHistory(); // kind of just want to pass clipsData
   updateCarouselLabels(index);
   displayFollowStatus(streamers[index], window.activeCarousel, window.follows);
-  //loadClipInteractions(currentClip); // Old method using localStorage - group upvote/downvote/net votes/favorite/comments into function like this (refactor)
+  //loadClipInteractions(currentClip); // Old method using localStorage - group upvote/downvote/net votes/favorite/comments into function like this (refactor) TODO
   displayNetVotes(currentClip.id);
   displayUserVoteOnClip(window.userId, currentClip.id);
   displayFavoriteStatusOfClip(window.userId, currentClip.id);
