@@ -404,7 +404,8 @@ app.get('/users/:userId/comments', (req, res) => {
 });
 
 // Get all comments on clip
-app.get('/clips/:clipId/comments', (req, res) => {
+// TODO: refactor path
+app.get('/abc/clips/:clipId/comments', (req, res) => {
   const clipId = req.params.clipId;
   const userId = req.query.userId;
 
