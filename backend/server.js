@@ -590,6 +590,7 @@ app.get('/votes/:userId/:clipId', (req, res) => {
 });
 
 // Get upvotes, downvotes, and net votes on a clip
+// TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
 app.get('/abc/:clipId/votes', (req, res) => {
   const clipId = req.params.clipId;
 
