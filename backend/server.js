@@ -31,6 +31,7 @@ db.serialize(() => {
   db.run('DROP TABLE IF EXISTS users');
   db.run('DROP TABLE IF EXISTS votes');
   db.run('DROP TABLE IF EXISTS follows');
+  db.run('DROP TABLE IF EXISTS favorites');
   db.run('DROP TABLE IF EXISTS comments');
   db.run('DROP TABLE IF EXISTS comment_likes');
   db.run('DROP TABLE IF EXISTS history');
