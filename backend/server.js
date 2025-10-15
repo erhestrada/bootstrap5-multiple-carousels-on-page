@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
+import { getTwitchAcessToken } from './getTwitchAccessToken.js';
+
+getTwitchAcessToken();
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
 
