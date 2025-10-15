@@ -7,6 +7,8 @@ import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
 // TODO: refactor frontend code that uses clientId, authToken, clientSecret to go through requests to backend
+// TODO: instead of calling getTwitchAccessToken once when the server starts, call twitchGet with getTwitchAccessToken() as first line so
+    // i'm checking if the twitchAccessToken is up to date every time i make a twitch get request
 getTwitchAcessToken();
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
