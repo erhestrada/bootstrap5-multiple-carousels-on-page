@@ -129,6 +129,7 @@ function openPopUp() {
   document.getElementById('popup').style.display = 'block';
 }
 
+// TODO: clip keeps playing after close - fix
 function closePopUp() {
   document.getElementById('popup').style.display = 'none';
 }
