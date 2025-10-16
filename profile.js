@@ -1,6 +1,5 @@
 import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./clips";
 import { getFollows } from './follows';
-import { closePopUp } from "./getTopClipsBrowse";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayNetVotes } from "./display-net-votes";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
@@ -129,6 +128,14 @@ function openPopUpPlayer(clipData) {
 function openPopUp() {
   document.getElementById('popup').style.display = 'block';
 }
+
+function closePopUp() {
+  document.getElementById('popup').style.display = 'none';
+  // close the clip when the popup is closed
+  const iframeContainer = document.getElementById('iframe-container');
+  iframeContainer.innerHTML = '';
+}
+
 
 function embedIframe(embedUrl) {
   const iframeContainer = document.getElementById('iframe-container');
