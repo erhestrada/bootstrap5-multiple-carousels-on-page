@@ -131,9 +131,6 @@ function openPopUp() {
 
 function closePopUp() {
   document.getElementById('popup').style.display = 'none';
-  // close the clip when the popup is closed
-  const iframeContainer = document.getElementById('iframe-container');
-  iframeContainer.innerHTML = '';
 }
 
 
