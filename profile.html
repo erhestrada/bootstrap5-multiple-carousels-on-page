@@ -59,65 +59,58 @@
 
     <div id="popup" class="popup">
       <div class="popup-content">
-          <span class="close">&times;</span>
+        <span class="close">&times;</span>
 
-          <div id="history-expanded-clip-player-comments-container">
-            <div id="expanded-clip-player">
-              <div id="current-clip">
-                <div class="d-flex justify-content-center align-items-top gap-3" id="iframe-container"> <!--gap 3 for space between clip and upvote downvote favorite buttons-->
-                  <div id="votes-container">
-                    <button class="vote-button" id="favorite-button"><i class="bi bi-star favorite-icon"></i></button>
-                    <button class="vote-button" id="upvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
-                    <p id="net-votes">-</p>
-                    <button class="vote-button flipped" id="downvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
-                  </div>
-                  <iframe src="" height="360" width="640" frameborder="0" allowfullscreen></iframe>
+        <div id="history-expanded-clip-player-comments-container">
+          <div id="expanded-clip-player">
+            <div id="current-clip">
+              <div class="d-flex justify-content-center align-items-top gap-3" id="iframe-container"> <!--gap 3 for space between clip and upvote downvote favorite buttons-->
+                <div id="votes-container">
+                  <button class="vote-button" id="favorite-button"><i class="bi bi-star favorite-icon"></i></button>
+                  <button class="vote-button" id="upvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
+                  <p id="net-votes">-</p>
+                  <button class="vote-button flipped" id="downvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
                 </div>
-              </div>        
-            </div>
-            <div id="comments-section" class="clip-player-item scrollable">
-              <div class="comments-header">
-                  <h2>Comments</h2>
-                  <div class="comments-count">
-                      <span id="comment-count"></span>
-                  </div>
+                <iframe src="" height="360" width="640" frameborder="0" allowfullscreen></iframe>
               </div>
-
-              <div class="comments-list" id="comments-list">
-              </div>
-
-              <div class="comment-input">
-                  <div class="input-wrapper">
-                      <div class="avatar"></div>
-                      <div class="input-area">
-                          <textarea class="comment-textarea" placeholder="Add a comment..." id="new-comment"></textarea>
-                          <div class="comment-actions">
-                              <button class="comment-btn">Comment</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
+            </div>        
+          </div>
+          <div id="comments-section" class="clip-player-item scrollable">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <div class="comments-count">
+                    <span id="comment-count"></span>
+                </div>
             </div>
 
-            <div class="delete-modal" id="delete-modal">
-              <div class="delete-modal-content">
-                  <div class="delete-modal-title">Delete Comment</div>
-                  <div class="delete-modal-text">Are you sure you want to delete this comment? This action cannot be undone.</div>
-                  <div class="delete-modal-buttons">
-                      <button class="delete-modal-btn delete-cancel">Cancel</button>
-                      <button class="delete-modal-btn delete-confirm">Delete</button>
-                  </div>
-              </div>
+            <div class="comments-list" id="comments-list">
             </div>
+
+            <div class="comment-input">
+                <div class="input-wrapper">
+                    <div class="avatar"></div>
+                    <div class="input-area">
+                        <textarea class="comment-textarea" placeholder="Add a comment..." id="new-comment"></textarea>
+                        <div class="comment-actions">
+                            <button class="comment-btn">Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
           </div>
 
-
-
-
-
-
-          
+          <div class="delete-modal" id="delete-modal">
+            <div class="delete-modal-content">
+                <div class="delete-modal-title">Delete Comment</div>
+                <div class="delete-modal-text">Are you sure you want to delete this comment? This action cannot be undone.</div>
+                <div class="delete-modal-buttons">
+                    <button class="delete-modal-btn delete-cancel">Cancel</button>
+                    <button class="delete-modal-btn delete-confirm">Delete</button>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="config.js"></script>
