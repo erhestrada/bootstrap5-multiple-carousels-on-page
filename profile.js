@@ -143,6 +143,10 @@ function embedIframe(embedUrl) {
   iframe.allowFullscreen = true;
   iframe.allow = "autoplay; fullscreen";
 
+  // Tweaking to get right and avoid windowboxing
+  iframe.style.width = "75%";
+  iframe.style.height = "77%";
+
   iframeContainer.appendChild(iframe); // Makes first clip play with sound for some reason
 }
 
