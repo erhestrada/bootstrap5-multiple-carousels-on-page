@@ -129,9 +129,12 @@ function openPopUp() {
   document.getElementById('popup').style.display = 'block';
 }
 
-// TODO: clip keeps playing after close - fix
 function closePopUp() {
-  document.getElementById('popup').style.display = 'none';
+  const popup = document.getElementById('popup');
+  popup.style.display = 'none';
+  
+  const iframe = popup.querySelector('iframe');
+  iframe.src = '';
 }
 
 
@@ -142,6 +145,8 @@ function embedIframe(embedUrl) {
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
   iframe.allowFullscreen = true;
   iframe.allow = "autoplay; fullscreen";
+
+  // mute and don't add to history (only add unique clips so not spamming)
 
   // TODO: use aspect-ratio on container to enforce 16:9 ratio and avoid guessing
   // Tweaking to get right and avoid windowboxing
