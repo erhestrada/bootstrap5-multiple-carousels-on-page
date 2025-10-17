@@ -20,7 +20,7 @@
 
 .popup-content, 
 .popup-content * {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .close {
