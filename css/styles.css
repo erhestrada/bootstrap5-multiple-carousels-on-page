@@ -114,3 +114,7 @@ a:hover {
 .playlist-row.current {
   background-color: #4b367c;
 }
+
+.hidden {
+  display: none !important;
+}
