@@ -1,9 +1,9 @@
 export function toggleStreamerBarCarousel() {
-    const streamerBarCarousel = document.getElementById('id-streamer-bar-carousel-carousel-row');
-    streamerBarCarousel.style.display = 'none';
+  const streamerBarCarousel = document.getElementById('id-streamer-bar-carousel-carousel-row');
+  streamerBarCarousel.classList.toggle('hidden');
 
-    const iframeContainer = document.getElementById('iframe-container');
-    const iframe = iframeContainer.querySelector('iframe');
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
+  const iframeContainer = document.getElementById('iframe-container');
+  const iframe = iframeContainer.querySelector('iframe');
+  iframe.style.width = '100%';
+  iframe.style.height = '100%';
 }
