@@ -143,6 +143,7 @@ function embedIframe(embedUrl) {
   iframe.allowFullscreen = true;
   iframe.allow = "autoplay; fullscreen";
 
+  // TODO: use aspect-ratio on container to enforce 16:9 ratio and avoid guessing
   // Tweaking to get right and avoid windowboxing
   iframe.style.width = "75%";
   iframe.style.height = "77%";
