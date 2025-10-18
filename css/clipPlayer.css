@@ -114,4 +114,6 @@
 .enlarged-video {
   width: 928px;
   height: 522px;
+  z-index: 1;
+  position: absolute;
 }
