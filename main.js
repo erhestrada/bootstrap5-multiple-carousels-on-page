@@ -18,6 +18,8 @@ import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js'
 import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 import { toggleStreamerBarCarousel } from './toggleStreamerBarCarousel.js';
 
+// TODO: autoplay?
+
 window.clientId = getClientId();
 window.userId = null;
 window.userIdPromise = getSignedOutUser(window.clientId);
