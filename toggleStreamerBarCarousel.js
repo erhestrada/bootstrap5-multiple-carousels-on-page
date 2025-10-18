@@ -3,9 +3,16 @@ export function toggleStreamerBarCarousel() {
   streamerBarCarousel.classList.toggle('hidden');
 
   const iframeContainer = document.getElementById('iframe-container');
-  iframeContainer.style.position = 'relative';
-  iframeContainer.style.width = '928px';
-  iframeContainer.style.height = '522px';
   const iframe = iframeContainer.querySelector('iframe');
   iframe.classList.toggle('enlarged-video');
+
+  if (iframe.classList.contains('enlarged-video')) {
+    iframeContainer.style.position = 'relative';
+    iframeContainer.style.width = '928px';
+    iframeContainer.style.height = '522px';
+  } else {
+    iframeContainer.style.position = '';
+    iframeContainer.style.width = '';
+    iframeContainer.style.height = '';
+  }
 }
