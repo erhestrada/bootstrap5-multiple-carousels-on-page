@@ -116,4 +116,7 @@
   height: 522px;
   z-index: 1;
   position: absolute;
+  /* approximate video positioning */
+  left: 50%;
+  transform: translateX(-35%);
 }
