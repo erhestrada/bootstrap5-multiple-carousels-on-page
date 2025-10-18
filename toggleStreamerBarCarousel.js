@@ -1,6 +1,12 @@
 export function toggleStreamerBarCarousel() {
-  const streamerBarCarousel = document.getElementById('id-streamer-bar-carousel-carousel-row');
-  streamerBarCarousel.classList.toggle('hidden');
+  //const historyContainer = document.getElementById('history-container');
+  //historyContainer.classList.toggle('hidden');
+
+  //const commentsSection = document.getElementById('comments-section');
+  //commentsSection.classList.toggle('hidden');
+
+  const streamerBar = document.querySelector('.streamer-bar');
+  streamerBar.classList.toggle('hidden');
 
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
