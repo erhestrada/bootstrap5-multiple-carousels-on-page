@@ -101,3 +101,19 @@
   margin: 0;                /* Remove any default margin */
   font-size: 16px;          /* Set a font size for the name */
 }
+
+#theater-mode-button {
+  width: fit-content;
+  color: white;
+  background-color: #9147FF; /* purple highlight */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 600;
+  font-size: 15px;
+
+  display: inline-flex;
+  border-radius: 9999px;       /* pill shape */
+  overflow: hidden;
+  user-select: none;
+}
