@@ -136,7 +136,3 @@ a:hover {
 .divider::after {
   margin-left: 10px;
 }
-
-.divider span {
-  white-space: nowrap;
-}
