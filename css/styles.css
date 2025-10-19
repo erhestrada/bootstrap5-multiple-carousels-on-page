@@ -114,29 +114,3 @@ a:hover {
 .hidden {
   display: none !important;
 }
-
-/* ---- */
-.divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid grey;
-}
-
-.divider::before {
-  margin-right: 10px;
-}
-
-.divider::after {
-  margin-left: 10px;
-}
-
-#disclosure-button {
-  cursor: pointer;
-}
