@@ -136,3 +136,7 @@ a:hover {
 .divider::after {
   margin-left: 10px;
 }
+
+#disclosure-button {
+  cursor: pointer;
+}
