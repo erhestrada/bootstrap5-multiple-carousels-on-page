@@ -117,3 +117,8 @@
   overflow: hidden;
   user-select: none;
 }
+
+#log-in-button{
+  all: unset;
+  cursor: pointer;
+}
