@@ -44,7 +44,13 @@
 
           <div class="nav-bar-section" id="nav-right">
             <button id="theater-mode-button">Theater Mode</button>
-            <li class="nav-bar-button" id="log-in-button"><a href="logIn.html">Log In</a></li>
+            <li class="nav-bar-button"><button id="log-in-button" onclick="document.getElementById('myModal').style.display='block'">Log In</button></li>            
+            <div id="myModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+              <div style="background:white; margin:15% auto; padding:20px; width:300px;">
+                <p>This is a modal</p>
+                <button onclick="document.getElementById('myModal').style.display='none'">Close</button>
+              </div>
+            </div>
             <li class="nav-bar-button" id="saved-clips-button"><a href="profile.html">Profile</a></li>
           </div>
         </ul>
