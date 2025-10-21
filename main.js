@@ -19,7 +19,7 @@ import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 import { toggleStreamerBarCarousel } from './toggleStreamerBarCarousel.js';
 import { setupLogin } from './logIn.js';
 
-// TODO: fix centering (TEST: screenshot -> paint -> line at width/2)
+// TODO: fix centering of streamer bar carousel
 // TODO: autoplay?
 
 window.clientId = getClientId();
