@@ -128,9 +128,7 @@
 }
 
 .svg-container {
-  transform: scale(0.4);
   transform-origin: top right;
-  position: relative;
 }
 
 .pfp-image {
@@ -140,4 +138,24 @@ left: 50%;
 transform: translate(-50%, -50%);
 border-radius: 50%;
 object-fit: cover;
+}
+
+.svg-container {
+  width: 100%;  /* fill parent */
+  height: auto; /* scale height based on width */
+  position: relative;
+}
+.donut {
+  width: 100%;
+  height: auto;
+}
+.pfp-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 40%;  /* % relative to svg-container */
+  height: 40%;
+  object-fit: cover;
 }
