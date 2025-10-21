@@ -112,6 +112,7 @@
   overflow: hidden;
   display: flex;
   justify-content: flex-end;
+  flex: 0.1; /* matches change carousel buttons container to keep streamer bar carousel centered */
 }
 
 .sector {
