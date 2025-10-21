@@ -17,6 +17,7 @@ import { getRedditPosts } from './get-reddit-posts.js';
 import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js';
 import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 import { toggleStreamerBarCarousel } from './toggleStreamerBarCarousel.js';
+import { setupLogin } from './logIn.js';
 
 // TODO: autoplay?
 
@@ -198,3 +199,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 positionCarouselTabButtons();
+setupLogin();
