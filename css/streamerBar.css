@@ -110,7 +110,6 @@
 .meta-svg-container {
   width: 120px;
   height: 120px;
-  min-width: 120px;
   position: relative;
   overflow: hidden;
   display: flex;
