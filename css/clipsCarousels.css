@@ -73,6 +73,7 @@
 
 .carousel-btn {
     background: none;
+    background-color: rgba(0, 0, 0, 0.397);
     color: white;
     border: none;
     width: 50px;
@@ -107,6 +108,7 @@
 
 .carousel-btn:disabled {
     background: none;
+    background-color: rgba(0, 0, 0, 0.397);
     cursor: default;
     opacity: 0.4 !important; /* Match !important on main carousel button that's needed to override default Bootstrap opacity */
 }
