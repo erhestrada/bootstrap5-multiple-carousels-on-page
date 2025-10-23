@@ -36,8 +36,8 @@
     line-height: 1.2;
 
     display: flex;
-    flex-direction: column; /* Stack image over text */
-    overflow: hidden; /* Avoid overflow when text is long */
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #streamer-bar-carousel-container .carousel-element .img-wrapper {
@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px; /* spacing between elements */
+  gap: 4px;
   height: auto;
   flex: 0.1;
 }
