@@ -326,17 +326,18 @@ function makeCarouselItem(carouselName, clip, index, englishClips) {
     imageWrapper.appendChild(viewCount);
     imageWrapper.appendChild(creationDate);   
 
-      const redditIcon = document.createElement('img');
-      redditIcon.src = 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png';
-      redditIcon.style.cursor = "pointer";
-      redditIcon.title = "View on reddit";
-      redditIcon.style.width = '16px';
-      redditIcon.style.height = '16px';
-      const redditPost = checkRedditPosts(embedUrls[index], window.redditPosts);
-      if (redditPost) {
-        titleWrapper.appendChild(redditIcon);
-        redditIcon.addEventListener('click', () => window.open(redditPost.redditUrl, '_blank')) // Open reddit page in new tab
-      }
+    const redditIcon = document.createElement('img');
+    redditIcon.src = 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png';       // alternative: https://static.lingoapp.com/avatar/s/75148/4D5390E4-1A1E-429A-8C24-73CF0F35EACD_180.png
+    redditIcon.style.cursor = "pointer";
+    redditIcon.title = "View on reddit";
+    redditIcon.style.width = '16px';
+    redditIcon.style.height = '16px';
+    
+    const redditPost = checkRedditPosts(embedUrls[index], window.redditPosts);
+    if (redditPost) {
+      titleWrapper.appendChild(redditIcon);
+      redditIcon.addEventListener('click', () => window.open(redditPost.redditUrl, '_blank')) // Open reddit page in new tab
+    }
   }
 
   return { carouselItem, imageWrapper };
