@@ -155,7 +155,7 @@ object-fit: cover;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  width: 40%;  /* % relative to svg-container */
-  height: 40%;
+  width: 50%;  /* fits inside inner circle (r=25 in a 100x100 viewBox → 50% diameter) */
+  height: 50%;
   object-fit: cover;
 }
