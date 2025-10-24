@@ -159,3 +159,43 @@ object-fit: cover;
   height: 50%;
   object-fit: cover;
 }
+
+/* --- */
+#donut-button-right .sector-path {
+  fill: #FF6B6B;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+#donut-button-bottom .sector-path {
+  fill: #4ECDC4;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+#donut-button-left .sector-path {
+  fill: #45B7D1;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+#donut-button-top .sector-path {
+  fill: #FF9F1C;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+/* Inner circle (PFP area) */
+circle {
+  fill: white;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+/* Text inside SVG sectors */
+text {
+  fill: white;
+  font-size: 10px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
