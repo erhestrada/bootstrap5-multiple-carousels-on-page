@@ -111,6 +111,7 @@
     background-color: rgba(0, 0, 0, 0.397);
     cursor: default;
     opacity: 0.4 !important; /* Match !important on main carousel button that's needed to override default Bootstrap opacity */
+    /* TODO: refactor to remove bootstrap - doesn't make sense to fight its styling */
 }
 
 @media (max-width: 768px) {
