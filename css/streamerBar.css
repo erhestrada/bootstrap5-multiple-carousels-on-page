@@ -185,6 +185,13 @@
   stroke-width: 1;
 }
 
+#donut-button-right .sector-label {
+  fill: white;
+  font-size: 10px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
 /* Inner circle (PFP area) */
 circle {
   fill: white;
