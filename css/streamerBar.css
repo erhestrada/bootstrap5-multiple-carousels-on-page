@@ -185,7 +185,7 @@
   stroke-width: 1;
 }
 
-.sector-label {
+.donut-sector-label {
   fill: white;
   font-size: 10px;
   text-anchor: middle;
