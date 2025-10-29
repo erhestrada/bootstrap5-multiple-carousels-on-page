@@ -193,7 +193,7 @@
 }
 
 /* Inner circle (PFP area) */
-circle {
+#pfp-circle {
   fill: white;
   stroke: #000;
   stroke-width: 1;
