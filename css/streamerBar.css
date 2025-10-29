@@ -200,7 +200,7 @@
 }
 
 /* Text inside SVG sectors */
-text {
+.donut-sector-label {
   fill: white;
   font-size: 10px;
   text-anchor: middle;
