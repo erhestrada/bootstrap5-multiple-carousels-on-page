@@ -114,31 +114,6 @@
     /* TODO: refactor to remove bootstrap - doesn't make sense to fight its styling */
 }
 
-@media (max-width: 768px) {
-    .carousel-element {
-        flex: 0 0 calc(50% - 10px);
-        min-height: 120px;
-        padding: 20px 15px;
-    }
-    
-    .carousel-row {
-        gap: 15px;
-    }
-    
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-element {
-        flex: 0 0 100%;
-        margin-right: 0;
-    }
-}
-
 .boxart {
   margin-left: 30px;
   margin-right: 10px;
