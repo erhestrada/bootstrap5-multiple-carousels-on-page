@@ -99,6 +99,7 @@
     background-color: rgba(0, 0, 0, 0.397);
     cursor: default;
     opacity: 0.4 !important; /* Match !important on main carousel button that's needed to override default Bootstrap opacity */
+    /* color: rgba(255, 255, 255, 0.4);*/ /* white text at 40% opacity - alternative to applying 0.4 opacity to text and background */
     /* TODO: refactor to remove bootstrap - doesn't make sense to fight its styling */
 }
 
