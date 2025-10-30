@@ -90,18 +90,6 @@
     margin: 10px;
 }
 
-/* Nudge text (arrow) a little down and to the right for better centering in circular background */
-.nextBtn {
-  padding-top: 2px;
-  padding-left: 2px;
-}
-
-/* Nudge text (arrow) a little down and to the left for better centering in circular background */
-.prevBtn {
-  padding-top: 2px;
-  padding-right: 2px;
-}
-
 .carousel-btn:hover {
     background: #555;
 }
@@ -112,6 +100,18 @@
     cursor: default;
     opacity: 0.4 !important; /* Match !important on main carousel button that's needed to override default Bootstrap opacity */
     /* TODO: refactor to remove bootstrap - doesn't make sense to fight its styling */
+}
+
+/* Nudge text (arrow) a little down and to the right for better centering in circular background */
+.nextBtn {
+  padding-top: 2px;
+  padding-left: 2px;
+}
+
+/* Nudge text (arrow) a little down and to the left for better centering in circular background */
+.prevBtn {
+  padding-top: 2px;
+  padding-right: 2px;
 }
 
 .boxart {
