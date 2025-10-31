@@ -85,17 +85,15 @@
             <div id="clip-player-carousel-container">
               <div id="carouselExampleControls" class="carousel slide clip-player-item" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div class="carousel-item iframe-slide active">
-                    <div class="d-flex justify-content-center gap-3" id="iframe-container">
-                      <div id="votes-container">
-                        <button class="vote-button" id="favorite-button"><i class="bi bi-star favorite-icon"></i></button>
-                        <button class="vote-button" id="upvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
-                        <p id="net-votes">-</p>
-                        <button class="vote-button flipped" id="downvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
-                      </div>
-                      <iframe src="" height="360" width="640" frameborder="0" allowfullscreen></iframe>
+                  <div class="carousel-item iframe-slide active d-flex justify-content-center gap-3" id="iframe-container">
+                    <div id="votes-container">
+                      <button class="vote-button" id="favorite-button"><i class="bi bi-star favorite-icon"></i></button>
+                      <button class="vote-button" id="upvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
+                      <p id="net-votes">-</p>
+                      <button class="vote-button flipped" id="downvote-button"><i class="bi bi-triangle-fill vote-icon"></i></button>
                     </div>
-                  </div>        
+                    <iframe src="" height="360" width="640" frameborder="0" allowfullscreen></iframe>
+                  </div>
                 </div>
 
                 <button disabled id="clip-player-prev-btn" class="carousel-control-prev carousel-btn main-carousel-btn nudge-left" type="button" 
