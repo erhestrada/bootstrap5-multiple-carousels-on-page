@@ -50,4 +50,5 @@
   flex: 1;
   min-width: 0;
   justify-content: center;
+  gap: 0.75rem;
 }
