@@ -139,7 +139,7 @@ function closePopUp() {
 
 
 function embedIframe(embedUrl) {
-  const iframeContainer = document.getElementById('iframe-container');
+  const iframeContainer = document.getElementById('profile-iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
 
   iframe.src = embedUrl + "&parent=localhost&autoplay=true";
