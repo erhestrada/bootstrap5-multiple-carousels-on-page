@@ -17,11 +17,8 @@
   width: 6vh;
   height: 6vh;
   border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
   z-index: 0;
   opacity: 1;
-  position: absolute;
 }
 
 #clip-player .carousel-btn i {
@@ -65,6 +62,7 @@
   flex-direction: row;
   flex: 1;
   position: relative;
+  align-items: center;
 }
 
 #clip-player .carousel-inner{
