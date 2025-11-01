@@ -78,6 +78,12 @@
   right: 50px;
 }
 
+#iframe-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
 #disclosure-button-container {
   display: flex;
   justify-content: center;  /* centers horizontally */
