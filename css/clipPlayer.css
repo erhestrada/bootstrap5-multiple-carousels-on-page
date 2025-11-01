@@ -12,8 +12,8 @@
     padding: 1em;
   }
 
-.carousel-control-prev,
-.carousel-control-next {
+.my-carousel-control-prev,
+.my-carousel-control-next {
   width: 6vh;
   height: 6vh;
   border-radius: 50%;
@@ -21,6 +21,7 @@
   transform: translateY(-50%);
   z-index: 0;
   opacity: 1 !important; /* override bootstrap styling */
+  position: absolute;
 }
 
 #clip-player .carousel-btn i {
@@ -71,11 +72,11 @@
 }
 
 /* Eventually refactor into elements in flexbox row */
-#clip-player .carousel-control-prev {
+#clip-player .my-carousel-control-prev {
   left: 50px; /* You can also specifically adjust the left one */
 }
 
-#clip-player .carousel-control-next {
+#clip-player .my-carousel-control-next {
   right: 50px;
 }
 

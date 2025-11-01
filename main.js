@@ -74,8 +74,8 @@ window.userIdPromise.then(({ userId, username }) => {
 });
 
 
-document.querySelector('#clip-player .carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
-document.querySelector('#clip-player .carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
+document.querySelector('#clip-player .my-carousel-control-next').addEventListener('click', () => playAdjacentClip('next'));
+document.querySelector('#clip-player .my-carousel-control-prev').addEventListener('click', () => playAdjacentClip('prev'));
 document.querySelector('#next-carousel-button').addEventListener('click', () => changeCarousel('next'));
 document.querySelector('#previous-carousel-button').addEventListener('click', () => changeCarousel('previous'));
 

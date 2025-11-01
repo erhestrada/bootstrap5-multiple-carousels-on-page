@@ -12,12 +12,12 @@ export async function makeBrowseCarouselForCategory(category, gameId, boxArtUrl)
             <img src=${boxArtUrl.replace("{width}", boxArtWidth).replace("{height}", boxArtHeight)} alt="${category}"/>
         </div>
 
-        <button class="carousel-control-prev" type="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <button class="my-carousel-control-prev" type="button">
+            <span class="my-carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <button class="my-carousel-control-next" type="button">
+            <span class="my-carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
         </div>
