@@ -59,6 +59,10 @@
   }
 }
 
+#clip-player {
+  flex: 1;
+}
+
 #clip-player .carousel-inner{
   padding: 0;
 }
