@@ -20,7 +20,7 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 0;
-  opacity: 1 !important; /* override bootstrap styling */
+  opacity: 1;
   position: absolute;
 }
 
