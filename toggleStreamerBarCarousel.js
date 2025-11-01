@@ -8,6 +8,12 @@ export function toggleStreamerBarCarousel() {
   const streamerBar = document.querySelector('.streamer-bar');
   streamerBar.classList.toggle('hidden');
 
+  const iframe = document.querySelector('iframe'); // select the iframe
+
+  iframe.style.width = "90%";
+  iframe.style.height = "auto";
+  iframe.style.aspectRatio = "16 / 9";
+
   /*
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
