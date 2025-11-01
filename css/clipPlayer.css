@@ -78,11 +78,6 @@
   right: 50px;
 }
 
-#carouselExample .carousel-inner{
-  height: 350px;
-  overflow: hidden;
-}
-
 #disclosure-button-container {
   display: flex;
   justify-content: center;  /* centers horizontally */
