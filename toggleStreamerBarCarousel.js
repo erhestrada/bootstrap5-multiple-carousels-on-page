@@ -8,6 +8,7 @@ export function toggleStreamerBarCarousel() {
   const streamerBar = document.querySelector('.streamer-bar');
   streamerBar.classList.toggle('hidden');
 
+  /*
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
   iframe.classList.toggle('enlarged-video');
@@ -21,4 +22,5 @@ export function toggleStreamerBarCarousel() {
     iframeContainer.style.width = '';
     iframeContainer.style.height = '';
   }
+  */
 }
