@@ -23,7 +23,7 @@
   opacity: 1 !important; /* override bootstrap styling */
 }
 
-.main-carousel-btn i {
+#clip-player .carousel-btn i {
   font-size: 2rem;
 }
 
