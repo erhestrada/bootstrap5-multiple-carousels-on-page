@@ -63,6 +63,7 @@
   display: flex;
   flex-direction: row;
   flex: 1;
+  position: relative;
 }
 
 #clip-player .carousel-inner{
