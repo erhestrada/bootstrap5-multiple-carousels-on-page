@@ -59,16 +59,16 @@
   }
 }
 
-#carouselExampleControls .carousel-inner{
+#clip-player .carousel-inner{
   padding: 0;
 }
 
 /* Eventually refactor into elements in flexbox row */
-#carouselExampleControls .carousel-control-prev {
+#clip-player .carousel-control-prev {
   left: 50px; /* You can also specifically adjust the left one */
 }
 
-#carouselExampleControls .carousel-control-next {
+#clip-player .carousel-control-next {
   right: 50px;
 }
 
