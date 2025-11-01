@@ -3,13 +3,6 @@
   height: 56vh;
 }
 
-#clip-player-carousel-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between; /*or justify-content: center with gap*/
-}
-
 .clip-player-item {
   flex: 1;
   min-width: 0;
