@@ -131,15 +131,6 @@
   transform-origin: top right;
 }
 
-.pfp-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .svg-container {
   width: 100%;  /* fill parent */
   height: auto; /* scale height based on width */
@@ -149,6 +140,7 @@
   width: 100%;
   height: auto;
 }
+
 .pfp-image {
   position: absolute;
   top: 50%;
@@ -205,4 +197,27 @@
   font-size: 10px;
   text-anchor: middle;
   dominant-baseline: middle;
+}
+
+
+.theater-mode-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#theater-mode-pfp{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  position: absolute;
+  bottom: 0;
+}
+
+.theater-mode-container #change-carousel-buttons-container {
+  position: absolute;
+  bottom: 0;
 }
