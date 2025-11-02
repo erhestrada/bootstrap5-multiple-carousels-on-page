@@ -114,6 +114,11 @@
   min-width: 0;
 }
 /* ----------------------------------------------------------------- */
+.default-video-size {
+  height: 360px;
+  width: 640px;
+}
+
 .enlarged-video {
   width: 90%;
   height: auto;
