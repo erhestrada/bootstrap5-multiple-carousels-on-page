@@ -25,10 +25,14 @@ export function toggleStreamerBarCarousel() {
     const changeContainer = document.getElementById('theater-mode-change-carousel-buttons-container');
     changeContainer.appendChild(nextButton);
     changeContainer.appendChild(changeCarouselStuff);
+    
   } else {
     const streamerBar = document.querySelector('.streamer-bar');
-    streamerBar.prepend(pfp);
     streamerBar.appendChild(changeCarouselStuff);
+
+    const clipPlayer = document.getElementById('clip-player');
+    clipPlayer.prepend(prevButton);
+    clipPlayer.appendChild(nextButton);
 
   }
 }
