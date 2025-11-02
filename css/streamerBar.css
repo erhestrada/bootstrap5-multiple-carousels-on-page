@@ -131,15 +131,6 @@
   transform-origin: top right;
 }
 
-.pfp-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .svg-container {
   width: 100%;  /* fill parent */
   height: auto; /* scale height based on width */
@@ -149,6 +140,7 @@
   width: 100%;
   height: auto;
 }
+
 .pfp-image {
   position: absolute;
   top: 50%;
