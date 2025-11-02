@@ -204,16 +204,11 @@
 #theater-mode-pfp-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
 }
 
-#theater-mode-change-carousel-buttons-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-
+#theater-mode-pfp-container .carousel-btn {
+  margin: auto 0;
 }
 
 #theater-mode-pfp{
@@ -222,7 +217,14 @@
   border-radius: 50%;
 }
 
-#theater-mode-pfp-container .carousel-btn {
-  justify-self: center;
-  align-self: center;
+
+
+
+
+#theater-mode-change-carousel-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
 }
