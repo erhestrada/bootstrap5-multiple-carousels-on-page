@@ -206,3 +206,17 @@
   text-anchor: middle;
   dominant-baseline: middle;
 }
+
+
+
+#theater-mode-pfp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#theater-mode-change-carousel-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
