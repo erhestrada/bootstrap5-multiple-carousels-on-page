@@ -6,8 +6,10 @@ export function toggleStreamerBarCarousel() {
   const iframe = iframeContainer.querySelector('iframe');
   iframe.classList.toggle('enlarged-video'); // Off at start so first toggle switches it on
   iframe.classList.toggle('default-video-size'); // On at start so first toggle switches it off
+  const theaterModePfp = document.getElementById('theater-mode-pfp');
+  theaterModePfp.classList.toggle('hidden');
 
-  const pfp = document.querySelector('.pfp-image'); 
+  const streamerPfp = document.querySelector('.pfp-image'); 
   const changeCarouselStuff = document.getElementById('change-carousel-buttons-container');
 
   const prevButton = document.getElementById('clip-player-prev-btn');
@@ -15,8 +17,10 @@ export function toggleStreamerBarCarousel() {
 
   if (iframe.classList.contains('enlarged-video')) {
     const pfpContainer = document.getElementById('theater-mode-pfp-container');
+    theaterModePfp.src = streamerPfp.src;
     pfpContainer.appendChild(prevButton);
-    pfpContainer.appendChild(pfp);
+    pfpContainer.appendChild(theaterModePfp);
+
 
     const changeContainer = document.getElementById('theater-mode-change-carousel-buttons-container');
     changeContainer.appendChild(nextButton);
