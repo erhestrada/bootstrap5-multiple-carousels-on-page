@@ -61,19 +61,6 @@
   flex: 1; /* fill clip player-space when streamer bar hidden */
 }
 
-#disclosure-button-container {
-  display: flex;
-  justify-content: center;  /* centers horizontally */
-}
-
-.caret-up {
-  transform: rotate(0deg);
-}
-
-.caret-down {
-  transform: rotate(180deg);
-}
-
 /* ----------------------------------------------------------------- */
 #history-expanded-clip-player-comments-container {
   display: flex;
@@ -127,4 +114,17 @@
 
 #disclosure-button {
   cursor: pointer;
+}
+
+#disclosure-button-container {
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+}
+
+.caret-up {
+  transform: rotate(0deg);
+}
+
+.caret-down {
+  transform: rotate(180deg);
 }
