@@ -75,6 +75,7 @@
   justify-content: center;
   gap: 0.75rem;
   flex: 1; /* fill clip player-space when streamer bar hidden */
+  position: relative;
 }
 
 /* ----------------------------------------------------------------- */
@@ -84,7 +85,7 @@
 }
 
 .enlarged-video {
-  width: 90%;
+  width: 100%;
   height: auto;
   aspect-ratio: 16/9;
 }
