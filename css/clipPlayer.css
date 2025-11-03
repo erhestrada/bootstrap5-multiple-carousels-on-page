@@ -8,10 +8,6 @@
   min-width: 0;
 }
 
-.carousel-inner {
-    padding: 1em;
-  }
-
 .my-carousel-control-prev,
 .my-carousel-control-next {
   width: 6vh;
