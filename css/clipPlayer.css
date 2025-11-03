@@ -37,12 +37,6 @@
   padding-top: 4px;
 }
 
-.thumbnails-carousel-inner .carousel-item {
-  display: flex;
-  justify-content: space-between;
-  width: 383.05px;
-}
-  
 @media (min-width: 768px) {
   .carousel-item {
     margin-right: 0;
