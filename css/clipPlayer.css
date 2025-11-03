@@ -65,10 +65,6 @@
   flex: 1;
 }
 
-#clip-player .carousel-inner{
-  padding: 0;
-}
-
 /* Eventually refactor into elements in flexbox row */
 #clip-player .my-carousel-control-prev {
   left: 50px; /* You can also specifically adjust the left one */
