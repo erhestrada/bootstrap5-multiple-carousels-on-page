@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .vote-button {
