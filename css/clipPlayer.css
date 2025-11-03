@@ -60,8 +60,9 @@
 #clip-player {
   display: flex;
   flex-direction: row;
-  flex: 1;
+  justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 #clip-player .carousel-inner{
