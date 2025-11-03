@@ -3,9 +3,33 @@
   height: 56vh;
 }
 
+#history-expanded-clip-player-comments-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between; /*or justify-content: center with gap*/  
+  gap: 10px;
+}
+
+#expanded-clip-player{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
 .clip-player-item {
   flex: 1;
   min-width: 0;
+}
+
+#clip-player {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 .my-carousel-control-prev,
@@ -15,6 +39,15 @@
   border-radius: 50%;
   z-index: 0;
   opacity: 1;
+}
+
+/* Eventually refactor into elements in flexbox row */
+#clip-player .my-carousel-control-prev {
+  left: 50px; /* You can also specifically adjust the left one */
+}
+
+#clip-player .my-carousel-control-next {
+  right: 50px;
 }
 
 #clip-player .carousel-btn i {
@@ -37,23 +70,6 @@
   padding-top: 4px;
 }
 
-#clip-player {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-}
-
-/* Eventually refactor into elements in flexbox row */
-#clip-player .my-carousel-control-prev {
-  left: 50px; /* You can also specifically adjust the left one */
-}
-
-#clip-player .my-carousel-control-next {
-  right: 50px;
-}
-
 #iframe-container {
   display: flex;
   justify-content: center;
@@ -61,22 +77,6 @@
   flex: 1; /* fill clip player-space when streamer bar hidden */
 }
 
-/* ----------------------------------------------------------------- */
-#history-expanded-clip-player-comments-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between; /*or justify-content: center with gap*/  
-  gap: 10px;
-}
-
-#expanded-clip-player{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  min-width: 0;
-}
 /* ----------------------------------------------------------------- */
 .default-video-size {
   height: 360px;
