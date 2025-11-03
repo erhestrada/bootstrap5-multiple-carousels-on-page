@@ -37,16 +37,6 @@
   padding-top: 4px;
 }
 
-@media (min-width: 768px) {
-  .carousel-item {
-    margin-right: 0;
-  }
-  
-  .carousel-inner {
-    display: flex;
-  }
-}
-
 #clip-player {
   display: flex;
   flex-direction: row;
