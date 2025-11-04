@@ -16,25 +16,26 @@ export function toggleStreamerBarCarousel() {
   const prevButton = document.getElementById('clip-player-prev-btn');
   const nextButton = document.getElementById('clip-player-next-btn');
 
-  const pfpContainer = document.getElementById('theater-mode-pfp-container');
+  const theaterModePfpContainer = document.getElementById('theater-mode-pfp-container');
   const expandedClipPlayer = document.getElementById('expanded-clip-player');
 
 
   if (iframe.classList.contains('enlarged-video')) {
-    theaterModePfp.src = streamerPfp.src;
-    pfpContainer.appendChild(prevButton);
-    pfpContainer.appendChild(theaterModePfp);
+    theaterModePfp.src = streamerPfp.src; // Set theater mode pfp equal to streamer pfp
+    theaterModePfpContainer.appendChild(prevButton); // Add prevButton to pfp container to be in alignment with pfp
+    theaterModePfpContainer.appendChild(theaterModePfp); // Add pfp to theater mode pfp container
 
     const changeContainer = document.getElementById('theater-mode-change-carousel-buttons-container');
-    changeContainer.appendChild(nextButton);
-    changeContainer.appendChild(changeCarouselStuff);
+    changeContainer.appendChild(nextButton); // Add next button to theater mode change carousels container to be aligned vertically with change carousels buttons
+    changeContainer.appendChild(changeCarouselStuff); // Add change carousels element to its container
 
-    //expandedClipPlayer.toggle('hidden');
-    expandedClipPlayer.remove();
-    pfpContainer.after(iframeContainer);
+    expandedClipPlayer.classList.toggle('hidden');
+    theaterModePfpContainer.after(iframeContainer); // Move the iframe container after theaterModePfpContainer, where expandedClipPlayer was formerly
 
     
   } else {
+    expandedClipPlayer.classList.toggle('hidden');
+
     const streamerBar = document.querySelector('.streamer-bar');
     streamerBar.appendChild(changeCarouselStuff);
 
@@ -42,13 +43,7 @@ export function toggleStreamerBarCarousel() {
     clipPlayer.prepend(prevButton);
     clipPlayer.appendChild(nextButton);
 
-    pfpContainer.after(expandedClipPlayer);
-
-    const votesContainer = document.getElementById('votes-container');
-    votesContainer.after(iframeContainer);
-
-    pfpContainer.after(expandedClipPlayer);
-
+    prevButton.after(iframeContainer);
   }
   
 }
