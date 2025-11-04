@@ -75,6 +75,7 @@
   justify-content: center;
   flex: 1; /* fill clip player-space when streamer bar hidden */
   position: relative;
+  max-width: calc(56vh * 16 / 9); /* keep iframe container from extending wider than 16/9 iframe */
 }
 
 /* ----------------------------------------------------------------- */
