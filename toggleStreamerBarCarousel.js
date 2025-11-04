@@ -2,6 +2,7 @@ export function toggleStreamerBarCarousel() {
   const streamerBar = document.querySelector('.streamer-bar');
   streamerBar.classList.toggle('hidden');
 
+  
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = iframeContainer.querySelector('iframe');
   iframe.classList.toggle('enlarged-video'); // Off at start so first toggle switches it on
@@ -15,16 +16,23 @@ export function toggleStreamerBarCarousel() {
   const prevButton = document.getElementById('clip-player-prev-btn');
   const nextButton = document.getElementById('clip-player-next-btn');
 
+  const pfpContainer = document.getElementById('theater-mode-pfp-container');
+  const expandedClipPlayer = document.getElementById('expanded-clip-player');
+
+
   if (iframe.classList.contains('enlarged-video')) {
-    const pfpContainer = document.getElementById('theater-mode-pfp-container');
     theaterModePfp.src = streamerPfp.src;
     pfpContainer.appendChild(prevButton);
     pfpContainer.appendChild(theaterModePfp);
 
-
     const changeContainer = document.getElementById('theater-mode-change-carousel-buttons-container');
     changeContainer.appendChild(nextButton);
     changeContainer.appendChild(changeCarouselStuff);
+
+    //expandedClipPlayer.toggle('hidden');
+    expandedClipPlayer.remove();
+    pfpContainer.after(iframeContainer);
+
     
   } else {
     const streamerBar = document.querySelector('.streamer-bar');
@@ -34,5 +42,13 @@ export function toggleStreamerBarCarousel() {
     clipPlayer.prepend(prevButton);
     clipPlayer.appendChild(nextButton);
 
+    pfpContainer.after(expandedClipPlayer);
+
+    const votesContainer = document.getElementById('votes-container');
+    votesContainer.after(iframeContainer);
+
+    pfpContainer.after(expandedClipPlayer);
+
   }
+  
 }
