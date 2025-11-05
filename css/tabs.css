@@ -53,3 +53,9 @@
 .tab-content.active {
   display: block;
 }
+
+.profile-tab.tab-content.active {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
