@@ -1,0 +1,20 @@
+.unfollow-btn {
+    padding: 6px 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.search-result:hover .unfollow-btn {
+  opacity: 1;
+}
+
+.unfollow-btn:hover {
+    background: #fee;
+    border-color: #f44;
+    color: #c00;
+}
