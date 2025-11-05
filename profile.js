@@ -251,19 +251,19 @@ function displayFollows(follows, followsContainer) {
       streamerNameElement.innerText = name;
       streamerNameElement.classList.add('streamer-name');  // Add a class for styling
 
+      const reorderButton = document.createElement('button');
+      reorderButton.classList.add('unfollow-btn');
+      reorderButton.innerText = 'Reorder';
+
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('unfollow-btn');
       unfollowButton.innerText = 'Unfollow';
       unfollowButton.addEventListener('click', () => deleteStreamerFollow(userId, name, streamerId));
 
-      const reorderButton = document.createElement('button');
-      reorderButton.classList.add('reorder-btn');
-      reorderButton.innerText = 'Reorder';
-
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
-      searchResultElement.appendChild(unfollowButton);
       searchResultElement.appendChild(reorderButton);
+      searchResultElement.appendChild(unfollowButton);
 
       followsContainer.appendChild(searchResultElement);
   });
