@@ -256,9 +256,14 @@ function displayFollows(follows, followsContainer) {
       unfollowButton.innerText = 'Unfollow';
       unfollowButton.addEventListener('click', () => deleteStreamerFollow(userId, name, streamerId));
 
+      const reorderButton = document.createElement('button');
+      reorderButton.classList.add('reorder-btn');
+      reorderButton.innerText = 'Reorder';
+
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
       searchResultElement.appendChild(unfollowButton);
+      searchResultElement.appendChild(reorderButton);
 
       followsContainer.appendChild(searchResultElement);
   });
