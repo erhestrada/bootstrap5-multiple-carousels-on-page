@@ -258,7 +258,9 @@ function displayFollows(follows, followsContainer) {
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
       unfollowButton.innerText = 'Unfollow';
-      unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
+      //unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
+
+      unfollowButton.addEventListener('click', () => showDeleteModal('unfollow-modal'));
 
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
@@ -300,4 +302,17 @@ function displayFollows(follows, followsContainer) {
 function handleUnfollow(searchResultElement, userId, name, streamerId) {
   searchResultElement.remove();
   deleteStreamerFollow(userId, name, streamerId)
+}
+
+const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
+deleteCancelButton.addEventListener('click', () => hideDeleteModal('unfollow-modal'));
+
+function showDeleteModal(id) {
+    const modal = document.getElementById(id);
+    modal.classList.add('show');
+}
+
+function hideDeleteModal(id) {
+    const modal = document.getElementById(id);
+    modal.classList.remove('show');
 }
