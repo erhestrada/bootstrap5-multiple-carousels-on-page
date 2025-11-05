@@ -75,7 +75,6 @@
   justify-content: center;
   flex: 1; /* fill clip player-space when streamer bar hidden */
   position: relative;
-  max-width: calc(54vh * 16 / 9); /* keep iframe container from extending wider than 16/9 iframe */
 }
 
 /* ----------------------------------------------------------------- */
@@ -90,6 +89,14 @@
   width: auto;
   height: auto;
   aspect-ratio: 16/9;
+}
+
+.default-iframe-size {
+  max-width: 640px; /* matches default video size */
+}
+
+.enlarged-iframe-size {
+  max-width: calc(54vh * 16 / 9); /* keep iframe container from extending wider than 16/9 iframe */
 }
 /* ----------------------------------------------------------------- */
 
