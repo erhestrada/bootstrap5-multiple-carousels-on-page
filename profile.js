@@ -258,7 +258,7 @@ function displayFollows(follows, followsContainer) {
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
       unfollowButton.innerText = 'Unfollow';
-      unfollowButton.addEventListener('click', () => deleteStreamerFollow(userId, name, streamerId));
+      unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
 
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
@@ -295,4 +295,9 @@ function displayFollows(follows, followsContainer) {
 
       followsContainer.appendChild(searchResultElement);
   });
+}
+
+function handleUnfollow(searchResultElement, userId, name, streamerId) {
+  searchResultElement.remove();
+  deleteStreamerFollow(userId, name, streamerId)
 }
