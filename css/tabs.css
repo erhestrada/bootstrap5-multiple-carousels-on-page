@@ -54,13 +54,15 @@
   display: block;
 }
 
-.profile-tab.tab-content.active {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
 
 .tab-content-wrapper {
   max-width: 90%; /* Use a fraction of the screen width to distribute the reamining for horizontal centering */
   margin: 0 auto; /* Center tab content horizontally */
+}
+
+
+.profile-tab.tab-content.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(338px, 1fr));
+  gap: 16px;
 }
