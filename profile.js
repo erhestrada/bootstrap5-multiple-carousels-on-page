@@ -48,31 +48,30 @@ function displayClip(clipData, parentContainer) {
       flex: none !important;
   `;
 
-  const card = document.createElement('div');
-  card.className = "card";
-  card.style.height = "300px";
-
   const imageWrapper = document.createElement('div');
   imageWrapper.className = "img-wrapper";
-  //imageWrapper.id = gameId + "img-wrapper" + index;
   imageWrapper.style.position = "relative";
 
-  // formerly thumbnail
   const image = document.createElement('img');
   image.src = thumbnailUrl + "?parent=localhost";
   image.classList.add('thumbnail');
-  //image.addEventListener('click', () => {highlightDiv(imageWrapper)});
-  image.addEventListener('click', () => {openPopUpPlayer(clipData)})
-
+  image.addEventListener('click', () => { openPopUpPlayer(clipData) });
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
 
+  // Hold clipTitle and optionally redditIcon
+  const titleWrapper = document.createElement('div');
+  titleWrapper.style.display = 'flex';
+  titleWrapper.style.gap = '6px';
+
   const clipTitle = document.createElement('p');
+  clipTitle.className = 'clip-title';
   clipTitle.innerText = title;
   clipTitle.style.color = "#FFFFFF";
 
   const viewCountElement = document.createElement('p');
+  viewCountElement.className = 'view-count';
   viewCountElement.innerText = viewCount.toLocaleString() + ' views';
   viewCountElement.style.color = "#FFFFFF";
   viewCountElement.style.position = 'absolute';
@@ -80,10 +79,12 @@ function displayClip(clipData, parentContainer) {
   viewCountElement.style.left = '0';
 
   const streamerElement = document.createElement('p');
+  streamerElement.className = 'streamer';
   streamerElement.innerText = streamer;
   streamerElement.style.color = "#FFFFFF";
 
   const creationDate = document.createElement('p');
+  creationDate.className = 'creation-date';
   creationDate.innerText = creationDateTime;
   creationDate.style.color = "#FFFFFF";
   creationDate.style.position = 'absolute';
@@ -91,27 +92,25 @@ function displayClip(clipData, parentContainer) {
   creationDate.style.right = '0';
 
   const durationElement = document.createElement('p');
+  durationElement.className = 'duration';
   durationElement.innerText = Math.round(duration) + 's';
   durationElement.style.color = "#FFFFFF";
-
   durationElement.style.position = 'absolute';
   durationElement.style.top = '0';
   durationElement.style.left = '0';
 
   parentContainer.appendChild(carouselItem);
-  carouselItem.appendChild(card);
-  
-  card.appendChild(imageWrapper);
+  carouselItem.appendChild(imageWrapper);
   imageWrapper.appendChild(image);
-  card.appendChild(cardBody);
-  //cardBody.appendChild(cardTitle);
-  cardBody.appendChild(clipTitle);
+
+  carouselItem.appendChild(cardBody);
+  titleWrapper.appendChild(clipTitle);
+  cardBody.appendChild(titleWrapper);
   cardBody.appendChild(streamerElement);
   imageWrapper.appendChild(durationElement);
   imageWrapper.appendChild(viewCountElement);
   imageWrapper.appendChild(creationDate);
 }
-
 
 function openPopUpPlayer(clipData) {
   window.currentClip = clipData;
