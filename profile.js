@@ -250,12 +250,14 @@ function displayFollows(follows, followsContainer) {
       streamerNameElement.innerText = name;
       streamerNameElement.classList.add('streamer-name');  // Add a class for styling
 
-      const followButton = document.createElement('button');
-      followButton.innerText = 'Follow';
-      followButton.addEventListener('click', () => followStreamer(name, streamerId));
+      const unfollowButton = document.createElement('button');
+      unfollowButton.classList.add('unfollow-btn');
+      unfollowButton.innerText = 'Unfollow';
+      unfollowButton.addEventListener('click', () => followStreamer(name, streamerId));
 
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
+      searchResultElement.appendChild(unfollowButton);
 
       followsContainer.appendChild(searchResultElement);
   });
