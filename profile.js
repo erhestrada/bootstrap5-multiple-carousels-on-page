@@ -41,12 +41,6 @@ function displayClip(clipData, parentContainer) {
 
   const carouselItem = document.createElement('div');
   carouselItem.className = "carousel-element";
-  carouselItem.style.cssText = `
-      width: fit-content !important;
-      display: inline-block !important;
-      vertical-align: top !important;
-      flex: none !important;
-  `;
 
   const imageWrapper = document.createElement('div');
   imageWrapper.className = "img-wrapper";
