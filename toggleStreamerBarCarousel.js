@@ -2,8 +2,10 @@ export function toggleStreamerBarCarousel() {
   const streamerBar = document.querySelector('.streamer-bar');
   streamerBar.classList.toggle('hidden');
 
-  
   const iframeContainer = document.getElementById('iframe-container');
+  iframeContainer.classList.toggle('default-iframe-size'); // On at start first click toggles off
+  iframeContainer.classList.toggle('enlarged-iframe-size'); // Off at start first click toggles on
+
   const iframe = iframeContainer.querySelector('iframe');
   iframe.classList.toggle('enlarged-video'); // Off at start so first toggle switches it on
   iframe.classList.toggle('default-video-size'); // On at start so first toggle switches it off
