@@ -252,11 +252,11 @@ function displayFollows(follows, followsContainer) {
       streamerNameElement.classList.add('streamer-name');  // Add a class for styling
 
       const reorderButton = document.createElement('button');
-      reorderButton.classList.add('unfollow-btn');
+      reorderButton.classList.add('following-page-btn');
       reorderButton.innerText = 'Reorder';
 
       const unfollowButton = document.createElement('button');
-      unfollowButton.classList.add('unfollow-btn');
+      unfollowButton.classList.add('following-page-btn');
       unfollowButton.innerText = 'Unfollow';
       unfollowButton.addEventListener('click', () => deleteStreamerFollow(userId, name, streamerId));
 

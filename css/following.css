@@ -1,4 +1,4 @@
-.unfollow-btn {
+.following-page-btn {
     padding: 6px 16px;
     border: 1px solid #d0d0d0;
     border-radius: 6px;
@@ -9,11 +9,11 @@
     opacity: 0;
 }
 
-.search-result:hover .unfollow-btn {
+.search-result:hover .following-page-btn {
   opacity: 1;
 }
 
-.unfollow-btn:hover {
+.following-page-btn:hover {
     background: #fee;
     border-color: #f44;
     color: #c00;
