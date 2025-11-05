@@ -4,6 +4,7 @@ import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayNetVotes } from "./display-net-votes";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
+import { deleteStreamerFollow } from './follows';
 
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = localStorage.getItem('username');
@@ -253,7 +254,7 @@ function displayFollows(follows, followsContainer) {
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('unfollow-btn');
       unfollowButton.innerText = 'Unfollow';
-      unfollowButton.addEventListener('click', () => followStreamer(name, streamerId));
+      unfollowButton.addEventListener('click', () => deleteStreamerFollow(userId, name, streamerId));
 
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
