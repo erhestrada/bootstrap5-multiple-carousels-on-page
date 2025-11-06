@@ -255,13 +255,12 @@ function displayFollows(follows, followsContainer) {
       reorderButton.classList.add('following-page-btn');
       reorderButton.classList.add('reorder-btn');
       reorderButton.innerText = 'Reorder';
+      reorderButton.addEventListener('click', () => handleReorder(searchResultElement));
 
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
       unfollowButton.classList.add('following-page-unfollow-btn');
       unfollowButton.innerText = 'Unfollow';
-      //unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
-
       unfollowButton.addEventListener('click', () => showDeleteModal('unfollow-modal', searchResultElement, name, streamerId));
 
       searchResultElement.appendChild(pfpElement);
@@ -333,4 +332,8 @@ function handleUnfollow(modalId, searchResultElement, userId, name, streamerId) 
   searchResultElement.remove();
   deleteStreamerFollow(userId, name, streamerId);
   hideDeleteModal(modalId);
+}
+
+function handleReorder(searchResultElement) {
+  searchResultElement.style.border = '1px solid red';
 }
