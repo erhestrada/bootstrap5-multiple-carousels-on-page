@@ -253,10 +253,12 @@ function displayFollows(follows, followsContainer) {
 
       const reorderButton = document.createElement('button');
       reorderButton.classList.add('following-page-btn');
+      reorderButton.classList.add('reorder-btn');
       reorderButton.innerText = 'Reorder';
 
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
+      unfollowButton.classList.add('following-page-unfollow-btn');
       unfollowButton.innerText = 'Unfollow';
       //unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
 
