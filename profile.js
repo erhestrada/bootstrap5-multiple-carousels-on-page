@@ -258,7 +258,7 @@ function displayFollows(follows, followsContainer) {
       reorderButton.classList.add('following-page-btn');
       reorderButton.classList.add('reorder-btn');
       reorderButton.innerText = 'Reorder';
-      reorderButton.addEventListener('click', () => handleReorder(searchResultElement, window.switchItems));
+      reorderButton.addEventListener('click', () => handleReorder(searchResultElement));
 
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
@@ -337,6 +337,12 @@ function handleUnfollow(modalId, searchResultElement, userId, name, streamerId) 
   hideDeleteModal(modalId);
 }
 
-function handleReorder(searchResultElement, switchItems) {
-  searchResultElement.style.border = '1px solid red';
+function handleReorder(searchResultElement) {
+  if (!window.switchItems.some(item => item.id === searchResultElement.id)) {
+    searchResultElement.style.border = '1px solid red';
+    window.switchItems.push(searchResultElement);
+  } else {
+    searchResultElement.style.border = 'none';
+    window.switchItems = window.switchItems.filter(item => item.id !== searchResultElement.id);
+  }
 }
