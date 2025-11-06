@@ -13,8 +13,14 @@
   opacity: 1;
 }
 
-.following-page-btn:hover {
+.following-page-unfollow-btn:hover {
     background: #fee;
     border-color: #f44;
     color: #c00;
+}
+
+.reorder-btn:hover {
+    background: rgb(226, 241, 230);
+    border-color: rgb(68, 255, 140);
+    color: rgb(0, 204, 85);
 }
