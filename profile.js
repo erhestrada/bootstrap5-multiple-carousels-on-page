@@ -338,9 +338,19 @@ function handleUnfollow(modalId, searchResultElement, userId, name, streamerId) 
 }
 
 function handleReorder(searchResultElement) {
+  // If element not in window.switchItems, add it and highlight the element
   if (!window.switchItems.some(item => item.id === searchResultElement.id)) {
     searchResultElement.style.border = '1px solid red';
     window.switchItems.push(searchResultElement);
+
+    // When two elements are selected switch their positions, remove their highlights, and reset window.switchItems
+    if (window.switchItems.length === 2) {
+      for (const item of switchItems) {
+        item.style.border = 'none';
+      }
+      window.switchItems = [];
+    }
+  // If element in window.switchItems, remove it from window.switchItems and remove its highlight
   } else {
     searchResultElement.style.border = 'none';
     window.switchItems = window.switchItems.filter(item => item.id !== searchResultElement.id);
