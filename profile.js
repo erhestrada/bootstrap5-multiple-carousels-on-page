@@ -6,6 +6,8 @@ import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { deleteStreamerFollow } from './follows';
 
+window.switchItems = [];
+
 const usernameContainer = document.getElementById('profile-username-container');
 usernameContainer.querySelector('h1').textContent = localStorage.getItem('username');
 
@@ -240,6 +242,7 @@ function displayFollows(follows, followsContainer) {
       const searchResultElement = document.createElement('div');
       searchResultElement.classList.add('search-result');
       searchResultElement.style.cursor = "pointer";
+      searchResultElement.id = `following-item-${name}`;
 
       const pfpElement = document.createElement('img');
       pfpElement.src = pfpUrl;
@@ -255,7 +258,7 @@ function displayFollows(follows, followsContainer) {
       reorderButton.classList.add('following-page-btn');
       reorderButton.classList.add('reorder-btn');
       reorderButton.innerText = 'Reorder';
-      reorderButton.addEventListener('click', () => handleReorder(searchResultElement));
+      reorderButton.addEventListener('click', () => handleReorder(searchResultElement, window.switchItems));
 
       const unfollowButton = document.createElement('button');
       unfollowButton.classList.add('following-page-btn');
@@ -334,6 +337,6 @@ function handleUnfollow(modalId, searchResultElement, userId, name, streamerId) 
   hideDeleteModal(modalId);
 }
 
-function handleReorder(searchResultElement) {
+function handleReorder(searchResultElement, switchItems) {
   searchResultElement.style.border = '1px solid red';
 }
