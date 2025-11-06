@@ -260,7 +260,7 @@ function displayFollows(follows, followsContainer) {
       unfollowButton.innerText = 'Unfollow';
       //unfollowButton.addEventListener('click', () => handleUnfollow(searchResultElement, userId, name, streamerId));
 
-      unfollowButton.addEventListener('click', () => showDeleteModal('unfollow-modal'));
+      unfollowButton.addEventListener('click', () => showDeleteModal('unfollow-modal', searchResultElement, name, streamerId));
 
       searchResultElement.appendChild(pfpElement);
       searchResultElement.appendChild(streamerNameElement);
@@ -299,20 +299,30 @@ function displayFollows(follows, followsContainer) {
   });
 }
 
-function handleUnfollow(searchResultElement, userId, name, streamerId) {
-  searchResultElement.remove();
-  deleteStreamerFollow(userId, name, streamerId)
-}
 
 const deleteCancelButton = document.querySelector('.delete-modal-btn.delete-cancel');
 deleteCancelButton.addEventListener('click', () => hideDeleteModal('unfollow-modal'));
 
-function showDeleteModal(id) {
+const modalUnfollowButton = document.getElementById('modal-unfollow-btn');
+modalUnfollowButton.addEventListener('click', () => handleUnfollow(window.modalId, window.searchResultElement, userId, window.name, window.streamerId));
+
+function showDeleteModal(id, searchResultElement, name, streamerId) {
     const modal = document.getElementById(id);
     modal.classList.add('show');
+
+    window.modalId = id;
+    window.searchResultElement = searchResultElement;
+    window.name = name;
+    window.streamerId = streamerId;
 }
 
 function hideDeleteModal(id) {
     const modal = document.getElementById(id);
     modal.classList.remove('show');
+}
+
+function handleUnfollow(modalId, searchResultElement, userId, name, streamerId) {
+  searchResultElement.remove();
+  deleteStreamerFollow(userId, name, streamerId);
+  hideDeleteModal(modalId);
 }
