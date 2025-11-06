@@ -313,6 +313,9 @@ function showDeleteModal(id, searchResultElement, name, streamerId) {
     const modalTitle = modal.querySelector('.delete-modal-title');
     modalTitle.innerText = `Unfollow ${name}`;
 
+    const modalText = modal.querySelector('.delete-modal-text');
+    modalText.innerText = `Are you sure you want to unfollow ${name}?`;
+
     window.modalId = id;
     window.searchResultElement = searchResultElement;
     window.name = name;
