@@ -345,6 +345,7 @@ function handleReorder(searchResultElement) {
 
     // When two elements are selected switch their positions, remove their highlights, and reset window.switchItems
     if (window.switchItems.length === 2) {
+      swapElements(window.switchItems[0], window.switchItems[1]);
       for (const item of switchItems) {
         item.style.border = 'none';
       }
@@ -355,4 +356,11 @@ function handleReorder(searchResultElement) {
     searchResultElement.style.border = 'none';
     window.switchItems = window.switchItems.filter(item => item.id !== searchResultElement.id);
   }
+}
+
+function swapElements(el1, el2) {
+  const parent = el1.parentNode;
+  const sibling = el1.nextSibling === el2 ? el1 : el1.nextSibling;
+  parent.insertBefore(el1, el2);
+  parent.insertBefore(el2, sibling);
 }
