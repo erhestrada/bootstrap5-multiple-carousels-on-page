@@ -235,7 +235,7 @@ function displayFollows(follows, followsContainer) {
   followsContainer.innerHTML = '';
   const streamerFollows = follows.streamers;
   const categoryFollows = follows.categories;
-  streamerFollows.forEach(({ streamer: name, twitch_id: id, profile_picture_url: thumbnailUrl}) => {
+  streamerFollows.forEach(({ streamer: name, twitch_id: id, profile_picture_url: thumbnailUrl, position}) => {
       const pfpUrl = thumbnailUrl;
       const streamerId = id;
 
@@ -243,6 +243,7 @@ function displayFollows(follows, followsContainer) {
       searchResultElement.classList.add('search-result');
       searchResultElement.style.cursor = "pointer";
       searchResultElement.id = `following-item-${name}`;
+      searchResultElement.position = position;
 
       const pfpElement = document.createElement('img');
       pfpElement.src = pfpUrl;
@@ -363,4 +364,11 @@ function swapElements(el1, el2) {
   const sibling = el1.nextSibling === el2 ? el1 : el1.nextSibling;
   parent.insertBefore(el1, el2);
   parent.insertBefore(el2, sibling);
+
+  const el1StartPosition = el1.position;
+  el1.position = el2.position;
+  el2.position = el1StartPosition;
+
+  console.log("Element 1 position: ", el1.position);
+  console.log("Element 2 position: ", el2.position);
 }
