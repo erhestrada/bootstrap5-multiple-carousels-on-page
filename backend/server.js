@@ -725,14 +725,39 @@ app.get('/users/:id/following/:kind', (req, res) => {
 // Post streamer to follow
 app.post('/users/:userId/following/streamers/:streamer', (req, res) => {
   const { userId, streamer } = req.params;
-  const { twitchId, profilePictureUrl } = req.body
+  const { twitchId, profilePictureUrl } = req.body;
 
   const tableName = 'followed_streamers';
-  const columnNames = ['user_id', 'streamer', 'twitch_id', 'profile_picture_url'];
-  const parameters = [userId, streamer, twitchId, profilePictureUrl];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  // Insert streamer data, auto-incrementing position so position defaults to row number
+  const query = `
+    INSERT OR IGNORE INTO ${tableName} 
+    (user_id, streamer, twitch_id, profile_picture_url, position)
+    VALUES (
+      ?, ?, ?, ?,
+      COALESCE(
+        (SELECT MAX(position) + 1 FROM ${tableName} WHERE user_id = ?),
+        1
+      )
+    )
+  `;
+
+  const parameters = [userId, streamer, twitchId, profilePictureUrl, userId];
+
+  db.run(query, parameters, function (err) {
+    if (err) {
+      console.error(`Error inserting into ${tableName}:`, err);
+      return res.status(500).json({ error: err.message });
+    }
+
+    console.log(`Inserted row into ${tableName} with ID:`, this.lastID);
+    res.status(201).json({ 
+      message: `Row added to ${tableName}`, 
+      id: this.lastID 
+    });
+  });
 });
+
 
 // Delete followed streamer
 app.delete('/users/:userId/following/streamers/:streamer', (req, res) => {
