@@ -773,14 +773,38 @@ app.delete('/users/:userId/following/streamers/:streamer', (req, res) => {
 
 // Post category to follow
 app.post('/users/:userId/following/categories/:category', (req, res) => {
-  const { userId, category } = req.params
+  const { userId, category } = req.params;
   const { twitchId, boxArtUrl } = req.body;
 
   const tableName = 'followed_categories';
-  const columnNames = ['user_id', 'category', 'twitch_id', 'box_art_url'];
-  const parameters = [userId, category, twitchId, boxArtUrl];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  // Auto-increment position so it matches row number
+  const query = `
+    INSERT OR IGNORE INTO ${tableName} 
+    (user_id, category, twitch_id, box_art_url, position)
+    VALUES (
+      ?, ?, ?, ?,
+      COALESCE(
+        (SELECT MAX(position) + 1 FROM ${tableName} WHERE user_id = ?),
+        1
+      )
+    )
+  `;
+
+  const parameters = [userId, category, twitchId, boxArtUrl, userId];
+
+  db.run(query, parameters, function (err) {
+    if (err) {
+      console.error(`Error inserting into ${tableName}:`, err);
+      return res.status(500).json({ error: err.message });
+    }
+
+    console.log(`Inserted row into ${tableName} with ID:`, this.lastID);
+    res.status(201).json({
+      message: `Row added to ${tableName}`,
+      id: this.lastID
+    });
+  });
 });
 
 // Delete followed category
