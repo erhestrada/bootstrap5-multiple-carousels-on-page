@@ -688,7 +688,8 @@ app.get('/users/:id/following', (req, res) => {
         position: row.position
       }));
 
-      res.json({ streamers: streamerRows, categories: formattedCategoryRows });
+      // Sort rows in ascending order with respect to position
+      res.json({ streamers: streamerRows.sort((a, b) => a.position - b.position), categories: formattedCategoryRows.sort((a, b) => a.position - b.position)});
     });
   });
 });
