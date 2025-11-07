@@ -242,6 +242,7 @@ function displayFollows(follows, followsContainer) {
       const searchResultElement = document.createElement('div');
       searchResultElement.classList.add('search-result');
       searchResultElement.style.cursor = "pointer";
+      searchResultElement.name = name; // For api function
       searchResultElement.id = `following-item-${name}`;
       searchResultElement.position = position;
 
@@ -371,4 +372,56 @@ function swapElements(el1, el2) {
 
   console.log("Element 1 position: ", el1.position);
   console.log("Element 2 position: ", el2.position);
+
+  // This should be api function
+  swapPositions(userId, el1.name, el2.name);
+}
+
+// Backend function
+function swapPositions(userId, streamerA, streamerB) {
+  console.log(streamerA);
+  console.log(streamerB);
+  /*
+  db.serialize(() => {
+    db.run('BEGIN TRANSACTION');
+
+    db.get(
+      'SELECT position FROM followed_streamers WHERE user_id = ? AND streamer = ?',
+      [userId, streamerA],
+      (err, rowA) => {
+        if (err || !rowA) return console.error('Error fetching A:', err);
+
+        db.get(
+          'SELECT position FROM followed_streamers WHERE user_id = ? AND streamer = ?',
+          [userId, streamerB],
+          (err, rowB) => {
+            if (err || !rowB) return console.error('Error fetching B:', err);
+
+            db.run(
+              'UPDATE followed_streamers SET position = ? WHERE user_id = ? AND streamer = ?',
+              [rowB.position, userId, streamerA],
+              function (err) {
+                if (err) return console.error('Error updating A:', err);
+
+                db.run(
+                  'UPDATE followed_streamers SET position = ? WHERE user_id = ? AND streamer = ?',
+                  [rowA.position, userId, streamerB],
+                  function (err) {
+                    if (err) {
+                      console.error('Error updating B:', err);
+                      db.run('ROLLBACK');
+                    } else {
+                      db.run('COMMIT');
+                      console.log('Swapped successfully!');
+                    }
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
+  });
+  */
 }
