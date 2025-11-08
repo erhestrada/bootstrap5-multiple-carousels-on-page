@@ -820,6 +820,12 @@ app.delete('/users/:userId/following/categories/:category', (req, res) => {
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
+
+// Swap positions
+app.patch('/users/:userId/following/:followType', (req, res) => {
+  console.log('patch endpoint hit');
+  res.end({message: 'patch endpoint hit'});
+});
 // -------------------------------------------------------------------
 app.get('/reddit-posts', async (req, res) => {
   try {
