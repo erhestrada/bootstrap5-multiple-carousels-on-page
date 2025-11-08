@@ -372,8 +372,8 @@ function swapElements(el1, el2) {
   console.log("Element 1 position: ", el1.position);
   console.log("Element 2 position: ", el2.position);
 
-  // This should be api function
-  swapPositions(userId, el1.name, el2.name);
+  const followType = 'streamers';
+  patchSwapPositions(userId, followType, el1.name, el2.name);
 }
 
 // Backend function
