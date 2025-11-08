@@ -822,68 +822,59 @@ app.delete('/users/:userId/following/categories/:category', (req, res) => {
 });
 
 // Swap positions
-app.patch('/users/:userId/following/:followType', (req, res) => {
-  const { userId, followType }= req.params;
+app.patch('/users/:userId/following/:followType', async (req, res) => {
+  const { userId, followType } = req.params;
   const { firstStreamerOrCategoryName, secondStreamerOrCategoryName } = req.body;
 
-  let tableName;
-  if (followType === "streamers") {
-    tableName = 'followed_streamers';
-  } else if (followType === "categories") {
-    tableName = 'followed_categories';
+  const tableName = followType === 'streamers' ? 'followed_streamers' : 'followed_categories';
+
+  try {
+    await swapPositions(tableName, userId, firstStreamerOrCategoryName, secondStreamerOrCategoryName);
+    res.send({ message: 'Positions swapped successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Failed to swap positions', error: err.message });
   }
-
-  swapPositions(tableName, userId, firstStreamerOrCategoryName, secondStreamerOrCategoryName);
-
-  console.log('patch endpoint hit');
-  res.send({message: 'patch endpoint hit'});
 });
 
-function swapPositions(tableName, userId, streamerA, streamerB) {
-  console.log(streamerA);
-  console.log(streamerB);
+async function swapPositions(tableName, userId, streamerA, streamerB) {
+  try {
+    await dbRunAsync('BEGIN TRANSACTION');
 
-  db.serialize(() => {
-    db.run('BEGIN TRANSACTION');
+    const rowA = await new Promise((resolve, reject) => {
+      db.get(
+        `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
+        [userId, streamerA],
+        (err, row) => (err ? reject(err) : resolve(row))
+      );
+    });
 
-    db.get(
-      `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
-      [userId, streamerA],
-      (err, rowA) => {
-        if (err || !rowA) return console.error('Error fetching A:', err);
+    const rowB = await new Promise((resolve, reject) => {
+      db.get(
+        `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
+        [userId, streamerB],
+        (err, row) => (err ? reject(err) : resolve(row))
+      );
+    });
 
-        db.get(
-          `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
-          [userId, streamerB],
-          (err, rowB) => {
-            if (err || !rowB) return console.error('Error fetching B:', err);
+    if (!rowA || !rowB) throw new Error('One of the streamers not found');
 
-            db.run(
-              `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
-              [rowB.position, userId, streamerA],
-              function (err) {
-                if (err) return console.error('Error updating A:', err);
-
-                db.run(
-                  `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
-                  [rowA.position, userId, streamerB],
-                  function (err) {
-                    if (err) {
-                      console.error('Error updating B:', err);
-                      db.run('ROLLBACK');
-                    } else {
-                      db.run('COMMIT');
-                      console.log('Swapped successfully!');
-                    }
-                  }
-                );
-              }
-            );
-          }
-        );
-      }
+    await dbRunAsync(
+      `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
+      [rowB.position, userId, streamerA]
     );
-  });
+
+    await dbRunAsync(
+      `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
+      [rowA.position, userId, streamerB]
+    );
+
+    await dbRunAsync('COMMIT');
+    console.log('Swapped successfully!');
+  } catch (err) {
+    await dbRunAsync('ROLLBACK');
+    throw err;
+  }
 }
 // -------------------------------------------------------------------
 app.get('/reddit-posts', async (req, res) => {
