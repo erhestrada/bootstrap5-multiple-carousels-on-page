@@ -823,9 +823,68 @@ app.delete('/users/:userId/following/categories/:category', (req, res) => {
 
 // Swap positions
 app.patch('/users/:userId/following/:followType', (req, res) => {
+  const { userId, followType }= req.params;
+  const { firstStreamerOrCategoryName, secondStreamerOrCategoryName } = req.body;
+
+  let tableName;
+  if (followType === "streamers") {
+    tableName = 'followed_streamers';
+  } else if (followType === "categories") {
+    tableName = 'followed_categories';
+  }
+
+  swapPositions(tableName, userId, firstStreamerOrCategoryName, secondStreamerOrCategoryName);
+
   console.log('patch endpoint hit');
   res.send({message: 'patch endpoint hit'});
 });
+
+function swapPositions(tableName, userId, streamerA, streamerB) {
+  console.log(streamerA);
+  console.log(streamerB);
+
+  db.serialize(() => {
+    db.run('BEGIN TRANSACTION');
+
+    db.get(
+      `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
+      [userId, streamerA],
+      (err, rowA) => {
+        if (err || !rowA) return console.error('Error fetching A:', err);
+
+        db.get(
+          `SELECT position FROM ${tableName} WHERE user_id = ? AND streamer = ?`,
+          [userId, streamerB],
+          (err, rowB) => {
+            if (err || !rowB) return console.error('Error fetching B:', err);
+
+            db.run(
+              `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
+              [rowB.position, userId, streamerA],
+              function (err) {
+                if (err) return console.error('Error updating A:', err);
+
+                db.run(
+                  `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
+                  [rowA.position, userId, streamerB],
+                  function (err) {
+                    if (err) {
+                      console.error('Error updating B:', err);
+                      db.run('ROLLBACK');
+                    } else {
+                      db.run('COMMIT');
+                      console.log('Swapped successfully!');
+                    }
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
+  });
+}
 // -------------------------------------------------------------------
 app.get('/reddit-posts', async (req, res) => {
   try {
