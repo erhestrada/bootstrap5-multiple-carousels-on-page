@@ -171,13 +171,13 @@ async function displayClips(clips, container) {
 
 async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows) {
   const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-  displayClips(upvotedClips, upvotedClipsContainer);
+  displayHistory(upvotedClips, upvotedClipsContainer);
 
   const downvotedClipsContainer = document.getElementById('downvoted-clips-container');
-  displayClips(downvotedClips, downvotedClipsContainer);
+  displayHistory(downvotedClips, downvotedClipsContainer);
 
   const favoritedClipsContainer = document.getElementById('favorited-clips-container');
-  displayClips(favoritedClips, favoritedClipsContainer);
+  displayHistory(favoritedClips, favoritedClipsContainer);
 
   const commentedOnClipsContainer = document.getElementById('commented-clips-container');
   displayClips(commentedOnClips, commentedOnClipsContainer);
@@ -211,7 +211,7 @@ console.log('follows: ', follows);
 
 // Display first tab when page opened
 const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
-displayClips(upvotedClips, upvotedClipsContainer);
+displayHistory(upvotedClips, upvotedClipsContainer);
 
 tabButtons.forEach(button => {
   button.addEventListener('click', () => {
