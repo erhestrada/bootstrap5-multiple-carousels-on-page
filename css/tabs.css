@@ -53,15 +53,3 @@
 .tab-content.active {
   display: block;
 }
-
-
-.profile-tab.tab-content.active {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(338px, 1fr));
-  gap: 16px;
-}
-
-.profile-tab.tab-content.active > * {
-  max-width: 338px;
-  width: 100%;
-}
