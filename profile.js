@@ -398,6 +398,7 @@ function makeHistoryRow(clip) {
   row.style.display = "flex";
   row.style.alignItems = "flex-start";
   row.style.marginBottom = "10px";
+  row.addEventListener('click', () => { openPopUpPlayer(clip) });
 
   // Thumbnail wrapper
   const thumbWrapper = document.createElement('div');
