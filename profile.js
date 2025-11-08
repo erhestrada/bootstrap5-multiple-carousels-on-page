@@ -1,10 +1,9 @@
 import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./clips";
-import { getFollows } from './follows';
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayNetVotes } from "./display-net-votes";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
-import { deleteStreamerFollow } from './follows';
+import { getFollows, deleteStreamerFollow, patchSwapPositions } from './follows';
 
 window.switchItems = [];
 
