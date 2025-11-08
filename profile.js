@@ -180,7 +180,7 @@ async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, comm
   displayHistory(favoritedClips, favoritedClipsContainer);
 
   const commentedOnClipsContainer = document.getElementById('commented-clips-container');
-  displayClips(commentedOnClips, commentedOnClipsContainer);
+  displayHistory(commentedOnClips, commentedOnClipsContainer);
 
   const historyClipsContainer = document.getElementById('history-clips-container');
   displayHistory(historyClips, historyClipsContainer);
