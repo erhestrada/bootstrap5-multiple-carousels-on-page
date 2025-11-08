@@ -105,6 +105,10 @@ followStreamerButton.addEventListener('click', () => followStreamer(window.userI
 followCategoryButton.addEventListener('click', () => followCategory(window.userId, window.currentClipPosition['game']));
 
 document.getElementById('theater-mode-button').addEventListener('click', toggleStreamerBarCarousel);
+document.querySelectorAll('.pfp').forEach(pfp => {
+  pfp.addEventListener('click', toggleStreamerBarCarousel);
+});
+
 document.getElementById('donut-button-top').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 1));
 document.getElementById('donut-button-right').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 7));
 document.getElementById('donut-button-bottom').addEventListener('click', () => updateStreamerBarCarousel(window.currentStreamerId, 30));
