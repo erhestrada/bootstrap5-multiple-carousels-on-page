@@ -7,7 +7,6 @@ export default async function getVotedOnClips(userId) {
         }
 
         const commentedOnClips = await response.json();
-        console.log(commentedOnClips);
         return commentedOnClips;
 
     } catch (error) {
