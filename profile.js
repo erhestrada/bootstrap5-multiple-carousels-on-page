@@ -173,7 +173,7 @@ async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, comm
   displayHistory(favoritedClips, favoritedClipsContainer);
 
   const commentedOnClipsContainer = document.getElementById('commented-clips-container');
-  displayHistory(commentedOnClips, commentedOnClipsContainer);
+  displayCommentedOnClips(commentedOnClips, commentedOnClipsContainer);
 
   const historyClipsContainer = document.getElementById('history-clips-container');
   displayHistory(historyClips, historyClipsContainer);
@@ -381,6 +381,84 @@ function displayHistory(clips, container) {
 
 
 function makeHistoryRow(clip) {
+  const embedUrl = clip.embed_url;
+  const viewCounts = clip.view_count;
+  const creationDateTimes = clip.created_at;
+
+  // Create outer row container
+  const row = document.createElement('div');
+  row.className = "playlist-row";
+  row.style.display = "flex";
+  row.style.alignItems = "flex-start";
+  row.style.marginBottom = "10px";
+  row.addEventListener('click', () => { openPopUpPlayer(clip) });
+
+  // Thumbnail wrapper
+  const thumbWrapper = document.createElement('div');
+  thumbWrapper.className = 'playlist-thumb-wrapper';
+  thumbWrapper.style.position = "relative";
+  thumbWrapper.style.flex = "0 0 168px"; // Similar to YouTube's playlist thumbnail width
+  thumbWrapper.style.marginRight = "10px";
+
+  const thumb = document.createElement('img');
+  thumb.src = clip.thumbnail_url + "?parent=localhost";
+  thumb.classList.add('thumbnail');
+  thumb.style.width = "100%";
+  thumb.style.cursor = "pointer";
+
+  // Duration overlay
+  const durationOverlay = document.createElement('span');
+  durationOverlay.innerText = Math.round(clip.duration) + 's';
+  durationOverlay.style.position = 'absolute';
+  durationOverlay.style.bottom = '4px';
+  durationOverlay.style.right = '4px';
+  durationOverlay.style.background = 'rgba(0, 0, 0, 0.75)';
+  durationOverlay.style.color = '#fff';
+  durationOverlay.style.padding = '2px 4px';
+  durationOverlay.style.fontSize = '12px';
+  durationOverlay.style.borderRadius = '2px';
+
+  // Right-side info column
+  const infoCol = document.createElement('div');
+  infoCol.className = 'info-col';
+  infoCol.style.flex = "1";
+
+  const titleEl = document.createElement('p');
+  titleEl.innerText = clip.title;
+  titleEl.style.margin = "0";
+  titleEl.style.fontWeight = "bold";
+  titleEl.style.color = "#FFFFFF";
+  titleEl.style.cursor = "pointer";
+
+  const streamerEl = document.createElement('p');
+  streamerEl.innerText = clip.broadcaster_name;
+  streamerEl.style.margin = "2px 0 0 0";
+  streamerEl.style.color = "#AAAAAA";
+  streamerEl.style.fontSize = "14px";
+
+  // Append elements
+  thumbWrapper.appendChild(thumb);
+  thumbWrapper.appendChild(durationOverlay);
+  infoCol.appendChild(titleEl);
+  infoCol.appendChild(streamerEl);
+  row.appendChild(thumbWrapper);
+  row.appendChild(infoCol);
+
+  return { clipElement: row };
+}
+
+
+
+function displayCommentedOnClips(clips, container) {
+  for (const clip of clips) {
+    const { clipElement } = makeCommentedOnClipRow(clip, container);
+    container.prepend(clipElement);    
+  }
+}
+
+
+
+function makeCommentedOnClipRow(clip) {
   const embedUrl = clip.embed_url;
   const viewCounts = clip.view_count;
   const creationDateTimes = clip.created_at;
