@@ -6,8 +6,9 @@ export default async function getVotedOnClips(userId) {
             throw new Error(`HTTP error; status: ${response.status}`);
         }
 
-        const votesData = await response.json();
-        return votesData;
+        const commentedOnClips = await response.json();
+        console.log(commentedOnClips);
+        return commentedOnClips;
 
     } catch (error) {
         console.error('Error getting commented on clips', error);
