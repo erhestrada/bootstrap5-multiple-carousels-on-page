@@ -450,77 +450,127 @@ function makeHistoryRow(clip) {
 
 
 function displayCommentedOnClips(clips, container) {
+  container.innerHTML = '';
+
+  const headerRow = document.createElement('div');
+  headerRow.style.display = "flex";
+  headerRow.style.alignItems = "center";
+  headerRow.style.justifyContent = "space-between";
+  headerRow.style.marginBottom = "8px";
+  headerRow.style.padding = "4px 0";
+  headerRow.style.borderBottom = "1px solid rgba(255, 255, 255, 0.2)";
+  headerRow.style.color = "#AAAAAA";
+  headerRow.style.fontSize = "14px";
+  headerRow.style.fontWeight = "bold";
+
+  const leftLabel = document.createElement('div');
+  /*
+  leftLabel.innerText = "Clip";
+  leftLabel.style.flex = "1";
+  leftLabel.style.paddingLeft = "178px"; // roughly aligns under thumbnail area
+  leftLabel.style.textAlign = "left";
+  */
+
+  const rightLabel = document.createElement('div');
+  rightLabel.innerText = "Comment";
+  rightLabel.style.flex = "0 0 250px";
+  rightLabel.style.textAlign = "left";
+
+  headerRow.appendChild(leftLabel);
+  headerRow.appendChild(rightLabel);
+  container.appendChild(headerRow);
+
   for (const clip of clips) {
-    const { clipElement } = makeCommentedOnClipRow(clip, container);
-    container.prepend(clipElement);    
+    const { clipElement } = makeCommentedOnClipRow(clip);
+    container.appendChild(clipElement);
   }
 }
 
-
-
 function makeCommentedOnClipRow(clip) {
-  const embedUrl = clip.embed_url;
-  const viewCounts = clip.view_count;
-  const creationDateTimes = clip.created_at;
-
-  // Create outer row container
   const row = document.createElement('div');
   row.className = "playlist-row";
   row.style.display = "flex";
-  row.style.alignItems = "flex-start";
+  row.style.alignItems = "center";
+  row.style.justifyContent = "space-between";
   row.style.marginBottom = "10px";
+  row.style.gap = "12px";
   row.addEventListener('click', () => { openPopUpPlayer(clip) });
 
-  // Thumbnail wrapper
+  const leftSide = document.createElement('div');
+  leftSide.style.display = "flex";
+  leftSide.style.alignItems = "flex-start";
+  leftSide.style.gap = "10px";
+  leftSide.style.flex = "1";
+  leftSide.style.minWidth = "0";
+
   const thumbWrapper = document.createElement('div');
-  thumbWrapper.className = 'playlist-thumb-wrapper';
   thumbWrapper.style.position = "relative";
-  thumbWrapper.style.flex = "0 0 168px"; // Similar to YouTube's playlist thumbnail width
-  thumbWrapper.style.marginRight = "10px";
+  thumbWrapper.style.flex = "0 0 168px";
 
   const thumb = document.createElement('img');
   thumb.src = clip.thumbnail_url + "?parent=localhost";
-  thumb.classList.add('thumbnail');
   thumb.style.width = "100%";
   thumb.style.cursor = "pointer";
+  thumbWrapper.appendChild(thumb);
 
-  // Duration overlay
   const durationOverlay = document.createElement('span');
   durationOverlay.innerText = Math.round(clip.duration) + 's';
-  durationOverlay.style.position = 'absolute';
-  durationOverlay.style.bottom = '4px';
-  durationOverlay.style.right = '4px';
-  durationOverlay.style.background = 'rgba(0, 0, 0, 0.75)';
-  durationOverlay.style.color = '#fff';
-  durationOverlay.style.padding = '2px 4px';
-  durationOverlay.style.fontSize = '12px';
-  durationOverlay.style.borderRadius = '2px';
+  Object.assign(durationOverlay.style, {
+    position: 'absolute',
+    bottom: '4px',
+    right: '4px',
+    background: 'rgba(0, 0, 0, 0.75)',
+    color: '#fff',
+    padding: '2px 4px',
+    fontSize: '12px',
+    borderRadius: '2px'
+  });
+  thumbWrapper.appendChild(durationOverlay);
 
-  // Right-side info column
   const infoCol = document.createElement('div');
-  infoCol.className = 'info-col';
-  infoCol.style.flex = "1";
+  infoCol.style.display = "flex";
+  infoCol.style.flexDirection = "column";
+  infoCol.style.overflow = "hidden";
 
   const titleEl = document.createElement('p');
   titleEl.innerText = clip.title;
-  titleEl.style.margin = "0";
-  titleEl.style.fontWeight = "bold";
-  titleEl.style.color = "#FFFFFF";
-  titleEl.style.cursor = "pointer";
+  Object.assign(titleEl.style, {
+    margin: "0",
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  });
 
   const streamerEl = document.createElement('p');
   streamerEl.innerText = clip.broadcaster_name;
-  streamerEl.style.margin = "2px 0 0 0";
-  streamerEl.style.color = "#AAAAAA";
-  streamerEl.style.fontSize = "14px";
+  Object.assign(streamerEl.style, {
+    margin: "2px 0 0 0",
+    color: "#AAAAAA",
+    fontSize: "14px"
+  });
 
-  // Append elements
-  thumbWrapper.appendChild(thumb);
-  thumbWrapper.appendChild(durationOverlay);
   infoCol.appendChild(titleEl);
   infoCol.appendChild(streamerEl);
-  row.appendChild(thumbWrapper);
-  row.appendChild(infoCol);
+  leftSide.appendChild(thumbWrapper);
+  leftSide.appendChild(infoCol);
+
+  const commentCol = document.createElement('div');
+  commentCol.innerText = clip.comment || '';
+  Object.assign(commentCol.style, {
+    flex: "0 0 250px",       
+    color: "#CCCCCC",
+    fontSize: "14px",
+    background: "rgba(255,255,255,0.05)",
+    padding: "6px 8px",
+    borderRadius: "4px",
+    overflowWrap: "break-word",
+    whiteSpace: "normal",
+  });
+
+  row.appendChild(leftSide);
+  row.appendChild(commentCol);
 
   return { clipElement: row };
 }
