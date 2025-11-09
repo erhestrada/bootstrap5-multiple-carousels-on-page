@@ -162,13 +162,6 @@ window.onclick = function(event) {
   }
 }
 
-async function displayClips(clips, container) {
-  container.innerHTML = '';
-  for (const clip of clips) {
-    displayClip(clip, container);
-  }
-}
-
 async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, commentedOnClips, historyClips, follows) {
   const upvotedClipsContainer = document.getElementById('upvoted-clips-container');
   displayHistory(upvotedClips, upvotedClipsContainer);
