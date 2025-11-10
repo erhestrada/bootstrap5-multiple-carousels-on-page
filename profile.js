@@ -176,7 +176,7 @@ async function renderAllClips(upvotedClips, downvotedClips, favoritedClips, comm
   displayCommentedOnClips(commentedOnClips, commentedOnClipsContainer);
 
   const historyClipsContainer = document.getElementById('history-clips-container');
-  displayHistory(historyClips, historyClipsContainer);
+  displayHistory(historyClips.reverse(), historyClipsContainer);
   
   const followingContainer = document.getElementById('following-container');
   displayFollows(follows, followingContainer);
