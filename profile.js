@@ -574,3 +574,14 @@ function makeCommentedOnClipRow(clip) {
 
   return { clipElement: row };
 }
+
+
+const buttons = document.querySelector('.tab-buttons');
+
+const stickyStuff = document.querySelector('.sticky-stuff');
+const stickyRect = stickyStuff.getBoundingClientRect();
+const offset = stickyRect.height;
+
+buttons.style.position = 'sticky';
+buttons.style.top = offset + 'px';
+buttons.style.zIndex = '100';
