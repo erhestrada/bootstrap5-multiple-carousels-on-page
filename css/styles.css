@@ -31,6 +31,10 @@ a:hover {
   text-decoration: none; /* Keep no underline on hover */
 }
 
+h1 {
+  margin: 0; /* For tab buttons sticky behavior on profile page */
+}
+
 #categories-to-browse {
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap to the next line */
