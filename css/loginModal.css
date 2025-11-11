@@ -37,12 +37,22 @@
 }
 
 #loginBtn {
-    width:100%;
-    padding:10px;
-    background-color:#6c757d;
-    color:white;
-    border:none;
-    border-radius:4px;
-    margin-top:10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
     cursor: not-allowed;
+}
+
+#signUpBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
 }
