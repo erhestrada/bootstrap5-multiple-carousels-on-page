@@ -8,6 +8,10 @@
     background:rgba(0,0,0,0.5);
 }
 
+#login-modal h2 {
+    color: black;
+}
+
 #login-modal-inner {
     background:white;
     margin:10% auto;
