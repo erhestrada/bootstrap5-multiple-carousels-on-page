@@ -1,4 +1,8 @@
 export function setupLogin() {
+    const navBarLoginButton = document.getElementById('log-in-button');
+    const loginModal = document.getElementById('login-modal');
+    navBarLoginButton.addEventListener('click', () => loginModal.style.display = 'block');
+
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
