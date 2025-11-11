@@ -3,6 +3,9 @@ export function setupLogin() {
     const loginModal = document.getElementById('login-modal');
     navBarLoginButton.addEventListener('click', () => loginModal.style.display = 'block');
 
+    const loginModalCloseButton = loginModal.querySelector('.close-btn');
+    loginModalCloseButton.addEventListener('click', () => loginModal.style.display='none');
+
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
