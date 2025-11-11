@@ -56,3 +56,11 @@
     border-radius: 4px;
     margin-top: 10px;
 }
+
+#login-modal .close-btn {
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
