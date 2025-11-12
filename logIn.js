@@ -9,6 +9,9 @@ export function setupLogin() {
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
+    const signUpBtn = document.getElementById('signUpBtn');
+
+    signUpBtn.addEventListener('click', handleSignUp);
 
     function toggleLoginButton() {
         const username = usernameInput.value.trim();
@@ -33,4 +36,8 @@ export function setupLogin() {
         loginModal.style.display = 'none';
         }
     });
+}
+
+function handleSignUp() {
+    alert('sign up');
 }
