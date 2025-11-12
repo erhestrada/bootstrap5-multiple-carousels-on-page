@@ -61,5 +61,9 @@ function toggleLogInSignUp(loginModal) {
 }
 
 function handleSignUp() {
-    
+
+}
+
+function handleLogIn() {
+
 }
