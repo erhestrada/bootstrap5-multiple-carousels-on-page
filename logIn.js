@@ -44,4 +44,5 @@ function handleSignUp(loginModal) {
     const changeModalButton = loginModal.querySelector('#signUpBtn');
 
     header.innerText = 'Sign up for Clips Tracker';
+    submitButton.innerText = 'Sign Up';
 }
