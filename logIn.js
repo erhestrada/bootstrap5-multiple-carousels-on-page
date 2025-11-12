@@ -27,4 +27,10 @@ export function setupLogin() {
 
     usernameInput.addEventListener('input', toggleLoginButton);
     passwordInput.addEventListener('input', toggleLoginButton);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+        loginModal.style.display = 'none';
+        }
+    });
 }
