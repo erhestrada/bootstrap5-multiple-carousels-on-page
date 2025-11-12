@@ -60,3 +60,6 @@ function toggleLogInSignUp(loginModal) {
     }
 }
 
+function handleSignUp() {
+    
+}
