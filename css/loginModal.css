@@ -1,65 +1,86 @@
 #login-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-}
-
-#login-modal h2 {
-    color: black;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 #login-modal-inner {
-    background: white;
-    margin: 10% auto;
-    padding: 30px;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    text-align: center;
+  background: #2c2c2c;
+  color: #ffffff;
+  margin: 10% auto;
+  padding: 30px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  position: relative;
+  font-family: system-ui, sans-serif;
 }
 
-#username {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    box-sizing: border-box;
+#login-modal h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
 }
 
+#username,
 #password {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #3a3a3a;
+  color: white;
+}
+
+#username::placeholder,
+#password::placeholder {
+  color: #b0b0b0;
 }
 
 #loginBtn {
-    width: 100%;
-    padding: 10px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-top: 10px;
-    cursor: not-allowed;
+  width: 100%;
+  padding: 10px;
+  background-color: #5a5a5a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: not-allowed;
+}
+
+#loginBtn:enabled {
+  background-color: #007bff;
+  cursor: pointer;
 }
 
 #signUpBtn {
-    width: 100%;
-    margin-top: 15px;
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #00aaff;
+  cursor: pointer;
 }
 
 #login-modal .close-btn {
-    margin-top: 15px;
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #cccccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#login-modal .close-btn:hover {
+  color: white;
 }
