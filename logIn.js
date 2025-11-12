@@ -11,6 +11,7 @@ export function setupLogin() {
     const loginBtn = document.getElementById('loginBtn');
     const signUpBtn = document.getElementById('signUpBtn');
 
+    loginBtn.onclick = handleLogIn;
     signUpBtn.onclick = () => toggleLogInSignUp(loginModal);
 
     function toggleLoginButton() {
@@ -50,20 +51,22 @@ function toggleLogInSignUp(loginModal) {
         submitButton.innerText = 'Sign Up';
         changeModalButton.innerText = 'Log In';
 
+        submitButton.onclick = handleSignUp;
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     } else {
         header.innerText = 'Log in to Clips Tracker';
         submitButton.innerText = 'Log In';
         changeModalButton.innerText = 'Sign Up';
 
+        submitButton.onclick = handleLogIn;
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     }
 }
 
 function handleSignUp() {
-
+    alert('sign up');
 }
 
 function handleLogIn() {
-
+    alert('log in');
 }
