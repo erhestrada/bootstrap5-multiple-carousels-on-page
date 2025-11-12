@@ -45,4 +45,5 @@ function handleSignUp(loginModal) {
 
     header.innerText = 'Sign up for Clips Tracker';
     submitButton.innerText = 'Sign Up';
+    changeModalButton.innerText = "Log In";
 }
