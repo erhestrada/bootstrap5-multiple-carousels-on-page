@@ -11,7 +11,7 @@ export function setupLogin() {
     const loginBtn = document.getElementById('loginBtn');
     const signUpBtn = document.getElementById('signUpBtn');
 
-    signUpBtn.addEventListener('click', handleSignUp);
+    signUpBtn.addEventListener('click', () => handleSignUp(loginModal));
 
     function toggleLoginButton() {
         const username = usernameInput.value.trim();
@@ -38,6 +38,10 @@ export function setupLogin() {
     });
 }
 
-function handleSignUp() {
-    alert('sign up');
+function handleSignUp(loginModal) {
+    const header = loginModal.querySelector('h2');
+    const submitButton = loginModal.querySelector('#loginBtn');
+    const changeModalButton = loginModal.querySelector('#signUpBtn');
+
+    header.innerText = 'Sign up for Clips Tracker';
 }
