@@ -4,11 +4,18 @@ export default async function signup(userId, username, password) {
     const usernames = users.map(user => user.username);
     const usernameExists = usernames.includes(username);
     if (usernameExists) {
-        // error message
         console.log('old username');
+        return { success: false, message: 'Username already exists' };
     } else {
         console.log("new username");
-        patchLogin(userId, username, password);
+        try {
+            const result = await patchLogin(userId, username, password);
+            return { success: true, message: 'Login updated successfully', data: result };
+        } catch (error) {
+            // "Something went wrong"
+            console.error('Failed to update login information:', error.message);
+            return { success: false, message: error.message };
+        }
     }
 }
 
@@ -46,6 +53,6 @@ export async function patchLogin(userId, username, password) {
 
     } catch (error) {
         console.error('Failed to patch login:', error.message);
-        throw error; // let UI handle it
+        throw error; // Throw error so UI knows to display error message
     }
 };
