@@ -74,6 +74,15 @@ db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
 
+function getAllRowsFromTable(tableName, res) {
+  const query = `SELECT * FROM ${tableName}`;
+
+  db.all(query, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+}
+
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
 
@@ -201,6 +210,11 @@ function nestComments(flatComments) {
 }
 
 // ---------------------------- Users ------------------------------
+// Get all uses
+app.get('/users', (req, res) => {
+  getAllRowsFromTable('users', res);
+});
+
 app.get('/signed-out-user', async (req, res) => {
   const { clientId } = req.query;
 
@@ -395,7 +409,6 @@ app.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
 });
 
-// get all user comments
 app.get('/users/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'comments';
