@@ -62,11 +62,3 @@ function toggleLogInSignUp(loginModal) {
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     }
 }
-
-function handleSignUp() {
-    alert('sign up');
-}
-
-function handleLogIn() {
-    alert('log in');
-}
