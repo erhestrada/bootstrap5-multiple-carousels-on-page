@@ -64,7 +64,11 @@ function toggleLogInSignUp(loginModal) {
         submitButton.innerText = 'Log In';
         changeModalButton.innerText = 'Sign Up';
 
-        submitButton.onclick = login;
+        submitButton.onclick = () => {
+            const username = loginModal.querySelector('#username').value;
+            const password = loginModal.querySelector('#password').value;
+            login(username, password);
+        }
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     }
 }
