@@ -31,7 +31,6 @@ export async function getUsers() {
         return [];
     }
 }
-
 export async function patchLogin(userId, username, password) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/${userId}/login`, {
@@ -41,14 +40,12 @@ export async function patchLogin(userId, username, password) {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error; status: ${response.status}`);
+            const result = await response.json(); // Parse json to get error
+            throw new Error(result.error || `HTTP error; status: ${response.status}`);
         }
 
-        const result = await response.json();
-        console.log('Updated login:', result);
-
     } catch (error) {
-        console.error('Failed to patch login:', error);
-        // throw error if the ui should display something in this case
+        console.error('Failed to patch login:', error.message);
+        throw error; // let UI handle it
     }
 };
