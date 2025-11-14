@@ -65,6 +65,7 @@ window.userIdPromise.then(({ userId, username }) => {
   localStorage.setItem('userId', userId);
   localStorage.setItem('username', username);
   buttonsNeedingUser.forEach(button => button.disabled = false);
+  setupLogin(userId);
 
   const followsPromise = getFollows(userId);
   followsPromise.then(follows => {
@@ -204,4 +205,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 positionCarouselTabButtons();
-setupLogin();
