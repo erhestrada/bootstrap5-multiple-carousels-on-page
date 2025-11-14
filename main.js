@@ -17,7 +17,7 @@ import { getRedditPosts } from './get-reddit-posts.js';
 import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js';
 import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 import { toggleStreamerBarCarousel } from './toggleStreamerBarCarousel.js';
-import { setupLogin } from './logIn.js';
+import { setupLogin } from './setupLogin.js';
 
 // TODO: fix centering of streamer bar carousel
 // TODO: autoplay?
