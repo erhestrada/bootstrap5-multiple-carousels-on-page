@@ -1,3 +1,5 @@
+import { signup, login } from "./auth";
+
 export function setupLogin() {
     const navBarLoginButton = document.getElementById('log-in-button');
     const loginModal = document.getElementById('login-modal');
@@ -11,7 +13,7 @@ export function setupLogin() {
     const loginBtn = document.getElementById('loginBtn');
     const signUpBtn = document.getElementById('signUpBtn');
 
-    loginBtn.onclick = handleLogIn;
+    loginBtn.onclick = login;
     signUpBtn.onclick = () => toggleLogInSignUp(loginModal);
 
     function toggleLoginButton() {
@@ -51,14 +53,14 @@ function toggleLogInSignUp(loginModal) {
         submitButton.innerText = 'Sign Up';
         changeModalButton.innerText = 'Log In';
 
-        submitButton.onclick = handleSignUp;
+        submitButton.onclick = signup;
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     } else {
         header.innerText = 'Log in to Clips Tracker';
         submitButton.innerText = 'Log In';
         changeModalButton.innerText = 'Sign Up';
 
-        submitButton.onclick = handleLogIn;
+        submitButton.onclick = login;
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     }
 }
