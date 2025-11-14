@@ -4,7 +4,15 @@
 // if valid username post
 export default async function signup(username, password) {
     const users = await getUsers();
-    alert('sign up');
+    const usernames = users.map(user => user.username);
+    const usernameExists = usernames.includes(username);
+    if (usernameExists) {
+        // error message
+        console.log('old username');
+    } else {
+        console.log("new username");
+        // post/patch username password
+    }
 }
 
 // move to /users ?
