@@ -13,7 +13,7 @@ export function setupLogin() {
     const loginBtn = document.getElementById('loginBtn');
     const signUpBtn = document.getElementById('signUpBtn');
 
-    loginBtn.onclick = login;
+    loginBtn.onclick = () => handleLogin(loginModal);
     signUpBtn.onclick = () => toggleLogInSignUp(loginModal);
 
     function toggleLoginButton() {
@@ -64,11 +64,14 @@ function toggleLogInSignUp(loginModal) {
         submitButton.innerText = 'Log In';
         changeModalButton.innerText = 'Sign Up';
 
-        submitButton.onclick = () => {
-            const username = loginModal.querySelector('#username').value;
-            const password = loginModal.querySelector('#password').value;
-            login(username, password);
-        }
+        submitButton.onclick = () => handleLogin(loginModal);
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     }
+}
+
+function handleLogin(loginModal) {
+    const username = loginModal.querySelector('#username').value;
+    const password = loginModal.querySelector('#password').value;
+    alert(username + password);
+    login(username, password); 
 }
