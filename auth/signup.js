@@ -1,7 +1,4 @@
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-// get users
-// check if username novel else error
-// if valid username post
 export default async function signup(username, password) {
     const users = await getUsers();
     const usernames = users.map(user => user.username);
@@ -11,6 +8,7 @@ export default async function signup(username, password) {
         console.log('old username');
     } else {
         console.log("new username");
+        patchUser(clientId, username, password);
         // post/patch username password
     }
 }
@@ -34,3 +32,18 @@ export async function getUsers() {
         return [];
     }
 }
+
+export async function patchUser(clientId, username, password) {
+    try {
+        const response = await fetch('http://192.168.86.195:3000/postUser', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uuid })
+        });
+        const result = await response.json();
+        console.log('Data Stored:', result);
+
+    } catch (error) {
+        console.error('Error storing data:', error);
+    }
+};
