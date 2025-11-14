@@ -1,5 +1,5 @@
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-export default async function signup(username, password) {
+export default async function signup(userId, username, password) {
     const users = await getUsers();
     const usernames = users.map(user => user.username);
     const usernameExists = usernames.includes(username);
@@ -8,8 +8,7 @@ export default async function signup(username, password) {
         console.log('old username');
     } else {
         console.log("new username");
-        patchUser(clientId, username, password);
-        // post/patch username password
+        patchLogin(userId, username, password);
     }
 }
 
@@ -33,17 +32,23 @@ export async function getUsers() {
     }
 }
 
-export async function patchUser(clientId, username, password) {
+export async function patchLogin(userId, username, password) {
     try {
-        const response = await fetch('http://192.168.86.195:3000/postUser', {
-            method: 'POST',
+        const response = await fetch(`http://192.168.86.195:3000/${userId}/login`, {
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uuid })
+            body: JSON.stringify({ username, password })
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error; status: ${response.status}`);
+        }
+
         const result = await response.json();
-        console.log('Data Stored:', result);
+        console.log('Updated login:', result);
 
     } catch (error) {
-        console.error('Error storing data:', error);
+        console.error('Failed to patch login:', error);
+        // throw error if the ui should display something in this case
     }
 };
