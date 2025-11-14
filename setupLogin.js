@@ -53,11 +53,7 @@ function toggleLogInSignUp(loginModal) {
         submitButton.innerText = 'Sign Up';
         changeModalButton.innerText = 'Log In';
 
-        submitButton.onclick = () => {
-            const username = loginModal.querySelector('#username').value;
-            const password = loginModal.querySelector('#password').value;
-            signup(username, password);
-        }
+        submitButton.onclick = () => handleSignup(loginModal);
         changeModalButton.onclick = () => toggleLogInSignUp(loginModal);
     } else {
         header.innerText = 'Log in to Clips Tracker';
@@ -72,6 +68,11 @@ function toggleLogInSignUp(loginModal) {
 function handleLogin(loginModal) {
     const username = loginModal.querySelector('#username').value;
     const password = loginModal.querySelector('#password').value;
-    alert(username + password);
     login(username, password); 
+}
+
+function handleSignup(loginModal) {
+    const username = loginModal.querySelector('#username').value;
+    const password = loginModal.querySelector('#password').value;
+    signup(username, password); 
 }
