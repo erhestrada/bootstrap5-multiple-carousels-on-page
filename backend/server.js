@@ -210,7 +210,7 @@ function nestComments(flatComments) {
 }
 
 // ---------------------------- Users ------------------------------
-// Get all uses
+// Get all users
 app.get('/users', (req, res) => {
   getAllRowsFromTable('users', res);
 });
@@ -229,6 +229,32 @@ app.get('/signed-out-user', async (req, res) => {
     console.error('Failed to get signed out user:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+// Update user username and password
+app.patch('/:userId/login', (req, res) => {
+  const { userId } = req.params;
+  const { username, password } = req.body;
+
+  const updateQuery = `
+    UPDATE users
+    SET username = ?, password = ?
+    WHERE id = ?
+  `;
+  const parameters = [username, password, userId];
+
+  db.run(updateQuery, parameters, function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log(`User: ${userId} username and password updated successfully. New username: ${username}`);
+    res.json({ message: 'Login updated successfully' });
+  });
 });
 // ---------------------------- Clips ------------------------------
 app.get('/clips/:userId/votes', (req, res) => {
