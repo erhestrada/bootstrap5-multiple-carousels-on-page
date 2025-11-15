@@ -4,7 +4,9 @@ export default async function signup(userId, username, password) {
     const usernames = users.map(user => user.username);
     const usernameExists = usernames.includes(username);
     if (usernameExists) {
-        console.log('old username');
+        const usernameTakenMessage = document.getElementById("username-taken-message");
+        usernameTakenMessage.classList.remove('hidden');
+        //alert('Username already exists');
         return { success: false, message: 'Username already exists' };
     } else {
         console.log("new username");
