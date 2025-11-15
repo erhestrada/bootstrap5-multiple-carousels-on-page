@@ -1,9 +1,7 @@
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export default async function signup(userId, username, password) {
     const users = await getUsers();
-    const usernames = users.map(user => user.username);
-    const usernameExists = usernames.includes(username);
-    if (usernameExists) {
+    if (users.some(user => user.username === username)) {
         const usernameTakenMessage = document.getElementById("username-taken-message");
         usernameTakenMessage.classList.remove('hidden');
         //alert('Username already exists');
