@@ -10,13 +10,10 @@ export default async function signup(userId, username, password) {
     console.log("new username");
     try {
         const result = await patchLogin(userId, username, password);
-        return { success: true, message: 'Login updated successfully', data: result };
     } catch (error) {
         // "Something went wrong"
         console.error('Failed to update login information:', error.message);
-        return { success: false, message: error.message };
-    }
-    
+    }    
 }
 
 // move to /users ?
