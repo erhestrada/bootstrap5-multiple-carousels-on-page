@@ -1,8 +1,10 @@
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export default async function signup(userId, username, password) {
     const users = await getUsers();
+    const usernameTakenMessage = document.getElementById("username-taken-message");
+
     if (users.some(user => user.username === username)) {
-        const usernameTakenMessage = document.getElementById("username-taken-message");
+        usernameTakenMessage.innerText = "This is someone else's username!";
         usernameTakenMessage.classList.remove('hidden');
         return; // Early return guard clause
     } 
@@ -11,7 +13,8 @@ export default async function signup(userId, username, password) {
     try {
         await patchLogin(userId, username, password);
     } catch (error) {
-        // "Something went wrong"
+        usernameTakenMessage.innerText = "Something went wrong";
+        usernameTakenMessage.classList.remove('hidden');
         console.error('Failed to update login information:', error.message);
     }    
 }
