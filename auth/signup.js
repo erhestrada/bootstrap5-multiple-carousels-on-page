@@ -4,19 +4,19 @@ export default async function signup(userId, username, password) {
     if (users.some(user => user.username === username)) {
         const usernameTakenMessage = document.getElementById("username-taken-message");
         usernameTakenMessage.classList.remove('hidden');
-        //alert('Username already exists');
-        return { success: false, message: 'Username already exists' };
-    } else {
-        console.log("new username");
-        try {
-            const result = await patchLogin(userId, username, password);
-            return { success: true, message: 'Login updated successfully', data: result };
-        } catch (error) {
-            // "Something went wrong"
-            console.error('Failed to update login information:', error.message);
-            return { success: false, message: error.message };
-        }
+        return; // Early return guard clause
+    } 
+    
+    console.log("new username");
+    try {
+        const result = await patchLogin(userId, username, password);
+        return { success: true, message: 'Login updated successfully', data: result };
+    } catch (error) {
+        // "Something went wrong"
+        console.error('Failed to update login information:', error.message);
+        return { success: false, message: error.message };
     }
+    
 }
 
 // move to /users ?
