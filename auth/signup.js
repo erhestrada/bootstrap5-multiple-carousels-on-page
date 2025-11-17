@@ -1,3 +1,5 @@
+import { closeLoginModal } from "../setupLogin";
+
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export default async function signup(userId, username, password) {
     const users = await getUsers();
@@ -13,7 +15,7 @@ export default async function signup(userId, username, password) {
     try {
         await patchLogin(userId, username, password);
         const loginModal = document.getElementById('login-modal');
-        loginModal.style.display = 'none';
+        closeLoginModal(loginModal);
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
         usernameTakenMessage.classList.remove('hidden');
