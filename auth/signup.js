@@ -13,7 +13,7 @@ export default async function signup(userId, username, password) {
     try {
         await patchLogin(userId, username, password);
         const loginModal = document.getElementById('login-modal');
-        loginModal.classList.add('hidden');
+        loginModal.style.display = 'none';
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
         usernameTakenMessage.classList.remove('hidden');
