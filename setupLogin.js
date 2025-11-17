@@ -6,7 +6,7 @@ export function setupLogin(userId) {
     navBarLoginButton.addEventListener('click', () => loginModal.style.display = 'block');
 
     const loginModalCloseButton = loginModal.querySelector('.close-btn');
-    loginModalCloseButton.addEventListener('click', () => loginModal.style.display='none');
+    loginModalCloseButton.addEventListener('click', () => closeLoginModal(loginModal));
 
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -75,4 +75,14 @@ function handleSignup(userId, loginModal) {
     const username = loginModal.querySelector('#username').value;
     const password = loginModal.querySelector('#password').value;
     signup(userId, username, password); 
+}
+
+export function closeLoginModal(loginModal) {
+    loginModal.style.display = 'none';
+    const usernameElement = loginModal.querySelector('#username');
+    const passwordElement = loginModal.querySelector('#password');
+
+    usernameElement.value = '';
+    passwordElement.value = '';
+    // 3 reset to display login
 }
