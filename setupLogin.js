@@ -78,11 +78,22 @@ function handleSignup(userId, loginModal) {
 }
 
 export function closeLoginModal(loginModal) {
+    // Hide login
     loginModal.style.display = 'none';
+
     const usernameElement = loginModal.querySelector('#username');
     const passwordElement = loginModal.querySelector('#password');
 
+    // Reset inputs
     usernameElement.value = '';
     passwordElement.value = '';
-    // 3 reset to display login
+
+    // Reset modal to login layout
+    const header = loginModal.querySelector('h2');
+    const submitButton = loginModal.querySelector('#loginBtn');
+    const changeModalButton = loginModal.querySelector('#signUpBtn');
+
+    header.innerText = 'Log in to Clips Tracker';
+    submitButton.innerText = 'Log In';
+    changeModalButton.innerText = 'Sign Up';
 }
