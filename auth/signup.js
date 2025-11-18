@@ -16,6 +16,11 @@ export default async function signup(userId, username, password) {
         await patchLogin(userId, username, password);
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
+
+        const profileButtonElement = document.getElementById('saved-clips-button');
+        const profileLinkElement = profileButtonElement.querySelector('a');
+        profileLinkElement.textContent = username;
+
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
         usernameTakenMessage.classList.remove('hidden');
