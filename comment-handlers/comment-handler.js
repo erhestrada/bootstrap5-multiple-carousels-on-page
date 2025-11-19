@@ -172,17 +172,6 @@ function attachEventListeners() {
     deleteBtns.forEach(btn => {
         btn.addEventListener('click', () => handleDeleteComment(btn));
     });
-
-    // Submit comment when enter pressed
-    const textarea = document.getElementById('new-comment');
-    if (textarea) {
-        textarea.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                submitComment();
-            }
-        });
-    }
 }
 
 export function attachCommentEventListeners(comment) {
