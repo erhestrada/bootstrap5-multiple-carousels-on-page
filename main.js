@@ -202,6 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteConfirmButton = document.querySelector('.delete-modal-btn.delete-confirm');
     deleteConfirmButton.addEventListener('click', () => confirmDelete());
+
+    // Submit comment when enter pressed
+    const textarea = document.getElementById('new-comment');
+    if (textarea) {
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitComment();
+            }
+        });
+    }
+
 });
 
 positionCarouselTabButtons();
