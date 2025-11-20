@@ -217,3 +217,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 positionCarouselTabButtons();
+
+// Setup profile button
+const btn = document.getElementById("profile-btn");
+const menu = document.getElementById("profile-menu");
+
+btn.addEventListener("click", () => {
+  menu.classList.toggle("hidden");
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (!btn.contains(e.target) && !menu.contains(e.target)) {
+    menu.classList.add("hidden");
+  }
+});
