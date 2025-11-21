@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 positionCarouselTabButtons();
 
+// TODO: only show dropdown when signed in
 // Setup profile button
 const btn = document.getElementById("profile-btn");
 const menu = document.getElementById("profile-menu");
