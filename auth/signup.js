@@ -17,8 +17,7 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
-        const profileButtonElement = document.getElementById('profile-button');
-        const profileLinkElement = profileButtonElement.querySelector('a');
+        const profileLinkElement = document.getElementById('profile-btn');
         profileLinkElement.textContent = username;
 
     } catch (error) {
