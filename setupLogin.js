@@ -1,4 +1,4 @@
-import { signup, login } from "./auth";
+import { signup, login, logout } from "./auth";
 
 export function setupLogin(userId) {
     const navBarLoginButton = document.getElementById('log-in-button');
