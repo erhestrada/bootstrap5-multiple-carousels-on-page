@@ -12,9 +12,11 @@ export function setupLogin(userId) {
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
     const signUpBtn = document.getElementById('signUpBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
 
     loginBtn.onclick = () => handleLogin(loginModal);
     signUpBtn.onclick = () => toggleLogInSignUp(loginModal);
+    logoutBtn.onclick = logout;
 
     function toggleLoginButton() {
         const username = usernameInput.value.trim();
