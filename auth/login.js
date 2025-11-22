@@ -1,3 +1,3 @@
-export default async function login() {
+export default async function login(username, password) {
     alert('log in');
 }
