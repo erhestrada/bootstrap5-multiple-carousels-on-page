@@ -7,9 +7,11 @@ export default async function login(username, password) {
     const users = await getUsers();
     const usernameTakenMessage = document.getElementById("username-taken-message");
     
+    // if password is correct
     if (users.some(user => user.username === username)) {
-        // if password is correct
-        // else if password is incorrect
+        // 'Porifle' to user's username TODO: generalize this displayUsername
+        const profileLinkElement = document.getElementById('profile-btn');
+        profileLinkElement.textContent = username;
     } else {
         // username does not exist message
         usernameTakenMessage.innerText = "This username does NOT exist!";
