@@ -1,4 +1,4 @@
-import { getUsers } from "./signup";
+import { getUsers, displayUsername } from "./signup";
 
 // TODO: change usernameTakeMessage to something more general like usernameErrorMessage - change evewrywhere
 // in x click handler make sure to hide error message (resetting modal)
@@ -9,9 +9,7 @@ export default async function login(username, password) {
     
     // if password is correct
     if (users.some(user => user.username === username)) {
-        // 'Porifle' to user's username TODO: generalize this displayUsername
-        const profileLinkElement = document.getElementById('profile-btn');
-        profileLinkElement.textContent = username;
+        displayUsername();
     } else {
         // username does not exist message
         usernameTakenMessage.innerText = "This username does NOT exist!";
