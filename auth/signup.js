@@ -17,9 +17,7 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
-        const profileLinkElement = document.getElementById('profile-btn');
-        profileLinkElement.textContent = username;
-
+        displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
         usernameTakenMessage.classList.remove('hidden');
@@ -64,3 +62,8 @@ export async function patchLogin(userId, username, password) {
         throw error; // Throw error so UI knows to display error message
     }
 };
+
+export function displayUsername() {
+    const profileLinkElement = document.getElementById('profile-btn');
+    profileLinkElement.textContent = username;
+}
