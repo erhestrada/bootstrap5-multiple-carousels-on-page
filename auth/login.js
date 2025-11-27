@@ -1,11 +1,8 @@
 import { getUsers, displayUsername } from "./signup";
 
-// TODO: change usernameTakeMessage to something more general like usernameErrorMessage - change evewrywhere
-// in x click handler make sure to hide error message (resetting modal)
-
 export default async function login(username, password) {
     const users = await getUsers();
-    const usernameTakenMessage = document.getElementById("username-taken-message");
+    const usernameTakenMessage = document.getElementById("username-error-message");
     
     // if password is correct
     if (users.some(user => user.username === username)) {

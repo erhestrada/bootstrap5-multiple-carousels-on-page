@@ -3,7 +3,7 @@ import { closeLoginModal } from "../setupLogin";
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export default async function signup(userId, username, password) {
     const users = await getUsers();
-    const usernameTakenMessage = document.getElementById("username-taken-message");
+    const usernameTakenMessage = document.getElementById("username-error-message");
 
     if (users.some(user => user.username === username)) {
         usernameTakenMessage.innerText = "This is someone else's username!";
