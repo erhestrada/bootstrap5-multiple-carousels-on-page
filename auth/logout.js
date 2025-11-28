@@ -1,3 +1,8 @@
 export default async function logout() {
-    alert('log out');
+    hideUsername();
+}
+
+function hideUsername() {
+    const profileLinkElement = document.getElementById('profile-btn');
+    profileLinkElement.textContent = 'Profile';
 }
