@@ -1,5 +1,6 @@
 import { getUsers, displayUsername } from "./signup";
 
+// TODO: hide error message when modal closed e.g. This userNAME DOES not exist persisting
 export default async function login(username, password) {
     const users = await getUsers();
     const usernameErrorMessage = document.getElementById("username-error-message");
