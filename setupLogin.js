@@ -85,10 +85,12 @@ export function closeLoginModal(loginModal) {
 
     const usernameElement = loginModal.querySelector('#username');
     const passwordElement = loginModal.querySelector('#password');
+    const usernameErrorMessage = document.getElementById("username-error-message");
 
     // Reset inputs
     usernameElement.value = '';
     passwordElement.value = '';
+    usernameErrorMessage.classList.add('hidden');
 
     // Reset modal to login layout
     const header = loginModal.querySelector('h2');
