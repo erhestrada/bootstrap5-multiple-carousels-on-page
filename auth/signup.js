@@ -4,10 +4,12 @@ import { closeLoginModal } from "../setupLogin";
 export default async function signup(userId, username, password) {
     const users = await getUsers();
     const usernameTakenMessage = document.getElementById("username-error-message");
+    const navbarLoginButton = document.getElementById('log-in-button');
 
     if (users.some(user => user.username === username)) {
         usernameTakenMessage.innerText = "This is someone else's username!";
         usernameTakenMessage.classList.remove('hidden');
+        navbarLoginButton.remove();
         return; // Early return guard clause
     } 
     
