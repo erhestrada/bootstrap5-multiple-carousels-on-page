@@ -9,7 +9,6 @@ export default async function signup(userId, username, password) {
     if (users.some(user => user.username === username)) {
         usernameTakenMessage.innerText = "This is someone else's username!";
         usernameTakenMessage.classList.remove('hidden');
-        navbarLoginButton.remove();
         return; // Early return guard clause
     } 
     
@@ -19,6 +18,7 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
+        navbarLoginButton.remove();
         displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
