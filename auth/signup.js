@@ -18,7 +18,7 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
-        navbarLoginButton.remove();
+        navbarLoginButton.innerText = 'Log Out';
         displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
