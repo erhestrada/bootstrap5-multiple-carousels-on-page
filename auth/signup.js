@@ -18,7 +18,7 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
-        navbarLoginButton.innerText = 'Log Out';
+        navbarLoginButton.innerText = 'Log Out'; // TODO: Need to add logout() on click
         displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
