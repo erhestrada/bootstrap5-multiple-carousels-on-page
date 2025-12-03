@@ -1,4 +1,5 @@
 import { closeLoginModal } from "../setupLogin";
+import logout from './logout';
 
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export default async function signup(userId, username, password) {
@@ -18,7 +19,8 @@ export default async function signup(userId, username, password) {
         const loginModal = document.getElementById('login-modal');
         closeLoginModal(loginModal);
 
-        navbarLoginButton.innerText = 'Log Out'; // TODO: Need to add logout() on click
+        navbarLoginButton.innerText = 'Log Out';
+        navbarLoginButton.onclick = logout; // TODO: reset to open modal after logout // TODO: disable modal when switch to log out
         displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
