@@ -20,7 +20,7 @@ export default async function signup(userId, username, password) {
         closeLoginModal(loginModal);
 
         navbarLoginButton.innerText = 'Log Out';
-        navbarLoginButton.onclick = logout; // TODO: reset to open modal after logout // TODO: disable modal when switch to log out
+        navbarLoginButton.onclick = logout;
         displayUsername();
     } catch (error) {
         usernameTakenMessage.innerText = "Something went wrong";
