@@ -8,4 +8,7 @@ function hideUsername() {
 
     const navbarLoginButton = document.getElementById('log-in-button');
     navbarLoginButton.innerText = "Log in";
+
+    const loginModal = document.getElementById('login-modal');
+    navbarLoginButton.onclick = () => loginModal.style.display = 'block';
 }
