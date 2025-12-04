@@ -3,7 +3,7 @@ import { signup, login, logout } from "./auth";
 export function setupLogin(userId) {
     const navBarLoginButton = document.getElementById('log-in-button');
     const loginModal = document.getElementById('login-modal');
-    navBarLoginButton.addEventListener('click', () => loginModal.style.display = 'block');
+    navBarLoginButton.onclick = () => loginModal.style.display = 'block';
 
     const loginModalCloseButton = loginModal.querySelector('.close-btn');
     loginModalCloseButton.addEventListener('click', () => closeLoginModal(loginModal));
