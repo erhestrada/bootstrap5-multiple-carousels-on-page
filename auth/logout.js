@@ -10,5 +10,5 @@ function hideUsername() {
     navbarLoginButton.innerText = "Log in";
 
     const loginModal = document.getElementById('login-modal');
-    navbarLoginButton.onclick = () => loginModal.style.display = 'block';
+    navbarLoginButton.onclick = () => loginModal.style.display = 'block'; // TODO: login button color needs to go back to grey
 }
