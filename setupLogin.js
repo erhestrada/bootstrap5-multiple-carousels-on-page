@@ -92,6 +92,12 @@ export function closeLoginModal(loginModal) {
     passwordElement.value = '';
     usernameErrorMessage.classList.add('hidden');
 
+    // Reset login button to grey
+    const loginBtn = document.getElementById('loginBtn');
+    loginBtn.disabled = true;
+    loginBtn.style.backgroundColor = '#6c757d';
+    loginBtn.style.cursor = 'not-allowed';
+
     // Reset modal to login layout
     const header = loginModal.querySelector('h2');
     const submitButton = loginModal.querySelector('#loginBtn');
