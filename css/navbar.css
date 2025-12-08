@@ -144,46 +144,6 @@ input[type="search"]::-webkit-search-cancel-button:hover {
   display: inline-block;
 }
 
-.profile-menu {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  min-width: 140px;
-  z-index: 9000;
-}
-
-.profile-menu a {
-  padding: 10px;
-  text-decoration: none;
-  color: black !important;
-}
-
-/* Display menu buttons like menu links */
-.profile-menu button {
-  padding: 10px;
-  text-decoration: none;
-  color: black !important;
-
-  background: none;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-
-  text-align: left;
-  display: block;
-}
-
-.profile-menu a:hover,
-.profile-menu button:hover {
-  background: #eee;
-}
-
 .hidden {
   display: none;
 }
