@@ -3,7 +3,7 @@ export default async function logout() {
 }
 
 function hideUsername() {
-    const profileLinkElement = document.getElementById('profile-btn');
+    const profileLinkElement = document.getElementById('saved-clips-button'); //TODO: make id more descriptive
     profileLinkElement.textContent = 'Profile';
 
     const navbarLoginButton = document.getElementById('log-in-button');
