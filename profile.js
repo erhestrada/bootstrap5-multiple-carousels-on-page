@@ -4,6 +4,7 @@ import { displayNetVotes } from "./display-net-votes";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { getFollows, deleteStreamerFollow, patchSwapPositions } from './follows';
+import { setupLogin } from './setupLogin.js';
 
 window.switchItems = [];
 
@@ -12,6 +13,7 @@ usernameContainer.querySelector('h1').textContent = localStorage.getItem('userna
 
 const userId = localStorage.getItem("userId");
 console.log("userId", userId);
+setupLogin(userId);
 
 async function getUserClips() {
     //const commentedClips = await getCommentedClips(userId);
