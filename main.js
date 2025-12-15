@@ -61,6 +61,9 @@ followButtons.forEach(button => button.disabled = true);
 window.userIdPromise.then(({ userId, username }) => {
   window.userId = userId;
   window.username = username;
+  const usernameElement = document.getElementById('navbar-username');
+  usernameElement.textContent = username;
+
   console.log('userId', userId);
   localStorage.setItem('userId', userId);
   localStorage.setItem('username', username);
