@@ -61,8 +61,9 @@ followButtons.forEach(button => button.disabled = true);
 window.userIdPromise.then(({ userId, username }) => {
   window.userId = userId;
   window.username = username;
-  const usernameElement = document.getElementById('navbar-username');
-  usernameElement.textContent = username;
+  const profileElement = document.getElementById('saved-clips-button');
+  const profileLink = profileElement.querySelector('a');
+  profileLink.textContent = username;
 
   console.log('userId', userId);
   localStorage.setItem('userId', userId);
