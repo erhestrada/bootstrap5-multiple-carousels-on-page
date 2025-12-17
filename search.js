@@ -61,6 +61,10 @@ function addSimilarityScores(results, query) {
 }
 
 function displayResults(searchResults, resultsContainer) {
+    console.log('search results', searchResults);
+    if (searchResults.length === 0) {
+        alert("No results");
+    }
     searchResults.forEach(({ name, id, thumbnailUrl, type }) => {
         const pfpUrl = thumbnailUrl;
         const streamerId = id;
