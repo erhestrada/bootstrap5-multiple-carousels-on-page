@@ -4,6 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { clientId, clientSecret } from './config.js';
 
+//TODO: rather than writing to token.json, i need to write access_token to ../config authToken variable
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
