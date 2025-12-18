@@ -1,3 +1,4 @@
+import { clientId, authToken } from './config.js';
 import {makeNewCarouselForCategory} from './makeNewCarouselForCategory.js'
 
 // pageNumber x 20

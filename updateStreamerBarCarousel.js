@@ -1,3 +1,4 @@
+import { clientId, authToken } from './config.js';
 import {getCurrentDateTime} from './getTopClips'
 import {getPastDateTime} from './getTopClips'
 import { makeClipsCarouselFromClipsData } from "./getTopClips";

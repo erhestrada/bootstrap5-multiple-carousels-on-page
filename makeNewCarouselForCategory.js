@@ -1,4 +1,4 @@
-// basically a refactor of getTopClips
+import { clientId, authToken } from './config.js';
 import { getTopClips } from "./getTopClips";
 
 // example box art url

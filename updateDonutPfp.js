@@ -1,3 +1,5 @@
+import { clientId, authToken } from './config.js';
+
 export async function updateDonutPfp(streamerId) {
     try {
         const userUrl = "https://api.twitch.tv/helix/users?id=" + streamerId;  
