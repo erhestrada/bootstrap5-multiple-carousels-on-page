@@ -3,7 +3,7 @@ import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
-import clipsRouter from './getClips.js';
+import clipsRouter from './routes/clips.js';
 
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
