@@ -4,6 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import clipsRouter from './routes/clips.js';
+import votesRouter from './routes/votes.js'; // TODO: make barrel file
 
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
