@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const favoritesRouter = Router();
 
-favoritesRouter.get('/t', (req, res) => {
+favoritesRouter.get('/', (req, res) => {
     res.send({message: "favorites endpoint hit"});
 });
 
