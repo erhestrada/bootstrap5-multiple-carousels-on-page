@@ -5,6 +5,8 @@ import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter }from './routes';
 
+// TODO: start moving things to different files
+
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
 // TODO: refactor frontend code that uses clientId, authToken, clientSecret to go through requests to backend
