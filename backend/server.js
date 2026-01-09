@@ -3,7 +3,7 @@ import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
-import { clipsRouter, votesRouter, favoritesRouter, usersRouter }from './routes';
+import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 
 // TODO: start moving things to different files
 
