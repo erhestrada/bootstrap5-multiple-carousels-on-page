@@ -213,6 +213,7 @@ function nestComments(flatComments) {
 }
 
 app.use("/clips", clipsRouter);
+app.use("/users", usersRouter);
 // ---------------------------- Users ------------------------------
 // Get all users
 app.get('/users', (req, res) => {
