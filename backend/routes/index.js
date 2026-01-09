@@ -1,4 +1,4 @@
-export { default as clipsRouter } from './clips';
-export { default as favoritesRouter } from './favorites';
-export { default as usersRouter } from './users';
-export { default as votesRouter } from './votes';
+export { default as clipsRouter } from './clips.js';
+export { default as favoritesRouter } from './favorites.js';
+export { default as usersRouter } from './users.js';
+export { default as votesRouter } from './votes.js';
