@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { getAllRowsFromTable } from ' ./utils/getAllRowsFromTable.js';
+import { getAllRowsFromTable } from './utils/getAllRowsFromTable.js';
+import { getSignedOutUserId } from './utils/utils.js'
 const usersRouter = Router();
 
 usersRouter.get('/', (req, res) => {
@@ -9,10 +10,7 @@ usersRouter.get('/', (req, res) => {
 export default usersRouter;
 
 
-
-/*
-
-app.get('/signed-out-user', async (req, res) => {
+usersRouter.get('/signed-out-user', async (req, res) => {
   const { clientId } = req.query;
 
   if (!clientId) {
@@ -28,6 +26,7 @@ app.get('/signed-out-user', async (req, res) => {
   }
 });
 
+/*
 // Update user username and password
 app.patch('/:userId/login', (req, res) => {
   const { userId } = req.params;
