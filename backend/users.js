@@ -26,9 +26,8 @@ usersRouter.get('/signed-out-user', async (req, res) => {
   }
 });
 
-/*
 // Update user username and password
-app.patch('/:userId/login', (req, res) => {
+usersRouter.patch('/:userId/login', (req, res) => {
   const { userId } = req.params;
   const { username, password } = req.body;
 
@@ -52,4 +51,3 @@ app.patch('/:userId/login', (req, res) => {
     res.json({ message: 'Login updated successfully' });
   });
 });
-*/
