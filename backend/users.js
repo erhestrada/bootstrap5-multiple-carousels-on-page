@@ -9,7 +9,6 @@ usersRouter.get('/', (req, res) => {
 
 export default usersRouter;
 
-
 usersRouter.get('/signed-out-user', async (req, res) => {
   const { clientId } = req.query;
 
