@@ -1,4 +1,4 @@
-function getAllRowsFromTable(tableName, res) {
+export function getAllRowsFromTable(tableName, res) {
   const query = `SELECT * FROM ${tableName}`;
 
   db.all(query, [], (err, rows) => {
