@@ -1,3 +1,5 @@
+import { runAsyncQuery } from "./runAsyncQuery";
+
 export async function getSignedOutUserId(clientId) {
   const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
   const row = await dbGetAsync(query, [clientId]);
@@ -22,6 +24,15 @@ async function generateNewRandomUsername() {
   } while (usernames.has(username));
 
   return username;
+}
+
+async function getUsernames() {
+  const usernamesQuery = 'SELECT username FROM users';
+  const parameters = [];
+  const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
+
+  const usernames = new Set(usernameRows.map(row => row.username));
+  return usernames;
 }
 
 function dbGetAsync(query, params) {
