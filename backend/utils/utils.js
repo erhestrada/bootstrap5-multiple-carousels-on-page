@@ -14,7 +14,7 @@ export async function getSignedOutUserId(clientId) {
 }
 
 async function generateNewRandomUsername() {
-  const usernames = await getUsernames();
+  const usernames = await getUsernames(); //TODO: import getUsernames
 
   let username;
   do {
