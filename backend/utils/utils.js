@@ -1,4 +1,4 @@
-import { runAsyncQuery } from "./runAsyncQuery";
+import { runAsyncQuery } from "./runAsyncQuery.js";
 
 export async function getSignedOutUserId(clientId) {
   const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
