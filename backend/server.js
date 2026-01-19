@@ -4,6 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
+import { generateNewRandomUsername } from './utils/utils.js';
 
 // TODO: start moving things to different files
 
@@ -156,26 +157,6 @@ async function getSignedOutUserId(clientId) {
   const newUserId = await dbRunAsync(insert, [clientId, username]);
 
   return { userId: newUserId, username: username} ;
-}
-
-async function generateNewRandomUsername() {
-  const usernames = await getUsernames();
-
-  let username;
-  do {
-    username = `anon_${Math.floor(Math.random() * 1000000)}`;
-  } while (usernames.has(username));
-
-  return username;
-}
-
-async function getUsernames() {
-  const usernamesQuery = 'SELECT username FROM users';
-  const parameters = [];
-  const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
-
-  const usernames = new Set(usernameRows.map(row => row.username));
-  return usernames;
 }
 
 function runAsyncQuery(query, parameters) {
