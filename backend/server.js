@@ -5,6 +5,7 @@ import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 //import { generateNewRandomUsername } from './utils/utils.js'; // TODO: need to pass in db variable for runasyncquery
+import { runAsyncQuery } from './utils/runAsyncQuery.js';
 
 // TODO: start moving things to different files
 
@@ -92,7 +93,7 @@ async function generateNewRandomUsername() {
 async function getUsernames() {
   const usernamesQuery = 'SELECT username FROM users';
   const parameters = [];
-  const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
+  const usernameRows = await runAsyncQuery(db, usernamesQuery, parameters);
 
   const usernames = new Set(usernameRows.map(row => row.username));
   return usernames;
@@ -177,15 +178,6 @@ async function getSignedOutUserId(clientId) {
   const newUserId = await dbRunAsync(insert, [clientId, username]);
 
   return { userId: newUserId, username: username} ;
-}
-
-function runAsyncQuery(query, parameters) {
-  return new Promise((resolve, reject) => {
-    db.all(query, parameters, (err, rows) => {
-      if (err) return reject(err);
-      resolve(rows);
-    });
-  });
 }
 
 function nestComments(flatComments) {
