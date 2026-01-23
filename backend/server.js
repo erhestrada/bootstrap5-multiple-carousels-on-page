@@ -4,7 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
-//import { generateNewRandomUsername } from './utils/utils.js'; // TODO: need to pass in db variable for runasyncquery
+import { generateNewRandomUsername } from './utils/utils.js'; // TODO: need to pass in db variable for runasyncquery
 import { runAsyncQuery } from './utils/runAsyncQuery.js';
 
 // TODO: start moving things to different files
@@ -78,26 +78,6 @@ db.serialize(() => {
 
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
-
-async function generateNewRandomUsername(db) {
-  const usernames = await getUsernames(db); //TODO: import getUsernames
-
-  let username;
-  do {
-    username = `anon_${Math.floor(Math.random() * 1000000)}`;
-  } while (usernames.has(username));
-
-  return username;
-}
-
-async function getUsernames(db) {
-  const usernamesQuery = 'SELECT username FROM users';
-  const parameters = [];
-  const usernameRows = await runAsyncQuery(db, usernamesQuery, parameters);
-
-  const usernames = new Set(usernameRows.map(row => row.username));
-  return usernames;
-}
 
 function getAllRowsFromTable(tableName, res) {
   const query = `SELECT * FROM ${tableName}`;
