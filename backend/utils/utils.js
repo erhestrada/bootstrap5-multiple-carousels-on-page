@@ -15,8 +15,8 @@ export async function getSignedOutUserId(clientId) {
   return { userId: newUserId, username: username} ;
 }
 
-export async function generateNewRandomUsername() {
-  const usernames = await getUsernames(); //TODO: import getUsernames
+export async function generateNewRandomUsername(db) {
+  const usernames = await getUsernames(db); //TODO: import getUsernames
 
   let username;
   do {
@@ -26,10 +26,10 @@ export async function generateNewRandomUsername() {
   return username;
 }
 
-async function getUsernames() {
+async function getUsernames(db) {
   const usernamesQuery = 'SELECT username FROM users';
   const parameters = [];
-  const usernameRows = await runAsyncQuery(usernamesQuery, parameters);
+  const usernameRows = await runAsyncQuery(db, usernamesQuery, parameters);
 
   const usernames = new Set(usernameRows.map(row => row.username));
   return usernames;
