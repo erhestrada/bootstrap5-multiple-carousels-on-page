@@ -79,8 +79,8 @@ db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
 
-async function generateNewRandomUsername() {
-  const usernames = await getUsernames(); //TODO: import getUsernames
+async function generateNewRandomUsername(db) {
+  const usernames = await getUsernames(db); //TODO: import getUsernames
 
   let username;
   do {
@@ -90,7 +90,7 @@ async function generateNewRandomUsername() {
   return username;
 }
 
-async function getUsernames() {
+async function getUsernames(db) {
   const usernamesQuery = 'SELECT username FROM users';
   const parameters = [];
   const usernameRows = await runAsyncQuery(db, usernamesQuery, parameters);
@@ -173,7 +173,7 @@ async function getSignedOutUserId(clientId) {
     return { userId: row.id, username: row.username };
   }
 
-  const username = await generateNewRandomUsername();
+  const username = await generateNewRandomUsername(db);
   const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
   const newUserId = await dbRunAsync(insert, [clientId, username]);
 
