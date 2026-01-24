@@ -4,8 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
-import { generateNewRandomUsername } from './utils/utils.js'; // TODO: need to pass in db variable for runasyncquery
-import { runAsyncQuery } from './utils/runAsyncQuery.js';
+import { generateNewRandomUsername } from './utils/utils.js';
 
 // TODO: start moving things to different files
 
