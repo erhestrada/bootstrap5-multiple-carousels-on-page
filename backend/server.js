@@ -127,7 +127,7 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
     });
 }
 
-function dbGetAsync(query, params) {
+function dbGetAsync(db, query, params) {
   return new Promise((resolve, reject) => {
     db.get(query, params, (err, row) => {
       if (err) return reject(err);
@@ -147,7 +147,7 @@ function dbRunAsync(query, params) {
 
 async function getSignedOutUserId(clientId) {
   const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
-  const row = await dbGetAsync(query, [clientId]);
+  const row = await dbGetAsync(db, query, [clientId]);
 
   if (row) {
     return { userId: row.id, username: row.username };
