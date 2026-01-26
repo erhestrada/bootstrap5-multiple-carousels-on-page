@@ -135,7 +135,7 @@ function dbGetAsync(db, query, params) {
   });
 }
 
-function dbRunAsync(query, params) {
+function dbRunAsync(db, query, params) {
   return new Promise((resolve, reject) => {
     db.run(query, params, function (err) {
       if (err) return reject(err);
@@ -154,7 +154,7 @@ async function getSignedOutUserId(clientId) {
 
   const username = await generateNewRandomUsername(db);
   const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
-  const newUserId = await dbRunAsync(insert, [clientId, username]);
+  const newUserId = await dbRunAsync(db, insert, [clientId, username]);
 
   return { userId: newUserId, username: username} ;
 }
@@ -855,7 +855,7 @@ app.patch('/users/:userId/following/:followType', async (req, res) => {
 
 async function swapPositions(tableName, userId, streamerA, streamerB) {
   try {
-    await dbRunAsync('BEGIN TRANSACTION');
+    await dbRunAsync(db, 'BEGIN TRANSACTION');
 
     const rowA = await new Promise((resolve, reject) => {
       db.get(
@@ -875,20 +875,20 @@ async function swapPositions(tableName, userId, streamerA, streamerB) {
 
     if (!rowA || !rowB) throw new Error('One of the streamers not found');
 
-    await dbRunAsync(
+    await dbRunAsync(db,
       `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
       [rowB.position, userId, streamerA]
     );
 
-    await dbRunAsync(
+    await dbRunAsync(db,
       `UPDATE ${tableName} SET position = ? WHERE user_id = ? AND streamer = ?`,
       [rowA.position, userId, streamerB]
     );
 
-    await dbRunAsync('COMMIT');
+    await dbRunAsync(db, 'COMMIT');
     console.log('Swapped successfully!');
   } catch (err) {
-    await dbRunAsync('ROLLBACK');
+    await dbRunAsync(db, 'ROLLBACK');
     throw err;
   }
 }
