@@ -4,7 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
-import { generateNewRandomUsername } from './utils/utils.js';
+import { generateNewRandomUsername, dbGetAsync, dbRunAsync } from './utils/utils.js';
 
 // TODO: start moving things to different files
 
@@ -124,24 +124,6 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
       console.log(`Deleted ${this.changes} row(s) from ${tableName} with params:`, parameters);
       res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
     });
-}
-
-function dbGetAsync(db, query, params) {
-  return new Promise((resolve, reject) => {
-    db.get(query, params, (err, row) => {
-      if (err) return reject(err);
-      resolve(row);
-    });
-  });
-}
-
-function dbRunAsync(db, query, params) {
-  return new Promise((resolve, reject) => {
-    db.run(query, params, function (err) {
-      if (err) return reject(err);
-      resolve(this.lastID);
-    });
-  });
 }
 
 async function getSignedOutUserId(clientId) {

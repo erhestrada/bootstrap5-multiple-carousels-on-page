@@ -35,11 +35,20 @@ async function getUsernames(db) {
   return usernames;
 }
 
-function dbGetAsync(query, params) {
+export function dbGetAsync(db, query, params) {
   return new Promise((resolve, reject) => {
     db.get(query, params, (err, row) => {
       if (err) return reject(err);
       resolve(row);
+    });
+  });
+}
+
+export function dbRunAsync(db, query, params) {
+  return new Promise((resolve, reject) => {
+    db.run(query, params, function (err) {
+      if (err) return reject(err);
+      resolve(this.lastID);
     });
   });
 }
