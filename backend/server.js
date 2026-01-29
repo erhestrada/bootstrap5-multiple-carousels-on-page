@@ -6,6 +6,7 @@ import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync } from './utils/utils.js';
 
+// test comment
 // TODO: start moving things to different files
 
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
