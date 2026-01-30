@@ -5,6 +5,7 @@ import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync } from './utils/utils.js';
+import { getAllRowsFromTable } from './utils/getAllRowsFromTable.js';
 
 // TODO: start moving things to different files
 
@@ -77,15 +78,6 @@ db.serialize(() => {
 
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
-
-function getAllRowsFromTable(tableName, res) {
-  const query = `SELECT * FROM ${tableName}`;
-
-  db.all(query, [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-}
 
 function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
