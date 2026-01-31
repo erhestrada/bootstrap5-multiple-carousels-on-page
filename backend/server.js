@@ -5,6 +5,7 @@ import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
+import { insertRowIntoTable, deleteRowFromTable, nestComments } from './utils/utils.js';
 
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
@@ -75,61 +76,6 @@ db.serialize(() => {
 
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
-
-function insertRowIntoTable(tableName, columnNames, parameters, res) {
-  const query = `INSERT OR IGNORE INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
-
-  db.run(query, parameters, function (err) {
-    if (err) {
-      console.error(`Error inserting into ${tableName}:`, err);  // <- this line is key
-      return res.status(500).json({ error: err.message });
-    }
-
-    console.log(`Inserted row into ${tableName} with ID:`, this.lastID);
-    res.status(201).json({ message: `Row added to ${tableName}`, id: this.lastID });
-  });
-}
-
-function deleteRowFromTable(tableName, columnNames, parameters, res) {
-    // e.g. user_id = ? AND clip_id = ?
-    const whereClause = columnNames.map(col => `${col} = ?`).join(' AND ');
-    const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
-    console.log('function running');
-    db.run(query, parameters, function (err) {
-      if (err) return res.status(500).json({ error: err.message });
-      if (this.changes === 0) {
-          return res.status(404).json({ message: 'No row matched query conditions' });
-      }
-      
-      console.log(`Deleted ${this.changes} row(s) from ${tableName} with params:`, parameters);
-      res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
-    });
-}
-
-function nestComments(flatComments) {
-    const commentsById = {};
-    const nestedComments = [];
-
-    // Give each comment a replies property and store comments in commentsById
-    flatComments.forEach(comment => {
-        comment.replies = [];
-        commentsById[comment.id] = comment;
-    });
-
-    // Populate nestedComments; all comments are either a parent (no parent_id) or a reply (has a parent_id)
-    flatComments.forEach(comment => {
-        if (comment.parent_id) {
-            const parent = commentsById[comment.parent_id];
-            if (parent) {
-                parent.replies.push(comment);
-            }
-        } else {
-            nestedComments.push(comment);
-        }
-    });
-
-    return nestedComments;
-}
 
 app.use("/clips", clipsRouter);
 app.use("/users", usersRouter);
