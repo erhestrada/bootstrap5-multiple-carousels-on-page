@@ -2,15 +2,15 @@ import { runAsyncQuery } from "./runAsyncQuery.js";
 
 export async function getSignedOutUserId(clientId) {
   const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
-  const row = await dbGetAsync(query, [clientId]);
+  const row = await dbGetAsync(db, query, [clientId]);
 
   if (row) {
     return { userId: row.id, username: row.username };
   }
 
-  const username = await generateNewRandomUsername();
+  const username = await generateNewRandomUsername(db);
   const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
-  const newUserId = await dbRunAsync(insert, [clientId, username]);
+  const newUserId = await dbRunAsync(db, insert, [clientId, username]);
 
   return { userId: newUserId, username: username} ;
 }
