@@ -61,3 +61,12 @@ export function getAllRowsFromTable(tableName, res) {
     res.json(rows);
   });
 }
+
+export function runAsyncQuery(db, query, parameters) {
+  return new Promise((resolve, reject) => {
+    db.all(query, parameters, (err, rows) => {
+      if (err) return reject(err);
+      resolve(rows);
+    });
+  });
+}
