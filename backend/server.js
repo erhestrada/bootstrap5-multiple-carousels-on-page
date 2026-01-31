@@ -4,7 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
-import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable } from './utils/utils.js';
+import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
 
 // TODO: connect twitch authtoken from token.json to auth token in ../config.js - the one i'm actually using
 // TODO: run getTwitchAccessToken separately from when server starts
@@ -104,21 +104,6 @@ function deleteRowFromTable(tableName, columnNames, parameters, res) {
       console.log(`Deleted ${this.changes} row(s) from ${tableName} with params:`, parameters);
       res.status(200).json({ message: `${tableName} row removed`, id: this.lastID });
     });
-}
-
-async function getSignedOutUserId(clientId) {
-  const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
-  const row = await dbGetAsync(db, query, [clientId]);
-
-  if (row) {
-    return { userId: row.id, username: row.username };
-  }
-
-  const username = await generateNewRandomUsername(db);
-  const insert = `INSERT INTO users (client_id, username, password) VALUES (?, ?, NULL)`;
-  const newUserId = await dbRunAsync(db, insert, [clientId, username]);
-
-  return { userId: newUserId, username: username} ;
 }
 
 function nestComments(flatComments) {
