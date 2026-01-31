@@ -5,7 +5,7 @@ import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync } from './utils/utils.js';
-import { getAllRowsFromTable } from './utils/getAllRowsFromTable.js';
+import { getAllRowsFromTable } from './utils/utils.js';
 
 // TODO: start moving things to different files
 
