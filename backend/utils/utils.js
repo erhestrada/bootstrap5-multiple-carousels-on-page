@@ -70,3 +70,12 @@ export function runAsyncQuery(db, query, parameters) {
     });
   });
 }
+
+export function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
+  const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
+
+  db.all(query, [filterValue], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+}
