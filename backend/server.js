@@ -4,7 +4,7 @@ import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
-import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable } from './utils/utils.js';
+import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable } from './utils/utils.js';
 
 // TODO: start moving things to different files
 
@@ -77,15 +77,6 @@ db.serialize(() => {
 
   db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
 });
-
-function getValueFilteredDataFromTable(tableName, columnName, filterValue, res) {
-  const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
-
-  db.all(query, [filterValue], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-}
 
 function insertRowIntoTable(tableName, columnNames, parameters, res) {
   const query = `INSERT OR IGNORE INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
