@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
-import { getTwitchAcessToken } from './getTwitchAccessToken.js';
+//import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
 import { insertRowIntoTable, deleteRowFromTable, nestComments } from './utils/utils.js';
@@ -12,7 +12,7 @@ import { insertRowIntoTable, deleteRowFromTable, nestComments } from './utils/ut
 // TODO: refactor frontend code that uses clientId, authToken, clientSecret to go through requests to backend
 // TODO: instead of calling getTwitchAccessToken once when the server starts, call twitchGet with getTwitchAccessToken() as first line so
     // i'm checking if the twitchAccessToken is up to date every time i make a twitch get request
-getTwitchAcessToken();
+//getTwitchAcessToken();
 
 const sqlite3 = sqlite3Pkg.verbose(); // enable detailed error tracking
 
