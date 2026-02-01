@@ -1,6 +1,5 @@
 import { Router } from 'express';
-import { getAllRowsFromTable } from '../utils/getAllRowsFromTable.js';
-import { getSignedOutUserId } from '../utils/utils.js'
+import { getSignedOutUserId, getAllRowsFromTable } from '../utils/utils.js'
 const usersRouter = Router();
 
 usersRouter.get('/', (req, res) => {
