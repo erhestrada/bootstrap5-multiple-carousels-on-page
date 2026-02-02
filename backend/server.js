@@ -30,52 +30,57 @@ app.use(express.json());
 // Setup SQLite database
 const db = new sqlite3.Database('./data.db');
 
-db.serialize(() => {
-  db.run('DROP TABLE IF EXISTS users');
-  db.run('DROP TABLE IF EXISTS votes');
-  db.run('DROP TABLE IF EXISTS follows');
-  db.run('DROP TABLE IF EXISTS favorites');
-  db.run('DROP TABLE IF EXISTS comments');
-  db.run('DROP TABLE IF EXISTS comment_likes');
-  db.run('DROP TABLE IF EXISTS history');
-  db.run('DROP TABLE IF EXISTS followed_streamers');
-  db.run('DROP TABLE IF EXISTS followed_categories');
-  db.run('DROP TABLE IF EXISTS clips');
 
-  db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-  db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id), FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)'); // Each user gets one vote per clip
-  db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-  db.run(`CREATE TABLE IF NOT EXISTS comments (
+function initializeDb() {
+  db.serialize(() => {
+    db.run('DROP TABLE IF EXISTS users');
+    db.run('DROP TABLE IF EXISTS votes');
+    db.run('DROP TABLE IF EXISTS follows');
+    db.run('DROP TABLE IF EXISTS favorites');
+    db.run('DROP TABLE IF EXISTS comments');
+    db.run('DROP TABLE IF EXISTS comment_likes');
+    db.run('DROP TABLE IF EXISTS history');
+    db.run('DROP TABLE IF EXISTS followed_streamers');
+    db.run('DROP TABLE IF EXISTS followed_categories');
+    db.run('DROP TABLE IF EXISTS clips');
+
+    db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
+    db.run('CREATE TABLE IF NOT EXISTS votes (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, vote INTEGER, UNIQUE(user_id, clip_id), FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)'); // Each user gets one vote per clip
+    db.run('CREATE TABLE IF NOT EXISTS favorites (id INTEGER PRIMARY KEY, user_id INTEGER, clip_id TEXT, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+    db.run(`CREATE TABLE IF NOT EXISTS comments (
+      id INTEGER PRIMARY KEY,
+      clip_id TEXT,
+      user_id INTEGER,
+      parent_id INTEGER,
+      comment TEXT,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY(parent_id) REFERENCES comments(id))
+      `);
+    db.run(`CREATE TABLE IF NOT EXISTS comment_likes (
+      id INTEGER PRIMARY KEY,
+      user_id INTEGER,
+      comment_id INTEGER,
+      UNIQUE(user_id, comment_id),
+      FOREIGN KEY(user_id) REFERENCES users(id),
+      FOREIGN KEY(comment_id) REFERENCES comments(id))
+      `);
+    db.run(`CREATE TABLE IF NOT EXISTS history (
     id INTEGER PRIMARY KEY,
-    clip_id TEXT,
     user_id INTEGER,
-    parent_id INTEGER,
-    comment TEXT,
+    twitch_id TEXT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY(parent_id) REFERENCES comments(id))
-    `);
-  db.run(`CREATE TABLE IF NOT EXISTS comment_likes (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER,
-    comment_id INTEGER,
-    UNIQUE(user_id, comment_id),
-    FOREIGN KEY(user_id) REFERENCES users(id),
-    FOREIGN KEY(comment_id) REFERENCES comments(id))
-    `);
-  db.run(`CREATE TABLE IF NOT EXISTS history (
-  id INTEGER PRIMARY KEY,
-  user_id INTEGER,
-  twitch_id TEXT,
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)
-    `);
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)
+      `);
 
-  db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id TEXT, profile_picture_url TEXT, position INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-  db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id TEXT, box_art_url TEXT, position INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+    db.run('CREATE TABLE IF NOT EXISTS followed_streamers (id INTEGER PRIMARY KEY, user_id INTEGER, streamer TEXT, twitch_id TEXT, profile_picture_url TEXT, position INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
+    db.run('CREATE TABLE IF NOT EXISTS followed_categories (id INTEGER PRIMARY KEY, user_id INTEGER, category TEXT, twitch_id TEXT, box_art_url TEXT, position INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
-  db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
-});
+    db.run('CREATE TABLE IF NOT EXISTS clips (id INTEGER PRIMARY KEY, twitchId TEXT UNIQUE, url TEXT, embed_url TEXT, broadcaster_id TEXT, broadcaster_name TEXT, creator_id TEXT, creator_name TEXT, video_id TEXT, game_id TEXT, language TEXT, title TEXT, view_count INTEGER, created_at TEXT, thumbnail_url TEXT, duration INTEGER)');
+  });
+}
+
+initializeDb();
 
 app.use("/clips", clipsRouter);
 app.use("/users", usersRouter);
