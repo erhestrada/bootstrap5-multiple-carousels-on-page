@@ -3,7 +3,7 @@ import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 //import { getTwitchAcessToken } from './getTwitchAccessToken.js';
-import { clipsRouter, votesRouter, favoritesRouter, usersRouter } from './routes/index.js';
+import { clipsRouter, votesRouter, favoritesRouter, usersRouter, historyRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
 import { insertRowIntoTable, deleteRowFromTable, nestComments, initializeDb } from './utils/utils.js';
 
@@ -34,7 +34,7 @@ initializeDb(db);
 
 app.use("/clips", clipsRouter);
 app.use("/users", usersRouter);
-// app.use("/history", historyRouter);
+app.use("/history", historyRouter);
 // ---------------------------- Users ------------------------------ TODO: need to change endpoints on the frontend so they all begin with /users, then i can replace with app.use
 // Get all users
 app.get('/users', (req, res) => {
