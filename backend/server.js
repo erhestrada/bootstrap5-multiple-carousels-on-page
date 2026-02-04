@@ -244,17 +244,6 @@ app.get('/clips/:userId/history', (req, res) => {
     res.json(rows);
   });
 });
-// ----------------------------History------------------------------
-app.post('/history', (req, res) => {
-  const { userId, clipTwitchId: twitchId } = req.body;
-
-  // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
-  const tableName = 'history';
-  const columnNames = ['user_id', 'twitch_id'];
-  const parameters = [userId, twitchId];
-
-  insertRowIntoTable(tableName, columnNames, parameters, res);
-});
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 app.get('/:userId/activity', (req, res) => {
