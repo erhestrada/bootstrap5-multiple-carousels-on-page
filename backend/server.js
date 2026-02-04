@@ -34,6 +34,7 @@ initializeDb(db);
 
 app.use("/clips", clipsRouter);
 app.use("/users", usersRouter);
+// app.use("/history", historyRouter);
 // ---------------------------- Users ------------------------------ TODO: need to change endpoints on the frontend so they all begin with /users, then i can replace with app.use
 // Get all users
 app.get('/users', (req, res) => {
