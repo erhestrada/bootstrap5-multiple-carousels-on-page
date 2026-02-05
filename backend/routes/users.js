@@ -22,7 +22,7 @@ usersRouter.get('/signed-out-user', async (req, res) => {
   }
 });
 
-// Update user username and password
+// Update user username and password TODO: test with frontend (frontend request function not implemented yet?)
 usersRouter.patch('/:userId/login', (req, res) => {
   const { userId } = req.params;
   const { username, password } = req.body;
