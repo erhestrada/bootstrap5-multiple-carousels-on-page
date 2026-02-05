@@ -41,7 +41,7 @@ app.get('/users', (req, res) => {
   getAllRowsFromTable('users', res);
 });
 
-app.get('/signed-out-user', async (req, res) => {
+app.get('/users/signed-out-user', async (req, res) => {
   const { clientId } = req.query;
 
   if (!clientId) {
