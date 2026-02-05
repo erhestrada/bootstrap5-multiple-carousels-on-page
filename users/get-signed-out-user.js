@@ -1,7 +1,7 @@
 // Rename to getSignedOutUserId
 export default async function getSignedOutUser(clientId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/signed-out-user?clientId=${clientId}`);
+        const response = await fetch(`http://192.168.86.195:3000/users/signed-out-user?clientId=${clientId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
