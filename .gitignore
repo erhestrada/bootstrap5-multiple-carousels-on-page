@@ -25,3 +25,6 @@ dist-ssr
 config.js
 data.db
 token.json
+
+# Temporary databse files 
+*.db-journal
