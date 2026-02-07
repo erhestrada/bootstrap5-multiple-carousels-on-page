@@ -1,6 +1,8 @@
 import { Router } from 'express';
 const commentsRouter = Router();
 
+// Root is /comments
+
 commentsRouter.get('/', (req, res) => {
     res.send({message: "Comments endpoint hit"});
 });
@@ -9,11 +11,11 @@ export default commentsRouter;
 
 // ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
-app.get('/:userId/activity', (req, res) => {
+commentsRouter.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
 });
 
-app.get('/users/:userId/comments', (req, res) => {
+commentsRouter.get('/users/:userId/comments', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'comments';
   const columnName = 'user_id';
@@ -23,7 +25,7 @@ app.get('/users/:userId/comments', (req, res) => {
 
 // Get all comments on clip
 // TODO: refactor path
-app.get('/abc/clips/:clipId/comments', (req, res) => {
+commentsRouter.get('/abc/clips/:clipId/comments', (req, res) => {
   const clipId = req.params.clipId;
   const userId = req.query.userId;
 
@@ -56,7 +58,7 @@ app.get('/abc/clips/:clipId/comments', (req, res) => {
 
 
 // Post comment
-app.post('/clips/:clipId/comments', (req, res) => {
+commentsRouter.post('/clips/:clipId/comments', (req, res) => {
   const { clipId } = req.params;
   const { userId, parentId, comment } = req.body;
 
@@ -68,7 +70,7 @@ app.post('/clips/:clipId/comments', (req, res) => {
 });
 
 // Delete comment
-app.delete('/clips/:clipId/comments/:commentId', (req, res) => {
+commentsRouter.delete('/clips/:clipId/comments/:commentId', (req, res) => {
   const { commentId } = req.params;
   const { userId } = req.body;
 
@@ -80,7 +82,7 @@ app.delete('/clips/:clipId/comments/:commentId', (req, res) => {
 });
 
 // Soft delete comment
-app.patch('/clips/:clipId/comments/:commentId', (req, res) => {
+commentsRouter.patch('/clips/:clipId/comments/:commentId', (req, res) => {
   const { commentId } = req.params;
   const { userId, comment, timestamp } = req.body;
 
