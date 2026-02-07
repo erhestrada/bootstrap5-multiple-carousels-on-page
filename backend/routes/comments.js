@@ -3,10 +3,6 @@ const commentsRouter = Router();
 
 // Root is /comments
 
-commentsRouter.get('/', (req, res) => {
-    res.send({message: "Comments endpoint hit"});
-});
-
 export default commentsRouter;
 
 // ---------------------------- Comments ------------------------------
