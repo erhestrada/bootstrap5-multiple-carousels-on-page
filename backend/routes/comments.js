@@ -16,6 +16,7 @@ commentsRouter.get('/users/:userId/comments', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
+// TODO: make single source of truth endpoints.js to avoid hunting down files with endpoints that need refactoring in the future
 // TODO: from here down change frontend routes to start with /comments
 
 // Get all comments on clip
