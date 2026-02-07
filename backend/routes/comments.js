@@ -3,9 +3,6 @@ const commentsRouter = Router();
 
 // Root is /comments
 
-export default commentsRouter;
-
-// ---------------------------- Comments ------------------------------
 // this should get all of a user's activity - upvotes downvotes favorites comments follows
 commentsRouter.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
@@ -101,4 +98,6 @@ commentsRouter.patch('/clips/:clipId/comments/:commentId', (req, res) => {
     res.json({ message: 'Comment updated successfully' });
   });
 });
+
+export default commentsRouter;
 
