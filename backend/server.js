@@ -132,6 +132,8 @@ app.patch('/clips/:clipId/comments/:commentId', (req, res) => {
   });
 });
 
+// ---------------------------- Likes ------------------------------
+
 // Post like
 app.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
   const { userId, commentId } = req.params;
