@@ -11,7 +11,7 @@ export function loadComments() {
 // upvotes downvotes favorites comments follows
 export async function loadUserActivity(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/${userId}/activity`);
+        const response = await fetch(`http://192.168.86.195:3000/comments/${userId}/activity`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
