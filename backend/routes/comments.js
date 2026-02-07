@@ -16,6 +16,8 @@ commentsRouter.get('/users/:userId/comments', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
+// TODO: from here down change frontend routes to start with /comments
+
 // Get all comments on clip
 // TODO: refactor path
 commentsRouter.get('/abc/clips/:clipId/comments', (req, res) => {
