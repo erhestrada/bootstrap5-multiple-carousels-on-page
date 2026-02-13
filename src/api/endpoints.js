@@ -1,7 +1,12 @@
 const API_BASE = '';
 
 export const api = {
-	clips: [],
+	clips: {'getTopClips': '/top',
+		'getVotes': '/:userId/votes',
+		'getFavorites': '/:userId/favorites',
+		'getComments': '/:userId/comments',
+		'getHistory': '/:userId/history'
+	},
 	comments: {'activity': '/:userId/activity',
 			'getComments': '/abc/clips/:clipId/comments',
 			'postComment': '/clips/:clipId/comments', 
