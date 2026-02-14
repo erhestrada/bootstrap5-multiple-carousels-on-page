@@ -13,7 +13,11 @@ export const api = {
 			'deleteComment': '/clips/:clipId/comments/:commentId',
 			'patchComment': '/clips/:clipId/comments/:commentId'
 	}
-	favorites: [],
+	favorites: {'getFavorites': '/:userId/favorites',
+		'getFavoriteStatusOfClip': '/favorites/:userId/:clipId',
+		'postFavorite': '/favorites',
+		'deleteFavorite': '/favorites'
+	}
 	history: [],
 	likes: [],
 	users: [],
