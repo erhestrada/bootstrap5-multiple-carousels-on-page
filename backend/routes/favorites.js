@@ -1,6 +1,9 @@
 import { Router } from 'express';
 const favoritesRouter = Router();
 
+// Mounted on /favorites
+// Using clips/userId/favorites on the frontend -- i believe this one is obselete
+/*
 favoritesRouter.get('/:userId/favorites', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'favorites';
@@ -8,9 +11,10 @@ favoritesRouter.get('/:userId/favorites', (req, res) => {
   const filterValue = userId;
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
+*/
 
 // Get favorite status of clip
-favoritesRouter.get('/favorites/:userId/:clipId', (req, res) => {
+favoritesRouter.get('/:userId/:clipId', (req, res) => {
   const { userId, clipId } = req.params;
 
   const query = `SELECT * FROM favorites WHERE user_id = ? AND clip_id = ?`;
@@ -28,7 +32,7 @@ favoritesRouter.get('/favorites/:userId/:clipId', (req, res) => {
   });
 });
 
-favoritesRouter.post('/favorites', (req, res) => {
+favoritesRouter.post('/', (req, res) => {
   const { userId, clipId } = req.body;
 
   // const query = 'INSERT INTO favorites (user_id, clip_id) VALUES (?, ?)';
@@ -39,7 +43,7 @@ favoritesRouter.post('/favorites', (req, res) => {
   insertRowIntoTable(tableName, columnNames, parameters, res);
 });
 
-favoritesRouter.delete('/favorites', (req, res) => {
+favoritesRouter.delete('/', (req, res) => {
   const { userId, clipId } = req.body;
 
   //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
