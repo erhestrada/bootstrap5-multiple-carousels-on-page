@@ -36,6 +36,7 @@ app.use("/clips", clipsRouter);
 app.use("/users", usersRouter); // TODO: test patch user/login
 app.use("/history", historyRouter);
 app.use("/comments", commentsRouter);
+app.use("/favorites", favoritesRouter);
 // ---------------------------- Likes ------------------------------
 
 // Post like
