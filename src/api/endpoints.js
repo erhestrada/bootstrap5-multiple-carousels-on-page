@@ -1,5 +1,7 @@
 const API_BASE = '';
 
+// Account for roots paths are mounted on
+
 export const api = {
 	clips: {'getTopClips': '/top',
 		'getVotes': '/:userId/votes',
