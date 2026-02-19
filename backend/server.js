@@ -3,7 +3,7 @@ import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import { getRedditPosts } from './getRedditPosts.js';
 //import { getTwitchAcessToken } from './getTwitchAccessToken.js';
-import { clipsRouter, votesRouter, favoritesRouter, usersRouter, historyRouter, commentsRouter, likesRouter } from './routes/index.js';
+import { clipsRouter, votesRouter, favoritesRouter, usersRouter, historyRouter, commentsRouter, likesRouter, followsRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
 import { insertRowIntoTable, deleteRowFromTable, nestComments, initializeDb } from './utils/utils.js';
 
@@ -38,6 +38,7 @@ app.use("/history", historyRouter);
 app.use("/comments", commentsRouter);
 app.use("/favorites", favoritesRouter);
 app.use("/likes", likesRouter);
+app.use("/follows", followsRouter);
 
 // Start server
 app.listen(port, () => {
