@@ -33,12 +33,13 @@ const db = new sqlite3.Database('./data.db');
 initializeDb(db);
 
 app.use("/clips", clipsRouter);
-app.use("/users", usersRouter); // TODO: test patch user/login
-app.use("/history", historyRouter);
 app.use("/comments", commentsRouter);
 app.use("/favorites", favoritesRouter);
-app.use("/likes", likesRouter);
 app.use("/follows", followsRouter);
+app.use("/history", historyRouter);
+app.use("/likes", likesRouter);
+app.use("/users", usersRouter); // TODO: test patch user/login
+app.use("/votes", votesRouter);
 
 // Start server
 app.listen(port, () => {
