@@ -1,8 +1,8 @@
-
-// ---------------------------- Likes ------------------------------
+import { Router } from 'express';
+const likesRouter = Router();
 
 // Post like
-app.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
+likesRouter.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
   const { userId, commentId } = req.params;
 
   const tableName = 'comment_likes';
@@ -13,7 +13,7 @@ app.post('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
 });
 
 // Delete like
-app.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
+likesRouter.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
   const { userId, commentId } = req.params;
 
   const tableName = 'comment_likes';
@@ -22,4 +22,6 @@ app.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
 
   deleteRowFromTable(tableName, columnNames, parameters, res);
 });
+
+export default likesRouter;
 
