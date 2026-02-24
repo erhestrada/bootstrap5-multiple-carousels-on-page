@@ -5,12 +5,10 @@ votesRouter.get('/', (req, res) => {
     res.send({message: "Votes endpoint hit"});
 });
 
-export default votesRouter;
-
 
 // ---------------------------- Votes ------------------------------
 // Get all user votes
-app.get('/votes/:userId', (req, res) => {
+votesRouter.get('/votes/:userId', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'votes';
   const columnName = 'user_id';
@@ -18,7 +16,7 @@ app.get('/votes/:userId', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
-app.get('/votes/:userId/:clipId', (req, res) => {
+votesRouter.get('/votes/:userId/:clipId', (req, res) => {
   const { userId, clipId } = req.params;
 
   const query = `SELECT vote FROM votes WHERE user_id = ? AND clip_id = ?`;
@@ -38,7 +36,7 @@ app.get('/votes/:userId/:clipId', (req, res) => {
 
 // Get upvotes, downvotes, and net votes on a clip
 // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
-app.get('/abc/:clipId/votes', (req, res) => {
+votesRouter.get('/abc/:clipId/votes', (req, res) => {
   const clipId = req.params.clipId;
 
   const query = `SELECT vote FROM votes WHERE clip_id = ?`;
@@ -57,7 +55,7 @@ app.get('/abc/:clipId/votes', (req, res) => {
 });
 
 // Post vote
-app.post('/votes', async (req, res) => {
+votesRouter.post('/votes', async (req, res) => {
   const { userId, clipId, vote } = req.body;
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
@@ -68,7 +66,7 @@ app.post('/votes', async (req, res) => {
 });
 
 // Edit vote
-app.put('/votes/:voteId', (req, res) => {
+votesRouter.put('/votes/:voteId', (req, res) => {
   const voteId = req.params.commentId;
   const { updatedVote } = req.body;
 
@@ -89,7 +87,7 @@ app.put('/votes/:voteId', (req, res) => {
 });
 
 // Delete vote
-app.delete('/votes', (req, res) => {
+votesRouter.delete('/votes', (req, res) => {
   const { userId, clipId } = req.body;
 
   //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
@@ -101,4 +99,6 @@ app.delete('/votes', (req, res) => {
 });
 
 // -------------------------------------------------------------------
+
+export default votesRouter;
 
