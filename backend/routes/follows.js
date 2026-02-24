@@ -1,4 +1,6 @@
-// TODO: set up follows router
+import { Router } from 'express';
+const followsRouter = Router();
+
 // ---------------------------- Follows ------------------------------
 // Get all user follows - followed streamers and followed categories
 followsRouter.get('/users/:id/following', (req, res) => {
@@ -224,3 +226,4 @@ followsRouter.get('/reddit-posts', async (req, res) => {
 });
 
 export default followsRouter;
+
