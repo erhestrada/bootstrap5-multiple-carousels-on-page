@@ -3,7 +3,7 @@ const votesRouter = Router();
 
 // ---------------------------- Votes ------------------------------
 // Get all user votes
-votesRouter.get('/votes/:userId', (req, res) => {
+votesRouter.get('/:userId', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'votes';
   const columnName = 'user_id';
