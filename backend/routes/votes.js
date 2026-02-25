@@ -29,8 +29,7 @@ votesRouter.get('/:userId/:clipId', (req, res) => {
   });
 });
 
-
-// TODO: prefix with votes/ on the frontend 
+// getNetVotes() on frontend
 // Get upvotes, downvotes, and net votes on a clip
 // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
 votesRouter.get('/abc/:clipId/votes', (req, res) => {
