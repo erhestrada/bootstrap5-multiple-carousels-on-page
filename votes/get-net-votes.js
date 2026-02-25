@@ -1,7 +1,7 @@
 export default async function getNetVotes(clipId) {
     try {
         // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
-        const response = await fetch(`http://192.168.86.195:3000/abc/${clipId}/votes`);
+        const response = await fetch(`http://192.168.86.195:3000/votes/abc/${clipId}/votes`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
