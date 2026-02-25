@@ -1,11 +1,6 @@
 import { Router } from 'express';
 const votesRouter = Router();
 
-votesRouter.get('/', (req, res) => {
-    res.send({message: "Votes endpoint hit"});
-});
-
-
 // ---------------------------- Votes ------------------------------
 // Get all user votes
 votesRouter.get('/votes/:userId', (req, res) => {
@@ -16,7 +11,7 @@ votesRouter.get('/votes/:userId', (req, res) => {
   getValueFilteredDataFromTable(tableName, columnName, filterValue, res);
 });
 
-votesRouter.get('/votes/:userId/:clipId', (req, res) => {
+votesRouter.get('/:userId/:clipId', (req, res) => {
   const { userId, clipId } = req.params;
 
   const query = `SELECT vote FROM votes WHERE user_id = ? AND clip_id = ?`;
@@ -34,6 +29,8 @@ votesRouter.get('/votes/:userId/:clipId', (req, res) => {
   });
 });
 
+
+// TODO: prefix with votes/ on the frontend 
 // Get upvotes, downvotes, and net votes on a clip
 // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
 votesRouter.get('/abc/:clipId/votes', (req, res) => {
@@ -55,7 +52,7 @@ votesRouter.get('/abc/:clipId/votes', (req, res) => {
 });
 
 // Post vote
-votesRouter.post('/votes', async (req, res) => {
+votesRouter.post('/', async (req, res) => {
   const { userId, clipId, vote } = req.body;
   // const query = 'INSERT INTO comments (user_id, clip_id, comment) VALUES (?, ?, ?)';
   const tableName = 'votes';
@@ -66,7 +63,7 @@ votesRouter.post('/votes', async (req, res) => {
 });
 
 // Edit vote
-votesRouter.put('/votes/:voteId', (req, res) => {
+votesRouter.put('/:voteId', (req, res) => {
   const voteId = req.params.commentId;
   const { updatedVote } = req.body;
 
@@ -87,7 +84,7 @@ votesRouter.put('/votes/:voteId', (req, res) => {
 });
 
 // Delete vote
-votesRouter.delete('/votes', (req, res) => {
+votesRouter.delete('/', (req, res) => {
   const { userId, clipId } = req.body;
 
   //const query = 'DELETE FROM favorites WHERE user_id = ? AND clip_id = ?';
