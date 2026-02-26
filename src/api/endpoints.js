@@ -1,6 +1,7 @@
 const API_BASE = '';
 
 // Account for roots paths are mounted on
+// TODO: go through frontend endpoints and import them from here
 
 export const api = {
 	clips: {'getTopClips': '/top',
@@ -23,6 +24,7 @@ export const api = {
 	history: [],
 	likes: [],
 	users: [],
-	votes: []
+	votes: [],
+	follows: []
 }
 
