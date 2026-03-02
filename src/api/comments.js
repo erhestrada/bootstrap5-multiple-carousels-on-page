@@ -1,0 +1,51 @@
+import { makeApiRequest } from "../make-api-request";
+
+export default async function deleteComment(userId, clipId, commentId) {
+    const url = `http://192.168.86.195:3000/clips/${clipId}/comments/${commentId}`;
+    const options = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({ userId }),
+        };
+    const response = await makeApiRequest(url, options);
+    return response;
+}
+import { makeApiRequest } from "../make-api-request";
+
+export default async function getComments(clipId, userId) {
+    // TODO: refactor path
+    const url = `http://192.168.86.195:3000/abc/clips/${clipId}/comments?userId=${userId}`;
+    const options = {};
+    const comments = await makeApiRequest(url, options);
+    return comments;
+}
+import { makeApiRequest } from "../make-api-request";
+
+export default async function postComment(userId, clipId, parentId, comment) {
+    const url = `http://192.168.86.195:3000/clips/${clipId}/comments`;
+    const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({ userId, parentId, comment}),
+        };
+    const commentIdData = await makeApiRequest(url, options);
+    const commentId = commentIdData.id;
+    return commentId;
+}
+import { makeApiRequest } from "../make-api-request";
+
+export default async function softDeleteComment(clipId, commentId) {
+    const url = `http://192.168.86.195:3000/clips/${clipId}/comments/${commentId}`;
+    const options = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            userId: null,
+            comment: '[deleted]',
+            timestamp: null
+        })
+    };
+
+    const response = await makeApiRequest(url, options);
+    return response;
+}
