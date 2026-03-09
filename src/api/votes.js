@@ -1,4 +1,4 @@
-export default async function deleteVote(userId, clipId) {
+export async function deleteVote(userId, clipId) {
     try {
         const response = await fetch('http://192.168.86.195:3000/votes', {
             method: 'DELETE',
@@ -17,7 +17,8 @@ export default async function deleteVote(userId, clipId) {
         console.error("Error deleting vote from database", error);
     }
 }
-export default async function getNetVotes(clipId) {
+
+export async function getNetVotes(clipId) {
     try {
         // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
         const response = await fetch(`http://192.168.86.195:3000/votes/abc/${clipId}/votes`);
@@ -27,15 +28,16 @@ export default async function getNetVotes(clipId) {
         }
 
         const votes = await response.json();
-        const netVotes = votes.netVotes || 0; // If no votes on a clip its default score is 0
+        const netVotes = votes.netVotes || 0; // If no votes on a clip its score is 0
         return netVotes;
 
     } catch (error) {
         console.error('Error getting net votes for clip', error);
-        return 0; // Return default score of 0 if can't get net votes
+        return 0; // Return score of 0 if can't get net votes
     }
 }
-export default async function getUserVoteOnClip(userId, clipId) {
+
+export async function getUserVoteOnClip(userId, clipId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/votes/${userId}/${clipId}`);
 
@@ -52,7 +54,8 @@ export default async function getUserVoteOnClip(userId, clipId) {
         return null;
     }
 }
-export default async function getUserVotes(userId) {
+
+export async function getUserVotes(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/votes/${userId}`);
 
@@ -68,7 +71,8 @@ export default async function getUserVotes(userId) {
         return null;
     }
 }
-export default async function postVote(userId, clientId, clipId, vote) {
+
+export async function postVote(userId, clientId, clipId, vote) {
     try {
         const response = await fetch('http://192.168.86.195:3000/votes', {
             method: 'POST',
@@ -88,3 +92,4 @@ export default async function postVote(userId, clientId, clipId, vote) {
         throw new Error(`Error posting vote to database: ${error.message}`);
     }
 }
+
