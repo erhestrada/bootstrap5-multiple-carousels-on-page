@@ -12,8 +12,9 @@ export async function postUser(uuid) {
         console.error('Error storing data:', error);
     }
 };
+
 // Rename to getSignedOutUserId
-export default async function getSignedOutUser(clientId) {
+export async function getSignedOutUser(clientId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/users/signed-out-user?clientId=${clientId}`);
 
