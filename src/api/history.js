@@ -1,4 +1,4 @@
-export default async function postClipToHistory(userId, clipTwitchId) {
+export async function postClipToHistory(userId, clipTwitchId) {
     try {
         const response = await fetch('http://192.168.86.195:3000/history', {
             method: 'POST',
