@@ -1,5 +1,5 @@
 // modifying this first to work for just categoryFollow
-export default async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl) {
+export async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
@@ -23,7 +23,7 @@ export default async function deleteCategoryFollow(userId, category, twitchId, b
     }
 }
 // modifying this first to work for just streamerFollow
-export default async function deleteStreamerFollow(userId, streamer, twitchId) {
+export async function deleteStreamerFollow(userId, streamer, twitchId) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
@@ -47,7 +47,7 @@ export default async function deleteStreamerFollow(userId, streamer, twitchId) {
     }
 }
 // label e.g. streamer, category
-export default async function getFollows(userId) {
+export async function getFollows(userId) {
     try {
         const url = `http://192.168.86.195:3000/users/${userId}/following`;
         const response = await fetch(url);
@@ -66,7 +66,7 @@ export default async function getFollows(userId) {
     }
 }
 // label e.g. streamer, category
-export default async function getKindOfFollows(userId, kind) {
+export async function getKindOfFollows(userId, kind) {
     try {
         if (!['streamers', 'categories'].includes(kind)) {
             throw new Error('Kind must be streamers or categories');
@@ -88,7 +88,7 @@ export default async function getKindOfFollows(userId, kind) {
         return [];
     }
 }
-export default async function patchSwapPositions(userId, followType, firstStreamerOrCategoryName, secondStreamerOrCategoryName) {
+export async function patchSwapPositions(userId, followType, firstStreamerOrCategoryName, secondStreamerOrCategoryName) {
     try {
         // followType should be 'streamers' or 'categories'
         const url = `http://192.168.86.195:3000/users/${userId}/following/${followType}`;
@@ -111,7 +111,7 @@ export default async function patchSwapPositions(userId, followType, firstStream
     }
 }
 // modifying this first to work for just categoryFollow
-export default async function postCategoryFollow(userId, category, twitchId, boxArtUrl) {
+export async function postCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
@@ -135,7 +135,7 @@ export default async function postCategoryFollow(userId, category, twitchId, box
     }
 }
 // modifying this first to work for just streamerFollow
-export default async function postStreamerFollow(userId, streamer, twitchId, profilePictureUrl) {
+export async function postStreamerFollow(userId, streamer, twitchId, profilePictureUrl) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
         const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
