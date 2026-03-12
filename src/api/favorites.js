@@ -1,4 +1,4 @@
-export default async function deleteFavorite(userId, clipId) {
+export async function deleteFavorite(userId, clipId) {
     try {
         const response = await fetch('http://192.168.86.195:3000/favorites', {
             method: 'DELETE',
@@ -17,7 +17,7 @@ export default async function deleteFavorite(userId, clipId) {
         console.error("Error deleting favorite from database", error);
     }
 }
-export default async function getFavoriteStatusOfClip(userId, clipId) {
+export async function getFavoriteStatusOfClip(userId, clipId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/favorites/${userId}/${clipId}`);
 
@@ -31,10 +31,10 @@ export default async function getFavoriteStatusOfClip(userId, clipId) {
 
     } catch (error) {
         console.error('Error getting user favorite on clip', error);
-        return false; // Assume default value of false if error getting favorited status
+        return false; // Assume value of false if error getting favorited status
     }
 }
-export default async function postFavorite(userId, clipId) {
+export async function postFavorite(userId, clipId) {
     try {
         const response = await fetch('http://192.168.86.195:3000/favorites', {
             method: 'POST',
