@@ -1,6 +1,6 @@
 import { makeApiRequest } from "../make-api-request";
 
-export default async function deleteComment(userId, clipId, commentId) {
+export async function deleteComment(userId, clipId, commentId) {
     const url = `http://192.168.86.195:3000/clips/${clipId}/comments/${commentId}`;
     const options = {
             method: 'DELETE',
@@ -12,7 +12,7 @@ export default async function deleteComment(userId, clipId, commentId) {
 }
 import { makeApiRequest } from "../make-api-request";
 
-export default async function getComments(clipId, userId) {
+export async function getComments(clipId, userId) {
     // TODO: refactor path
     const url = `http://192.168.86.195:3000/abc/clips/${clipId}/comments?userId=${userId}`;
     const options = {};
@@ -21,7 +21,7 @@ export default async function getComments(clipId, userId) {
 }
 import { makeApiRequest } from "../make-api-request";
 
-export default async function postComment(userId, clipId, parentId, comment) {
+export async function postComment(userId, clipId, parentId, comment) {
     const url = `http://192.168.86.195:3000/clips/${clipId}/comments`;
     const options = {
             method: 'POST',
@@ -34,7 +34,7 @@ export default async function postComment(userId, clipId, parentId, comment) {
 }
 import { makeApiRequest } from "../make-api-request";
 
-export default async function softDeleteComment(clipId, commentId) {
+export async function softDeleteComment(clipId, commentId) {
     const url = `http://192.168.86.195:3000/clips/${clipId}/comments/${commentId}`;
     const options = {
         method: 'PATCH',
