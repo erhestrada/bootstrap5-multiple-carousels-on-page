@@ -1,4 +1,4 @@
-export default async function getVotedOnClips(userId) {
+export async function getVotedOnClips(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/comments`);
 
@@ -14,7 +14,7 @@ export default async function getVotedOnClips(userId) {
         return null;
     }
 }
-export default async function getFavoritedClips(userId) {
+export async function getFavoritedClips(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/favorites`);
 
@@ -30,7 +30,7 @@ export default async function getFavoritedClips(userId) {
         return null;
     }
 }
-export default async function getHistoryClips(userId) {
+export async function getHistoryClips(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/history`);
 
@@ -50,7 +50,7 @@ export default async function getHistoryClips(userId) {
         return null;
     }
 }
-export default async function getVotedOnClips(userId) {
+export async function getVotedOnClips(userId) {
     try {
         const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/votes`);
 
