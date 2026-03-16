@@ -1,7 +1,7 @@
 import { getUsers, displayUsername } from "./signup";
 
 // TODO: hide error message when modal closed e.g. This userNAME DOES not exist persisting
-export default async function login(username, password) {
+export async function login(username, password) {
     const users = await getUsers();
     const usernameErrorMessage = document.getElementById("username-error-message");
     
@@ -17,7 +17,7 @@ export default async function login(username, password) {
     alert('log in');
 }
 
-export default async function logout() {
+export async function logout() {
     hideUsername();
 }
 
@@ -35,7 +35,7 @@ import { closeLoginModal } from "../setupLogin";
 import logout from './logout';
 
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
-export default async function signup(userId, username, password) {
+export async function signup(userId, username, password) {
     const users = await getUsers();
     const usernameTakenMessage = document.getElementById("username-error-message");
     const navbarLoginButton = document.getElementById('log-in-button');
