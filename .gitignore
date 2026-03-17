@@ -28,3 +28,7 @@ token.json
 
 # Temporary databse files 
 *.db-journal
+
+# Environment files
+.env
+
