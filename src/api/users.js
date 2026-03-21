@@ -1,6 +1,8 @@
+import { API_PATH } from "./apiConfig.js";
+
 export async function postUser(uuid) {
     try {
-        const response = await fetch('http://192.168.86.195:3000/postUser', {
+        const response = await fetch('API_PATH/postUser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ uuid })
@@ -16,7 +18,7 @@ export async function postUser(uuid) {
 // Rename to getSignedOutUserId
 export async function getSignedOutUser(clientId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/users/signed-out-user?clientId=${clientId}`);
+        const response = await fetch(`API_PATH/users/signed-out-user?clientId=${clientId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
