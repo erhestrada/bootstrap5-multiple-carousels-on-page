@@ -2,7 +2,7 @@ import { API_PATH } from "./apiConfig.js";
 
 export async function deleteVote(userId, clipId) {
     try {
-        const response = await fetch('API_PATH/votes', {
+        const response = await fetch(API_PATH + 'votes', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, clipId })
@@ -76,7 +76,7 @@ export async function getUserVotes(userId) {
 
 export async function postVote(userId, clientId, clipId, vote) {
     try {
-        const response = await fetch('API_PATH/votes', {
+        const response = await fetch(API_PATH + 'votes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, clientId, clipId, vote })
