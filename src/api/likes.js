@@ -1,7 +1,7 @@
 import { makeApiRequest } from "../make-api-request";
 
 export async function postLike(userId, clipId, commentId) {
-    const url = `http://192.168.86.195:3000/${userId}/clips/${clipId}/${commentId}/likes`;
+    const url = API_PATH + `${userId}/clips/${clipId}/${commentId}/likes`;
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -13,7 +13,7 @@ export async function postLike(userId, clipId, commentId) {
 import { makeApiRequest } from "../make-api-request";
 
 export async function deleteLike(userId, clipId, commentId) {
-    const url = `http://192.168.86.195:3000/${userId}/clips/${clipId}/${commentId}/likes`;
+    const url = API_PATH + `${userId}/clips/${clipId}/${commentId}/likes`;
     const options = {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
