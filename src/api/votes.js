@@ -23,7 +23,7 @@ export async function deleteVote(userId, clipId) {
 export async function getNetVotes(clipId) {
     try {
         // TODO: change abc to meaningful name, avoid conflicting with '/clips/:userId/votes'
-        const response = await fetch(`API_PATH/votes/abc/${clipId}/votes`);
+        const response = await fetch(API_PATH + `votes/abc/${clipId}/votes`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -41,7 +41,7 @@ export async function getNetVotes(clipId) {
 
 export async function getUserVoteOnClip(userId, clipId) {
     try {
-        const response = await fetch(`API_PATH/votes/${userId}/${clipId}`);
+        const response = await fetch(API_PATH + `votes/${userId}/${clipId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -59,7 +59,7 @@ export async function getUserVoteOnClip(userId, clipId) {
 
 export async function getUserVotes(userId) {
     try {
-        const response = await fetch(`API_PATH/votes/${userId}`);
+        const response = await fetch(API_PATH + `votes/${userId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
