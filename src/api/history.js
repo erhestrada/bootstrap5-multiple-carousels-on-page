@@ -1,6 +1,6 @@
 export async function postClipToHistory(userId, clipTwitchId) {
     try {
-        const response = await fetch(API_PATH + 'history', {
+        const response = await fetch(API_URL + 'history', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, clipTwitchId})
