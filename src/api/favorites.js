@@ -1,6 +1,6 @@
 export async function deleteFavorite(userId, clipId) {
     try {
-        const response = await fetch('http://192.168.86.195:3000/favorites', {
+        const response = await fetch(API_URL + 'favorites', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, clipId })
@@ -19,7 +19,7 @@ export async function deleteFavorite(userId, clipId) {
 }
 export async function getFavoriteStatusOfClip(userId, clipId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/favorites/${userId}/${clipId}`);
+        const response = await fetch(`API_URL/favorites/${userId}/${clipId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -36,7 +36,7 @@ export async function getFavoriteStatusOfClip(userId, clipId) {
 }
 export async function postFavorite(userId, clipId) {
     try {
-        const response = await fetch('http://192.168.86.195:3000/favorites', {
+        const response = await fetch(API_URL + 'favorites', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ userId, clipId })

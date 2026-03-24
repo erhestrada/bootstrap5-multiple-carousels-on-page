@@ -2,7 +2,7 @@
 export async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
+        const url = API_URL + `users/${userId}/following/categories/${category}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
@@ -26,7 +26,7 @@ export async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl
 export async function deleteStreamerFollow(userId, streamer, twitchId) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
+        const url = API_URL + `users/${userId}/following/streamers/${streamer}`;
         const response = await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
@@ -49,7 +49,7 @@ export async function deleteStreamerFollow(userId, streamer, twitchId) {
 // label e.g. streamer, category
 export async function getFollows(userId) {
     try {
-        const url = `http://192.168.86.195:3000/users/${userId}/following`;
+        const url = API_URL + `users/${userId}/following`;
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -72,7 +72,7 @@ export async function getKindOfFollows(userId, kind) {
             throw new Error('Kind must be streamers or categories');
         }
 
-        const url = `http://192.168.86.195:3000/users/${userId}/following/${kind}`;
+        const url = API_URL + `users/${userId}/following/${kind}`;
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -91,7 +91,7 @@ export async function getKindOfFollows(userId, kind) {
 export async function patchSwapPositions(userId, followType, firstStreamerOrCategoryName, secondStreamerOrCategoryName) {
     try {
         // followType should be 'streamers' or 'categories'
-        const url = `http://192.168.86.195:3000/users/${userId}/following/${followType}`;
+        const url = API_URL + `users/${userId}/following/${followType}`;
         const response = await fetch(url, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json'},
@@ -114,7 +114,7 @@ export async function patchSwapPositions(userId, followType, firstStreamerOrCate
 export async function postCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {
         // app.post('/users/:userId/following/categorys/:category/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/categories/${category}`;
+        const url = API_URL + `users/${userId}/following/categories/${category}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
@@ -138,7 +138,7 @@ export async function postCategoryFollow(userId, category, twitchId, boxArtUrl) 
 export async function postStreamerFollow(userId, streamer, twitchId, profilePictureUrl) {
     try {
         // app.post('/users/:userId/following/streamers/:streamer/:twitchId', (req, res) => {
-        const url = `http://192.168.86.195:3000/users/${userId}/following/streamers/${streamer}`;
+        const url = API_URL + `users/${userId}/following/streamers/${streamer}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
