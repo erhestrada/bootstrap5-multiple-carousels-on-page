@@ -65,7 +65,7 @@ export async function signup(userId, username, password) {
 // move to /users ?
 export async function getUsers() {
     try {
-        const url = `http://192.168.86.195:3000/users/`;
+        const url = API_URL + `users/`;
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -83,7 +83,7 @@ export async function getUsers() {
 }
 export async function patchLogin(userId, username, password) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/${userId}/login`, {
+        const response = await fetch(API_URL + `${userId}/login`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
