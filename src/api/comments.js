@@ -10,7 +10,6 @@ export async function deleteComment(userId, clipId, commentId) {
     const response = await makeApiRequest(url, options);
     return response;
 }
-import { makeApiRequest } from "../make-api-request";
 
 export async function getComments(clipId, userId) {
     // TODO: refactor path
@@ -19,7 +18,6 @@ export async function getComments(clipId, userId) {
     const comments = await makeApiRequest(url, options);
     return comments;
 }
-import { makeApiRequest } from "../make-api-request";
 
 export async function postComment(userId, clipId, parentId, comment) {
     const url = API_URL + `clips/${clipId}/comments`;
@@ -32,7 +30,6 @@ export async function postComment(userId, clipId, parentId, comment) {
     const commentId = commentIdData.id;
     return commentId;
 }
-import { makeApiRequest } from "../make-api-request";
 
 export async function softDeleteComment(clipId, commentId) {
     const url = API_URL + `clips/${clipId}/comments/${commentId}`;
