@@ -1,6 +1,6 @@
 export async function getVotedOnClips(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/comments`);
+        const response = await fetch(API_URL + `clips/${userId}/comments`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -16,7 +16,7 @@ export async function getVotedOnClips(userId) {
 }
 export async function getFavoritedClips(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/favorites`);
+        const response = await fetch(API_URL + `clips/${userId}/favorites`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -32,7 +32,7 @@ export async function getFavoritedClips(userId) {
 }
 export async function getHistoryClips(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/history`);
+        const response = await fetch(API_URL + `clips/${userId}/history`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -52,7 +52,7 @@ export async function getHistoryClips(userId) {
 }
 export async function getVotedOnClips(userId) {
     try {
-        const response = await fetch(`http://192.168.86.195:3000/clips/${userId}/votes`);
+        const response = await fetch(API_URL + `clips/${userId}/votes`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
