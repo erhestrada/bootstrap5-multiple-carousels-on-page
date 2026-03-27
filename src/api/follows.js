@@ -1,3 +1,5 @@
+import { API_URL } from "./apiConfig.js";
+
 // modifying this first to work for just categoryFollow
 export async function deleteCategoryFollow(userId, category, twitchId, boxArtUrl) {
     try {

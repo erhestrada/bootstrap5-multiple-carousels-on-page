@@ -1,4 +1,5 @@
 import { makeApiRequest } from "../make-api-request";
+import { API_URL } from "./apiConfig.js";
 
 export async function deleteComment(userId, clipId, commentId) {
     const url = API_URL + `clips/${clipId}/comments/${commentId}`;

@@ -1,3 +1,5 @@
+import { API_URL } from "./apiConfig.js";
+
 export async function getVotedOnClips(userId) {
     try {
         const response = await fetch(API_URL + `clips/${userId}/comments`);

@@ -1,3 +1,5 @@
+import { API_URL } from "./apiConfig.js";
+
 export async function deleteFavorite(userId, clipId) {
     try {
         const response = await fetch(API_URL + 'favorites', {
