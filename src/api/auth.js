@@ -1,3 +1,4 @@
+import { API_URL } from "./apiConfig.js";
 import { getUsers, displayUsername } from "./signup";
 
 // TODO: hide error message when modal closed e.g. This userNAME DOES not exist persisting
