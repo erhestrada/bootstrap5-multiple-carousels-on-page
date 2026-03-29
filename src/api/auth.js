@@ -1,6 +1,9 @@
 import { API_URL } from "./apiConfig.js";
 import { getUsers, displayUsername } from "./signup";
 
+import { closeLoginModal } from "../setupLogin";
+import logout from './logout';
+
 // TODO: hide error message when modal closed e.g. This userNAME DOES not exist persisting
 export async function login(username, password) {
     const users = await getUsers();
@@ -32,8 +35,6 @@ function hideUsername() {
     const loginModal = document.getElementById('login-modal');
     navbarLoginButton.onclick = () => loginModal.style.display = 'block'; // TODO: login button color needs to go back to grey
 }
-import { closeLoginModal } from "../setupLogin";
-import logout from './logout';
 
 // db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, client_id TEXT, username TEXT UNIQUE, password TEXT)');
 export async function signup(userId, username, password) {
