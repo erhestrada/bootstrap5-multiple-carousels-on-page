@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getClips } from './getClips.js';
 const clipsRouter = Router();
 
 // root is /clips
@@ -15,6 +16,7 @@ clipsRouter.post('/', (req, res) => {
 
 // TODO: implement all the twitch api function calls here
 clipsRouter.get('/top', (req, res) => {
+    // getClips();
     res.send({message: "Top clips endpoint hit"});
 });
 
