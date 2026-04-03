@@ -1,7 +1,7 @@
 import { makeApiRequest } from "../make-api-request";
 
 export default async function postComment(userId, clipId, parentId, comment) {
-    const url = `http://192.168.86.195:3000/clips/${clipId}/comments`;
+    const url = `http://192.168.86.211:3000/comments/clips/${clipId}`;
     const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
