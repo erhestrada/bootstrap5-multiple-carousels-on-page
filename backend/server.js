@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
+import os from "os";
 import { getRedditPosts } from './getRedditPosts.js';
 //import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter, historyRouter, commentsRouter, likesRouter, followsRouter } from './routes/index.js';
@@ -41,7 +42,25 @@ app.use("/likes", likesRouter);
 app.use("/users", usersRouter); // TODO: test patch user/login
 app.use("/votes", votesRouter);
 
+
 // Start server
 app.listen(port, () => {
-  console.log(`Server running on http://192.168.86.195:${port}`);
+  const interfaces = os.networkInterfaces();
+
+  let lanIp = null;
+
+  for (const name of Object.keys(interfaces)) {
+    for (const net of interfaces[name]) {
+      // Skip internal (127.0.0.1) and non-IPv4
+      if (net.family === "IPv4" && !net.internal) {
+        lanIp = net.address;
+      }
+    }
+  }
+
+  console.log(`Server running at:`);
+  console.log(`  Local:   http://localhost:${port}`);
+  if (lanIp) {
+    console.log(`  Network: http://${lanIp}:${port}`);
+  }
 });
