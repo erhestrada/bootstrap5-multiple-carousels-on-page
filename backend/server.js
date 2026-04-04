@@ -33,6 +33,12 @@ const db = new sqlite3.Database('./data.db');
 
 initializeDb(db);
 
+// Middleware to make db accessible to routers (TODO: refactor into service layer)
+app.use((req, res, next) => {
+  req.db = db;
+  next();
+});
+
 app.use("/clips", clipsRouter);
 app.use("/comments", commentsRouter);
 app.use("/favorites", favoritesRouter);
