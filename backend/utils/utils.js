@@ -127,7 +127,7 @@ export function getValueFilteredDataFromTable(tableName, columnName, filterValue
   });
 }
 
-export function insertRowIntoTable(tableName, columnNames, parameters, res) {
+export function insertRowIntoTable(db, tableName, columnNames, parameters, res) {
   const query = `INSERT OR IGNORE INTO ${tableName} (${columnNames.join(', ')}) VALUES (${columnNames.map(() => '?').join(', ')})`;
 
   db.run(query, parameters, function (err) {
