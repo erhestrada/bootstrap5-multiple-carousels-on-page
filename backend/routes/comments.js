@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { insertRowIntoTable } from '../utils/utils.js';
 const commentsRouter = Router();
 
 // Root is /comments
@@ -54,7 +55,7 @@ commentsRouter.get('/abc/clips/:clipId/comments', (req, res) => {
 
 
 // Post comment
-commentsRouter.post('/clips/:clipId/comments', (req, res) => {
+commentsRouter.post('/clips/:clipId', (req, res) => {
   const { clipId } = req.params;
   const { userId, parentId, comment } = req.body;
 
