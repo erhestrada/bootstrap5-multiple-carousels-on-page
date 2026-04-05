@@ -63,7 +63,7 @@ commentsRouter.post('/clips/:clipId', (req, res) => {
   const columnNames = ['clip_id', 'user_id', 'parent_id', 'comment'];
   const parameters = [clipId, userId, parentId, comment];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  insertRowIntoTable(req.db, tableName, columnNames, parameters, res);
 });
 
 // Delete comment
