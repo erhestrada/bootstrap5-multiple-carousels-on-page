@@ -11,7 +11,7 @@ historyRouter.post('/', (req, res) => {
   const columnNames = ['user_id', 'twitch_id'];
   const parameters = [userId, twitchId];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  insertRowIntoTable(req.db, tableName, columnNames, parameters, res);
 });
 
 export default historyRouter;

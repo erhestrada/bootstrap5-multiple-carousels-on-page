@@ -58,7 +58,7 @@ votesRouter.post('/', async (req, res) => {
   const columnNames = ['user_id', 'clip_id', 'vote'];
   const parameters = [userId, clipId, vote];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  insertRowIntoTable(req.db, tableName, columnNames, parameters, res);
 });
 
 // Edit vote

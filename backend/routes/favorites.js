@@ -40,7 +40,7 @@ favoritesRouter.post('/', (req, res) => {
   const columnNames = ['user_id', 'clip_id'];
   const parameters = [userId, clipId];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  insertRowIntoTable(req.db, tableName, columnNames, parameters, res);
 });
 
 favoritesRouter.delete('/', (req, res) => {

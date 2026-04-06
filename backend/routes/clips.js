@@ -10,7 +10,7 @@ clipsRouter.post('/', (req, res) => {
   const columnNames = ['twitchId', 'url', 'embed_url', 'broadcaster_id', 'broadcaster_name', 'creator_id', 'creator_name', 'video_id', 'game_id', 'language', 'title', 'view_count', 'created_at', 'thumbnail_url', 'duration'];
   const parameters = [twitchId, url, embed_url, broadcaster_id, broadcaster_name, creator_id, creator_name, video_id, game_id, language, title, view_count, created_at, thumbnail_url, duration];
 
-  insertRowIntoTable(tableName, columnNames, parameters, res);
+  insertRowIntoTable(req.db, tableName, columnNames, parameters, res);
 });
 
 
