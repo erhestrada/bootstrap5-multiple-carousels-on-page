@@ -1,4 +1,4 @@
-import { deleteComment, softDeleteComment } from "../comments";
+import { deleteComment, softDeleteComment } from "../src/api/comments.js";
 
 let pendingDeleteElement = null;
 

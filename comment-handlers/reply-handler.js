@@ -1,4 +1,4 @@
-import { postComment } from "../comments";
+import { postComment } from "../src/api/comments.js";
 import { postClip } from "../postClip";
 import { attachCommentEventListeners } from "./comment-handler";
 
