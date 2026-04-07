@@ -1,4 +1,4 @@
-import { postLike, deleteLike } from '../likes';
+import { postLike, deleteLike } from '../src/api/likes.js';
 
 export function toggleLike(button) {
     const isLiked = button.classList.contains('liked');
