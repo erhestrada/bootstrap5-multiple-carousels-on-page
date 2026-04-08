@@ -1,4 +1,4 @@
-import { getComments } from "./comments";
+import { getComments } from "./src/api/comments.js";
 import { renderComments } from "./comment-handlers/comment-handler";
 
 export async function displayComments(clipId, userId) {
