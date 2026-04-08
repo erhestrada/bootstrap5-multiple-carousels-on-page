@@ -57,6 +57,7 @@ export async function getUserVoteOnClip(userId, clipId) {
     }
 }
 
+// TODO:  Not actually using this -- remove
 export async function getUserVotes(userId) {
     try {
         const response = await fetch(API_URL + `votes/${userId}`);
