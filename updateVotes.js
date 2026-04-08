@@ -1,4 +1,4 @@
-import { postVote, deleteVote } from './votes'
+import { postVote, deleteVote } from './src/api/votes.js'
 import { getClipId } from './getClipId';
 import { postClip } from './postClip';
 

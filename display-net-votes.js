@@ -1,4 +1,4 @@
-import { getNetVotes } from './votes'
+import { getNetVotes } from './src/api/votes.js'
 
 export async function displayNetVotes(clipId) {
     const netVotes = await getNetVotes(clipId);
