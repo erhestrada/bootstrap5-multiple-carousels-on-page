@@ -1,5 +1,6 @@
 import { API_URL } from "./apiConfig.js";
 
+// TODO: remove -- Not using this (or refactor how i'm posting to use this)
 export async function postUser(uuid) {
     try {
         const response = await fetch(API_URL + 'postUser', {
