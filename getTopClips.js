@@ -11,7 +11,7 @@ import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { checkRedditPosts } from "./checkRedditPosts";
-import { postClipToHistory } from "./history";
+import { postClipToHistory } from "./src/api/history.js";
 import { postClip } from "./postClip";
 
 const gameToIdConverter = {
