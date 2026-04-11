@@ -22,7 +22,7 @@ likesRouter.delete('/:userId/clips/:clipId/:commentId/likes', (req, res) => {
   const columnNames = ['user_id', 'comment_id'];
   const parameters = [userId, commentId];
 
-  deleteRowFromTable(tableName, columnNames, parameters, res);
+  deleteRowFromTable(req.db, tableName, columnNames, parameters, res);
 });
 
 export default likesRouter;

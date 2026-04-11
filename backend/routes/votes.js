@@ -92,7 +92,7 @@ votesRouter.delete('/', (req, res) => {
   const columnNames = ['user_id', 'clip_id'];
   const parameters = [userId, clipId];
 
-  deleteRowFromTable(tableName, columnNames, parameters, res);
+  deleteRowFromTable(req.db, tableName, columnNames, parameters, res);
 });
 
 // -------------------------------------------------------------------

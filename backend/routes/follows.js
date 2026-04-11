@@ -109,7 +109,7 @@ followsRouter.delete('/users/:userId/following/streamers/:streamer', (req, res) 
   const columnNames = ['user_id', 'streamer', 'twitch_id'];
   const parameters = [userId, streamer, twitchId];
 
-  deleteRowFromTable(tableName, columnNames, parameters, res);
+  deleteRowFromTable(req.db, tableName, columnNames, parameters, res);
 });
 
 // Post category to follow
@@ -157,7 +157,7 @@ followsRouter.delete('/users/:userId/following/categories/:category', (req, res)
   const columnNames = ['user_id', 'category', 'twitch_id', 'box_art_url'];
   const parameters = [userId, category, twitchId, boxArtUrl];
 
-  deleteRowFromTable(tableName, columnNames, parameters, res);
+  deleteRowFromTable(req.db, tableName, columnNames, parameters, res);
 });
 
 // Swap positions
