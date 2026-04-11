@@ -47,7 +47,7 @@ export function initializeDb(db) {
   });
 }
 
-export async function getSignedOutUserId(clientId) {
+export async function getSignedOutUserId(db, clientId) {
   const query = `SELECT id, username FROM users WHERE client_id = ? LIMIT 1`;
   const row = await dbGetAsync(db, query, [clientId]);
 
