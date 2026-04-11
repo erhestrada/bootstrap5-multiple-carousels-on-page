@@ -14,7 +14,7 @@ usersRouter.get('/signed-out-user', async (req, res) => {
   }
 
   try {
-    const { userId, username } = await getSignedOutUserId(clientId);
+    const { userId, username } = await getSignedOutUserId(req.db, clientId);
     res.status(200).json({ userId, username });
   } catch (err) {
     console.error('Failed to get signed out user:', err);
