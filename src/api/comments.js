@@ -1,4 +1,4 @@
-import { makeApiRequest } from "../make-api-request";
+import { makeApiRequest } from "../../make-api-request.js";
 import { API_URL } from "./apiConfig.js";
 
 export async function deleteComment(userId, clipId, commentId) {

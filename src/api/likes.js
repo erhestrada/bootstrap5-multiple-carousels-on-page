@@ -1,4 +1,4 @@
-import { makeApiRequest } from "../make-api-request";
+import { makeApiRequest } from "../../make-api-request.js";
 
 export async function postLike(userId, clipId, commentId) {
     const url = API_URL + `${userId}/clips/${clipId}/${commentId}/likes`;
