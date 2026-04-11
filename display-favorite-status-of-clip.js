@@ -1,4 +1,4 @@
-import { getFavoriteStatusOfClip } from './favorites'
+import { getFavoriteStatusOfClip } from './src/api/favorites.js'
 
 export async function displayFavoriteStatusOfClip(userId, clipId) {
   try {

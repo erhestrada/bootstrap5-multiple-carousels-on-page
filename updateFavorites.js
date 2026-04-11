@@ -1,5 +1,5 @@
 import { saveClip, removeClip } from "./updateVotes.js";
-import { postFavorite, deleteFavorite } from "./favorites/index.js";
+import { postFavorite, deleteFavorite } from "./src/api/favorites.js";
 import { getClipId } from "./getClipId.js";
 import { postClip } from "./postClip.js";
 
