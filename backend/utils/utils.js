@@ -141,7 +141,7 @@ export function insertRowIntoTable(db, tableName, columnNames, parameters, res) 
   });
 }
 
-export function deleteRowFromTable(tableName, columnNames, parameters, res) {
+export function deleteRowFromTable(db, tableName, columnNames, parameters, res) {
     // e.g. user_id = ? AND clip_id = ?
     const whereClause = columnNames.map(col => `${col} = ?`).join(' AND ');
     const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
