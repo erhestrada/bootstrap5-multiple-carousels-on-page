@@ -16,6 +16,7 @@ export async function getVotedOnClips(userId) {
         return null;
     }
 }
+
 export async function getFavoritedClips(userId) {
     try {
         const response = await fetch(API_URL + `clips/${userId}/favorites`);
@@ -32,6 +33,7 @@ export async function getFavoritedClips(userId) {
         return null;
     }
 }
+
 export async function getHistoryClips(userId) {
     try {
         const response = await fetch(API_URL + `clips/${userId}/history`);
@@ -52,19 +54,4 @@ export async function getHistoryClips(userId) {
         return null;
     }
 }
-export async function getVotedOnClips(userId) {
-    try {
-        const response = await fetch(API_URL + `clips/${userId}/votes`);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error; status: ${response.status}`);
-        }
-
-        const votesData = await response.json();
-        return votesData;
-
-    } catch (error) {
-        console.error('Error getting voted on clips', error);
-        return null;
-    }
-}
