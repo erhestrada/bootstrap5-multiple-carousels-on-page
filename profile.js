@@ -1,4 +1,4 @@
-import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./clips";
+import { getVotedOnClips, getFavoritedClips, getCommentedOnClips, getHistoryClips } from "./src/api/clips.js";
 import { displayUserVoteOnClip } from "./display-user-vote-on-clip";
 import { displayNetVotes } from "./display-net-votes";
 import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
