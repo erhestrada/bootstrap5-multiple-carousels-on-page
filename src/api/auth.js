@@ -80,6 +80,8 @@ export async function getUsers() {
         return [];
     }
 }
+
+// TODO: remove, unused
 export async function patchLogin(userId, username, password) {
     try {
         const response = await fetch(API_URL + `${userId}/login`, {
