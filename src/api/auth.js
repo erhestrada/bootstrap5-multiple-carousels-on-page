@@ -1,6 +1,5 @@
 import { API_URL } from "./apiConfig.js";
-import { getUsers, displayUsername } from "./signup";
-import { closeLoginModal } from "../setupLogin";
+import { closeLoginModal } from "../../setupLogin";
 
 // TODO: hide error message when modal closed e.g. This userNAME DOES not exist persisting
 export async function login(username, password) {
