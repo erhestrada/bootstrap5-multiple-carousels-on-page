@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { insertRowIntoTable, deleteRowFromTable } from '../utils/utils.js';
+
 const likesRouter = Router();
 
 // Post like

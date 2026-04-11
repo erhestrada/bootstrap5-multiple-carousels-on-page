@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { insertRowIntoTable } from '../utils/utils.js';
+import { insertRowIntoTable, deleteRowFromTable } from '../utils/utils.js';
 const commentsRouter = Router();
 
 // Root is /comments

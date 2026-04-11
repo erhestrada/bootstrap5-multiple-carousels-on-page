@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { deleteRowFromTable } from '../utils/utils.js';
 const followsRouter = Router();
 
 // ---------------------------- Follows ------------------------------
