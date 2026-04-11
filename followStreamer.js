@@ -1,5 +1,5 @@
 import { displayHeart } from "./display-follow-status";
-import { postStreamerFollow, deleteStreamerFollow } from './follows';
+import { postStreamerFollow, deleteStreamerFollow } from './src/api/follows.js';
 
 // This is for the main page heart buttons
 export function followStreamer(userId, streamer, streamerId) {  

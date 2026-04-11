@@ -1,5 +1,5 @@
 import { displayHeart } from "./display-follow-status.js";
-import { postCategoryFollow, deleteCategoryFollow } from './follows';
+import { postCategoryFollow, deleteCategoryFollow } from './src/api/follows.js';
 
 export async function followCategory(userId, category) {    
     const [boxArtUrl, categoryId] = getBoxArtUrlAndIdForCategory(category);
