@@ -1,4 +1,4 @@
-import { signup, login, logout } from "./auth";
+import { signup, login, logout } from "./src/api/auth.js";
 
 export function setupLogin(userId) {
     const navBarLoginButton = document.getElementById('log-in-button');
