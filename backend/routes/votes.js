@@ -16,7 +16,7 @@ votesRouter.get('/:userId/:clipId', (req, res) => {
 
   const query = `SELECT vote FROM votes WHERE user_id = ? AND clip_id = ?`;
 
-  db.get(query, [userId, clipId], (err, row) => {
+  req.db.get(query, [userId, clipId], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -37,7 +37,7 @@ votesRouter.get('/abc/:clipId/votes', (req, res) => {
 
   const query = `SELECT vote FROM votes WHERE clip_id = ?`;
 
-  db.all(query, [clipId], (err, rows) => {
+  req.db.all(query, [clipId], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -69,7 +69,7 @@ votesRouter.put('/:voteId', (req, res) => {
   const query = `UPDATE votes SET vote = ? WHERE id = ?`;
   const parameters = [updatedVote, voteId];
 
-  db.run(query, parameters, function(err) {
+  req.db.run(query, parameters, function(err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
