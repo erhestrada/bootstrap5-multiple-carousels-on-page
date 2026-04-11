@@ -67,6 +67,8 @@ export async function getFollows(userId) {
         return [];
     }
 }
+
+// TODO: delete, unused
 // label e.g. streamer, category
 export async function getKindOfFollows(userId, kind) {
     try {
