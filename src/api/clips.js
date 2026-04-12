@@ -2,7 +2,7 @@ import { API_URL } from "./apiConfig.js";
 
 export async function postClip(clip) {
     try {
-        const response = await fetch('http://192.168.86.195:3000/clips', {
+        const response = await fetch(API_URL + 'clips', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(clip)
