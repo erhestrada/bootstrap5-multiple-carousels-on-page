@@ -2,7 +2,7 @@ import { toggleLike } from "./like-handler";
 import { showReplyBox } from './reply-handler';
 import { postComment } from '../src/api/comments.js';
 import { handleDeleteComment } from "./delete-comment-handler";
-import { postClip } from "../postClip";
+import { postClip } from "../src/api/clips.js";
 
 export async function submitComment() {
     const textarea = document.getElementById('new-comment');

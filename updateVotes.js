@@ -1,6 +1,6 @@
 import { postVote, deleteVote } from './src/api/votes.js'
 import { getClipId } from './getClipId';
-import { postClip } from './postClip';
+import { postClip } from './src/api/clips.js';
 
 export function updateVotes(button, vote) {
     const totalVotesElement = document.getElementById('net-votes');

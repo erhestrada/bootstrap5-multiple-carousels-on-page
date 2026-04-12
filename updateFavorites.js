@@ -1,7 +1,7 @@
 import { saveClip, removeClip } from "./updateVotes.js";
 import { postFavorite, deleteFavorite } from "./src/api/favorites.js";
 import { getClipId } from "./getClipId.js";
-import { postClip } from "./postClip.js";
+import { postClip } from "./src/api/clips.js";
 
 export function updateFavorites(button) {
   const favoriteIcon = button.querySelector('.favorite-icon');

@@ -1,5 +1,5 @@
 import { postComment } from "../src/api/comments.js";
-import { postClip } from "../postClip";
+import { postClip } from "../src/api/clips.js";
 import { attachCommentEventListeners } from "./comment-handler";
 
 export function showReplyBox(button) {
