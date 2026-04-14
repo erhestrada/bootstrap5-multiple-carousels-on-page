@@ -21,7 +21,7 @@ export async function getComments(clipId, userId) {
 }
 
 export async function postComment(userId, clipId, parentId, comment) {
-    const url = API_URL + `clips/${clipId}/comments`;
+    const url = API_URL + `comments/clips/${clipId}`;
     const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
