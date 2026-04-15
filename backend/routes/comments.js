@@ -22,7 +22,7 @@ commentsRouter.get('/users/:userId', (req, res) => {
 
 // Get all comments on clip
 // TODO: refactor path
-commentsRouter.get('/abc/clips/:clipId/comments', (req, res) => {
+commentsRouter.get('/abc/clips/:clipId', (req, res) => {
   const clipId = req.params.clipId;
   const userId = req.query.userId;
 
