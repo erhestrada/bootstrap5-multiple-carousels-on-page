@@ -33,7 +33,7 @@ export async function postComment(userId, clipId, parentId, comment) {
 }
 
 export async function softDeleteComment(clipId, commentId) {
-    const url = API_URL + `clips/${clipId}/comments/${commentId}`;
+    const url = API_URL + `comments/clips/${clipId}/${commentId}`;
     const options = {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
