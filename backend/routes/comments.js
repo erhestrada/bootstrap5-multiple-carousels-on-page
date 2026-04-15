@@ -79,7 +79,7 @@ commentsRouter.delete('/clips/:clipId/:commentId', (req, res) => {
 });
 
 // Soft delete comment
-commentsRouter.patch('/clips/:clipId/comments/:commentId', (req, res) => {
+commentsRouter.patch('comments/clips/:clipId/:commentId', (req, res) => {
   const { commentId } = req.params;
   const { userId, comment, timestamp } = req.body;
 
