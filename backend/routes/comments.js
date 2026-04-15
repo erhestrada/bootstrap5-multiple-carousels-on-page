@@ -67,7 +67,7 @@ commentsRouter.post('/clips/:clipId', (req, res) => {
 });
 
 // Delete comment
-commentsRouter.delete('/clips/:clipId/comments/:commentId', (req, res) => {
+commentsRouter.delete('/clips/:clipId/:commentId', (req, res) => {
   const { commentId } = req.params;
   const { userId } = req.body;
 
