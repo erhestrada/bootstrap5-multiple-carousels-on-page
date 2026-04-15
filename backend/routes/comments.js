@@ -43,7 +43,7 @@ commentsRouter.get('/abc/clips/:clipId', (req, res) => {
     ORDER BY comments.timestamp DESC
   `;
 
-  db.all(query, [userId, clipId], (err, rows) => {
+  req.db.all(query, [userId, clipId], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -90,7 +90,7 @@ commentsRouter.patch('comments/clips/:clipId/:commentId', (req, res) => {
   `;
   const parameters = [userId, comment, timestamp, commentId];
 
-  db.run(updateQuery, parameters, function (err) {
+  req.db.run(updateQuery, parameters, function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
