@@ -9,7 +9,7 @@ commentsRouter.get('/:userId/activity', (req, res) => {
   res.send('activity endpoint hit');
 });
 
-commentsRouter.get('/users/:userId/comments', (req, res) => {
+commentsRouter.get('/users/:userId', (req, res) => {
   const userId = req.params.userId;
   const tableName = 'comments';
   const columnName = 'user_id';
