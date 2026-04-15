@@ -2,7 +2,7 @@ import { makeApiRequest } from "../../make-api-request.js";
 import { API_URL } from "./apiConfig.js";
 
 export async function deleteComment(userId, clipId, commentId) {
-    const url = API_URL + `clips/${clipId}/comments/${commentId}`;
+    const url = API_URL + `comments/clips/${clipId}/${commentId}`;
     const options = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
