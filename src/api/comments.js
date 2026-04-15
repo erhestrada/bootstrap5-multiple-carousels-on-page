@@ -14,7 +14,7 @@ export async function deleteComment(userId, clipId, commentId) {
 
 export async function getComments(clipId, userId) {
     // TODO: refactor path
-    const url = API_URL + `abc/clips/${clipId}/comments?userId=${userId}`;
+    const url = API_URL + `comments/abc/clips/${clipId}?userId=${userId}`;
     const options = {};
     const comments = await makeApiRequest(url, options);
     return comments;
