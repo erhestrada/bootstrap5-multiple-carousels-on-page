@@ -100,7 +100,7 @@ export function dbRunAsync(db, query, params) {
   });
 }
 
-export function getAllRowsFromTable(tableName, res) {
+export function getAllRowsFromTable(db, tableName, res) {
   const query = `SELECT * FROM ${tableName}`;
 
   db.all(query, [], (err, rows) => {
