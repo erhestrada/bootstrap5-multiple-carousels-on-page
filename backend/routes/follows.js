@@ -4,7 +4,7 @@ const followsRouter = Router();
 
 // ---------------------------- Follows ------------------------------
 // Get all user follows - followed streamers and followed categories
-followsRouter.get('/users/:id/following', (req, res) => {
+followsRouter.get('/users/:id', (req, res) => {
   const { id: userId } = req.params;
 
   const streamersQuery = `SELECT streamer, twitch_id, profile_picture_url, position FROM followed_streamers WHERE user_id = ?`;
@@ -34,7 +34,7 @@ followsRouter.get('/users/:id/following', (req, res) => {
 });
 
 // Get user follows of a specific kind e.g. followed streamers or followed categories
-followsRouter.get('/users/:id/following/:kind', (req, res) => {
+followsRouter.get('/users/:id/:kind', (req, res) => {
   const { id: userId, kind } = req.params;
 
   let tableName, title;
@@ -64,7 +64,7 @@ followsRouter.get('/users/:id/following/:kind', (req, res) => {
 });
 
 // Post streamer to follow
-followsRouter.post('/users/:userId/following/streamers/:streamer', (req, res) => {
+followsRouter.post('/users/:userId/streamers/:streamer', (req, res) => {
   const { userId, streamer } = req.params;
   const { twitchId, profilePictureUrl } = req.body;
 
@@ -101,7 +101,7 @@ followsRouter.post('/users/:userId/following/streamers/:streamer', (req, res) =>
 
 
 // Delete followed streamer
-followsRouter.delete('/users/:userId/following/streamers/:streamer', (req, res) => {
+followsRouter.delete('/users/:userId/streamers/:streamer', (req, res) => {
   const { userId, streamer } = req.params;
   const { twitchId } = req.body
 
@@ -113,7 +113,7 @@ followsRouter.delete('/users/:userId/following/streamers/:streamer', (req, res) 
 });
 
 // Post category to follow
-followsRouter.post('/users/:userId/following/categories/:category', (req, res) => {
+followsRouter.post('/users/:userId/categories/:category', (req, res) => {
   const { userId, category } = req.params;
   const { twitchId, boxArtUrl } = req.body;
 
@@ -149,7 +149,7 @@ followsRouter.post('/users/:userId/following/categories/:category', (req, res) =
 });
 
 // Delete followed category
-followsRouter.delete('/users/:userId/following/categories/:category', (req, res) => {
+followsRouter.delete('/users/:userId/categories/:category', (req, res) => {
   const { userId, category } = req.params
   const { twitchId, boxArtUrl } = req.body;
 
@@ -161,7 +161,7 @@ followsRouter.delete('/users/:userId/following/categories/:category', (req, res)
 });
 
 // Swap positions
-followsRouter.patch('/users/:userId/following/:followType', async (req, res) => {
+followsRouter.patch('/users/:userId/:followType', async (req, res) => {
   const { userId, followType } = req.params;
   const { firstStreamerOrCategoryName, secondStreamerOrCategoryName } = req.body;
 
