@@ -168,7 +168,7 @@ followsRouter.patch('/users/:userId/:followType', async (req, res) => {
   const tableName = followType === 'streamers' ? 'followed_streamers' : 'followed_categories';
 
   try {
-    await swapPositions(tableName, userId, firstStreamerOrCategoryName, secondStreamerOrCategoryName);
+    await swapPositions(req.db, tableName, userId, firstStreamerOrCategoryName, secondStreamerOrCategoryName);
     res.send({ message: 'Positions swfollowsRouter.d successfully' });
   } catch (err) {
     console.error(err);
@@ -176,7 +176,7 @@ followsRouter.patch('/users/:userId/:followType', async (req, res) => {
   }
 });
 
-async function swapPositions(tableName, userId, streamerA, streamerB) {
+async function swapPositions(db, tableName, userId, streamerA, streamerB) {
   try {
     await dbRunAsync(db, 'BEGIN TRANSACTION');
 
