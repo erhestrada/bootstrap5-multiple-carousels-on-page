@@ -3,7 +3,7 @@ import { getSignedOutUserId, getAllRowsFromTable } from '../utils/utils.js'
 const usersRouter = Router();
 
 usersRouter.get('/', (req, res) => {
-  getAllRowsFromTable('users', res);
+  getAllRowsFromTable(req.db, 'users', res);
 });
 
 usersRouter.get('/signed-out-user', async (req, res) => {
