@@ -85,7 +85,7 @@ followsRouter.post('/users/:userId/streamers/:streamer', (req, res) => {
 
   const parameters = [userId, streamer, twitchId, profilePictureUrl, userId];
 
-  db.run(query, parameters, function (err) {
+  req.db.run(query, parameters, function (err) {
     if (err) {
       console.error(`Error inserting into ${tableName}:`, err);
       return res.status(500).json({ error: err.message });
@@ -134,7 +134,7 @@ followsRouter.post('/users/:userId/categories/:category', (req, res) => {
 
   const parameters = [userId, category, twitchId, boxArtUrl, userId];
 
-  db.run(query, parameters, function (err) {
+  req.db.run(query, parameters, function (err) {
     if (err) {
       console.error(`Error inserting into ${tableName}:`, err);
       return res.status(500).json({ error: err.message });
