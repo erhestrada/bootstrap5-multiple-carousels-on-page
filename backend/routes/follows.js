@@ -10,12 +10,12 @@ followsRouter.get('/users/:id', (req, res) => {
   const streamersQuery = `SELECT streamer, twitch_id, profile_picture_url, position FROM followed_streamers WHERE user_id = ?`;
   const categoriesQuery = `SELECT category, twitch_id, box_art_url, position FROM followed_categories WHERE user_id = ?`;
 
-  db.all(streamersQuery, [userId], (err, streamerRows) => {
+  req.db.all(streamersQuery, [userId], (err, streamerRows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
 
-    db.all(categoriesQuery, [userId], (err, categoryRows) => {
+    req.db.all(categoriesQuery, [userId], (err, categoryRows) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -53,7 +53,7 @@ followsRouter.get('/users/:id/:kind', (req, res) => {
 
   const query = `SELECT * FROM ${tableName} WHERE ${columnName} = ?`;
 
-  db.all(query, [filterValue], (err, rows) => {
+  req.db.all(query, [filterValue], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
