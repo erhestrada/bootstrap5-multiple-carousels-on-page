@@ -84,7 +84,7 @@ export async function getUsers() {
 // TODO: remove, unused
 export async function patchLogin(userId, username, password) {
     try {
-        const response = await fetch(API_URL + `${userId}/login`, {
+        const response = await fetch(API_URL + `users/${userId}/login`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
