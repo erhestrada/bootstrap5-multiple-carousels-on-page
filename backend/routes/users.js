@@ -34,7 +34,7 @@ usersRouter.patch('/:userId/login', (req, res) => {
   `;
   const parameters = [username, password, userId];
 
-  db.run(updateQuery, parameters, function (err) {
+  req.db.run(updateQuery, parameters, function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
