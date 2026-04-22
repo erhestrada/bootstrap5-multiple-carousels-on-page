@@ -1,3 +1,5 @@
+import { API_URL } from "./apiConfig.js";
+
 let cachedRedditPosts = null;
 let cacheTimestamp = 0;
 const CACHE_TTL = 5 * 60 * 1000; // cache for 5 minutes
@@ -10,7 +12,7 @@ export async function getRedditPosts() {
   }
 
   try {
-    const res = await fetch('http://192.168.86.195:3000/reddit-posts');
+    const res = await fetch(API_URL + 'reddit-posts');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const redditPosts = await res.json();
 
