@@ -13,7 +13,7 @@ import { getFollows } from './src/api/follows.js';
 import { submitComment } from './comment-handlers/comment-handler.js';
 import { hideDeleteModal, confirmDelete } from './comment-handlers/delete-comment-handler.js';
 import { searchStreamers } from './search.js';
-import { getRedditPosts } from './get-reddit-posts.js';
+import { getRedditPosts } from './src/api/get-reddit-posts.js';
 import { makeTopStreamersNewCarousels } from './makeTopStreamersNewCarousels.js';
 import { positionCarouselTabButtons } from './positionCarouselTabButtons.js';
 import { toggleStreamerBarCarousel } from './toggleStreamerBarCarousel.js';
