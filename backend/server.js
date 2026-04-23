@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import sqlite3Pkg from 'sqlite3';
 import os from "os";
-import { getRedditPosts } from './getRedditPosts.js';
 //import { getTwitchAcessToken } from './getTwitchAccessToken.js';
 import { clipsRouter, votesRouter, favoritesRouter, usersRouter, historyRouter, commentsRouter, likesRouter, followsRouter, redditRouter } from './routes/index.js';
 import { generateNewRandomUsername, dbGetAsync, dbRunAsync, getAllRowsFromTable, getValueFilteredDataFromTable, getSignedOutUserId } from './utils/utils.js';
