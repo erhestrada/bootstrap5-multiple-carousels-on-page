@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getRedditPosts } from './getRedditPosts.js';
 const redditRouter = Router();
 
 redditRouter.get('/posts', async (req, res) => {
