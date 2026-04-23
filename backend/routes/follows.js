@@ -215,16 +215,6 @@ async function swapPositions(db, tableName, userId, streamerA, streamerB) {
     throw err;
   }
 }
-// -------------------------------------------------------------------
-followsRouter.get('/reddit-posts', async (req, res) => {
-  try {
-    const posts = await getRedditPosts("LivestreamFail", 24);
-    res.json(posts);
-  } catch (err) {
-    console.error("Error in /api/reddit-posts:", err); // ← this will now catch missing import
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
 
 export default followsRouter;
 
