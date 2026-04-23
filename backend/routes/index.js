@@ -6,4 +6,5 @@ export { default as historyRouter } from './history.js';
 export { default as commentsRouter } from './comments.js';
 export { default as followsRouter } from './follows.js';
 export { default as likesRouter } from './likes.js';
+export { default as redditRouter } from './reddit.js';
 
