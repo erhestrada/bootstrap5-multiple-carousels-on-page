@@ -12,7 +12,7 @@ export async function getRedditPosts() {
   }
 
   try {
-    const res = await fetch(API_URL + 'reddit-posts');
+    const res = await fetch(API_URL + 'reddit/posts');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const redditPosts = await res.json();
 
