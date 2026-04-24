@@ -21,7 +21,7 @@ export async function deleteFavorite(userId, clipId) {
 }
 export async function getFavoriteStatusOfClip(userId, clipId) {
     try {
-        const response = await fetch(`API_URL/favorites/${userId}/${clipId}`);
+        const response = await fetch(API_URL + `favorites/${userId}/${clipId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
