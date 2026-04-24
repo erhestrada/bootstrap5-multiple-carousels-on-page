@@ -1,3 +1,6 @@
+// Quick fix for node 16 (no built in fetch)
+import fetch from "node-fetch";
+
 export async function getRedditPosts(subreddit, hoursBack) {
   const now = Math.floor(Date.now() / 1000);
   const timeWindow = now - hoursBack * 60 * 60;
