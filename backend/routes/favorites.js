@@ -21,7 +21,7 @@ favoritesRouter.get('/:userId/:clipId', (req, res) => {
 
   const query = `SELECT * FROM favorites WHERE user_id = ? AND clip_id = ?`;
 
-  db.get(query, [userId, clipId], (err, row) => {
+  req.db.get(query, [userId, clipId], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
