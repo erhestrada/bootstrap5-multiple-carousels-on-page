@@ -157,5 +157,3 @@ export async function getCategories(searchInput) {
     }
 }
 
-const searchBox = document.getElementById('searchBox');
-searchBox.addEventListener('input', searchStreamers);
