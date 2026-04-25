@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 // -------------------Search Box------------------------------------------
 const searchBox = document.getElementById('searchBox');
-searchBox.addEventListener('keyup', searchStreamers);
+searchBox.addEventListener('input', searchStreamers);
 
 // -------------------------------- Comments ------------------------------
 
