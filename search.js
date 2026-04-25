@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import { followStreamer } from './followStreamer.js';
 import { makeSearchCarousel } from './makeSearchCarousel.js';
-import { authToken } from './config.js';
+import { clientId, authToken } from './config.js';
 
 let debounceTimeout;
 
