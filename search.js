@@ -5,8 +5,8 @@ import { clientId, authToken } from './config.js';
 
 let debounceTimeout;
 
-export async function searchStreamers() {
-    const query = document.getElementById('searchBox').value.toLowerCase();  // Get the search input
+export async function searchStreamers(e) {
+    const query = e.target.value.toLowerCase().trim();
 
     // If the query is empty, clear the results and exit
     if (query === '') {
