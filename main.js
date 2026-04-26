@@ -1,3 +1,6 @@
+// TODO: fix up/down arrows for carousel navigation
+// TODO: fix history click event handlers
+
 import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
