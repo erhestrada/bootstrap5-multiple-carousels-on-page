@@ -417,10 +417,6 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
   thumb.classList.add('thumbnail');
   thumb.style.width = "100%";
   thumb.style.cursor = "pointer";
-  thumb.addEventListener('click', () => { 
-    thumbnailClickListener(carouselName, index, embedUrls, streamerIds, streamers);
-    highlightDiv(thumbWrapper);
-  });
 
   // Duration overlay
   const durationOverlay = document.createElement('span');
