@@ -456,6 +456,7 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
   row.appendChild(thumbWrapper);
   row.appendChild(infoCol);
 
+  // replace carousel item
   row.addEventListener('click', () => alert('replace carousel item'));
 
   return { carouselItem: row, imageWrapper: thumbWrapper };
