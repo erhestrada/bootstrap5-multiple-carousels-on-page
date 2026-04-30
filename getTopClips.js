@@ -456,8 +456,9 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
   row.appendChild(thumbWrapper);
   row.appendChild(infoCol);
 
-  // replace carousel item
-  row.addEventListener('click', () => alert('replace carousel item'));
-
+  // Replace carousel item
+  // TODO: update history (add a new element or just change highlight)
+  row.addEventListener('click', () => replaceCarouselItem(index, embedUrls, streamerIds, streamers));
+    
   return { carouselItem: row, imageWrapper: thumbWrapper };
 }
