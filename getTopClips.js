@@ -470,3 +470,11 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
     
   return { carouselItem: row, imageWrapper: thumbWrapper };
 }
+
+function unhighlightHistoryRow() {
+    const previousCurrent = document.querySelector('.playlist-row.current');
+    if (previousCurrent) {
+      previousCurrent.classList.remove('current');
+    }
+}
+
