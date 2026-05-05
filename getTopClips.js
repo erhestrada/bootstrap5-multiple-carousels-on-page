@@ -461,11 +461,8 @@ function makeHistoryRow(carouselName, clip, index, englishClips) {
   row.addEventListener('click', () => replaceCarouselItem(index, embedUrls, streamerIds, streamers));
 
   row.addEventListener('click', () => {
-    const previousCurrent = document.querySelector('.playlist-row.current');
-    if (previousCurrent) {
-      previousCurrent.classList.remove('current');
-    }
-    row.classList.add('current')
+    unhighlightHistoryRow();
+    row.classList.add('current');
   });
     
   return { carouselItem: row, imageWrapper: thumbWrapper };
