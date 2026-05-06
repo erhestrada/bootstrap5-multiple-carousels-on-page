@@ -373,11 +373,7 @@ function updateHistory() {
     const historyContainer = document.getElementById('history-items');
     historyContainer.prepend(historyRow);
 
-    const previousCurrent = document.querySelector('.playlist-row.current');
-    if (previousCurrent) {
-      previousCurrent.classList.remove('current');
-    }
-
+    unhighlightHistoryRow();
     historyRow.classList.add('current');
   }
 
