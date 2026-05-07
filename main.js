@@ -1,5 +1,3 @@
-// TODO: fix up/down arrows for carousel navigation
-
 import { makeTopCategoriesNewCarousels } from './makeTopCategoriesNewCarousels.js';
 import { followStreamer } from './followStreamer.js';
 import { followCategory } from './followCategory.js';
