@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { getClips } from './getClips.js';
 import { insertRowIntoTable } from '../utils/utils.js';
-import { getTopClips } from './frontendStuff/getTopClips.js'
 const clipsRouter = Router();
 
 // root is /clips
@@ -18,10 +17,24 @@ clipsRouter.post('/', (req, res) => {
 
 // TODO: implement all the twitch api function calls here
 clipsRouter.get('/top', (req, res) => {
-    // getTopClips()
+    const clipsData = getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId);
     res.send({message: "Top clips endpoint hit"});
 });
 
+
+export async function getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName = false, gameId = false) {
+    try {
+      const response = await fetch(makeGetUrl(game, daysBack, broadcasterName, gameId), {
+        method: 'GET',
+        headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ' + authToken
+        }
+      });
+      const clipsData = await response.json();
+      return clipsData;
+    }
+}
 
 clipsRouter.get('/:userId/votes', (req, res) => {
   const userId = req.params.userId;
