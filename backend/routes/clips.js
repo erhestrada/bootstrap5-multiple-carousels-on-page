@@ -17,8 +17,8 @@ clipsRouter.post('/', (req, res) => {
 
 // TODO: implement all the twitch api function calls here
 clipsRouter.get('/top', (req, res) => {
-    const clipsData = getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId);
-    res.send({message: "Top clips endpoint hit"});
+    const clipsData = await getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId);
+    res.send({ clipsData });
 });
 
 
