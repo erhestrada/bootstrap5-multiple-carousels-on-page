@@ -76,3 +76,19 @@ export async function getHistoryClips(userId) {
     }
 }
 
+export async function getTopTwitchClips(userId) {
+    try {
+        const response = await fetch(API_URL + `clips/${userId}/favorites`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error; status: ${response.status}`);
+        }
+
+        const votesData = await response.json();
+        return votesData;
+
+    } catch (error) {
+        console.error('Error getting favorited clips', error);
+        return null;
+    }
+}
