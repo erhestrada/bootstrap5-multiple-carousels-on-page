@@ -78,7 +78,7 @@ export async function getHistoryClips(userId) {
 
 export async function getTopTwitchClips(userId) {
     try {
-        const response = await fetch(API_URL + `clips/${userId}/favorites`);
+        const response = await fetch(API_URL + `clips/top`);
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
