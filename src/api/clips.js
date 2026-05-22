@@ -88,7 +88,7 @@ export async function getTopTwitchClips(userId) {
         return votesData;
 
     } catch (error) {
-        console.error('Error getting favorited clips', error);
+        console.error('Error getting top clips', error);
         return null;
     }
 }
