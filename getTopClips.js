@@ -12,7 +12,7 @@ import { displayFavoriteStatusOfClip } from "./display-favorite-status-of-clip";
 import { displayComments } from "./display-comments";
 import { checkRedditPosts } from "./checkRedditPosts";
 import { postClipToHistory } from "./src/api/history.js";
-import { postClip } from "./src/api/clips.js";
+import { postClip, getTopTwitchClips } from "./src/api/clips.js";
 
 const gameToIdConverter = {
     "IRL": "509672",
