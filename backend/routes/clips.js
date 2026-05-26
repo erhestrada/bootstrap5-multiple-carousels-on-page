@@ -33,8 +33,12 @@ export async function getTopClips(clientId, authToken, carouselName, game, daysB
           'Authorization': 'Bearer ' + authToken
         }
       });
+
       const clipsData = await response.json();
       return clipsData;
+    } catch(error) {
+      console.error('Error getting top Twitch clips', error);
+      return null;
     }
 }
 
