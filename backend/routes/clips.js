@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { getClips } from './getClips.js';
 import { insertRowIntoTable } from '../utils/utils.js';
 const clipsRouter = Router();
 
