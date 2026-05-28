@@ -84,8 +84,8 @@ export async function getTopTwitchClips(userId) {
             throw new Error(`HTTP error; status: ${response.status}`);
         }
 
-        const votesData = await response.json();
-        return votesData;
+        const clipsData = await response.json();
+        return clipsData;
 
     } catch (error) {
         console.error('Error getting top clips', error);
