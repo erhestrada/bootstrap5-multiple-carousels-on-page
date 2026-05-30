@@ -76,9 +76,15 @@ export async function getHistoryClips(userId) {
     }
 }
 
-export async function getTopTwitchClips(userId) {
+// Add body data as arguments and pass in getTopClips()
+export async function getTopTwitchClips() {
     try {
-        const response = await fetch(API_URL + `clips/top`);
+        const response = await fetch(API_URL + 'clips/top', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({ clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId })
+
+        });
 
         if (!response.ok) {
             throw new Error(`HTTP error; status: ${response.status}`);
@@ -86,9 +92,9 @@ export async function getTopTwitchClips(userId) {
 
         const clipsData = await response.json();
         return clipsData;
-
-    } catch (error) {
-        console.error('Error getting top clips', error);
-        return null;
+    
+    } catch(error) {
+        console.error("Error getting top Twitch clips", error);
+        throw new Error(`Error getting top Twitch clips: ${error.message}`);
     }
 }
