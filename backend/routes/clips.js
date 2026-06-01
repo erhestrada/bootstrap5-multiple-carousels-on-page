@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { insertRowIntoTable } from '../utils/utils.js';
+import { clientId, authToken } from './config.js';
 const clipsRouter = Router();
 
 // root is /clips
@@ -17,13 +18,12 @@ clipsRouter.post('/', (req, res) => {
 // TODO: implement all the twitch api function calls here
 clipsRouter.post('/top', async (req, res) => {
     // clientId and authToken should come from backend
-    const { clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId } = req.body;
-    const clipsData = await getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName, gameId);
+    const { game, daysBack, broadcasterName, gameId } = req.body;
+    const clipsData = await getTopClips(game, daysBack, broadcasterName, gameId);
     res.send({ clipsData });
 });
 
-
-export async function getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName = false, gameId = false) {
+export async function getTopClips(game, daysBack, broadcasterName = false, gameId = false) {
     try {
       const response = await fetch(makeGetUrl(game, daysBack, broadcasterName, gameId), {
         method: 'GET',
