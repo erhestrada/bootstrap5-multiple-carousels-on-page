@@ -162,6 +162,8 @@ export function highlightDiv(div) {
 }
 
 export async function getTopClips(clientId, authToken, carouselName, game, daysBack, carouselRowId, broadcasterName = false, gameId = false) {
+    const twitchClipsData = getTopTwitchClips(game, daysBack, broadcasterName, gameId);
+    console.log(twitchClipsData);
     try {
       const response = await fetch(makeGetUrl(game, daysBack, broadcasterName, gameId), {
         method: 'GET',
