@@ -76,7 +76,6 @@ export async function getHistoryClips(userId) {
     }
 }
 
-// Add body data as arguments and pass in getTopClips()
 export async function getTopTwitchClips(game, daysBack, broadcasterName, gameId) {
     try {
         const response = await fetch(API_URL + 'clips/top', {
